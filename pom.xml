@@ -102,7 +102,7 @@
 				<version>2.6</version>
 				<configuration>
 					<warSourceDirectory>webapp</warSourceDirectory>
-					<webXml>webapp\WEB-INF\web.xml</webXml>
+					<webXml>webapp/WEB-INF/web.xml</webXml>
 				</configuration>
 			</plugin>
 		</plugins>
