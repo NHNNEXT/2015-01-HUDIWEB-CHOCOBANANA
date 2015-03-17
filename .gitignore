@@ -4,4 +4,5 @@
 /.classpath
 /.project
 /tomcat.8080/
+/build/
 /webapp/WEB-INF/classes/
