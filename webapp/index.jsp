@@ -7,6 +7,6 @@
 <title>The Day Practice</title>
 </head>
 <body>
-	<p>Hello World!</p>
+	<p>Hello World! 수정한 것!</p>
 </body>
 </html>
