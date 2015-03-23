@@ -83,6 +83,7 @@
 	</dependencies>
 
 	<build>
+		<fileName>ubuntudo</fileName>
 		<sourceDirectory>src</sourceDirectory>
 		<testSourceDirectory>test</testSourceDirectory>
 		<outputDirectory>webapp/WEB-INF/classes</outputDirectory>
