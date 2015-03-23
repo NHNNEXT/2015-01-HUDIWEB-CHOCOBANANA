@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>The Day Practice</title>
+<title>Ubuntudo</title>
 </head>
 <body>
 	<p>Hello World! 수정한 것!</p>
