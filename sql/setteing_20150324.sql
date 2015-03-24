@@ -24,7 +24,8 @@ DROP TABLE IF EXISTS `mydb`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `mydb`.`user` (
   `uid` INT NOT NULL AUTO_INCREMENT,
-  `email` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(31) NOT NULL,
+  `email` VARCHAR(255) NOT NULL UNIQUE,
   `passwd` VARCHAR(255) NOT NULL,
   PRIMARY KEY (`uid`),
   UNIQUE INDEX `uid_UNIQUE` (`uid` ASC),
