@@ -140,7 +140,7 @@ DROP TABLE IF EXISTS `mydb`.`user_party_relation` ;
 CREATE TABLE IF NOT EXISTS `mydb`.`user_party_relation` (
   `uid` INT NOT NULL,
   `pid` INT NOT NULL,
-  `state` TINYINT NOT NULL DEFAULT 'G' COMMENT 'M, E, G',
+  `state` CHAR(2) NOT NULL DEFAULT 'G' COMMENT 'M, E, G',
   PRIMARY KEY (`uid`, `pid`),
   INDEX `fk_user_has_party_party1_idx` (`pid` ASC),
   INDEX `fk_user_has_party_user1_idx` (`uid` ASC),
