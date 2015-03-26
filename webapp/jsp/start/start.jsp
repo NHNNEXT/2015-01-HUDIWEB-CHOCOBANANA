@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <!--  
                 .o8            			             .          			  .o8
                "888             			       .o8         				 "888
@@ -16,14 +18,6 @@
 <head>
 <meta charset="utf-8">
 <title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
-
-<!-- RSA 자바스크립트 라이브러리 -->
-<script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
-<script type="text/javascript" src="/commons/lib/js/RSA/rsa.js"></script>
-<script type="text/javascript" src="/commons/lib/js/RSA/prng4.js"></script>
-<script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
-<!-- RSA 암호화 처리 스크립트 -->
-<script type="text/javascript" src="/commons/js/start/signup.js"></script>
 </head>
 <body>
 	<!-- start page : 시작 페이지 -->
@@ -36,11 +30,12 @@
 						<!-- 서버에서 전달한값을 셋팅한다. -->
 						<input type="hidden" id="RSAModulus" value="${RSAModulus}" />
 						<input type="hidden" id="RSAExponent" value="${RSAExponent}" />
-						<li><input type="text" id="name" name="name" placeholder="이름" required></li>
-						<li><input type="email" id="email" name="email" placeholder="이메일"
+						<li><input type="text" id="name" name="name" placeholder="이름"
 							required></li>
-						<li><input type="password" id="password" name="password" placeholder="비밀번호"
-							required></li>
+						<li><input type="email" id="email" name="email"
+							placeholder="이메일" required></li>
+						<li><input type="password" id="password" name="password"
+							placeholder="비밀번호" required></li>
 						<li><input type="password" placeholder="비밀번호 확인" required></li>
 						<li><button class="signup_btn">가입하기</button></li>
 					</ul>
@@ -78,5 +73,14 @@
 		</div>
 	</div>
 	<!-- //start page : 시작 페이지 -->
+
+
+	<!-- RSA 자바스크립트 라이브러리 -->
+	<script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
+	<script type="text/javascript" src="/commons/lib/js/RSA/rsa.js"></script>
+	<script type="text/javascript" src="/commons/lib/js/RSA/prng4.js"></script>
+	<script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
+	<!-- RSA 암호화 처리 스크립트 -->
+	<script type="text/javascript" src="/commons/js/start/signup.js"></script>
 </body>
 </html>

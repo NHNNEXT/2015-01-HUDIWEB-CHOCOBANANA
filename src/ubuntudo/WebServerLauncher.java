@@ -1,4 +1,4 @@
-package main;
+package ubuntudo;
 
 import java.io.File;
 import org.apache.catalina.startup.Tomcat;
