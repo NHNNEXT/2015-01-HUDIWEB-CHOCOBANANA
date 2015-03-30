@@ -44,7 +44,8 @@ li {
 	left: 0;
 	top: 0;
 	position: fixed;
-	background-color: #18cf8c;
+	background-color: #71FF94;
+	/*background-color: #18cf8c;*/
 	z-index: -1;
 }
 
@@ -145,7 +146,7 @@ li {
 	border-radius: 2px;
 	font-size: 16px;
 	color: #393939;
-	background: #18cf8c;
+	background: #71FF94;
 	font-weight: 700;
 	text-align: center;
 	letter-spacing: -1px;
