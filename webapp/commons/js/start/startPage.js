@@ -28,6 +28,7 @@ document.querySelector(".goto_signup").addEventListener("click", function(){
 });
 
 
+/* 배경이미지 슬라이드쇼 효과 */
 var bgImages = new Array();
 var numImages = 3; // 이미지 개수
 for (i = 0; i < numImages; i++){
@@ -36,35 +37,23 @@ for (i = 0; i < numImages; i++){
 }
 
 var step = 0;
-var step2 = 1;
+// var step2 = 1;
 var elImg = document.querySelectorAll('.bg_img');
 function slideBg(){
 	if (!document.images) return;
 
-	/* opacity 효과 */
-	elImg[0].style.opacity = 0.5;
+	document.querySelector(".bg_box").style.backgroundColor = "#fff";
 
+	/* opacity 효과 */
+	elImg[0].style.opacity = 0.3;
 	nTime1 = setInterval(function(){
 		var _nPre = parseFloat(elImg[0].style.opacity);
-		if(_nPre > 1.0) 
+		if(_nPre > 1.0){
 			clearInterval(nTime1);
+		}
     	elImg[0].style.opacity = _nPre + 0.01;
   	},0.17);
 	/* //opacity 효과 */
-
-	
-	// /* opacity 효과 */
-	// elImg[1].style.opacity = 0.5;
-
-	// nTime2 = setInterval(function(){
-	// 	var _nPre = parseFloat(elImg[1].style.opacity);
-	// 	if(_nPre = 0.0) 
-	// 		clearInterval(nTime2);
- //    	elImg[1].style.opacity = _nPre - 0.01;
- //  	},0.17);
-	// /* //opacity 효과 */
-
-
 
 	elImg[0].src = bgImages[step].src;
 	if (step < 2){
@@ -73,52 +62,6 @@ function slideBg(){
 	else {
 		step = 0;
 	}
-	setTimeout("slideBg()",3000);	// 8초 마다 반복
-
-
-	// elImg[1].src = bgImages[step2].src;
-	// if (step2 < 2){
-	// 	step2++;
-	// } 
-	// else {
-	// 	step2 = 0;
-	// }
-	// setTimeout("slideBg()",3000);	// 8초 마다 반복
+	setTimeout("slideBg()", 7000);	// 7초 마다 반복
 }
 slideBg();
-
-
-// function Button(sSelector, aColor) {
-//   this.elBg = document.querySelector(sSelector);
-//   this.aColor = aColor || ["red", "green", "blue"];
-//   this.nLen = this.aColor.length;
-//   this.init();
-// }
-// // Button.prototype.init = function() {
-// //   this.elBase.addEventListener("click", function(ev) {
-// // 			this.changeImgOfBg();
-// //   }.bind(this));
-// // };
-
-// var changeImgOfBg = function() {
-//   if(this.nTime) clearInterval(this.nTime);
-
-//   var nIndex = myUtil.getRandomNumber.call(this);
-//   this.elBase.style.backgroundColor = this.aColor[nIndex];
-//   this.elBase.style.opacity = 0;
-
-//   this.nTime = setInterval(function(){
-//       var _nPre = parseFloat(this.elBase.style.opacity);
-//       if(_nPre > 1.0) clearInterval(this.nTime);
-//     this.elBase.style.opacity = _nPre + 0.05;
-//   }.bind(this),100);
-// };
-
-// // //Utility methods
-// // var myUtil = {
-// //   getRandomNumber : function() {
-// //    	return Math.floor(Math.random() * this.nLen);
-// //   }
-// // };
-// //service Code
-// var oB = new Button(".bg_img", ["red", "blue", "orange", "pink"]);	
