@@ -38,24 +38,24 @@ for (i = 0; i < numImages; i++){
 
 var step = 0;
 // var step2 = 1;
-var elImg = document.querySelectorAll('.bg_img');
+var elImg = document.querySelector('.bg_img');
 function slideBg(){
 	if (!document.images) return;
 
 	document.querySelector(".bg_box").style.backgroundColor = "#fff";
 
-	/* opacity 효과 */
-	elImg[0].style.opacity = 0.3;
-	nTime1 = setInterval(function(){
-		var _nPre = parseFloat(elImg[0].style.opacity);
+	/* opacity 효과  ------ 오류 있음.... 일정시간이 지나면 opacity가 계속 올라가는 현상 그래도 동작은 잘 함.. */ 
+	elImg.style.opacity = 0.3;
+	nTime = setInterval(function(){
+		var _nPre = parseFloat(elImg.style.opacity);
 		if(_nPre > 1.0){
-			clearInterval(nTime1);
+			clearInterval(nTime);
 		}
-    	elImg[0].style.opacity = _nPre + 0.01;
+    	elImg.style.opacity = _nPre + 0.01;
   	},0.17);
 	/* //opacity 효과 */
 
-	elImg[0].src = bgImages[step].src;
+	elImg.src = bgImages[step].src;
 	if (step < 2){
 		step++;
 	} 
