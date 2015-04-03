@@ -7,4 +7,5 @@
 /build/
 /webapp/WEB-INF/classes/
 /node_modules/
-/.idea
+/.idea/
+/webadd/.idea/
