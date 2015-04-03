@@ -1,29 +1,22 @@
-html {
-	height: 100%;
-}
+@charset "utf-8";
+/* NHN Web UIT development SMY 140212 */
 
-body, button, div, form, input, li, ul {
-	margin: 0;
-	padding: 0;
-	font-family: Lato, 'Helvetica Neue', Helvetica, NanumGothic,'나눔고딕', sans-serif;
+/* Common */
+body,p,h1,h2,h3,h4,h5,h6,ul,ol,li,dl,dt,dd,table,th,td,form,fieldset,legend,input,textarea,button,select{margin:0;padding:0}
+body,input,textarea,select,button,table{font-family: Lato, 'Helvetica Neue', Helvetica, NanumGothic,'나눔고딕', sans-serif;font-size:12px;-webkit-text-size-adjust:none}
+img,fieldset{border:0}
+ul,ol,li{list-style:none}
+em,address{font-style:normal}
+a{text-decoration:none;color:#66757f}
+a:hover,a:active,a:focus{text-decoration:underline}
+.blind{visibility:hidden;overflow:hidden;position:absolute;top:0;left:0;width:1px;height:1px;font-size:0;line-height:0}
+body{background:#fff;}
 
-}
-
-li {
-	list-style-type: none;
-}
-
-a {
-	text-decoration: none;
-	color:  #66757f;
-;
-}
 
 /*header*/
 header {
 	width: 100%;
 	height: 60px;
-	
 }
 
 #container::before {
@@ -54,7 +47,6 @@ nav {
 	height: 40px;
 	line-height: 40px;
 	vertical-align: middle;
-	font-family: Lato, 'Helvetica Neue', Helvetica, sans-serif;
 	/*'Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;*/
 	font-size: 20px;
 	letter-spacing: -1.163px;
@@ -70,6 +62,7 @@ nav a:nth-child(2){
 
 nav a:hover {
 	color: #dd4b39;
+	text-decoration: none;
 }
 
 ul.btn_wrapper {
@@ -132,29 +125,125 @@ ul.btn_wrapper {
 
 .search_submit {
 	position: relative;
-	top: 2px;
+	top: 0px;
 	outline: none;
 	border: none;
 	background-color: transparent;
 	background-origin: padding-box;
 	background-image: url(https://d3ptyyxy2at9ui.cloudfront.net/08f446c3fb93cb51b620b7d6a713a42b.png);
-	background-position: 0px -1500px;
+	background-position: 0px -1498.5px;
 	width: 17px;
 	height: 17px;
 }
 
 /* .ns-personal */
-.ns-personal aside {
+.ns_personal aside {
 	width: 60px;
-	height: calc(100vh - 56px);
+	height: calc(100vh - 60px);
 	float: left;
 }
 
-.ns-personal main {
-	width: calc(100% - 60px);
-	height: calc(100vh - 56px);
-	top:20px;
-	bottom: 0px;
-	float: right;
-	background-color: rgb(244, 244, 244);
+.ns_personal aside .party_pavicon {
+	margin: 14px;
+	background-color: #42a5f5;
 }
+
+.ns_personal main::before {
+	content: "";
+	position: absolute;
+	top: 60px;
+	left: 60px;
+	border-left: 1px solid rgba(129,129,129,0.2);
+	width: 1px;
+	height: calc(100% - 60px);
+}
+
+.ns_personal main {
+	width: calc(100% - 90px);
+	height: calc(100vh - 120px);
+	padding: 30px 15px;
+	float: right;
+	background-color: rgb(241, 241, 241);
+}
+
+.ns_personal section {
+	display: inline-block;
+	width: calc((100% - 100px) / 3);
+	height: calc(100%);
+	margin: 0 15px;
+	border-radius: 5px;
+	background-color: #fff;
+	float: left;
+	border: 1px solid rgba(129,129,129,0.2);
+	overflow: scroll;
+}
+
+.ns_personal .category {
+	padding: 10px 10px 0 10px;
+	height: 50px;	
+	color: #66757f;
+	border-bottom: 1px solid rgba(129,129,129,0.2);
+
+}
+
+.ns_personal .name, .ns_personal section .party_pavicon, .ns_personal h2, .ns_personal p, .ns_personal button{
+	display: inline-block;
+}
+
+.ns_personal .name {
+	padding : 10px;
+	font-weight: 200;
+	font-size: 20px;
+ 	text-transform: uppercase;
+}
+
+.ns_personal .date {
+	font-size: 12px;
+}
+
+.ns_personal section ul {
+	display: inline-block;
+	width: 100%;
+}
+
+.ns_personal .todo {
+	width: calc(100% - 20px);
+	padding: 10px;
+	overflow: hidden;
+	border-bottom: 1px solid rgba(129,129,129,0.2);
+}
+
+.ns_personal .todo:hover {
+	background-color: rgb(241, 241, 241);
+} 
+
+.ns_personal .party_pavicon {
+	width: 32px;
+	height: 32px;
+	line-height: 32px;
+	background-color: #42a5f5;
+	border-radius: 50%;
+	text-align: center;
+	vertical-align: middle;
+	color: #fff;
+}
+
+.ns_personal .todo h2, .ns_personal .todo p{
+	position: relative;
+	top: 3px;
+}
+
+.ns_personal .todo h2 {
+	padding: 0 5px;
+}
+
+.ns_personal .todo p {
+	color: #66757f;
+	font-size: 10px;
+}
+
+
+.ns_personal .complete_btn {
+
+}
+
