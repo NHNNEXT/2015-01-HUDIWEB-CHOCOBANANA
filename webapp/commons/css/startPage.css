@@ -5,7 +5,7 @@ html {
 body, button, div, form, input, li, ul {
 	margin: 0;
 	padding: 0;
-	font-family: NanumGothic,'나눔고딕';
+	font-family: NanumGothic, "나눔고딕", sans-serif;
 }
 
 li {
@@ -79,8 +79,7 @@ li {
 	height: 30px;
 	left: 40px;
 	top: 40px;
-	background-image: url("../img/ubuntudo_logo.png");
-	background-repeat: no-repeat;
+	background: url("../img/ubuntudo_logo.png") no-repeat;
 	background-size: 100%;
 	position: absolute;
 }
@@ -128,7 +127,6 @@ li {
 	line-height: 1.4;
 	background: 0 0;
 	outline: 0 none;
-	border-radius: 2px;
 	border-radius: 2px;
   	background: #fff;
   	margin-bottom: 8px;
