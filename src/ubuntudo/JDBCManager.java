@@ -27,9 +27,9 @@ public class JDBCManager {
 		}
 		try {
 			logger.info("Getting Connection.");
-			String addr = "";
-			String user = "";
-			String pw = "";
+			String addr = WebServerLauncher.dbInfo.get("address");
+			String user = WebServerLauncher.dbInfo.get("connectionId");
+			String pw = WebServerLauncher.dbInfo.get("connectionPassWd");
 			conn = DriverManager.getConnection(addr, user, pw);
 			logger.info("Connection Successed.");
 		} catch (SQLException e) {
@@ -42,11 +42,9 @@ public class JDBCManager {
       if (rs != null) {
         rs.close();
       }
-
       if (pm != null) {
       	pm.close();
       }
-
       if (cn != null) {
       	cn.close();
       }
