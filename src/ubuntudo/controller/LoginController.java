@@ -31,7 +31,6 @@ public class LoginController extends AbstractController {
 		UserDao uDao = new UserDao();
 		
 		UserEntity currentUser = uDao.retrieveUser(email, passwd);
-		// UserEntity currentUser = new UserEntity(1L, "USER NAME", email, passwd);
 
 		// if (currentUser != null) {
 		if (currentUser != null) {
