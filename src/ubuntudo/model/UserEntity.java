@@ -2,7 +2,7 @@ package ubuntudo.model;
 
 public class UserEntity {
 
-	private String uid;
+	private Long uid;
 	private String name;
 	private String email;
 	private String passwd;
@@ -15,14 +15,14 @@ public class UserEntity {
 	}
 
 	// use this constructor for general purpose.
-	public UserEntity(String uid, String name, String email, String passwd) {
+	public UserEntity(Long uid, String name, String email, String passwd) {
 		this.uid = uid;
 		this.name = name;
 		this.email = email;
 		this.passwd = passwd;
 	}
 
-	public String getUid() {
+	public Long getUid() {
 		return uid;
 	}
 
