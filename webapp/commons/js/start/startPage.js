@@ -1,3 +1,5 @@
+(function(){
+
 /* (화면의 크기에 따른) 배경이미지의 크기를 조절하는 함수 */
 function changeSizeOfBg(){
 	if (1280 > document.documentElement.clientWidth) {
@@ -37,22 +39,22 @@ for (i = 0; i < numImages; i++){
 }
 
 var step = 0;
-// var step2 = 1;
+
 var elImg = document.querySelector('.bg_img');
 function slideBg(){
 	if (!document.images) return;
 
 	document.querySelector(".bg_box").style.backgroundColor = "#fff";
 
-	/* opacity 효과  ------ 오류 있음.... 일정시간이 지나면 opacity가 계속 올라가는 현상 그래도 동작은 잘 함.. */ 
+	/* opacity 효과 */ 
 	elImg.style.opacity = 0.3;
-	nTime = setInterval(function(){
+	var nTime = setInterval(function(){
 		var _nPre = parseFloat(elImg.style.opacity);
+		elImg.style.opacity = _nPre + 0.009;
 		if(_nPre > 1.0){
 			clearInterval(nTime);
 		}
-    	elImg.style.opacity = _nPre + 0.01;
-  	},0.17);
+  	},17);
 	/* //opacity 효과 */
 
 	elImg.src = bgImages[step].src;
@@ -62,6 +64,8 @@ function slideBg(){
 	else {
 		step = 0;
 	}
-	setTimeout("slideBg()", 7000);	// 7초 마다 반복
+	setTimeout(slideBg, 7000);	// 7초 마다 반복
 }
 slideBg();
+
+})();

@@ -10,16 +10,16 @@
 
 
 초코바나나 화이팅! 
-		                                                           					            -->
-
+		                                                          					            -->
 <!-- sp = start page = 시작 페이지 -->
 
 <html lang="ko">
 
 <head>
-<meta charset="utf-8">
-<title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
-<link rel="stylesheet" type="text/css" href="commons/css/startPage.css"/>
+	<meta charset="utf-8">
+	<title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
+	<link rel="stylesheet" type="text/css" href="commons/css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="commons/css/startPage.css"/>
 </head>
 <body class="sp_body">
 <div class="sp_wrap">
@@ -31,56 +31,60 @@
 		<div class="sp_content_wrap">
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
-				<div class="signup_box" style="display:block">
-					<form>
-						<ul>
-							<li><input type="text" name="name" placeholder="이름" required></li>
-							<li><input type="email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" name="password" placeholder="비밀번호" required></li>
-							<li><input type="password" placeholder="비밀번호 확인" required></li>
-							<li><button class="signup_btn">가입하기</button></li>
-						</ul>
-					</form>
-					<a class="goto_login">로그인 바로가기</a>
-				</div>
-			<div class="login_box" style="display:none">
-					<form>
-						<ul>
-							<li><input type="email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" name="password" placeholder="비밀번호" required></li>
-							<li><button class="login_btn">로그인</button></li>
-						</ul>
-					</form>
-					<a class="goto_signup">회원가입 바로가기</a>
-				</div>
+				<form method="post" action="/signup/ajax">
+					<fieldset class="signup_form">
+						<legend class="blind">회원가입</legend>
+						<div class="signup_box" style="display:block">
+							<label><input type="text" id="sp_name" name="name" placeholder="이름" autocomplete="off" alt="이름" required></label>
+							<label><input type="email" id="sp_email" name="email" placeholder="이메일" autocomplete="off" alt="이메일" required></label>
+							<label><input type="password" id="sp_password" name="password" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label>
+							<label><input type="password" id="sp_password_check" placeholder="비밀번호 확인" maxlength="16" autocomplete="off" alt="비밀번호확인" required></label>
+							<button type="submit" class="signup_btn">가입하기</button>
+						</div>
+					</fieldset>
+				</form>
+				<a class="goto_login">로그인 바로가기</a>
 			</div>
-		</div>
 
-		<div class="sp_footer">
-				<div class="com_info">
+			<div class="login_box" style="display:none">
+				<form>
 					<ul>
+						<li><input type="email" name="email" placeholder="이메일" required></li>
+						<li><input type="password" name="password" placeholder="비밀번호" required></li>
 						<li>
-							<a>회사소개</a>
-							<span class="bar"></span>
-						</li>
-						<li>
-							<a>이용약관</a>
-							<span class="bar"></span>
-						</li>
-						<li>
-							<a>개인정보취급방침</a>
-							<span class="bar"></span>
-						</li>
-						<li>
-							<a>운영정책</a>
-							<span class="bar"></span>
+							<button class="login_btn">로그인</button>
 						</li>
 					</ul>
-					<p>©
-						<a>CHOCOBANANA Corp.</a>
-					</p>
-				</div>
+				</form>
+				<a class="goto_signup">회원가입 바로가기</a>
 			</div>
+		</div>
+	</div>
+
+	<div class="sp_footer">
+		<div class="com_info">
+			<ul>
+				<li>
+					<a>회사소개</a>
+					<span class="bar"></span>
+				</li>
+				<li>
+					<a>이용약관</a>
+					<span class="bar"></span>
+				</li>
+				<li>
+					<a>개인정보취급방침</a>
+					<span class="bar"></span>
+				</li>
+				<li>
+					<a>운영정책</a>
+					<span class="bar"></span>
+				</li>
+			</ul>
+			<p>©
+				<a>CHOCOBANANA Corp.</a>
+			</p>
+		</div>
 	</div>
 </div>
 </body>
