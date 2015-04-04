@@ -39,9 +39,9 @@
 						<ul>
 							<li><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></li>
 							<li><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></li>
-							<li><input type="text" name="name" placeholder="이름" required></li>
-							<li><input type="email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" name="password" placeholder="비밀번호" required></li>
+							<li><input type="text" id="signup_name" name="name" placeholder="이름" required></li>
+							<li><input type="email" id="signup_email" name="email" placeholder="이메일" required></li>
+							<li><input type="password" id="signup_password" name="password" placeholder="비밀번호" required></li>
 							<li><input type="password" placeholder="비밀번호 확인" required></li>
 							<li><button class="signup_btn">가입하기</button></li>
 						</ul>
@@ -51,8 +51,8 @@
 			<div class="login_box" style="display:none">
 					<form>
 						<ul>
-							<li><input type="email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" name="password" placeholder="비밀번호" required></li>
+							<li><input type="email" id="login_email" name="email" placeholder="이메일" required></li>
+							<li><input type="password" id="login_password" name="password" placeholder="비밀번호" required></li>
 							<li><button class="login_btn">로그인</button></li>
 						</ul>
 					</form>

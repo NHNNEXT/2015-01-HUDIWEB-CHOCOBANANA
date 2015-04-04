@@ -15,8 +15,7 @@ import core.mvc.ModelAndView;
 import core.utils.RSAUtils;
 
 public class SignUpController extends AbstractController {
-	private static final Logger logger = LoggerFactory
-			.getLogger(DispatcherServlet.class);
+	private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
 
 	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -45,7 +44,6 @@ public class SignUpController extends AbstractController {
 	            String _password = RSAUtils.decryptRsa(privateKey, password);
 	    		logger.debug("decrypted email: {}", _email);
 	    		logger.debug("decrypted password: {}", _password);
-	            
 	    		//복호화된 정보들을 DB에 넣는다.
 	           
 	            session.removeAttribute("RSAWebKey");
@@ -54,11 +52,12 @@ public class SignUpController extends AbstractController {
 		    {
 		        //아이디 패스워드를 확인하라는 페이지로 리다이렉트
 		        logger.info("signup ERROR : "+e.getMessage()); 
-		    }
-		   
+		    }   
 		}
-		
-        ModelAndView mav = jstlView("jsp/start/start.jsp"); //회원가입이 완료되었으므로 로그인 페이지로 리다이렉트 - 페이지 만들어야함
+		//회원가입이 완료되었으므로 세션에 정보 넣어둬야함.
+		ModelAndView mav = jsonView(); 
+		mav.addObject("status", "success");
+		mav.addObject("uri", "jsp/personal.jsp");
 		return mav;
 	}
 }
