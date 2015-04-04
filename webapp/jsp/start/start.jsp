@@ -49,11 +49,11 @@
 					<a class="goto_login">로그인 바로가기</a>
 				</div>
 			<div class="login_box" style="display:none">
-					<form>
+					<form name="loginForm" action="/login.do" method="POST">>
 						<ul>
 							<li><input type="email" id="login_email" name="email" placeholder="이메일" required></li>
 							<li><input type="password" id="login_password" name="password" placeholder="비밀번호" required></li>
-							<li><button class="login_btn">로그인</button></li>
+							<li><input class="login_btn" type="submit" value="로그인"></input></li>
 						</ul>
 					</form>
 					<a class="goto_signup">회원가입 바로가기</a>
