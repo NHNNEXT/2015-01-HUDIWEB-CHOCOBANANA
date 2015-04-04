@@ -6,6 +6,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import ubuntudo.controller.LoginController;
 import ubuntudo.controller.SignUpController;
 import ubuntudo.controller.StartController;
 
@@ -17,6 +18,7 @@ public class RequestMapping {
 	public void initMapping() {
 		
 		mappings.put("/signup.do", new SignUpController());
+		mappings.put("/login.do", new LoginController());
 		mappings.put("/start.do", new StartController());
 		//mappings.put("/form.next", new ForwardController("form.jsp")); 참고용으로 남겨둠
 		logger.info("Initialized Mapping Completed!");
