@@ -56,6 +56,13 @@
 			<version>2.4.4</version>
 		</dependency>
 
+		<!-- JDBC (mark) -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.35</version>
+		</dependency>
+
 		<!-- embedded tomcat 설정 -->
 		<dependency>
 			<groupId>org.apache.tomcat.embed</groupId>
@@ -107,7 +114,7 @@
 				<directory>resources</directory>
 			</resource>
 		</resources>
-		
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
