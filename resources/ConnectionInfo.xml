@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <connectionInfo>
-	<address>jdbc:mysql://104.236.254.21:3306/dev</address>
-	<connectionId>mark</connectionId>
-	<connectionPassWd>q1`</connectionPassWd>
+	<address></address>
+	<connectionId></connectionId>
+	<connectionPassWd></connectionPassWd>
 </connectionInfo>
