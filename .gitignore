@@ -8,5 +8,5 @@
 /webapp/WEB-INF/classes/
 /node_modules/
 /.idea/
-/webadd/.idea/
+/webapp/.idea/
 /resources/ConnectionInfo.xml

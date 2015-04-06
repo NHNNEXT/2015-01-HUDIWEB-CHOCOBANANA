@@ -15,12 +15,11 @@ ubuntudo.utility.typeCheck = (function () {
 		}
 		return rtn;
 	}
-
 	return typeCheck;
 });
 
-ubuntudo.utility.requestData = ( function () {
 
+ubuntudo.utility.requestData = ( function () {
 
 	var requestData = function (url, param , callback) {
 		var util = ubuntudo.utility;
@@ -28,7 +27,6 @@ ubuntudo.utility.requestData = ( function () {
 		request.open("GET", url, true);
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		request.send(param);
-
 		request.onreadystatechange = function () {
 			if (request.readyState === 4 && request.status === 200) {
 				var result = request.responseText;

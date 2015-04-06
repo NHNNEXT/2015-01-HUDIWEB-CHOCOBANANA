@@ -27,11 +27,10 @@ ubuntudo.ui.validateManager = ( function () {
 		elEmail.addEventListener("keyup" , function () {
 			if (emailInputTimer !== null) {
 				clearTimeout(emailInputTimer);
-				emailInputTimer = setTimeout(_checkExistEmail, 1000);
+				emailInputTimer = setTimeout(_checkExistEmail, 500);
 			}else {
-				emailInputTimer = setTimeout(_checkExistEmail, 1000);
+				emailInputTimer = setTimeout(_checkExistEmail, 500);
 			}
-
 		});
 
 		function _checkExistEmail() {
@@ -39,15 +38,16 @@ ubuntudo.ui.validateManager = ( function () {
 			var email =  "email=" + elEmail.value;
 			var result = test();
 			_showValidationMessage(result);
-
 		//	util.requestData("url",email, _showValidationMessage);
 		}
+
 		function test() {
 			var result = {
 				bool: true
 			};
 			return result;
 		}
+
 		function _showValidationMessage(result) {
 			if (result.bool === true) {
 				console.log("EXIST");

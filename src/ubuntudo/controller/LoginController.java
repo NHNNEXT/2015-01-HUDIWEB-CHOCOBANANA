@@ -18,7 +18,6 @@ public class LoginController extends AbstractController {
 	String loginSuccessedViewName = "jsp/start/start.jsp";
 	String loginFailedViewName = "jsp/loginFail.jsp";
 
-	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Login");
 
