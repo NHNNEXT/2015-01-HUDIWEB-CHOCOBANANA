@@ -33,7 +33,6 @@
 		<div class="sp_content_wrap">
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
-<<<<<<< HEAD
 				<form method="post" action="/signup/ajax" class="signup_box" style="display:block">
 					<fieldset class="signup_form">
 						<legend class="blind">회원가입</legend>
@@ -63,32 +62,6 @@
 					</fieldset>
 					<div class="goto_signup">회원가입 바로가기</div>
 				</form>
-=======
-				<div class="signup_box" style="display:block">
-					<form>
-						<ul>
-							<li><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></li>
-							<li><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></li>
-							<li><input type="text" id="signup_name" name="name" placeholder="이름" required></li>
-							<li><input type="email" id="signup_email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" id="signup_password" name="password" placeholder="비밀번호" required></li>
-							<li><input type="password" placeholder="비밀번호 확인" required></li>
-							<li><button class="signup_btn">가입하기</button></li>
-						</ul>
-					</form>
-					<a class="goto_login">로그인 바로가기</a>
-				</div>
-			<div class="login_box" style="display:none">
-					<form name="loginForm" action="/login.do" method="POST">>
-						<ul>
-							<li><input type="email" id="login_email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" id="login_password" name="password" placeholder="비밀번호" required></li>
-							<li><input class="login_btn" type="submit" value="로그인"></input></li>
-						</ul>
-					</form>
-					<a class="goto_signup">회원가입 바로가기</a>
-				</div>
->>>>>>> 8b34d9ea4c415c3c0c71c7741b89503ae570a28a
 			</div>
 		</div>
 	</div>
