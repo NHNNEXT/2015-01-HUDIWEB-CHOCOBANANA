@@ -16,7 +16,6 @@ public class JstlView implements View {
 		this.viewName = viewName;
 	}
 
-	@Override
 	public void render(Map<String, ?> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		if (viewName.startsWith(DEFAULT_REDIRECT_PREFIX)) {

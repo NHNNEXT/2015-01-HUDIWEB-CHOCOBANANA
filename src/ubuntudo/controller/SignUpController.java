@@ -17,7 +17,6 @@ import core.utils.RSAUtils;
 public class SignUpController extends AbstractController {
 	private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
 
-	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String name = request.getParameter("name"); 
 		String email = request.getParameter("email");

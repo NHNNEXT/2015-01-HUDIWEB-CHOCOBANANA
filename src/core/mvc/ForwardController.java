@@ -10,7 +10,6 @@ public class ForwardController extends AbstractController {
 		this.forwardUrl = forwardUrl;
 	}
 
-	@Override
 	public ModelAndView execute(HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		if (forwardUrl == null) {

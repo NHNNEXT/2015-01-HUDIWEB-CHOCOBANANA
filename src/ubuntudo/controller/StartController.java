@@ -17,7 +17,6 @@ import core.mvc.ModelAndView;
 public class StartController extends AbstractController {
 	//private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
 
-	@Override
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		//로그인이 안되었을 경우 
 			//uri가 root이면, 첫페이지로 리다이렉트 - 이경우만 구현하겠음
