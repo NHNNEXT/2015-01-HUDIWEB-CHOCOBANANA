@@ -104,7 +104,7 @@ li {
 .sp_body .msg {
 	float: left;
 	width: 300px;
-	height: 140px;
+	height: 110px;
 	margin: 0 auto;
 	text-align: center;
 	font-size: 3em;
@@ -132,7 +132,7 @@ li {
   	margin-bottom: 8px;
 }
 
-.sp_body .signup_box .signup_btn, .login_btn{
+.sp_body .signup_btn, .login_btn{
 	display: block;
 	width: 245px;
 	height: 46px;
@@ -152,7 +152,7 @@ li {
 	cursor: pointer;
 }
 
-.sp_body .signup_box .goto_login, .goto_signup {
+.sp_body .goto_login, .goto_signup {
 	margin: 12px auto;
 	width: 105px;
 	font-weight: 700;
