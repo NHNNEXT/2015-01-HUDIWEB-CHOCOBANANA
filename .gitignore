@@ -6,3 +6,4 @@
 /tomcat.8080/
 /build/
 /webapp/WEB-INF/classes/
+/resources/ConnectionInfo.xml
