@@ -53,7 +53,7 @@
 						<ul>
 							<li><input type="email" id="login_email" name="email" placeholder="이메일" required></li>
 							<li><input type="password" id="login_password" name="password" placeholder="비밀번호" required></li>
-							<li><input class="login_btn" type="submit" value="로그인"></input></li>
+							<li><button class="login_btn" type="submit" value="로그인"></button></li>
 						</ul>
 					</form>
 					<a class="goto_signup">회원가입 바로가기</a>
@@ -91,7 +91,6 @@
 </body>
 	<script language="javascript" type="text/javascript" src="commons/js/start/startPage.js"></script>
 
-
 	<!-- RSA 자바스크립트 라이브러리 -->
 	<script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
 	<script type="text/javascript" src="/commons/lib/js/RSA/rsa.js"></script>
@@ -99,4 +98,9 @@
 	<script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
 	<!-- RSA 암호화 처리 스크립트 -->
 	<script type="text/javascript" src="/commons/js/start/signup.js"></script>
+	
+	<script language="javascript" type="text/javascript" src="commons/js/start/ubuntudo_main.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/start/signup_validate.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/start/utility.js"></script>
+	
 </html>

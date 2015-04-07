@@ -16,12 +16,11 @@ ubuntudo.utility.typeCheck = (function () {
 		return rtn;
 	}
 	return typeCheck;
-});
+})();
 
+ubuntudo.utility.getData = ( function () {
 
-ubuntudo.utility.requestData = ( function () {
-
-	var requestData = function (url, param , callback) {
+	var getData = function (url, param , callback) {
 		var util = ubuntudo.utility;
 		var request = new XMLHttpRequest();
 		request.open("GET", url, true);
@@ -31,14 +30,31 @@ ubuntudo.utility.requestData = ( function () {
 			if (request.readyState === 4 && request.status === 200) {
 				var result = request.responseText;
 				result = JSON.parse(result);
-				if (result.status === "success") {
-					if(util.typeCheck(callback) === "Function") {
-						result.bool = true;
-						callback(result);
-					}
+				if(util.typeCheck(callback) === "function") {
+					callback(result);
 				}
 			}
 		}
 	}
-});
+	return getData;
+})();
+ubuntudo.utility.postData = ( function () {
+	var postData = function (url, param , callback) {
+		var util = ubuntudo.utility;
+		var request = new XMLHttpRequest();
+		request.open("POST", url, true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.send(param);
+		request.onreadystatechange = function () {
+			if (request.readyState === 4 && request.status === 200) {
+				var result = request.responseText;
+				result = JSON.parse(result);
+				if(util.typeCheck(callback) === "function") {
+					callback(result);
+				}
+			}
+		}
+	}
+	return postData;
+})();
 

@@ -59,4 +59,26 @@ public class UserDao extends JDBCManager {
 		logger.info("<----UserDao.retrieveUser");
 		return currentUser;
 	}
+	public Boolean validateUser(String email) {
+		logger.info("---->UserDao.validateUser");
+
+		conn = getConnection();
+
+		Boolean isExistedUser = false;
+		try {
+			pstmt = conn.prepareStatement("select email from user where email = ? ");
+			pstmt.setString(1, email);
+			resultSet = pstmt.executeQuery();
+
+			if (resultSet.next()) {
+				isExistedUser = true;
+			}
+		} catch (SQLException e) {
+			System.out.println("DB validateUser Error: " + e.getMessage());
+		} finally {
+			close(resultSet, pstmt, conn);
+		}
+		logger.info("<----UserDao.validateUser");
+		return isExistedUser;
+	}
 }

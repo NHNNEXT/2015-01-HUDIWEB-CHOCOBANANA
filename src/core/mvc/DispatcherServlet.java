@@ -15,9 +15,8 @@ import org.slf4j.LoggerFactory;
 public class DispatcherServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
-	
 	private RequestMapping rm;
-
+	
 	@Override
 	public void init() throws ServletException {
 		rm = new RequestMapping();
@@ -46,8 +45,7 @@ public class DispatcherServlet extends HttpServlet {
 		int index = forwardUrl.indexOf("?");
 		if (index > 0) {
 			return forwardUrl.substring(0, index);
-		}
-		
+		}		
 		return forwardUrl;
 	}
 }

@@ -26,9 +26,9 @@ public class SignUpController extends AbstractController {
 		logger.debug("email: {}", email);
 		logger.debug("password: {}", password);
 		
-	
 		HttpSession session = request.getSession();    
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("RSAWebKey"); 
+		
 		if (privateKey == null) 
 	    { 
 	        //아이디 패스워드를 확인하라는 페이지로 리다이렉트

@@ -9,8 +9,7 @@ ubuntudo.ui.validateManager = ( function () {
 		passwordCheck: "#signup_password_check",
 		signupBox: ".signup_box"
 	};
-
-
+	
 	var util = ubuntudo.utility;
 
 	function ValidateManager(elBase) {
@@ -32,24 +31,23 @@ ubuntudo.ui.validateManager = ( function () {
 				emailInputTimer = setTimeout(_checkExistEmail, 500);
 			}
 		});
-
+		
 		function _checkExistEmail() {
 			emailInputTimer = null;
 			var email =  "email=" + elEmail.value;
-			var result = test();
-			_showValidationMessage(result);
-		//	util.requestData("url",email, _showValidationMessage);
+			util.postData("/validate.do",email, _showValidationMessage);
 		}
-
+		
 		function test() {
 			var result = {
 				bool: true
 			};
 			return result;
 		}
-
+		
 		function _showValidationMessage(result) {
-			if (result.bool === true) {
+			console.log(result.isExistedUser);
+			if (result.isExistedUser == true) {
 				console.log("EXIST");
 			}else {
 				console.log(" NOT EXIST");

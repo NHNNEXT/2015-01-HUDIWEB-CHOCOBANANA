@@ -18,7 +18,6 @@ public class JDBCManager {
 	
 	protected Connection getConnection() {
 		Connection conn = null;
-
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			logger.info("Driver Loaded.");
