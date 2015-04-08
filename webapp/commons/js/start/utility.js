@@ -2,7 +2,6 @@
  * Created by jjungmac on 2015. 4. 5..
  */
 ubuntudo.utility.typeCheck = (function () {
-
 	var typeCheck = function (object) {
 		var rtn = '';
 		if (typeof object === 'object') {
@@ -15,17 +14,19 @@ ubuntudo.utility.typeCheck = (function () {
 		}
 		return rtn;
 	}
+
 	return typeCheck;
 })();
 
 ubuntudo.utility.getData = ( function () {
-
 	var getData = function (url, param , callback) {
 		var util = ubuntudo.utility;
 		var request = new XMLHttpRequest();
+
 		request.open("GET", url, true);
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		request.send(param);
+
 		request.onreadystatechange = function () {
 			if (request.readyState === 4 && request.status === 200) {
 				var result = request.responseText;
@@ -36,15 +37,19 @@ ubuntudo.utility.getData = ( function () {
 			}
 		}
 	}
+
 	return getData;
 })();
+
 ubuntudo.utility.postData = ( function () {
 	var postData = function (url, param , callback) {
 		var util = ubuntudo.utility;
 		var request = new XMLHttpRequest();
+
 		request.open("POST", url, true);
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		request.send(param);
+
 		request.onreadystatechange = function () {
 			if (request.readyState === 4 && request.status === 200) {
 				var result = request.responseText;
@@ -55,6 +60,7 @@ ubuntudo.utility.postData = ( function () {
 			}
 		}
 	}
+
 	return postData;
 })();
 

@@ -31,7 +31,7 @@ ubuntudo.ui.validateManager = (function () {
 		});
 
 		function _ajaxSearchEmail(e) {
-			if(_keyCodeCheck(e)) {
+			if(_CheckKeyCode(e)) {
 				emailInputTimer = null;
 				var email = "email=" + elEmail.value;
 				util.postData("/validate.do", email, _showValidationMessage);
@@ -48,7 +48,7 @@ ubuntudo.ui.validateManager = (function () {
 			console.log(" NOT EXIST");
 		}
 	}
-	function _keyCodeCheck(e) {
+	function _CheckKeyCode(e) {
 		switch (e.keyCode) {
 			case 27: //esc
 			case 38: // 방향키 위
