@@ -43,7 +43,7 @@
 		request.onreadystatechange = function() {
 			// 응답이 도착했고, 정상적인 응답이라면, 응답데이터를 파싱하기 시작한다. 
 			if(request.readyState === 4 && request.status === 200) {
-				result = request.responseText;
+				var result = request.responseText;
 				result = JSON.parse(result);
 				if(result.status === "success") {
 				     window.location = result.uri;
