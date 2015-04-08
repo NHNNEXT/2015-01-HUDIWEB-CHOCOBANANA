@@ -1,6 +1,8 @@
 /**
  * Created by jjungmac on 2015. 4. 5..
  */
+
+
 ubuntudo.utility.typeCheck = (function () {
 	var typeCheck = function (object) {
 		var rtn = '';
@@ -18,14 +20,15 @@ ubuntudo.utility.typeCheck = (function () {
 	return typeCheck;
 })();
 
-ubuntudo.utility.getData = ( function () {
-	var getData = function (url, param , callback) {
+
+ubuntudo.utility.getJSONData = ( function () {
+	var getData = function (url, callback) {
 		var util = ubuntudo.utility;
 		var request = new XMLHttpRequest();
 
 		request.open("GET", url, true);
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-		request.send(param);
+		request.send();
 
 		request.onreadystatechange = function () {
 			if (request.readyState === 4 && request.status === 200) {
@@ -41,7 +44,7 @@ ubuntudo.utility.getData = ( function () {
 	return getData;
 })();
 
-ubuntudo.utility.postData = ( function () {
+ubuntudo.utility.postJSONData = ( function () {
 	var postData = function (url, param , callback) {
 		var util = ubuntudo.utility;
 		var request = new XMLHttpRequest();

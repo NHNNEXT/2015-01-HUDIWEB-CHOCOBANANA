@@ -204,3 +204,11 @@ li {
 	opacity: .8;
 	cursor: pointer;
 }
+
+.error {
+	color: #dd4b39;
+}
+
+.fine {
+	color: #71FF94;
+}
