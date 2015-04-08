@@ -24,12 +24,11 @@ ubuntudo.ui.validateManager = (function () {
 		elEmail.addEventListener("keyup", function (e) {
 			if (emailInputTimer !== null) {
 				clearTimeout(emailInputTimer);
-				emailInputTimer = setTimeout(_ajaxSearchEmail(e), 500);
+				emailInputTimer = setTimeout(function(){ _ajaxSearchEmail(e); }, 500);
 			} else {
-				emailInputTimer = setTimeout(_ajaxSearchEmail(e), 500);
+				emailInputTimer = setTimeout(function(){ _ajaxSearchEmail(e); }, 500);
 			}
 		});
-
 
 		function _ajaxSearchEmail(e) {
 			if(_keyCodeCheck(e)) {
@@ -39,7 +38,6 @@ ubuntudo.ui.validateManager = (function () {
 			}
 		}
 	}
-
 
 	// isExistingUser는 서버에서 밀어넣어주는 값인데. unresolved 워닝은 어쩔 수 없는건가요 ?
 	function _showValidationMessage(ajaxResult) {
@@ -83,7 +81,6 @@ ubuntudo.ui.validateManager = (function () {
 				break;
 			default:
 				return true;
-
 		}
 	};
 return ValidateManager;
