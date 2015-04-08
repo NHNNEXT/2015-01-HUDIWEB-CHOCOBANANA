@@ -100,6 +100,13 @@
 			<version>${tomcat.version}</version>
 			<scope>provided</scope>
 		</dependency>
+		
+		<!-- jstl 설정 -->
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>

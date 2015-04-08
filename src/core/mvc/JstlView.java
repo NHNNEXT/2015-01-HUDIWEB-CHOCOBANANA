@@ -27,7 +27,6 @@ public class JstlView implements View {
 		for (String key : keys) {
 			request.setAttribute(key, model.get(key));
 		}
-		
 		RequestDispatcher rd = request.getRequestDispatcher(viewName);
 		rd.forward(request, response);
 	}

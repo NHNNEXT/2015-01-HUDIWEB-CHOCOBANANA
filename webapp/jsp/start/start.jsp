@@ -23,6 +23,7 @@
 <meta charset="utf-8">
 <title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
 <link rel="stylesheet" type="text/css" href="commons/css/startPage.css"/>
+<link rel="stylesheet" type="text/css" href="commons/css/reset.css"/>
 </head>
 <body class="sp_body">
 <div class="sp_wrap">
@@ -35,18 +36,30 @@
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
 				<div class="signup_box" style="display:block">
-					<form>
-						<ul>
-							<li><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></li>
-							<li><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></li>
-							<li><input type="text" id="signup_name" name="name" placeholder="이름" required></li>
-							<li><input type="email" id="signup_email" name="email" placeholder="이메일" required></li>
-							<li><input type="password" id="signup_password" name="password" placeholder="비밀번호" required></li>
-							<li><input type="password" placeholder="비밀번호 확인" required></li>
-							<li><button class="signup_btn">가입하기</button></li>
-						</ul>
-					</form>
-					<a class="goto_login">로그인 바로가기</a>
+					<form method="post" action="/signup.do">
+					<fieldset id="signup_form">
+						<legend class="blind">회원가입</legend>
+							<label><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></label>
+							<label><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></label>
+							<div id="sp_name_div">
+								<label><input type="text" id="signup_name" name="name" placeholder="이름" autocomplete="off" alt="이름" required></label>
+							</div>
+							<div id="sp_email_div">
+								<span><label><input type="email" id="signup_email" name="email" placeholder="이메일" autocomplete="off" alt="이메일" required></label></span>
+								<div id="signup_email_message" class="error" style="display: none;">필수 정보입니다.</div>
+							</div>
+							<div id="sp_password_div">
+								<span><label><input type="password" id="signup_password" name="password" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label></span>
+								<div id="signup_password_message" class="error" style="display: none;">필수 정보입니다.</div>
+							</div>
+							<div id="sp_password_check_div"></div>
+								<span><label><input type="password" id="signup_password_check" placeholder="비밀번호 확인" maxlength="16" autocomplete="off" alt="비밀번호확인" required></label></span>
+								<div id="signup_password_check_message" class="error" style="display: none;">필수 정보입니다.</div>
+							</div>
+							<button type="submit" class="signup_btn">가입하기</button>
+					</fieldset>
+				</form>
+				<a class="goto_login">로그인 바로가기</a>
 				</div>
 			<div class="login_box" style="display:none">
 					<form name="loginForm" action="/login.do" method="POST">>

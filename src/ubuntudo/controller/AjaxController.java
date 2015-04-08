@@ -25,7 +25,6 @@ public class AjaxController extends AbstractController {
 		UserDao uDao = new UserDao();
 		
 		Boolean isExistingUser = uDao.validateUser(email);
-		
 		mav.addObject("isExistingUser", isExistingUser);
 		
 		logger.info("<--Controller-->Ajax");
