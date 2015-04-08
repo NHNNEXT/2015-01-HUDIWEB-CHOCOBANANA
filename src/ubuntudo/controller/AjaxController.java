@@ -24,13 +24,10 @@ public class AjaxController extends AbstractController {
 
 		UserDao uDao = new UserDao();
 		
-		Boolean isExistedUser = uDao.validateUser(email);
+		Boolean isExistingUser = uDao.validateUser(email);
 		
-		if (isExistedUser != null) {
-			mav.addObject("isExistedUser", isExistedUser);
-		} else {
-			mav.addObject("isExistedUser", isExistedUser);
-		}
+		mav.addObject("isExistingUser", isExistingUser);
+		
 		logger.info("<--Controller-->Ajax");
 		return mav;
 	}

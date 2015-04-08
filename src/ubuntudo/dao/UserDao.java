@@ -64,14 +64,14 @@ public class UserDao extends JDBCManager {
 
 		conn = getConnection();
 
-		Boolean isExistedUser = false;
+		Boolean isExistinguser = false;
 		try {
 			pstmt = conn.prepareStatement("select email from user where email = ? ");
 			pstmt.setString(1, email);
 			resultSet = pstmt.executeQuery();
 
 			if (resultSet.next()) {
-				isExistedUser = true;
+				isExistinguser = true;
 			}
 		} catch (SQLException e) {
 			System.out.println("DB validateUser Error: " + e.getMessage());
@@ -79,6 +79,6 @@ public class UserDao extends JDBCManager {
 			close(resultSet, pstmt, conn);
 		}
 		logger.info("<----UserDao.validateUser");
-		return isExistedUser;
+		return isExistinguser;
 	}
 }
