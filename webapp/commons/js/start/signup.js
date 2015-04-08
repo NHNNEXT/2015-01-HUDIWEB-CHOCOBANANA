@@ -23,6 +23,7 @@
 		var name = document.getElementById(ids.name).value; //login일 때는 없음
 		var email = document.getElementById(ids.email).value;
 		var pwd = document.getElementById(ids.password).value;
+		var result;
 
 		// RSA 암호화 생성
 		var rsa = new RSAKey();

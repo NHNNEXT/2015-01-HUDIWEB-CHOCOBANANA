@@ -247,7 +247,7 @@ ul.btn_wrapper {
 	display: inline-block;
 	width: 53px;
 	height: 53px;
-	-webkit-transition: all 2s ease; /* Safari */
+	-webkit-transition: all .3s ease; /* Safari */
     transition: all .3s;
     border-left: 1px solid rgba(129,129,129,0.2);
    	background-color: #42c7b7;
