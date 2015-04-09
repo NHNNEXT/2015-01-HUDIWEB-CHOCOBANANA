@@ -38,7 +38,7 @@ public class StartController extends AbstractController {
         String publicKeyModulus = publicSpec.getModulus().toString(16);
         String publicKeyExponent = publicSpec.getPublicExponent().toString(16);
          
-        ModelAndView mav = jstlView("jsp/start/start.jsp");
+        ModelAndView mav = jstlView("jsp/start.jsp");
 		mav.addObject("RSAModulus", publicKeyModulus);
 		mav.addObject("RSAExponent", publicKeyExponent);
 		return mav;

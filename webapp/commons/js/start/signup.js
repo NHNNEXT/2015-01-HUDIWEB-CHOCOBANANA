@@ -22,7 +22,8 @@
 		// 사용자 계정정보 암호화전 평문
 		var name = document.getElementById(ids.name).value; //login일 때는 없음
 		var email = document.getElementById(ids.email).value;
-		var pwd = document.getElementById(ids.password).value;
+		var pwd = CryptoJS.SHA256(document.getElementById(ids.password).value).toString(CryptoJS.enc.Hex); //pwd는 hashing
+		console.log(pwd);
 		var result;
 
 		// RSA 암호화 생성
