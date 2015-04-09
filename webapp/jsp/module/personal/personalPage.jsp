@@ -14,12 +14,6 @@
 					<span class="date">~ 2015.04.06</span>
 				</div>
 				<ul class="past">
-				<li class="todo">
-					<div class="party_pavicon">휴</div>
-					<h2>기본 화면 UI 그리기</h2>
-					<p>0일 남음</p>
-					<a class="complete_btn"></a>
-				</li>
 				</ul>
 			</section>
 			<section>
@@ -28,18 +22,6 @@
 					<span class="date">2015.04.07</span>
 				</div>
 				<ul class="today">
-				<li class="todo">
-					<div class="party_pavicon">휴</div>
-					<h2>기본 화면 UI 그리기</h2>
-					<p>0일 남음</p>
-					<a class="complete_btn"></a>
-				</li>
-				<li class="todo">
-					<div class="party_pavicon">휴</div>
-					<h2>기본 화면 UI 그리기</h2>
-					<p>0일 남음</p>
-					<a class="complete_btn"></a>
-				</li>
 				</ul>
 			</section>
 			<section>

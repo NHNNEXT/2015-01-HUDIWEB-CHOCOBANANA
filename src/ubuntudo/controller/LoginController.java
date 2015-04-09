@@ -18,7 +18,7 @@ import core.utils.RSAUtils;
 public class LoginController extends AbstractController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	String loginSuccessedViewName = "jsp/start/start.jsp";
+	String loginSuccessedViewName = "jsp/personal.jsp";
 	String loginFailedViewName = "jsp/loginFail.jsp";
 
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -32,7 +32,6 @@ public class LoginController extends AbstractController {
 		HttpSession session = request.getSession();    
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("RSAWebKey"); 
 		
-		
 		String _email = RSAUtils.decryptRsa(privateKey, email);
         String _password = RSAUtils.decryptRsa(privateKey, passwd);
 		logger.debug("Logging in email: {}", _email);
@@ -45,7 +44,7 @@ public class LoginController extends AbstractController {
 		// if (currentUser != null) {
 		if (currentUser != null) {
 			// member login success
-			session.setAttribute("currentUser", currentUser);
+			session.setAttribute("user", currentUser);
 			logger.info((session.getAttribute("currentUser").toString()));
 
 			mav = jstlView(loginSuccessedViewName);

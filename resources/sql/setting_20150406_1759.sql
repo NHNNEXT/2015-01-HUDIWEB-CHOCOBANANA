@@ -166,17 +166,6 @@ CREATE TABLE IF NOT EXISTS `mydb`.`user_party_relation` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
--- -----------------------------------------------------
--- Table `mydb`.`content`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `mydb`.`content` ;
-
-CREATE TABLE IF NOT EXISTS `mydb`.`content` (
-)
-ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `mydb`.`content_history`
 -- -----------------------------------------------------

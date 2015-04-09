@@ -30,6 +30,7 @@ public class JDBCManager {
 			String addr = WebServerLauncher.dbInfo.get("address");
 			String user = WebServerLauncher.dbInfo.get("connectionId");
 			String pw = WebServerLauncher.dbInfo.get("connectionPassWd");
+			logger.debug("addr: {}, user:{}, pw: {}", addr, user, pw);
 			conn = DriverManager.getConnection(addr, user, pw);
 			logger.info("Connection Successed.");
 		} catch (SQLException e) {
