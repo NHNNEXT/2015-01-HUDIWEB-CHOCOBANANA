@@ -18,13 +18,11 @@ import core.utils.RSAUtils;
 public class LoginController extends AbstractController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	String loginSuccessedViewName = "jsp/personal.jsp";
-	String loginFailedViewName = "jsp/loginFail.jsp";
+	String loginSuccessedViewUri = "jsp/personal.jsp";
+	String loginFailedViewUri = "jsp/loginFail.jsp";
 
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Login");
-
-		ModelAndView mav = jstlView(loginSuccessedViewName);
 		
 		String email = request.getParameter("email");
 		String passwd = request.getParameter("password");
@@ -40,17 +38,17 @@ public class LoginController extends AbstractController {
 		UserDao uDao = new UserDao();
 		
 		UserEntity currentUser = uDao.retrieveUser(_email, _password);
+		ModelAndView mav = jsonView();
 
-		// if (currentUser != null) {
 		if (currentUser != null) {
 			// member login success
 			session.setAttribute("user", currentUser);
-			logger.info((session.getAttribute("currentUser").toString()));
-
-			mav = jstlView(loginSuccessedViewName);
-			mav.addObject("currentUser", currentUser);
+			logger.info((session.getAttribute("user").toString()));
+			mav.addObject("status", "success");
+			mav.addObject("uri", loginSuccessedViewUri);
 		} else {
-			mav = jstlView(loginFailedViewName);
+			mav.addObject("status", "fail");
+			mav.addObject("uri", loginFailedViewUri);
 		}
 		logger.info("<--Controller-->Login");
 		return mav;
