@@ -101,7 +101,7 @@
 <script type="text/javascript" src="/commons/lib/js/RSA/prng4.js"></script>
 <script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
 <!-- RSA 암호화 처리 스크립트 -->
-<script type="text/javascript" src="/commons/js/start/signup.js"></script>
+<script type="text/javascript" src="/commons/js/start/encrypt.js"></script>
 <!-- hash 스크립트 -->
 <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
 </html>
