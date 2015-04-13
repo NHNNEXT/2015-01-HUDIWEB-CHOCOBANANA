@@ -246,6 +246,5 @@ ubuntudo.ui.validateManager = (function () {
 			return false;
 		}
 	}
-
 	return ValidateManager;
 })();

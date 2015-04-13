@@ -34,13 +34,12 @@ ubuntudo.utility.getJSONData = ( function () {
 			if (request.readyState === 4 && request.status === 200) {
 				var result = request.responseText;
 				result = JSON.parse(result);
-				if(util.typeCheck(callback) === "function") {
+				if (util.typeCheck(callback) === "function") {
 					callback(result);
 				}
 			}
 		}
 	}
-
 	return getData;
 })();
 
