@@ -3,6 +3,7 @@
  */
 ubuntudo.ui.validateManager = (function () {
 
+	// HTML에 의존하는 CLASS,ID 캐싱
 	var CLASSNAME = {
 		SIGNUP_BOX: "signup_box",
 		ERROR: "error",
@@ -19,6 +20,7 @@ ubuntudo.ui.validateManager = (function () {
 		SIGNUP_FORM: "signup_form"
 	}
 
+	// 에러출력 메세지 캐싱
 	var MESSAGE = {
 		RECHECK_EMAIL: "이메일 주소를 다시 확인해주세요.",
 		GOOD_EMAIL: "멋진 이메일이다요!",
@@ -31,8 +33,11 @@ ubuntudo.ui.validateManager = (function () {
 
 	}
 
+	//ajax 모듈을 위해 util 모듈 가져옴.
 	var util = ubuntudo.utility;
 
+	// DOM 탐색부분 캐싱함.
+	// ValidateManager와 DOM문서를 분리시킴.
 	function ValidateManager(elBase) {
 		if (this instanceof ValidateManager) {
 			this.elForm = document.getElementById(IDNAME.SIGNUP_FORM);
@@ -48,10 +53,13 @@ ubuntudo.ui.validateManager = (function () {
 		}
 	}
 
+	// 폼전체에 이벤트를 걸어서 event-delegation 으로 3개 폼을 Validate함.
+	// CheckKeyCode는 유효한 입력에만 이벤트를 발생.
+	// 타이핑마다 validate가 되지 않도록 0.3초 타이머를 걸어놈.
+	// TODO delegation을 했더니 0.3초 내에 다른 폼으로 넘어가니까 Timer가 오작동함.
 	ValidateManager.prototype.validateForms = function () {
 		var inputTimer = null;
 		this.elForm.addEventListener("keyup", function (e) {
-
 			if (CheckKeyCode(e)) {
 				if (inputTimer !== null) {
 					clearTimeout(inputTimer);
@@ -66,29 +74,19 @@ ubuntudo.ui.validateManager = (function () {
 					else if(e.target.id === IDNAME.PASSWORD_CHECK) {
 						this.validatePassword2();
 					}
-				}.bind(this), 500);
+				}.bind(this), 300);
 			}
 		}.bind(this));
 	}
 
-	//ValidateManager.prototype.preventTooManyEvent = function (e , callback) {
-	//	var inputTimer = null;
-	//	if (CheckKeyCode(e)) {
-	//		if (inputTimer !== null) {
-	//			clearTimeout(inputTimer);
-	//		}
-	//		inputTimer = setTimeout(function () {
-	//			callback();
-	//		}, 500);
-	//	}
-	//}
 
 	ValidateManager.prototype.validateEmail = function () {
 
-		var emailInputTimer = null;
 		var elMsg = this.elEmailMsg;
 		var elEmail = this.elEmail;
 
+		// 정규표현식으로 검사
+		// isEmail, isHan은 naver 회원가입js 참고함.
 		function _checkRegexpEmail() {
 			var email = elEmail.value;
 			var isEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -102,8 +100,9 @@ ubuntudo.ui.validateManager = (function () {
 			}
 		}
 
+		//_showValidationMessage를 익명함수로 하려다가 그냥 뻄.
+		//postJSONData(URL, param, callback)임.
 		function _ajaxSearchEmail() {
-			emailInputTimer = null;
 			var email = "email=" + elEmail.value;
 			util.postJSONData("/validate.do", email, _showValidationMessage);
 		}
@@ -123,9 +122,7 @@ ubuntudo.ui.validateManager = (function () {
 
 			}
 		}
-
 		_checkRegexpEmail();
-
 	}
 
 	ValidateManager.prototype.validatePassword = function () {
@@ -133,7 +130,10 @@ ubuntudo.ui.validateManager = (function () {
 		var password = this.elPassword.value;
 		var elMsg = this.elPasswordMsg;
 
+
+		//TODO 각 check 항목별로 Message를 다르게 분리해야함.
 		function _isValidPassword(str) {
+			//empty check
 			if (str == "") {
 				return false;
 			}
@@ -141,6 +141,7 @@ ubuntudo.ui.validateManager = (function () {
 			if (checkSpace(str)) {
 				return false;
 			}
+			// 8자리 미만은 안돼 !
 			if (str.length < 8) {
 				return false;
 			}
@@ -170,6 +171,7 @@ ubuntudo.ui.validateManager = (function () {
 		_checkPassword1();
 	}
 
+	//TODO function이름이 validatePassword2인데 뭔가 다른거로 바꿔야할듯.
 	ValidateManager.prototype.validatePassword2 = function () {
 		var password1 = this.elPassword.value;
 		var password2 = this.elPassword2.value;
