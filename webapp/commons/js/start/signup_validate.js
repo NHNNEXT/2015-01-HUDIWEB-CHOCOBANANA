@@ -33,10 +33,14 @@ ubuntudo.ui.validateManager = (function () {
 
 	function ValidateManager(elBase) {
 		if (this instanceof ValidateManager) {
+			this.elForm = document.getElementById(IDNAME.SIGNUP_FORM);
 			this.elEmail = document.getElementById(IDNAME.EMAIL);
 			this.elPassword = document.getElementById(IDNAME.PASSWORD);
 			this.elPassword2 = document.getElementById(IDNAME.PASSWORD_CHECK);
-			this.elForm = document.getElementById(IDNAME.SIGNUP_FORM);
+			this.elEmailMsg = document.getElementById(IDNAME.EMAIL_MESSAGE);
+			this.elPasswordMsg = document.getElementById(IDNAME.PASSWORD_MESSAGE);
+			this.elPassword2Msg = document.getElementById(IDNAME.PASSWORD_CHECK_MESSAGE);
+
 		} else {
 			return new ValidateManager(elBase);
 		}
@@ -78,8 +82,9 @@ ubuntudo.ui.validateManager = (function () {
 	//}
 
 	ValidateManager.prototype.validateEmail = function () {
+
 		var emailInputTimer = null;
-		var elMsg = document.getElementById(IDNAME.EMAIL_MESSAGE);
+		var elMsg = this.elEmailMsg;
 		var elEmail = this.elEmail;
 
 		function _checkRegexpEmail() {
@@ -123,6 +128,9 @@ ubuntudo.ui.validateManager = (function () {
 
 	ValidateManager.prototype.validatePassword = function () {
 
+		var password = this.elPassword.value;
+		var elMsg = this.elPasswordMsg;
+
 		function _isValidPassword(str) {
 			if (str == "") {
 				return false;
@@ -142,13 +150,12 @@ ubuntudo.ui.validateManager = (function () {
 		}
 
 		function _checkPassword1() {
-			var pw = document.getElementById(IDNAME.PASSWORD).value;
-			var elMsg = document.getElementById(IDNAME.PASSWORD_MESSAGE);
-			if (pw === "") {
+
+			if (password === "") {
 				elMsg.className = CLASSNAME.ERROR;
 				elMsg.innerHTML = MESSAGE.DEFAULT;
 			}
-			if (_isValidPassword(pw) === false) {
+			if (_isValidPassword(password) === false) {
 				elMsg.className = CLASSNAME.ERROR;
 				elMsg.innerHTML = MESSAGE.WARNING_PASSWORD;
 			} else {
@@ -162,11 +169,11 @@ ubuntudo.ui.validateManager = (function () {
 	}
 
 	ValidateManager.prototype.validatePassword2 = function () {
-		function checkPassword2() {
-			var password1 = document.getElementById(IDNAME.PASSWORD).value;
-			var password2 = document.getElementById(IDNAME.PASSWORD_CHECK).value;
-			var elMsg = document.getElementById(IDNAME.PASSWORD_CHECK_MESSAGE);
+		var password1 = this.elPassword.value;
+		var password2 = this.elPassword2.value;
+		var elMsg = this.elPassword2Msg;
 
+		function checkPassword2() {
 			if (password2 == "") {
 				elMsg.className = CLASSNAME.ERROR;
 				elMsg.innerHTML = MESSAGE.DEFAULT;
