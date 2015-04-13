@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonView implements View {
-
 	public void render(Map<String, ?> model, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
@@ -17,5 +16,4 @@ public class JsonView implements View {
 		PrintWriter out = response.getWriter();
 		out.print(mapper.writeValueAsString(model));
 	}
-
 }

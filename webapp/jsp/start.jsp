@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <!--  
                 .o8                                  .                        .o8
@@ -31,32 +33,35 @@
 		<div class="sp_content_wrap">
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
-				<form method="post" action="/signup/ajax">
+				<form method="post" action="/signup/ajax" class="signup_box" style="display:block">
 					<fieldset class="signup_form">
 						<legend class="blind">회원가입</legend>
-						<div class="signup_box" style="display:block">
+						<div>
+							<label><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></label>
+							<label><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></label>
 							<label><input type="text" id="signup_name" name="name" placeholder="이름" autocomplete="off" alt="이름" required></label>
 							<label><input type="email" id="signup_email" name="email" placeholder="이메일" autocomplete="off" alt="이메일" required></label>
 							<label><input type="password" id="signup_password" name="password" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label>
-							<label><input type="password" id="signup_password_check" placeholder="비밀번호 확인" maxlength="16" autocomplete="off" alt="비밀번호확인" required></label>
+							<label><input type="password" id="password_check" placeholder="비밀번호 확인" maxlength="16" autocomplete="off" alt="비밀번호확인" required></label>
 							<button type="submit" class="signup_btn">가입하기</button>
 						</div>
 					</fieldset>
+					<div class="goto_login">로그인 바로가기</div>
 				</form>
-				<a class="goto_login">로그인 바로가기</a>
-			</div>
 
-			<div class="login_box" style="display:none">
-				<form>
-					<ul>
-						<li><input type="email" name="email" placeholder="이메일" required></li>
-						<li><input type="password" name="password" placeholder="비밀번호" required></li>
-						<li>
-							<button class="login_btn">로그인</button>
-						</li>
-					</ul>
+				<form method="post" action="/login.do" name="loginForm" class="login_box" style="display:none">
+					<fieldset class="login_form">
+						<legend class="blind">로그인</legend>
+						<div>
+							<label><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></label>
+							<label><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></label>
+							<label><input type="email" id="login_email" name="email" placeholder="이메일" autocomplete="off" alt="이메일" required></label>
+							<label><input type="password" id="login_password" name="password" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label>
+							<button type="submit" class="login_btn" value="로그인">로그인</button>
+						</div>
+					</fieldset>
+					<div class="goto_signup">회원가입 바로가기</div>
 				</form>
-				<a class="goto_signup">회원가입 바로가기</a>
 			</div>
 		</div>
 	</div>
@@ -88,8 +93,15 @@
 	</div>
 </div>
 </body>
-<script language="javascript" type="text/javascript" src="commons/js/start/ubuntudo_main.js"></script>
 <script language="javascript" type="text/javascript" src="commons/js/start/startPage.js"></script>
-<script language="javascript" type="text/javascript" src="commons/js/start/signup_validate.js"></script>
-<script language="javascript" type="text/javascript" src="commons/js/start/utility.js"></script>
+
+<!-- RSA 자바스크립트 라이브러리 -->
+<script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
+<script type="text/javascript" src="/commons/lib/js/RSA/rsa.js"></script>
+<script type="text/javascript" src="/commons/lib/js/RSA/prng4.js"></script>
+<script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
+<!-- RSA 암호화 처리 스크립트 -->
+<script type="text/javascript" src="/commons/js/start/encrypt.js"></script>
+<!-- hash 스크립트 -->
+<script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
 </html>

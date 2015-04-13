@@ -1,8 +1,8 @@
 (function () {	
 	var signupBtn = document.querySelector("button.signup_btn");
 	var loginBtn = document.querySelector("button.login_btn");
-	signupBtn.addEventListener("click", function(e) { rsa(e, signupIds); }, false);
-	loginBtn.addEventListener("click", function(e) { rsa(e, loginIds); }, false);
+	signupBtn.addEventListener("click", function(e) { rsa(e, signupIds, URI.SIGNUP); }, false);
+	loginBtn.addEventListener("click", function(e) { rsa(e, loginIds, URI.LOGIN); }, false);
 	
 	var signupIds = {
 			name : "signup_name",
@@ -16,13 +16,19 @@
 			password: "login_password"
 	}
 	
-	function rsa(e, ids) {
+	var URI = {
+		SIGNUP : "/signup.do",
+		LOGIN : "/login.do"
+	};
+	
+	function rsa(e, ids, uri) {
 		 e.preventDefault();
 		
 		// 사용자 계정정보 암호화전 평문
-		var name = document.getElementById(ids.name).value; //login일 때는 없음
+		console.log(ids.name);
+		var name = ((ids.name !== "") ? document.getElementById(ids.name).value : ""); //login일 때는 없음
 		var email = document.getElementById(ids.email).value;
-		var pwd = document.getElementById(ids.password).value;
+		var pwd = CryptoJS.SHA256(document.getElementById(ids.password).value).toString(CryptoJS.enc.Hex); //pwd는 hashing
 
 		// RSA 암호화 생성
 		var rsa = new RSAKey();
@@ -32,11 +38,10 @@
 		email = rsa.encrypt(email);
 		pwd = rsa.encrypt(pwd);
 		
-		var url = "/signup.do"; //login이면 login.do 로 바꿔야 함
 		var request = new XMLHttpRequest();
 		var params = "name=" + name + "&email=" + email + "&password=" + pwd;
 
-		request.open("POST" , url , true);
+		request.open("POST" , uri , true);
 	    request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		request.send(params);
 		

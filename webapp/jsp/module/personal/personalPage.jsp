@@ -13,13 +13,7 @@
 					<h1 class="name">Past</h1>
 					<span class="date">~ 2015.04.06</span>
 				</div>
-				<ul>
-				<li class="todo">
-					<div class="party_pavicon">휴</div>
-					<h2>기본 화면 UI 그리기</h2>
-					<p>0일 남음</p>
-					<a class="complete_btn"></a>
-				</li>
+				<ul class="past">
 				</ul>
 			</section>
 			<section>
@@ -27,19 +21,7 @@
 					<h1 class="name">Today</h1>
 					<span class="date">2015.04.07</span>
 				</div>
-				<ul>
-				<li class="todo">
-					<div class="party_pavicon">휴</div>
-					<h2>기본 화면 UI 그리기</h2>
-					<p>0일 남음</p>
-					<a class="complete_btn"></a>
-				</li>
-				<li class="todo">
-					<div class="party_pavicon">휴</div>
-					<h2>기본 화면 UI 그리기</h2>
-					<p>0일 남음</p>
-					<a class="complete_btn"></a>
-				</li>
+				<ul class="today">
 				</ul>
 			</section>
 			<section>
@@ -47,8 +29,12 @@
 					<h1 class="name">Future</h1>
 					<span class="date">2015.04.08 ~</span>
 				</div>
+				<ul  class="future">
+				</ul>
 			</section>
 		</main>
 	</div>
+	
+	<script src="/commons/js/personal/todolist.js"></script>
 </body>
 </html>

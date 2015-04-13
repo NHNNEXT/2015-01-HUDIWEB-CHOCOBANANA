@@ -44,10 +44,14 @@ public class UserDao extends JDBCManager {
 
 		try {
 			pstmt = conn.prepareStatement("select uid, name, email, passwd from user where email = ? and passwd = ?");
+			System.out.println(email);
+			System.out.println(passwd);
+			
 			pstmt.setString(1, email);
 			pstmt.setString(2, passwd);
+			System.out.println(pstmt.toString());
 			resultSet = pstmt.executeQuery();
-
+			System.out.println(resultSet.toString());
 			if (resultSet.next()) {
 				currentUser = new UserEntity(resultSet.getLong("uid"), resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("passwd"));
 			}
@@ -59,6 +63,8 @@ public class UserDao extends JDBCManager {
 		logger.info("<----UserDao.retrieveUser");
 		return currentUser;
 	}
+	
+	
 	public Boolean validateUser(String email) {
 		logger.info("---->UserDao.validateUser");
 

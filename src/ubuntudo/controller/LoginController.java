@@ -1,5 +1,7 @@
 package ubuntudo.controller;
 
+import java.security.PrivateKey;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -11,37 +13,42 @@ import ubuntudo.dao.UserDao;
 import ubuntudo.model.UserEntity;
 import core.mvc.AbstractController;
 import core.mvc.ModelAndView;
+import core.utils.RSAUtils;
 
 public class LoginController extends AbstractController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	String loginSuccessedViewName = "jsp/start/start.jsp";
-	String loginFailedViewName = "jsp/loginFail.jsp";
+	String loginSuccessedViewUri = "jsp/personal.jsp";
+	String loginFailedViewUri = "jsp/loginFail.jsp";
 
 	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Login");
-
-		ModelAndView mav = jstlView(loginSuccessedViewName);
+		
 		String email = request.getParameter("email");
 		String passwd = request.getParameter("password");
-		logger.debug("Logging in email: {}", email);
-		logger.debug("Logging in passwd: {}", passwd);
+		
+		HttpSession session = request.getSession();    
+		PrivateKey privateKey = (PrivateKey) session.getAttribute("RSAWebKey"); 
+		
+		String _email = RSAUtils.decryptRsa(privateKey, email);
+        String _password = RSAUtils.decryptRsa(privateKey, passwd);
+		logger.debug("Logging in email: {}", _email);
+		logger.debug("Logging in passwd: {}", _password);
 
 		UserDao uDao = new UserDao();
 		
-		UserEntity currentUser = uDao.retrieveUser(email, passwd);
+		UserEntity currentUser = uDao.retrieveUser(_email, _password);
+		ModelAndView mav = jsonView();
 
-		// if (currentUser != null) {
 		if (currentUser != null) {
 			// member login success
-			HttpSession session = request.getSession();
-			session.setAttribute("currentUser", currentUser);
-			logger.info((session.getAttribute("currentUser").toString()));
-
-			mav = jstlView(loginSuccessedViewName);
-			mav.addObject("currentUser", currentUser);
+			session.setAttribute("user", currentUser);
+			logger.info((session.getAttribute("user").toString()));
+			mav.addObject("status", "success");
+			mav.addObject("uri", loginSuccessedViewUri);
 		} else {
-			mav = jstlView(loginFailedViewName);
+			mav.addObject("status", "fail");
+			mav.addObject("uri", loginFailedViewUri);
 		}
 		logger.info("<--Controller-->Login");
 		return mav;
