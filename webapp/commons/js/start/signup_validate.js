@@ -26,7 +26,9 @@ ubuntudo.ui.validateManager = (function () {
 		DEFAULT: "필수 정보입니다.",
 		WARNING_PASSWORD: "8자이상의 영문 대문자,소문자,숫자,특수문자를 사용하세요.",
 		GOOD_PASSWORD: "아름다운 비밀번호다요!",
-		CONFIRM_PASSWORD: "비밀번호가 일치합니다."
+		CONFIRM_PASSWORD: "비밀번호가 일치한다요!",
+		NOT_CONFIRM_PASSWORD: "비밀번호가 일치하지 않는다요!"
+
 	}
 
 	var util = ubuntudo.utility;
@@ -180,7 +182,7 @@ ubuntudo.ui.validateManager = (function () {
 			}
 			if (password1 != password2) {
 				elMsg.className = CLASSNAME.ERROR;
-				elMsg.innerHTML = "비밀번호가 일치하지 않습니다.";
+				elMsg.innerHTML = MESSAGE.NOT_CONFIRM_PASSWORD;
 			} else {
 				elMsg.className = CLASSNAME.OK;
 				elMsg.innerHTML = MESSAGE.CONFIRM_PASSWORD;
