@@ -34,15 +34,26 @@
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
 				<form method="post" action="/signup/ajax" class="signup_box" style="display:block">
-					<fieldset class="signup_form">
+					<fieldset id="signup_form">
 						<legend class="blind">회원가입</legend>
 						<div>
 							<label><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></label>
 							<label><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></label>
-							<label><input type="text" id="signup_name" name="name" placeholder="이름" autocomplete="off" alt="이름" required></label>
-							<label><input type="email" id="signup_email" name="email" placeholder="이메일" autocomplete="off" alt="이메일" required></label>
-							<label><input type="password" id="signup_password" name="password" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label>
-							<label><input type="password" id="password_check" placeholder="비밀번호 확인" maxlength="16" autocomplete="off" alt="비밀번호확인" required></label>
+							<div id="sp_name_div">
+								<label><input type="text" id="signup_name" name="name" placeholder="이름" autocomplete="off" alt="이름" required></label>
+							</div>
+							<div id="sp_email_div">
+								<span><label><input type="email" id="signup_email" name="email" placeholder="이메일" autocomplete="off" alt="이메일" required></label></span>
+								<div id="signup_email_message" class="error" style="display: none;">필수 정보입니다.</div>
+							</div>
+							<div id="sp_password_div">
+								<span><label><input type="password" id="signup_password" name="password" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label></span>
+								<div id="signup_password_message" class="error" style="display: none;">필수 정보입니다.</div>
+							</div>
+							<div id="sp_password_check_div">
+								<span><label><input type="password" id="signup_password_check" name="password" placeholder="비밀번호 확인" maxlength="16" autocomplete="off" alt="비밀번호확인" required></label></span>
+								<div id="signup_password_check_message" class="error" style="display: none;">필수 정보입니다.</div>
+							</div>
 							<button type="submit" class="signup_btn">가입하기</button>
 						</div>
 					</fieldset>
@@ -104,4 +115,8 @@
 <script type="text/javascript" src="/commons/js/start/encrypt.js"></script>
 <!-- hash 스크립트 -->
 <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+<!-- validate 스크립트 -->
+<script language="javascript" type="text/javascript" src="commons/js/start/ubuntudo_main.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/start/signup_validate.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/start/utility.js"></script>
 </html>
