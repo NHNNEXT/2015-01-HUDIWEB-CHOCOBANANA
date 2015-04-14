@@ -64,7 +64,7 @@ function loadList() {
 }
 
 function addTodoList(listClassNames, data) {
-	var listTemplate = '<li class="todo"><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
+	var listTemplate = '<li class="todo"><span class="tid"><%=tid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
 	var listArray = [];
 	var today = new Date();
 	var length = Object.keys(listClassNames).length;
@@ -95,7 +95,7 @@ function addTodoList(listClassNames, data) {
 }
 
 function makeInnerHTML(listTemplate, list, dayDiff, explain){
-	 return listTemplate.replace("<%=partyFirstAlphabet%>", list["pName"].substring(0,1)).replace("<%=title%>", list["title"]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain);
+	 return listTemplate.replace("<%=tid%>", list["tid"]).replace("<%=partyFirstAlphabet%>", list["pName"].substring(0,1)).replace("<%=title%>", list["title"]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain);
 }
 
 Date.prototype.diffDays = function (date) {
