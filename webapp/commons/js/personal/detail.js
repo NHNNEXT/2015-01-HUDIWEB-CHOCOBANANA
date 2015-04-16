@@ -1,5 +1,5 @@
 (function() {
-    var MODAL_TEMPLATE = '<div class="detail_modal"><div class="light_box"></div><div class="task"><div class="title"><%=title%></div><div class="detail_wrapper"><div class="due_date"><%=date%></div><textarea class="note"><%=note%></textarea></div><div class="btn_wrapper"><button class="edit">edit</button><button class="delete">delete</button></div></div></div>';
+    var MODAL_TEMPLATE = '<div class="detail_modal"><div class="light_box"></div><div class="task"><div class="title"><textarea type="text" placeholder="To do..."></textarea></div><div class="detail_wrapper"><span class="tid"><%=tid></span>         <span class="party"><%=party%></span><span class="due_date"><%=date%></span>        <textarea class="note"><%=note%></textarea></div><div class="btn_wrapper">           <button>edit</button><button>delete</button></div></div></div>';
     
     var ELEMENTS = {
         "BASE":"body",
@@ -20,7 +20,6 @@
         elParent.removeChild(elModal);
     }
 })();
-
 
 
 
