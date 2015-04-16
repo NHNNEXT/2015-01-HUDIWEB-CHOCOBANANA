@@ -1,5 +1,5 @@
 (function() {
-    var MODAL_TEMPLATE = '<div class="detail_modal"><div class="light_box"></div><div class="task"><div class="title"><%=title%></div><div class="detail_wrapper"><div class="due_date"><%=date%></div><textarea class="note"><%=note%></textarea></div><div class="btn_wrapper"><button>edit</button><button>delete</button></div></div></div>';
+    var MODAL_TEMPLATE = '<div class="detail_modal"><div class="light_box"></div><div class="task"><div class="title"><%=title%></div><div class="detail_wrapper"><div class="due_date"><%=date%></div><textarea class="note"><%=note%></textarea></div><div class="btn_wrapper"><button class="edit">edit</button><button class="delete">delete</button></div></div></div>';
     
     var ELEMENTS = {
         "BASE":"body",
