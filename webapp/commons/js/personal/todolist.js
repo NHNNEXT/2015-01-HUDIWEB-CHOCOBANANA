@@ -40,7 +40,7 @@ function loadList() {
 			    "last_editer_id" : "1"
 			  },
 			  {
-				    "tid" : "1",
+				    "tid" : "2",
 				    "assigner_id" : "1",
 				    "pid" : "-1",
 				    "pName": "자구알",
@@ -50,7 +50,7 @@ function loadList() {
 				    "last_editer_id" : "1"
 			  },
 			  {
-			    "tid" : "1",
+			    "tid" : "3",
 			    "assigner_id" : "1",
 			    "pid" : "-1",
 			    "pName": "개인",
