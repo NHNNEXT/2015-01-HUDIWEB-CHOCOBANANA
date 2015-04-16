@@ -36,5 +36,6 @@
 	</div>
 	
 	<script src="/commons/js/personal/todolist.js"></script>
+    <script src="/commons/js/personal/detail.js"></script>
 </body>
 </html>
