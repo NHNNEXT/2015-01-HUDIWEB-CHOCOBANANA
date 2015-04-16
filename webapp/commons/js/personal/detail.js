@@ -8,8 +8,12 @@ var DMM = (function() {
     DetailModalManager.prototype.modalShow = function(ev, sTargetName, sChildName) {
         var elTarget = ev.target;
         var id;
-        
         /*아래 제목처럼 주석처리한 부분은 나중에 private 함수로 뽑을 부분임*/
+        //완료버튼이면 modalShow하지 않도록 방어코드   
+        if(elTarget.className === "complete_btn") {
+            return;
+        }
+        
         //Target찾기
         while(elTarget.className !== sTargetName ) {
             elTarget = elTarget.parentElement;

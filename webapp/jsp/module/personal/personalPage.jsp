@@ -12,8 +12,8 @@
                 <textarea class="note"></textarea>
             </div>
             <div class="btn_wrapper">
-                <button>edit</button>
-                <button>delete</button>
+                <button class="edit_btn">edit</button>
+                <button class="delete_btn">delete</button>
             </div>
         </div>
     </div>
