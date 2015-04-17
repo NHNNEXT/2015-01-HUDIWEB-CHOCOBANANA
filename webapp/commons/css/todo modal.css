@@ -1,0 +1,145 @@
+/*body, button, div, form, table, td, tbody, tr, input, li, ul {
+    margin: 0;
+    padding: 0;
+}*/
+
+/*table {
+    border-spacing: 0;
+}
+*/
+/* 그룹 선택 */
+.select_party {
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 40px;
+    background: url(../img/select_arrow.png) 180px center no-repeat; /* 화살표 이미지 */
+    border: 1px solid #E9DDDD;
+}
+.select_party label#selected_party_name {
+    position: absolute;
+    font-size: 14px;
+    color: #a97228;
+    top: 13px;
+    left: 12px;
+    letter-spacing: 1px;
+}
+.select_party select#select_party_list {
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 8 */
+}
+/* //그룹 선택 */
+
+
+
+/* 날짜 선택 */
+div.includeSelect {
+    float: left;
+    position: relative;
+    top: -4px;
+    width: 70px;
+    height: 40px;
+    background: url(../img/select_arrow.png) 50px center no-repeat; /* 화살표 이미지 */
+    border: 1px solid #E9DDDD;
+}
+.includeSelect label#selected_month, #selected_day {
+    position: absolute;
+    font-size: 14px;
+    color: #a97228;
+    top: 13px;
+    left: 12px;
+    letter-spacing: 1px;
+}
+.includeSelect select.select_month_list, .select_day_list {
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 8 */
+}
+input.calendarDateInput {
+    width: 33px;
+    height: 40px;
+    border: 1px solid #E9DDDD;
+    margin-top: 5px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #a97228;
+    letter-spacing: 1px;
+}
+/* // 날짜 선택 */
+
+
+
+/* 일정 이름 */
+.input_todoName {
+    float: left;
+    width: 400px;
+    height: 40px;
+    border: 1px solid #E9DDDD;
+    margin-top: 5px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #a97228;
+    letter-spacing: 1px;
+}
+
+
+
+/* 상세 내용 입력 */
+.input_todoComment {
+    clear: both;
+    float: left;
+    width: 400px;
+    height: 130px;
+    border: 1px solid #E9DDDD;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 14px;
+    color: #a97228;
+    letter-spacing: 1px;
+}
+
+
+/* 버튼 */
+/*.todo_modal_btn_wrap {
+    width: 400px;
+    height: 46px;
+}*/
+
+.todo_modal_btn {
+    clear: both;
+    width: 400px;
+    height: 46px;
+    margin-left: 40px;
+    /*margin: 0 auto;*/
+}
+
+.todo_modal_btn input{
+    display: block;
+    float: left;
+    margin: 5px;
+    width: 100px;
+    height: 46px;
+    padding: 15px 0 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: #393939;
+    background: #E9DDDD;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -1px;
+    border: 0 none;
+    cursor: pointer;
+}

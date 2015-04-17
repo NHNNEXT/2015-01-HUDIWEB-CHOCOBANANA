@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <title>todo modal</title>
-<script type="text/javascript" src="calendarDateInput.js">
 
+<link rel="stylesheet" type="text/css" href="../css/todo modal.css">
+<script type="text/javascript" src="../js/add todo modal/calendarDateInput.js">
 /***********************************************
 * Jason's Date Input Calendar- By Jason Moon http://calendar.moonscript.com/dateinput.cfm
 * Script featured on and available at http://www.dynamicdrive.com
 * Keep this notice intact for use.
 ***********************************************/
-
  </script>
 
 </head>
@@ -20,31 +20,39 @@
 <div clas="wrap">
 	<form class="add_todo">
 		<!-- 파티 설정	-->
-		<select name="myPartyList">
-			<option value="개인">개인</option>
-			<option value="네트워크">네트워크</option>
-			<option value="자구알">자구알</option>
-		</select>
+		<div class="select_party">
+			<label id="selected_party_name">개인</label>
+				<select id="select_party_list" onchange="showSelectedParty()">
+					<option>개인</option>
+					<option>네트워크</option>
+					<option>자구알</option>
+				</select>
+		</div>
 		
+		<!-- 날짜선택 -->
+		<script>DateInput('orderdate', true, 'YYYY-MM-DD')</script>
+		<input type="text" id="input_selected_date" onclick="updateInputDate(this.form.orderdate.value)" placeholder="날짜 선택" autocomplete="off" alt="날짜 선택" required="">
+
 		<!-- 일정 이름 -->
-		<input type="text" name="todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름" required="">
-		
-		<!-- 날짜선택 
-		 'DD-MON-YYYY' 값으로 전송됨 (바꿀 수 있음) -->
-		<script>DateInput('orderdate', true, 'DD-MON-YYYY')</script>
+		<input type="text" name="todoName" class="input_todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름" required="">
 
 		<!-- 상세 내용 -->
-	    <textarea name = "comment" cols = "50" rows = "5"  
-                  placeholder="상세 내용을 남겨주세요."></textarea>
+	    <textarea name = "todocomment" class="input_todoComment" cols = "50" rows = "5"  
+                  placeholder="상세내용을 입력해주세요."></textarea>
         <br>
 
         <!-- 버튼 -->
-        <input type = "reset" value = "reset"/>
-        <input type = "submit" value = "submit"/>
-        <input type = "submit" value = "cancel"/>
+        <!-- <div class="todo_modal_btn_wrap"> -->
+	        <div class="todo_modal_btn">
+		        <input type = "reset" value = "reset"/>
+		        <input type = "submit" value = "submit"/>
+		        <input type = "submit" value = "cancel"/>
+	        </div>
+        <!-- </div> -->
   	</form>
 
 </div>
 
 </body>
+<script type="text/javascript" src="../js/add todo modal/todo modal.js"></script>
 </html>

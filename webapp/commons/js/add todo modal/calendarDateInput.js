@@ -12,9 +12,9 @@ var FontSize = 11; // In pixels
 var FontFamily = 'Tahoma';
 var CellWidth = 18;
 var CellHeight = 16;
-var ImageURL = '../img/calendar.jpg';
-var NextURL = '../img/next.gif';
-var PrevURL = '../img/prev.gif';
+var ImageURL = '../../img/calendar.jpg';
+var NextURL = '../../img/next.gif';
+var PrevURL = '../../img/prev.gif';
 var CalBGColor = 'white';
 var TopRowBGColor = '#dd4b39';
 var DayBGColor = '#dd4b39';
@@ -29,7 +29,7 @@ var MonthNames = new Array('January','February','March','April','May','June','Ju
 // Write out the stylesheet definition for the calendar
 with (document) {
    writeln('<style>');
-   writeln('td.calendarDateInput {letter-spacing:normal;line-height:normal;font-family:' + FontFamily + ',Sans-Serif;font-size:' + FontSize + 'px;}');
+   writeln('td.calendarDateInput {line-height:normal;font-family:' + FontFamily + ',Sans-Serif;font-size:' + FontSize + 'px;}');
    writeln('select.calendarDateInput {letter-spacing:.06em;font-family:Verdana,Sans-Serif;font-size:11px;}');
    writeln('input.calendarDateInput {letter-spacing:.06em;font-family:Verdana,Sans-Serif;font-size:11px;}');
    writeln('</style>');
@@ -528,6 +528,7 @@ function DateInput(DateName, Required, DateFormat, DefaultDate) {
          }
          alert(AlertMessage);
       }
+
       // Define the current date if it wasn't set already
       if (!CurrentDate) var CurrentDate = new storedMonthObject(DateFormat, Today.getFullYear(), Today.getMonth(), Today.getDate());
       // Handle DefaultDate
@@ -560,23 +561,24 @@ function DateInput(DateName, Required, DateFormat, DefaultDate) {
                }
             }
          }
+
          writeln('<table cellpadding="0" cellspacing="2"><tr>' + String.fromCharCode(13) + '<td valign="middle">');
-         writeln('<select class="calendarDateInput" id="' + DateName + '_Month_ID" onChange="' + DateName + '_Object.changeMonth(this)">');
+         writeln('<div class="includeSelect"><label id="selected_month"></label><select class="calendarDateInput select_month_list" onchange="showSelectedMonth()" id="' + DateName + '_Month_ID" onChange="' + DateName + '_Object.changeMonth(this)">');
          if (!Required) {
             var NoneSelected = (DefaultDate == '') ? ' selected' : '';
             writeln('<option value=""' + NoneSelected + '>' + UnselectedMonthText + '</option>');
          }
          for (var i=0;i<12;i++) {
             MonthSelected = ((DefaultDate != '') && (eval(DateName + '_Object.picked.monthIndex') == i)) ? ' selected' : '';
-            writeln('<option value="' + i + '"' + MonthSelected + '>' + MonthNames[i].substr(0,3) + '</option>');
+            writeln('<option value="' + MonthNames[i].substr(0,3) + '"' + MonthSelected + '>' + MonthNames[i].substr(0,3) + '</option>');
          }
-         writeln('</select>' + String.fromCharCode(13) + '</td>' + String.fromCharCode(13) + '<td valign="middle">');
-         writeln('<select' + InitialStatus + ' class="calendarDateInput" id="' + DateName + '_Day_ID" onChange="' + DateName + '_Object.changeDay(this)">');
+         writeln('</select>' + String.fromCharCode(13) + '</div></td>' + String.fromCharCode(13) + '<td valign="middle">');
+         writeln('<div class="includeSelect"><label id="selected_day"></label><select' + InitialStatus + ' class="calendarDateInput select_day_list" onchange="showSelectedDay()" id="' + DateName + '_Day_ID" onChange="' + DateName + '_Object.changeDay(this)">');
          for (var j=1;j<=eval(DateName + '_Object.picked.dayCount');j++) {
             DaySelected = ((DefaultDate != '') && (eval(DateName + '_Object.picked.day') == j)) ? ' selected' : '';
             writeln('<option' + DaySelected + '>' + j + '</option>');
          }
-         writeln('</select>' + String.fromCharCode(13) + '</td>' + String.fromCharCode(13) + '<td valign="middle">');
+         writeln('</select>' + String.fromCharCode(13) + '</div></td>' + String.fromCharCode(13) + '<td valign="middle">');
          writeln('<input' + InitialStatus + ' class="calendarDateInput" type="text" id="' + DateName + '_Year_ID" size="' + eval(DateName + '_Object.picked.yearPad.length') + '" maxlength="' + eval(DateName + '_Object.picked.yearPad.length') + '" title="Year" value="' + eval(DateName + '_Object.picked.yearPad') + '" onKeyPress="return YearDigitsOnly(window.event)" onKeyUp="' + DateName + '_Object.checkYear(this)" onBlur="' + DateName + '_Object.fixYear(this)">');
          write('<td valign="middle">' + String.fromCharCode(13) + '<a' + InitialStatus + ' id="' + DateName + '_ID_Link" href="javascript:' + DateName + '_Object.show()" onMouseOver="return ' + DateName + '_Object.iconHover(true)" onMouseOut="return ' + DateName + '_Object.iconHover(false)"><img src="' + ImageURL + '" align="baseline" title="Calendar" border="0"></a>&nbsp;');
          writeln('<span id="' + DateName + '_ID" style="position:absolute;visibility:hidden;width:' + (CellWidth * 7) + 'px;background-color:' + CalBGColor + ';border:1px solid dimgray;" onMouseOver="' + DateName + '_Object.handleTimer(true)" onMouseOut="' + DateName + '_Object.handleTimer(false)">');
@@ -586,6 +588,13 @@ function DateInput(DateName, Required, DateFormat, DefaultDate) {
          writeln('<td id="' + DateName + '_Next_ID" style="cursor:default" align="center" class="calendarDateInput" style="height:' + CellHeight + '" onClick="' + DateName + '_Object.next.go()" onMouseDown="VirtualButton(this,true)" onMouseUp="VirtualButton(this,false)" onMouseOver="return ' + DateName + '_Object.next.hover(this,true)" onMouseOut="return ' + DateName + '_Object.next.hover(this,false)" title="' + eval(DateName + '_Object.next.monthName') + '"><img src="' + NextURL + '"></td></tr>' + String.fromCharCode(13) + '<tr>');
          for (var w=0;w<7;w++) writeln('<td width="' + CellWidth + '" align="center" class="calendarDateInput" style="height:' + CellHeight + ';width:' + CellWidth + ';font-weight:bold;border-top:1px solid #dd4b39;border-bottom:1px solid gainsboro;">' + WeekDays[w] + '</td>');
          writeln('</tr>' + String.fromCharCode(13) + '</table>' + String.fromCharCode(13) + '<span id="' + DateName + '_DayTable_ID">' + eval(DateName + '_Object.buildCalendar()') + '</span>' + String.fromCharCode(13) + '</span>' + String.fromCharCode(13) + '</td>' + String.fromCharCode(13) + '</tr>' + String.fromCharCode(13) + '</table>');
+   
       }
    }
+
+}
+
+// #input_date에 선택한 날짜를 자동으로 입력해주는 함수 (특별한 선택을 하지 않으면, 자동으로 오늘의 날짜가 들어감)
+function updateInputDate(DateFormat){
+    document.getElementById("input_selected_date").value = DateFormat;
 }
