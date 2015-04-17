@@ -51,6 +51,7 @@
 			</section>
 		</main>
     </div>
+    <script src="/commons/js/personal/ubuntudo_personal.js"></script>
 	<script src="/commons/js/personal/todolist.js"></script>
     <script src="/commons/js/personal/detail.js"></script>
 </body>

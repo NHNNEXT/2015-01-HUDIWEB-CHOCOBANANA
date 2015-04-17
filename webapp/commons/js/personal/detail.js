@@ -1,11 +1,34 @@
-var DMM = (function() {
-    var DetailModalManager = function (sModalName, sTitleName, sDetailName) {
+/**
+ * Created by dahye on 2015. 4. 15
+ */
+ubuntudo.ui.modalManager = (function() {
+    var ModalManger = function (oModal) {
+        this.modal = oModal;
+        this.elModal = oModal.elModal;
+    }
+    
+    ModalManger.prototype.modalShow = function(ev) {
+        this.modal.beforeShow(ev);
+        this.elModal.style.display = "block";
+    }
+    
+    ModalManger.prototype.modalHide = function() {
+        this.elModal.style.display = "none";   
+    }
+    
+    return ModalManager;
+})();
+
+ubuntudo.ui.detailModal = (function() {
+    var DetailModal = function (sModalName, sTitleName, sDetailName, sTargetName, sChildName) {
         this.elModal = document.querySelector(sModalName);
-        this.elTitle = this.elModal.querySelector(sTitleName);
-        this.elDetail = this.elModal.querySelector(sDetailName);
+        this.elTitle = oModalManager.elModal.querySelector(sTitleName);
+        this.elDetail = oModalManager.elModal.querySelector(sDetailName);
+        this.sTargetName = sTargetName;
+        this.sChildName = sChildName;
     };
 
-    DetailModalManager.prototype.modalShow = function(ev, sTargetName, sChildName) {
+    DetailModalManager.prototype.beforeShow = function(ev) {
         var elTarget = ev.target;
         var id;
         /*아래 제목처럼 주석처리한 부분은 나중에 private 함수로 뽑을 부분임*/
@@ -15,13 +38,13 @@ var DMM = (function() {
         }
         
         //Target찾기
-        while(elTarget.className !== sTargetName ) {
+        while(elTarget.className !== this.sTargetName ) {
             elTarget = elTarget.parentElement;
         }
         
         //children찾기
         for(var i = 0; i < elTarget.childElementCount; i++) {
-            if(elTarget.children[i].className === sChildName) {
+            if(elTarget.children[i].className === this.sChildName) {
                 id = elTarget.children[i].innerHTML;
                 break;
             }
@@ -36,31 +59,7 @@ var DMM = (function() {
                 break;
             }
         }
-        
-        //모달창 보이기
-        this.elModal.style.display = "block";
     };
-    
-    DetailModalManager.prototype.modalHide = function(ev) {
-        this.elModal.style.display = "none";
-    };
-    
-    return DetailModalManager;
+
+    return DetailModal;
 })();
-
-//service code
-(function(){
-    var elList = document.querySelector(".past");
-    var elLightBox = document.querySelector(".light_box");
-    var oDMM = new DMM(".detail_modal", ".title", ".detail_wrapper");
-    
-    elList.addEventListener("click", function(e) {
-        oDMM.modalShow(e, "todo", "tid");
-    });
-    
-    elLightBox.addEventListener("click", function(e) {
-        oDMM.modalHide(e);
-    }); 
-})();
-
-
