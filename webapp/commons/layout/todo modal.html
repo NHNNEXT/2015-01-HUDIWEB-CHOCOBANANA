@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>todo modal</title>
+<script type="text/javascript" src="calendarDateInput.js">
+
+/***********************************************
+* Jason's Date Input Calendar- By Jason Moon http://calendar.moonscript.com/dateinput.cfm
+* Script featured on and available at http://www.dynamicdrive.com
+* Keep this notice intact for use.
+***********************************************/
+
+ </script>
+
+</head>
+
+<body>
+
+<div clas="wrap">
+	<form class="add_todo">
+		<!-- 파티 설정	-->
+		<select name="myPartyList">
+			<option value="개인">개인</option>
+			<option value="네트워크">네트워크</option>
+			<option value="자구알">자구알</option>
+		</select>
+		
+		<!-- 일정 이름 -->
+		<input type="text" name="todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름" required="">
+		
+		<!-- 날짜선택 
+		 'DD-MON-YYYY' 값으로 전송됨 (바꿀 수 있음) -->
+		<script>DateInput('orderdate', true, 'DD-MON-YYYY')</script>
+
+		<!-- 상세 내용 -->
+	    <textarea name = "comment" cols = "50" rows = "5"  
+                  placeholder="상세 내용을 남겨주세요."></textarea>
+        <br>
+
+        <!-- 버튼 -->
+        <input type = "reset" value = "reset"/>
+        <input type = "submit" value = "submit"/>
+        <input type = "submit" value = "cancel"/>
+  	</form>
+
+</div>
+
+</body>
+</html>
