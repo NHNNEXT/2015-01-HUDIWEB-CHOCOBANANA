@@ -1,17 +1,18 @@
 /**
  * Created by dahye on 2015. 4. 17..
  */
-
 ubuntudo = {};
 ubuntudo.ui = {};
-ubuntudo.util = {};
+ubuntudo.utility = {};
 
 window.addEventListener("load", function () {
-    var elList = [];
-    elList = document.querySelectorAll("section ul");
+    var oTodoManager = new ubuntudo.ui.todoManager();
+    var elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
-    var oDdetailModal = new ubuntudo.ui.detailModal();
+    var oDdetailModal = new ubuntudo.ui.detailModal(oTodoManager);
     var oModalManager = new ubuntudo.ui.modalManager(oDdetailModal);
+    
+    oTodoManager.appendList("/personal");
     
     [].forEach.call(elList, function(element) {
         element.addEventListener("click", function(ev) {

@@ -51,8 +51,9 @@
 			</section>
 		</main>
     </div>
-    <script src="/commons/js/personal/ubuntudo_personal.js"></script>
-	<script src="/commons/js/personal/todolist.js"></script>
-    <script src="/commons/js/personal/modal.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/ubuntudo_personal.js"></script>
+	<script language="javascript" type="text/javascript" src="/commons/js/personal/todo.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/modal.js"></script>
+	<script language="javascript" type="text/javascript" src="/commons/js/start/utility.js"></script>
 </body>
 </html>
