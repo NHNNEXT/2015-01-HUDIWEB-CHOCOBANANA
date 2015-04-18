@@ -8,7 +8,7 @@ ubuntudo.ui = {};
 window.addEventListener("load", function () {
     var elList = document.querySelector(".past");
     var elLightBox = document.querySelector(".light_box");
-    var oDdetailModal = new ubuntudo.ui.detailModal(".detail_modal", ".title", ".detail_wrapper", "todo", "tid");
+    var oDdetailModal = new ubuntudo.ui.detailModal(".detail_modal", ".title", ".detail_wrapper", "todo", "tid", "complete_btn");
     var oModalManager = new ubuntudo.ui.modalManager(oDdetailModal);
     
     elList.addEventListener("click", function(ev) {
