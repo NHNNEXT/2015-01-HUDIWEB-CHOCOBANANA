@@ -4,6 +4,7 @@
 
 ubuntudo = {};
 ubuntudo.ui = {};
+ubuntudo.util = {};
 
 window.addEventListener("load", function () {
     var elList = [];
@@ -14,10 +15,10 @@ window.addEventListener("load", function () {
     
     [].forEach.call(elList, function(element) {
         element.addEventListener("click", function(ev) {
-        oModalManager.modalShow(ev);
+        oModalManager.showModal(ev);
     })});
     
     elLightBox.addEventListener("click", function(e) {
-        oModalManager.modalHide();
+        oModalManager.hideModal();
     }); 
 });

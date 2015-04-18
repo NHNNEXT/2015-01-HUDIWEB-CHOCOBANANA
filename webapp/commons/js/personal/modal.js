@@ -43,8 +43,9 @@ ubuntudo.ui.detailModal = (function() {
         
         //findIndex 사용하기 위해 utility 모듈 가져옴
 	    var util = ubuntudo.utility;
+        //id를 통해 data[i]["tid"] = id인 인덱스 i 찾기
+        var index = util.findIndex(ubuntudo.ui.list.data, "tid", id);
         
-        //tid를 통해 data[i]["tid"] = tid인 i찾기
         //data[i]["contents"], data[i].["pName"], data[i].["title"], data[i].["duedate"] 모달창에 심기
         
         //모달창에 tid 심기 
@@ -67,13 +68,13 @@ ubuntudo.ui.modalManager = (function() {
         this.elModal = oModal.elModal;
     }
     
-    ModalManager.prototype.modalShow = function(ev) {
+    ModalManager.prototype.showModal = function(ev) {
         if(this.modal.beforeShow(ev) === true) {
             this.elModal.style.display = "block";
         }
     }
     
-    ModalManager.prototype.modalHide = function() {
+    ModalManager.prototype.hideModal = function() {
         this.elModal.style.display = "none";   
     }
     
