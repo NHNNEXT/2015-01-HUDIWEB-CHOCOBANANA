@@ -9,8 +9,8 @@ window.addEventListener("load", function () {
     var oTodoManager = new ubuntudo.ui.todoManager();
     var elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
-    var oDdetailModal = new ubuntudo.ui.detailModal(oTodoManager);
-    var oModalManager = new ubuntudo.ui.modalManager(oDdetailModal);
+    var oDetailModal = new ubuntudo.ui.detailModal(oTodoManager);
+    var oModalManager = new ubuntudo.ui.modalManager(oDetailModal);
     
     oTodoManager.appendList("/personal");
     
