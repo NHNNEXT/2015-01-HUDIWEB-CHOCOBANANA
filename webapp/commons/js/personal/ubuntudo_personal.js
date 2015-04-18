@@ -6,14 +6,16 @@ ubuntudo = {};
 ubuntudo.ui = {};
 
 window.addEventListener("load", function () {
-    var elList = document.querySelector(".past");
+    var elList = [];
+    elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
-    var oDdetailModal = new ubuntudo.ui.detailModal(".detail_modal", ".title", ".detail_wrapper", "todo", "tid", "complete_btn");
+    var oDdetailModal = new ubuntudo.ui.detailModal();
     var oModalManager = new ubuntudo.ui.modalManager(oDdetailModal);
     
-    elList.addEventListener("click", function(ev) {
-       oModalManager.modalShow(ev);
-    });
+    [].forEach.call(elList, function(element) {
+        element.addEventListener("click", function(ev) {
+        oModalManager.modalShow(ev);
+    })});
     
     elLightBox.addEventListener("click", function(e) {
         oModalManager.modalHide();

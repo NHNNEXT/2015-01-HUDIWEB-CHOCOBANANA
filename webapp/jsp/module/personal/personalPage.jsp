@@ -53,6 +53,6 @@
     </div>
     <script src="/commons/js/personal/ubuntudo_personal.js"></script>
 	<script src="/commons/js/personal/todolist.js"></script>
-    <script src="/commons/js/personal/detail.js"></script>
+    <script src="/commons/js/personal/modal.js"></script>
 </body>
 </html>

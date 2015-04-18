@@ -1,5 +1,6 @@
 /**
  * Created by jjungmac on 2015. 4. 5..
+ * Edited by dahye on 2015. 4. 18 (add 'findIndex' function)
  */
 
 
@@ -66,3 +67,15 @@ ubuntudo.utility.postJSONData = ( function () {
 	return postData;
 })();
 
+
+ubunntudo.utility.findIndex = (function (object, key, value) {
+    var index = 0;
+    var length = Object.keys(object).length;
+    for(var index = 0; index < length; index++) {
+        if(object[key] === value) {
+            break;
+        }
+    }
+    return index;
+})();
+    

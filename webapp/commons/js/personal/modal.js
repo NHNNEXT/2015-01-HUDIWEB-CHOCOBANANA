@@ -2,13 +2,21 @@
  * Created by dahye on 2015. 4. 15
  */
 ubuntudo.ui.detailModal = (function() {
-    function DetailModal (sModalName, sTitleName, sDetailName, sTargetName, sChildName, sBtnName) {
-        this.elModal = document.querySelector(sModalName);
-        this.elTitle = this.elModal.querySelector(sTitleName);
-        this.elDetail = this.elModal.querySelector(sDetailName);
-        this.sTargetName = sTargetName;
-        this.sChildName = sChildName;
-        this.sBtnName = sBtnName;
+    
+    // HTML에 의존하는 CLASS 캐싱
+	var CLASSNAME = {
+		MODAL: "detail_modal",
+		TITLE: "title",
+		DETAIL: "detail_wrapper",
+        TODO: "todo",
+        TID: "tid",
+        COMPLETE_BTN: "complete_btn"
+	};    
+    
+    function DetailModal () {
+        this.elModal = document.querySelector("."+CLASSNAME.MODAL);
+        this.elTitle = this.elModal.querySelector("."+CLASSNAME.TITLE);
+        this.elDetail = this.elModal.querySelector("."+CLASSNAME.DETAIL);
     }
 
     DetailModal.prototype.beforeShow = function(ev) {
@@ -16,28 +24,32 @@ ubuntudo.ui.detailModal = (function() {
         var id;
         /*아래 제목처럼 주석처리한 부분은 나중에 private 함수로 뽑을 부분임*/
         //완료버튼이면 modalShow하지 않도록 방어코드   
-        if(elTarget.className === this.sBtnName) {
+        if(elTarget.className === CLASSNAME.COMPLETE_BTN) {
             return false;
         }
         
-        //Target찾기
-        while(elTarget.className !== this.sTargetName ) {
+        //todo찾기
+        while(elTarget.className !== CLASSNAME.TODO ) {
             elTarget = elTarget.parentElement;
         }
         
-        //children찾기
+        //tid찾기
         for(var i = 0; i < elTarget.childElementCount; i++) {
-            if(elTarget.children[i].className === this.sChildName) {
+            if(elTarget.children[i].className === CLASSNAME.TID) {
                 id = elTarget.children[i].innerHTML;
                 break;
             }
         }
+        
+        //findIndex 사용하기 위해 utility 모듈 가져옴
+	    var util = ubuntudo.utility;
+        
         //tid를 통해 data[i]["tid"] = tid인 i찾기
         //data[i]["contents"], data[i].["pName"], data[i].["title"], data[i].["duedate"] 모달창에 심기
         
         //모달창에 tid 심기 
         for(var i = 0; i < this.elDetail.childElementCount; i++) {
-            if(this.elDetail.children[i].className === this.sChildName) {
+            if(this.elDetail.children[i].className === CLASSNAME.TID) {
                 this.elDetail.children[i].innerHTML = id;
                 break;
             }
