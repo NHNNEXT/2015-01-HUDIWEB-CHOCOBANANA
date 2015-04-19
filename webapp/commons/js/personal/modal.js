@@ -84,7 +84,8 @@ ubuntudo.ui.detailModal = (function() {
             else if(this.elDetail.children[i].className === CLASSNAME.DUEDATE) {
                 this.elDetail.children[i].innerHTML = todoInfo[field.DUEDATE];
             }
-            else if(this.elDetail.children[i].className === CLASSNAME.CONTENTS) {                         this.elDetail.children[i].innerHTML = todoInfo[field.CONTENTS];    
+            else if(this.elDetail.children[i].className === CLASSNAME.CONTENTS) {   
+            	this.elDetail.children[i].value = todoInfo[field.CONTENTS];    
             }
         }
         
