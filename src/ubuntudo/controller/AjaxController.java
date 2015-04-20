@@ -5,30 +5,34 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.dao.UserDao;
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
+import ubuntudo.model.AjaxRedirectResponse;
 
-public class AjaxController extends AbstractController {
+@Controller
+@RequestMapping(value = "/validate")
+public class AjaxController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	String loginSuccessedViewName = "jsp/start/start.jsp";
+	String loginSuccessedViewName = "jsp/start.jsp";
 	
-	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(method = RequestMethod.POST)
+	public @ResponseBody AjaxRedirectResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Ajax");
 
-		ModelAndView mav = jsonView();
 		String email = request.getParameter("email");
 		logger.debug("Logging in email: {}", email);
 
 		UserDao uDao = new UserDao();
 		
 		Boolean isExistingUser = uDao.validateUser(email);
-		mav.addObject("isExistingUser", isExistingUser);
-		
+		AjaxRedirectResponse res = new AjaxRedirectResponse(isExistingUser.toString(), null);
 		logger.info("<--Controller-->Ajax");
-		return mav;
+		return res;
 	}
 
 }

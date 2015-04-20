@@ -255,7 +255,7 @@ ul.btn_wrapper {
     transition: all .3s;
     border-left: 1px solid rgba(129,129,129,0.2);
    	background-color: #42c7b7;
-   	background-image: url("./../img/check_icon.png"); 
+   	background-image: url("/commons/img/check_icon.png"); 
    	background-repeat: no-repeat;
    	background-size: 20px 15px;
    	background-position: center; 

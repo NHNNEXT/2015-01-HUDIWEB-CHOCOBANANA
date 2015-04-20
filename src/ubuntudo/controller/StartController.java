@@ -7,23 +7,22 @@ import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-public class StartController extends AbstractController {
+@Controller
+public class StartController{
 	//private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
 
-	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping("/start")
+	public String execute(HttpSession session, Model model) throws Exception {
 		//로그인 되었을 경우 개인별페이지로 리다이렉트
-		HttpSession session = request.getSession();    
 		if(session.getAttribute("user") != null) {
 			//이미 로그인한 상태일 때, redirect  to personal page
-	        ModelAndView mav = jstlView("redirect:jsp/personal.jsp");
-			return mav;
+			return "redirect:jsp/personal.jsp";
 		}
 		
 		//로그인이 안되었을 경우 startPage로 리다이렉트
@@ -40,9 +39,8 @@ public class StartController extends AbstractController {
         String publicKeyModulus = publicSpec.getModulus().toString(16);
         String publicKeyExponent = publicSpec.getPublicExponent().toString(16);
          
-        ModelAndView mav = jstlView("jsp/start.jsp");
-		mav.addObject("RSAModulus", publicKeyModulus);
-		mav.addObject("RSAExponent", publicKeyExponent);
-		return mav;
+		model.addAttribute("RSAModulus", publicKeyModulus);
+		model.addAttribute("RSAExponent", publicKeyExponent);
+		return "start";
 	}
 }

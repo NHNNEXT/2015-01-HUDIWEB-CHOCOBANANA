@@ -20,8 +20,8 @@
 <head>
 	<meta charset="utf-8">
 	<title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
-	<link rel="stylesheet" type="text/css" href="commons/css/reset.css"/>
-	<link rel="stylesheet" type="text/css" href="commons/css/startPage.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/startPage.css"/>
 </head>
 <body class="sp_body">
 <div class="sp_wrap">
@@ -33,7 +33,7 @@
 		<div class="sp_content_wrap">
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
-				<form method="post" action="/signup/ajax" class="signup_box" style="display:block">
+				<form method="post" action="/signup" class="signup_box" style="display:block">
 					<fieldset id="signup_form">
 						<legend class="blind">회원가입</legend>
 						<div>
@@ -60,7 +60,7 @@
 					<div class="goto_login">로그인 바로가기</div>
 				</form>
 
-				<form method="post" action="/login.do" name="loginForm" class="login_box" style="display:none">
+				<form method="post" action="/login" name="loginForm" class="login_box" style="display:none">
 					<fieldset class="login_form">
 						<legend class="blind">로그인</legend>
 						<div>

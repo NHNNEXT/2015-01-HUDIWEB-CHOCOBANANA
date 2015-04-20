@@ -19,9 +19,10 @@ ubuntudo.ui.modalManager = (function() {
     
     return ModalManager;
 })();
+//이거는 즉시실행으로 감싸도 예쁜 것 같다.
 
 ubuntudo.ui.detailModal = (function() {
-    // HTML에 의존하는 CLASS 캐싱
+    // HTML에 의존하는 CLASS 캐싱 _ 이것은 익명함수니까 private으로 쓸 수 있다! 
 	var CLASSNAME = {
 		MODAL: "detail_modal",
 		TITLE: "title",
@@ -56,7 +57,7 @@ ubuntudo.ui.detailModal = (function() {
             elTarget = elTarget.parentElement;
         }
         
-        //tid찾기
+        //tid찾기 - li에다가 data로 심는 게 나을 것 같다.
         for(var i = 0; i < elTarget.childElementCount; i++) {
             if(elTarget.children[i].className === CLASSNAME.TID) {
                 id = elTarget.children[i].innerHTML;

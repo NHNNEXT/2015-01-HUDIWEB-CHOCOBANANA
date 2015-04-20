@@ -7,10 +7,8 @@ import javax.crypto.Cipher;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import core.mvc.DispatcherServlet;
-
 public class RSAUtils {
-	private static final Logger logger = LoggerFactory.getLogger(DispatcherServlet.class);
+	private static final Logger logger = LoggerFactory.getLogger(RSAUtils.class);
 
 	public static String decryptRsa(PrivateKey privateKey, String securedValue) {
 		String decryptedValue = "";

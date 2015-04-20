@@ -5,8 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Ubuntu.do</title>
-	<link rel="stylesheet" href="./../commons/css/reset.css">
-	<link rel="stylesheet" href="./../commons/css/style.css">
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 	<header>

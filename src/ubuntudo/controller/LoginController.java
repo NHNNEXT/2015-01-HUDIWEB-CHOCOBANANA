@@ -8,20 +8,26 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.dao.UserDao;
+import ubuntudo.model.AjaxRedirectResponse;
 import ubuntudo.model.UserEntity;
-import core.mvc.AbstractController;
-import core.mvc.ModelAndView;
 import core.utils.RSAUtils;
 
-public class LoginController extends AbstractController {
+@Controller
+@RequestMapping(value = "/login")
+public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
 	String loginSuccessedViewUri = "jsp/personal.jsp";
 	String loginFailedViewUri = "jsp/loginFail.jsp";
 
-	public ModelAndView execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	@RequestMapping(method = RequestMethod.POST)
+	public @ResponseBody AjaxRedirectResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Login");
 		
 		String email = request.getParameter("email");
@@ -38,20 +44,21 @@ public class LoginController extends AbstractController {
 		UserDao uDao = new UserDao();
 		
 		UserEntity currentUser = uDao.retrieveUser(_email, _password);
-		ModelAndView mav = jsonView();
 
+		AjaxRedirectResponse res = new AjaxRedirectResponse();
 		if (currentUser != null) {
 			// member login success
 			session.setAttribute("user", currentUser);
 			logger.info((session.getAttribute("user").toString()));
-			mav.addObject("status", "success");
-			mav.addObject("uri", loginSuccessedViewUri);
+			res.setStatus("success");
+			res.setUri(loginSuccessedViewUri);
+			
 		} else {
-			mav.addObject("status", "fail");
-			mav.addObject("uri", loginFailedViewUri);
+			res.setStatus("fail");
+			res.setUri(loginFailedViewUri);
 		}
 		logger.info("<--Controller-->Login");
-		return mav;
+		return res;
 	}
 
 }

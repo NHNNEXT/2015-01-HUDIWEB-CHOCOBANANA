@@ -104,12 +104,12 @@ ubuntudo.ui.validateManager = (function () {
 		//postJSONData(URL, param, callback)임.
 		function _ajaxSearchEmail() {
 			var email = "email=" + elEmail.value;
-			util.postJSONData("/validate.do", email, _showValidationMessage);
+			util.postJSONData("/validate", email, _showValidationMessage);
 		}
 
 		function _showValidationMessage(ajaxResult) {
-			if (ajaxResult.hasOwnProperty("isExistingUser")) {
-				if (ajaxResult.isExistingUser === false) {
+			if (ajaxResult.hasOwnProperty("status")) {
+				if (ajaxResult.status === "false") {
 					elMsg.className = CLASSNAME.OK;
 					elMsg.innerHTML = MESSAGE.GOOD_EMAIL;
 				}

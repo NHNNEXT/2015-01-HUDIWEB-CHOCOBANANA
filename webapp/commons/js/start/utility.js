@@ -70,10 +70,11 @@ ubuntudo.utility.postJSONData = ( function () {
 
 //getJSONData와 postJSONData 중복제거용 - 다혜
 ubuntudo.utility.ajax = (function () {
-	var ajax = function (method, uri, param, callback) { 
+	//var insId = 0;
+    var ajax = function (method, uri, param, callback) { 
 		var util = ubuntudo.utility;
 		var request = new XMLHttpRequest();
-
+        //this.insId = insId++;
 		request.open(method, uri, true);
 		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		request.send(param);
@@ -90,7 +91,8 @@ ubuntudo.utility.ajax = (function () {
 	}
 
 	return ajax;
-})();
+})(); 
+//즉시 실행함수로 하지 않아도 될 것 같다~ 
 
 ubuntudo.utility.echo = (function () {
     function echo (val) {

@@ -17,15 +17,14 @@
 	}
 	
 	var URI = {
-		SIGNUP : "/signup.do",
-		LOGIN : "/login.do"
+		SIGNUP : "/signup",
+		LOGIN : "/login"
 	};
 	
 	function rsa(e, ids, uri) {
 		 e.preventDefault();
 		
 		// 사용자 계정정보 암호화전 평문
-		console.log(ids.name);
 		var name = ((ids.name !== "") ? document.getElementById(ids.name).value : ""); //login일 때는 없음
 		var email = document.getElementById(ids.email).value;
 		var pwd = CryptoJS.SHA256(document.getElementById(ids.password).value).toString(CryptoJS.enc.Hex); //pwd는 hashing
@@ -42,7 +41,8 @@
 		var params = "name=" + name + "&email=" + email + "&password=" + pwd;
 
 		request.open("POST" , uri , true);
-	    request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+//	    request.setRequestHeader("Content-type","application/json;charset=UTF-8");
+		request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
 		request.send(params);
 		
 		request.onreadystatechange = function() {
