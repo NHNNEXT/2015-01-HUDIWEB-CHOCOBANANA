@@ -10,7 +10,7 @@
 
 <body>
 
-<div clas="wrap">
+<div clas="add_wrap">
 	<form class="add_todo">
 		<!-- 파티 설정	-->
 		<div class="select_party">
@@ -29,18 +29,14 @@
 		<input type="text" name="todoName" class="input_todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름" required="">
 
 		<!-- 상세 내용 -->
-	    <textarea name = "todocomment" class="input_todoComment" cols = "50" rows = "5"  
-                  placeholder="상세내용을 입력해주세요."></textarea>
-        <br>
+	    <textarea name = "todocomment" class="input_todoComment" cols = "50" rows = "5" placeholder="상세내용을 입력해주세요."></textarea>
 
         <!-- 버튼 -->
-        <!-- <div class="todo_modal_btn_wrap"> -->
-	        <div class="todo_modal_btn">
-		        <input type = "reset" value = "reset"/>
-		        <input type = "submit" value = "submit"/>
-		        <input type = "submit" value = "cancel"/>
-	        </div>
-        <!-- </div> -->
+        <div class="todo_modal_btn">
+	        <!-- <input type = "reset" value = "reset"/> -->
+	        <input type = "submit" value = "submit"/>
+	        <input type = "submit" value = "cancel"/>
+        </div>
   	</form>
 
 </div>
@@ -49,7 +45,6 @@
 
 <script type="text/javascript" src="../js/add todo modal/todo modal.js"></script>
 <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
 <script type="text/javascript">
 	$(function() {
   var datepicker = $("#datepicker");

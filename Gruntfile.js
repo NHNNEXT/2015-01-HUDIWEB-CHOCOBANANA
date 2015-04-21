@@ -16,19 +16,3 @@ module.exports = function(grunt) {
     grunt.registerTask('default', []);
 
 };
-
-function name(sdfsdf) {
-    sdjkflsdfj
-}
-
-function function_name(argument) {
-    fsf
-}
-
-function fdf(argument) {
-    // body...
-}
-
-chang.prototype.changme = function(changpara) {
-    changzzang
-};
