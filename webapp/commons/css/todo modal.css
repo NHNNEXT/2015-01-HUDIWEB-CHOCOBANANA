@@ -1,12 +1,52 @@
-/*body, button, div, form, table, td, tbody, tr, input, li, ul {
+/* css reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
     margin: 0;
     padding: 0;
-}*/
-
-/*table {
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
     border-spacing: 0;
 }
-*/
+
+/* 폼 박스*/
+.add_todo {
+    width: 388px;
+}
 /* 그룹 선택 */
 .select_party {
     float: left;
@@ -37,54 +77,150 @@
 
 
 
-/* 날짜 선택 */
-div.includeSelect {
+/* 날짜 선택 박스 */
+.calendar_box {
     float: left;
-    position: relative;
-    top: -4px;
-    width: 70px;
-    height: 40px;
-    background: url(../img/select_arrow.png) 50px center no-repeat; /* 화살표 이미지 */
-    border: 1px solid #E9DDDD;
-}
-.includeSelect label#selected_month, #selected_day {
-    position: absolute;
-    font-size: 14px;
-    color: #a97228;
-    top: 13px;
-    left: 12px;
-    letter-spacing: 1px;
-}
-.includeSelect select.select_month_list, .select_day_list {
-    width: 100%;
-    height: 40px;
-    min-height: 40px;
-    line-height: 40px;
-    padding: 0 10px;
-    opacity: 0;
-    filter: alpha(opacity=0); /* IE 8 */
-}
-input.calendarDateInput {
-    width: 33px;
+    width: 150px;
     height: 40px;
     border: 1px solid #E9DDDD;
-    margin-top: 5px;
+    margin-left: 10px;
     padding: 0 12px;
     font-size: 14px;
     color: #a97228;
     letter-spacing: 1px;
 }
-/* // 날짜 선택 */
 
+/* 캘린더 */
+body {
+  /*background : #f3f3f3;*/
+  font-family : 'Open Sans', sans-serif;
+}
+.ui-datepicker {
+  font-size : 11px ;
+  padding : 8px;
+  background-color: #ebebeb;
+}
+.ui-datepicker-default {
+  padding: 0;
+}
+.calendar {
+  position: absolute;
+  width: 280px;
+  left: 50%;
+  top: 50%;
+  margin: -145px 0px 0px -140px;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid #b0aead;
+}
+.ui-datepicker-header {
+  height: 30px;
+  line-height: 30px;
+  color: #b0aead;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.ui-datepicker-prev, .ui-datepicker-next {
+  width: 20px;
+  height: 20px;
+  text-indent: 9999px;
+  1border: 2px solid #b0aead;
+  border-radius: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.ui-datepicker-prev {
+  float: left;
+  margin-left: 12px;
+}
+.ui-datepicker-prev:after{
+    transform: rotate(45deg);
+    margin: -33px 0px 0px 8px;
+}
+.ui-datepicker-next{
+  float: right;
+  margin-right: 12px;
+}
+.ui-datepicker-next:after{
+    transform: rotate(-135deg);
+    margin: -33px 0px 0px 6px;
+}
+.ui-datepicker-prev:after, .ui-datepicker-next:after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-left: 2px solid #b0aead;
+  border-bottom: 2px solid #b0aead;
+}
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover, .ui-datepicker-prev:hover:after, .ui-datepicker-next:hover:after {
+  border-color: #5ed1cc;
+}
+
+.ui-datepicker-title{
+  text-align: center;
+}
+
+.ui-datepicker-calendar{
+  background: #fff;
+  padding-top: 40px;
+  width: 100%;
+  text-align: center;
+}
+.ui-datepicker-calendar thead tr th span {
+          display: block;
+          width :24px;
+          color: #aaa;
+          margin-top: 12px;
+          margin-bottom :7px;
+          padding-left: 5px;
+          padding-right: 5px;
+          font-size: 11px;
+          font-weight :500;
+}
+.ui-state-default{
+  display: block;
+  text-decoration: none;
+  color: rgb(17,17,17);
+  height: 25px;
+  line-height: 25px;
+  font-size: 11px;
+}
+.ui-state-default:hover{
+    background: #dd4b36;
+    color: #fff;
+    border-radius: 25px;
+}
+.ui-state-highlight{
+  color: #8dd391;
+}
+
+.ui-state-active{
+  color: #fff;
+  background: rgba(0,0,0, 1);
+  border-radius: 25px;
+}
+.ui-datepicker-unselectable .ui-state-default{
+    color: #eee;
+    border: 0;
+}
+table {
+  border-collapse: collapse;
+}
+/* // 날짜 선택 */
 
 
 /* 일정 이름 */
 .input_todoName {
+    clear: both;
     float: left;
-    width: 400px;
+    width: 362px;
     height: 40px;
     border: 1px solid #E9DDDD;
-    margin-top: 5px;
+    margin-top: 10px;
     padding: 0 12px;
     font-size: 14px;
     color: #a97228;
@@ -97,7 +233,7 @@ input.calendarDateInput {
 .input_todoComment {
     clear: both;
     float: left;
-    width: 400px;
+    width: 362px;
     height: 130px;
     border: 1px solid #E9DDDD;
     margin-top: 10px;
@@ -116,19 +252,19 @@ input.calendarDateInput {
 
 .todo_modal_btn {
     clear: both;
-    width: 400px;
+    width: 362px;
     height: 46px;
-    margin-left: 40px;
-    /*margin: 0 auto;*/
+    /*margin-left: 40px;*/
+    margin: 0 auto;
 }
 
 .todo_modal_btn input{
     display: block;
     float: left;
-    margin: 5px;
+    margin: 10px;
     width: 100px;
     height: 46px;
-    padding: 15px 0 14px;
+    /*padding: 15px 0 14px;*/
     -webkit-border-radius: 2px;
     -moz-border-radius: 2px;
     -ms-border-radius: 2px;

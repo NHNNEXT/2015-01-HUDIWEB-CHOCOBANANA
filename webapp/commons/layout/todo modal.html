@@ -5,14 +5,7 @@
 <title>todo modal</title>
 
 <link rel="stylesheet" type="text/css" href="../css/todo modal.css">
-<script type="text/javascript" src="../js/add todo modal/calendarDateInput.js">
-/***********************************************
-* Jason's Date Input Calendar- By Jason Moon http://calendar.moonscript.com/dateinput.cfm
-* Script featured on and available at http://www.dynamicdrive.com
-* Keep this notice intact for use.
-***********************************************/
- </script>
-
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 
 <body>
@@ -30,9 +23,8 @@
 		</div>
 		
 		<!-- 날짜선택 -->
-		<script>DateInput('orderdate', true, 'YYYY-MM-DD')</script>
-		<input type="text" id="input_selected_date" onclick="updateInputDate(this.form.orderdate.value)" placeholder="날짜 선택" autocomplete="off" alt="날짜 선택" required="">
-
+		<input id="datepicker" class="calendario calendar_box" value="만기기한이 없습니다.">
+		
 		<!-- 일정 이름 -->
 		<input type="text" name="todoName" class="input_todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름" required="">
 
@@ -54,5 +46,26 @@
 </div>
 
 </body>
+
 <script type="text/javascript" src="../js/add todo modal/todo modal.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+<script type="text/javascript">
+	$(function() {
+  var datepicker = $("#datepicker");
+  datepicker.datepicker({ 
+    firstDay: 0,
+    minDate: 0,
+    dayNamesMin: 
+        [ "일", "월", "화", "수", "목", "금", "토" ] ,
+    dateFormat: "yy-mm-dd"
+  });
+  
+  $("#ui-datepicker-div").addClass("ui-datepicker-default");
+  
+	datepicker.click(function() {
+   $("#ui-datepicker-div").removeClass("ui-datepicker-default");
+  });
+});
+</script>
 </html>
