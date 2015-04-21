@@ -13,6 +13,13 @@ header {
 	height: 60px;
 }
 
+.left_section {
+	float: right;
+	min-height: 40px;
+	height: 60px;
+	width: 400px;
+}
+
 #container::before {
 	content: "";
 	position: absolute;
@@ -78,7 +85,12 @@ ul.btn_wrapper {
     background-image: url(https://d3ptyyxy2at9ui.cloudfront.net/08f446c3fb93cb51b620b7d6a713a42b.png);
     background-position: 0px -16px;
     float: left;
+    z-index: 2;
+	cursor: pointer;
+}
 
+.addBtn_and_profile_container {
+	float:left;
 }
 
 .profile {
@@ -90,6 +102,7 @@ ul.btn_wrapper {
 	border-radius: 50%;
 	background-image: url(https://lh3.googleusercontent.com/-pgfzxDkbimQ/AAAAAAAAAAI/AAAAAAAAAAA/LwD_-UAlMfA/s32-c/photo.jpg);
 	float: left;
+	z-index: 1;
 }
 
 .search_wrapper {
@@ -98,7 +111,7 @@ ul.btn_wrapper {
 	padding: 5px 8px;
 	text-align: right;
 	width: 200px;
-	float: right;
+	float: left;
 	height: 20px;
 	line-height: 20px;
 	vertical-align: middle;
@@ -288,6 +301,7 @@ ul.btn_wrapper {
     z-index: 400;
     background-color: aqua;
 }
+
 
 
 

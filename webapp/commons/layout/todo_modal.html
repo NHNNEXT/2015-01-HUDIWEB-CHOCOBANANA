@@ -6,10 +6,10 @@
 
 <link rel="stylesheet" type="text/css" href="../css/todo modal.css">
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 </head>
 
 <body>
-
 <div clas="add_wrap">
 	<form class="add_todo">
 		<!-- 파티 설정	-->
@@ -44,23 +44,4 @@
 </body>
 
 <script type="text/javascript" src="../js/add todo modal/todo modal.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<script type="text/javascript">
-	$(function() {
-  var datepicker = $("#datepicker");
-  datepicker.datepicker({ 
-    firstDay: 0,
-    minDate: 0,
-    dayNamesMin: 
-        [ "일", "월", "화", "수", "목", "금", "토" ] ,
-    dateFormat: "yy-mm-dd"
-  });
-  
-  $("#ui-datepicker-div").addClass("ui-datepicker-default");
-  
-	datepicker.click(function() {
-   $("#ui-datepicker-div").removeClass("ui-datepicker-default");
-  });
-});
-</script>
 </html>
