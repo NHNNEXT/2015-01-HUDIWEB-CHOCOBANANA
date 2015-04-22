@@ -16,7 +16,7 @@ import ubuntudo.model.AjaxRedirectResponse;
 @Controller
 @RequestMapping(value = "/validate")
 public class AjaxController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(AjaxController.class);
 
 	String loginSuccessedViewName = "jsp/start.jsp";
 	

@@ -9,9 +9,7 @@ public class UserEntity {
 
 	// use this constructor when system registering a user.
 	public UserEntity(String name, String email, String passwd) {
-		this.name = name;
-		this.email = email;
-		this.passwd = passwd;
+		this(null, name, email, passwd);
 	}
 
 	// use this constructor for general purpose.

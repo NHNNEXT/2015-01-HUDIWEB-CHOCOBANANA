@@ -1,34 +1,30 @@
 package ubuntudo.model;
 
+import java.sql.Date;
+
 public class TodoEntity {
 	Long tid;
 	Long assigner_id;
 	Long pid;
 	String title;
 	String contents;
-	String dueDate;
-	String complete;
-	String last_editer_id;
+	Date dueDate;
+	int complete;
+	Long lastEditerId;
 	
-	// for todo creation
-	public TodoEntity(Long assigner_id, Long pid, String title, String contents, String dueDate) {
-		this.assigner_id = assigner_id;
-		this.pid = pid;
-		this.title = title;
-		this.contents = contents;
-		this.dueDate = dueDate;
+	public TodoEntity(Long assigner_id, Long pid, String title, String contents, Date dueDate) {
+		this(null, assigner_id, pid, title, contents, dueDate, 0, assigner_id);
 	}
 
-	// for exiting todo modification
-	public TodoEntity(Long tid, Long assigner_id, Long pid, String title, String contents, String dueDate, String complete, String last_editer_id) {
+	public TodoEntity(Long tid, Long assigner_id, Long pid, String title, String contents, Date dueDate, int completed, Long lastEditerId) {
 		this.tid = tid;
 		this.assigner_id = assigner_id;
 		this.pid = pid;
 		this.title = title;
 		this.contents = contents;
 		this.dueDate = dueDate;
-		this.complete = complete;
-		this.last_editer_id = last_editer_id;
+		this.complete = completed;
+		this.lastEditerId = lastEditerId;
 	}
 
 	public Long getTid() {
@@ -46,21 +42,21 @@ public class TodoEntity {
 	public String getContents() {
 		return contents;
 	}
-	public String getDueDate() {
+	public Date getDueDate() {
 		return dueDate;
 	}
-	public String getComplete() {
+	public int getComplete() {
 		return complete;
 	}
-	public String getLast_editer_id() {
-		return last_editer_id;
+	public Long getLastEditerId() {
+		return lastEditerId;
 	}
 	
 	
 	@Override
 	public String toString() {
 		return "TodoEntity [tid=" + tid + ", assigner_id=" + assigner_id + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", dueDate=" + dueDate
-				+ ", complete=" + complete + ", last_editer_id=" + last_editer_id + "]";
+				+ ", complete=" + complete + ", last_editer_id=" + lastEditerId + "]";
 	}
 	
 	
