@@ -6,8 +6,9 @@ addTodoBtn.addEventListener('click', function(){
 
 // cancel 버튼 누르면 display none
 var cancelBtn = document.getElementsByClassName("cancel_btn")[0];
-cancelBtn.addEventListener('click', function(){
+cancelBtn.addEventListener('click', function(e){
 	document.getElementById("add_wrap").style.display = "none";
+    e.stopPropagation(); //이걸 하지 않으면 다시 diplay값이 block이 된다. -dahye
 });
 
 function showSelectedParty() {
@@ -15,10 +16,8 @@ function showSelectedParty() {
     document.getElementById("selected_party_name").innerHTML = partyName;
 }
 
-
-
 // 달력 나오는 j query
-	$(function() {
+$(function() {
   var mydatepicker = $("#datepicker");
   mydatepicker.datepicker({ 
     firstDay: 0,
@@ -34,3 +33,4 @@ function showSelectedParty() {
    $("#ui-datepicker-div").removeClass("ui-datepicker-default");
   });
 });
+

@@ -84,7 +84,7 @@ ubuntudo.utility.ajax = (function () {
 				var result = request.responseText;
 				result = JSON.parse(result);
 				if(util.typeCheck(callback) === "function") {
-					callback(result);
+					return callback(result);
 				}
 			}
 		}

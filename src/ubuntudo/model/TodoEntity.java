@@ -4,35 +4,31 @@ import java.sql.Date;
 
 public class TodoEntity {
 	Long tid;
-	Long assigner_id;
 	Long pid;
 	String title;
 	String contents;
-	Date dueDate;
-	int complete;
-	Long lastEditerId;
+	Date duedate;
+	String status;
+	Long editerId;
 	
-	public TodoEntity(Long assigner_id, Long pid, String title, String contents, Date dueDate) {
-		this(null, assigner_id, pid, title, contents, dueDate, 0, assigner_id);
+	public TodoEntity(Long pid, String title, String contents, Date dueDate, Long editerId) {
+		this(null, pid, title, contents, dueDate, "1", editerId);
 	}
 
-	public TodoEntity(Long tid, Long assigner_id, Long pid, String title, String contents, Date dueDate, int completed, Long lastEditerId) {
+	public TodoEntity(Long tid, Long pid, String title, String contents, Date dueDate, String status, Long editerId) {
 		this.tid = tid;
-		this.assigner_id = assigner_id;
 		this.pid = pid;
 		this.title = title;
 		this.contents = contents;
-		this.dueDate = dueDate;
-		this.complete = completed;
-		this.lastEditerId = lastEditerId;
+		this.duedate = dueDate;
+		this.status = status;
+		this.editerId = editerId;
 	}
 
 	public Long getTid() {
 		return tid;
 	}
-	public Long getAssigner_id() {
-		return assigner_id;
-	}
+	
 	public Long getPid() {
 		return pid;
 	}
@@ -43,20 +39,20 @@ public class TodoEntity {
 		return contents;
 	}
 	public Date getDueDate() {
-		return dueDate;
+		return duedate;
 	}
-	public int getComplete() {
-		return complete;
+	public String getStatus() {
+		return status;
 	}
-	public Long getLastEditerId() {
-		return lastEditerId;
+	public Long getEditerId() {
+		return editerId;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "TodoEntity [tid=" + tid + ", assigner_id=" + assigner_id + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", dueDate=" + dueDate
-				+ ", complete=" + complete + ", last_editer_id=" + lastEditerId + "]";
+		return "TodoEntity [tid=" + tid + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", duedate=" + duedate
+				+ ", status=" + status + ", editerId=" + editerId + "]";
 	}
 	
 	

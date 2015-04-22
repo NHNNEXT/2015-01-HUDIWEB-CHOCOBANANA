@@ -35,8 +35,8 @@
 						<form class="add_todo">
 							<!-- 파티 설정	-->
 							<div class="select_party">
-								<label id="selected_party_name">개인</label> <select
-									id="select_party_list" onchange="showSelectedParty()">
+								<label id="selected_party_name">개인</label>
+                                <select id="select_party_list" onchange="showSelectedParty()">
 									<option>개인</option>
 									<option>네트워크</option>
 									<option>자구알</option>
@@ -44,21 +44,20 @@
 							</div>
 
 							<!-- 날짜선택 -->
-							<input id="datepicker" class="calendario calendar_box"
-								value="만기기한이 없습니다.">
+							<input id="datepicker" class="calendario calendar_box" name="date" value="만기기한이 없습니다.">
 
 							<!-- 일정 이름 -->
-							<input type="text" name="todoName" class="input_todoName"
+							<input type="text" name="title" class="input_todoName"
 								placeholder="일정 이름" autocomplete="off" alt="일정 이름" required="">
 
 							<!-- 상세 내용 -->
-							<textarea name="todocomment" class="input_todoComment" cols="50"
+							<textarea name="contents" class="input_todoComment" cols="50"
 								rows="5" placeholder="상세내용을 입력해주세요."></textarea>
 
 							<!-- 버튼 -->
 							<div class="todo_modal_btn">
 								<!-- <input type = "reset" value = "reset"/> -->
-								<input type="submit" value="submit" />
+								<input type="submit" value="submit" class="submit_btn"/>
 								<input type="button" value="cancel" class="cancel_btn" />
 							</div>
 						</form>

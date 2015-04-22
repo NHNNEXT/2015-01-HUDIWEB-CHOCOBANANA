@@ -35,8 +35,9 @@ ubuntudo.ui.detailModal = (function() {
         COMPLETE_BTN: "complete_btn"
 	};    
     
-    function DetailModal (oTodoManager) {
-        this.todoManager = oTodoManager;
+    function DetailModal (todoData, fieldName) {
+        this.todoData = todoData;
+        this.fieldName = fieldName;
         this.elModal = document.querySelector("."+CLASSNAME.MODAL);
         this.elTitle = this.elModal.querySelector("."+CLASSNAME.TITLE);
         this.elDetail = this.elModal.querySelector("."+CLASSNAME.DETAIL);
@@ -67,11 +68,11 @@ ubuntudo.ui.detailModal = (function() {
         
         //data[i]["tid"] = id인 인덱스 i 찾기
 	    var util = ubuntudo.utility;
-        var index = util.findIndex(this.todoManager.getData(), "tid", id);
+        var index = util.findIndex(this.todoData, "tid", id);
         
         //data 불러오기
-        var todoInfo = this.todoManager.data[index];
-        var field = this.todoManager.getFieldName();
+        var todoInfo = this.todoData[index];
+        var field = this.fieldName;
         
         //모달창에 title심기, tid, pName, contents, duedate 심기
         this.elTitle.innerHTML = todoInfo[field.TITLE];

@@ -41,15 +41,15 @@ ubuntudo.ui.todoManager = (function() {
 			    "last_editer_id" : "1"
 			  },
 			  {
-				    "tid" : "2",
-				    "assigner_id" : "1",
-				    "pid" : "1",
-				    "pName": "자구알",
-				    "title" : "자구알 3주차 숙제",
-				    "contents" : "",
-				    "duedate" : "2015.04.08",
-				    "last_editer_id" : "1"
-			  },
+				"tid" : "2",
+                "assigner_id" : "1",
+                "pid" : "1",
+                "pName": "자구알",
+                "title" : "자구알 3주차 숙제",
+                "contents" : "",
+                "duedate" : "2015.04.08",
+                "last_editer_id" : "1"
+              },
 			  {
 			    "tid" : "3",
 			    "assigner_id" : "1",
@@ -72,6 +72,7 @@ ubuntudo.ui.todoManager = (function() {
         Object.keys(CLASSNAME).forEach( function(key) {
             var element = CLASSNAME[key];
             elTargetList[element] = document.querySelector("." + element);
+            elTargetList[element].innerHTML = ""; //innerHTML 초기화
         });
         
         //duedate에 따라 각 섹션에 투두 추가
@@ -97,6 +98,10 @@ ubuntudo.ui.todoManager = (function() {
     
     TodoManager.prototype.getData = function () {
         return this.data;
+    }
+    
+    TodoManager.prototype.setData = function(data) {
+        this.data = data;
     }
     
     TodoManager.prototype.getFieldName = function () {

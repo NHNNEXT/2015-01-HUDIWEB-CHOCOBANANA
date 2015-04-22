@@ -19,13 +19,12 @@ public class TodoDao extends JDBCManager{
 			System.out.println(resultSet.toString());
 			if (resultSet.next()) {
 				TodoEntity todo = new TodoEntity(resultSet.getLong("tid"),
-						resultSet.getLong("assigner_id"),
 						resultSet.getLong("pid"),
 						resultSet.getString("title"),
 						resultSet.getString("contents"),
-						resultSet.getDate("dueDate"),
-						resultSet.getInt("compeleted"),
-						resultSet.getLong("last_editer_id"));
+						resultSet.getDate("duedate"),
+						resultSet.getString("status"),
+						resultSet.getLong("editer_id"));
 				todos.add(todo);
 		
 			}
