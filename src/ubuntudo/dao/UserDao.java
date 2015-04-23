@@ -1,90 +1,73 @@
 package ubuntudo.dao;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.annotation.PostConstruct;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanInstantiationException;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
+import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
+import org.springframework.stereotype.Repository;
 
-import ubuntudo.JDBCManager;
 import ubuntudo.model.UserEntity;
 
-public class UserDao extends JDBCManager {
+@Repository("userDao")
+public class UserDao {
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
-	public boolean insertUser(String name, String email, String passwd) {
-		logger.info("---->UserDao.insertUser");
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
 
-		conn = getConnection();
-		boolean insertResult = false;
+	@PostConstruct
+	public void initialize() {
+		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
+		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
+	}
 
-		try {
-			pstmt = conn.prepareStatement("insert into user (name, email, passwd) values (?, ?, ?)");
-			pstmt.setString(1, name);
-			pstmt.setString(2, email);
-			pstmt.setString(3, passwd);
-			if (pstmt.executeUpdate() == 1) {
-				insertResult = true;
-			}
-
-		} catch (SQLException e) {
-			logger.error("DB insertUser Error: " + e.getMessage());
-		} finally {
-			close(resultSet, pstmt, conn);
-		}
-		logger.info("<----UserDao.insertUser");
-		return insertResult;
+	public int insertUser(String name, String email, String passwd) {
+		logger.info("---->insertUser");
+		String qry = "insert into user (name, email, passwd) values (?, ?, ?)";
+		logger.info("<----insertUser");
+		return jdbcTemplate.update(qry, name, email, passwd);
 	}
 
 	public UserEntity retrieveUser(String email, String passwd) {
-		logger.info("---->UserDao.retrieveUser");
-
-		conn = getConnection();
-
-		UserEntity currentUser = null;
-
-		try {
-			pstmt = conn.prepareStatement("select uid, name, email, passwd from user where email = ? and passwd = ?");
-			System.out.println(email);
-			System.out.println(passwd);
-			
-			pstmt.setString(1, email);
-			pstmt.setString(2, passwd);
-			System.out.println(pstmt.toString());
-			resultSet = pstmt.executeQuery();
-			System.out.println(resultSet.toString());
-			if (resultSet.next()) {
-				currentUser = new UserEntity(resultSet.getLong("uid"), resultSet.getString("name"), resultSet.getString("email"), resultSet.getString("passwd"));
+		logger.info("---->retrieveUser");
+		String qry = "select uid, name, email, passwd from user where email = ? and passwd = ?";
+		RowMapper<UserEntity> rowMapper = new RowMapper<UserEntity>() {
+			public UserEntity mapRow(ResultSet rs, int rowNum) {
+				try {
+					return new UserEntity(rs.getLong("uid"), rs.getString("name"), rs.getString("email"), null);
+				} catch (SQLException e) {
+					throw new BeanInstantiationException(UserEntity.class, e.getMessage(), e);
+				}
 			}
-		} catch (SQLException e) {
-			System.out.println("DB retrieveUser Error: " + e.getMessage());
-		} finally {
-			close(resultSet, pstmt, conn);
-		}
-		logger.info("<----UserDao.retrieveUser");
-		return currentUser;
+		};
+		logger.info("<----retrieveUser");
+		return jdbcTemplate.queryForObject(qry, rowMapper, email, passwd);
 	}
-	
-	
-	public Boolean validateUser(String email) {
+
+	public boolean validateUser(String email) {
 		logger.info("---->UserDao.validateUser");
-
-		conn = getConnection();
-
-		Boolean isExistinguser = false;
-		try {
-			pstmt = conn.prepareStatement("select email from user where email = ? ");
-			pstmt.setString(1, email);
-			resultSet = pstmt.executeQuery();
-
-			if (resultSet.next()) {
-				isExistinguser = true;
+		String qry = "select uid, name, email from user where email = ?";
+		RowMapper<UserEntity> rowMapper = new RowMapper<UserEntity>() {
+			public UserEntity mapRow(ResultSet rs, int rowNum) {
+				try {
+					return new UserEntity(rs.getString("uid"), rs.getString("name"), rs.getString("email"));
+				} catch (SQLException e) {
+					throw new BeanInstantiationException(UserEntity.class, e.getMessage(), e);
+				}
 			}
-		} catch (SQLException e) {
-			System.out.println("DB validateUser Error: " + e.getMessage());
-		} finally {
-			close(resultSet, pstmt, conn);
-		}
+		};
 		logger.info("<----UserDao.validateUser");
-		return isExistinguser;
+		if (jdbcTemplate.queryForObject(qry, rowMapper, email) != null)
+			return true;
+		return false;
 	}
 }

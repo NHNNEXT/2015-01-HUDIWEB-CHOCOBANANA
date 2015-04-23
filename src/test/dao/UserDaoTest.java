@@ -3,25 +3,31 @@ package test.dao;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import ubuntudo.dao.UserDao;
 import ubuntudo.model.UserEntity;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("classpath:/ubuntudo-servlet.xml")
 public class UserDaoTest {
+
+	@Autowired
+	private UserDao userDao;
+
 	@Test
-	public void insertUser(){
-		UserDao uDao=new UserDao();
-		boolean inserUserResult = uDao.insertUser("Mark", "a@a", "a");
-		
-		assertEquals(true, inserUserResult);
+	public void insertUser() {
+		assertEquals(1, userDao.insertUser("MarkE", "f@f", "a"));
 	}
+
 	@Test
-	public void retrieveUser(){
-		UserEntity comparisonUser = new UserEntity(1L, "Mark", "a@a", "a");
-		
-		UserDao uDao=new UserDao();
-		UserEntity retrievedUser = uDao.retrieveUser("a@a", "a");
-		
+	public void retrieveUser() {
+		UserEntity comparisonUser = new UserEntity(18L, "MarkE", "f@f", null);
+		UserEntity retrievedUser = userDao.retrieveUser("f@f", "a");
+
 		assertEquals(comparisonUser.getUid(), retrievedUser.getUid());
 		assertEquals(comparisonUser.getName(), retrievedUser.getName());
 		assertEquals(comparisonUser.getEmail(), retrievedUser.getEmail());
