@@ -15,10 +15,11 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
+import support.QueryCollection;
 import ubuntudo.model.UserEntity;
 
 @Repository("userDao")
-public class UserDao {
+public class UserDao extends QueryCollection{
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired
@@ -30,16 +31,13 @@ public class UserDao {
 		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
 	}
 
-	public int insertUser(String name, String email, String passwd) {
-		logger.info("---->insertUser");
-		String qry = "insert into user (name, email, passwd) values (?, ?, ?)";
-		logger.info("<----insertUser");
-		return jdbcTemplate.update(qry, name, email, passwd);
+	public int insertUserDao(String name, String email, String passwd) {
+		logger.debug("insertUserDao()");
+		return jdbcTemplate.update(INSERT_USER, name, email, passwd);
 	}
 
-	public UserEntity retrieveUser(String email, String passwd) {
-		logger.info("---->retrieveUser");
-		String qry = "select uid, name, email, passwd from user where email = ? and passwd = ?";
+	public UserEntity retrieveUserDao(String email, String passwd) {
+		logger.info("retrieveUserDao()");
 		RowMapper<UserEntity> rowMapper = new RowMapper<UserEntity>() {
 			public UserEntity mapRow(ResultSet rs, int rowNum) {
 				try {
@@ -50,7 +48,7 @@ public class UserDao {
 			}
 		};
 		logger.info("<----retrieveUser");
-		return jdbcTemplate.queryForObject(qry, rowMapper, email, passwd);
+		return jdbcTemplate.queryForObject(RETRIEVE_USER, rowMapper, email, passwd);
 	}
 
 	public boolean validateUser(String email) {

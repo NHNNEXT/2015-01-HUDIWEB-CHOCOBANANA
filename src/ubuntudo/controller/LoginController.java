@@ -43,7 +43,7 @@ public class LoginController {
 
 		UserDao uDao = new UserDao();
 		
-		UserEntity currentUser = uDao.retrieveUser(_email, _password);
+		UserEntity currentUser = uDao.retrieveUserDao(_email, _password);
 
 		AjaxRedirectResponse res = new AjaxRedirectResponse();
 		if (currentUser != null) {

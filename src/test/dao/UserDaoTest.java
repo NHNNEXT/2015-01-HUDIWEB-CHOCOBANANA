@@ -19,14 +19,14 @@ public class UserDaoTest {
 	private UserDao userDao;
 
 	@Test
-	public void insertUser() {
-		assertEquals(1, userDao.insertUser("MarkE", "f@f", "a"));
+	public void insertUserTest() {
+		assertEquals(1, userDao.insertUserDao("MarkG", "a", "a"));
 	}
 
 	@Test
-	public void retrieveUser() {
-		UserEntity comparisonUser = new UserEntity(18L, "MarkE", "f@f", null);
-		UserEntity retrievedUser = userDao.retrieveUser("f@f", "a");
+	public void retrieveUserTest() {
+		UserEntity comparisonUser = new UserEntity(19L, "MarkG", "a", null);
+		UserEntity retrievedUser = userDao.retrieveUserDao("a", "a");
 
 		assertEquals(comparisonUser.getUid(), retrievedUser.getUid());
 		assertEquals(comparisonUser.getName(), retrievedUser.getName());
