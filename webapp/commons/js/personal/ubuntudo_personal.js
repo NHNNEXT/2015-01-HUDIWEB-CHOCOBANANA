@@ -6,13 +6,26 @@ ubuntudo.ui = {};
 ubuntudo.utility = {};
 
 window.addEventListener("load", function () {
+    var util = ubuntudo.utility;
+    var fecho = util.echo;
     var oTodoManager = new ubuntudo.ui.todoManager();
+
+    util.ajax({
+        "method": "GET",
+        "uri": "/personal/todo",
+        "param": null,
+        "callback": oTodoManager.appendList,
+        "context": oTodoManager
+    });  
+    
     var elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
+    //이 아래부터는 data가 오고 난 후부터 해야하는데... async라 데이터가 언제 올지 ㅠㅠ => appendList에서 이벤트를 발생시키자!
     var oDetailModal = new ubuntudo.ui.detailModal(oTodoManager.getData(), oTodoManager.getFieldName());
     var oModalManager = new ubuntudo.ui.modalManager(oDetailModal);
-    
-    oTodoManager.appendList("/personal");
+        
+
+    //oTodoManager.appendList();
     
     [].forEach.call(elList, function(element) {
         element.addEventListener("click", function(ev) {
@@ -22,8 +35,6 @@ window.addEventListener("load", function () {
     elLightBox.addEventListener("click", function(e) {
         oModalManager.hideModal();
     }); 
-    
-    
     
     //submit 버튼 누르면 투두 추가 요청 - 리팩토링 필요
     var submitBtn = document.querySelector(".add_todo .submit_btn");
@@ -35,7 +46,7 @@ window.addEventListener("load", function () {
         var pid = -1;
         var date = document.getElementsByName("date")[0].value;
         if(date === "만기기한이 없습니다.") {
-            date = "";
+            date = null;
         }
         var title = document.getElementsByName("title")[0].value;
         if(title === ""){
@@ -46,14 +57,14 @@ window.addEventListener("load", function () {
         var param = "pid=" + pid + "&date=" + date + "&title=" + title + "&contents=" + contents;
 
         var callback = function (result) {
-            oTodoManager.setData(result);
+            oTodoManager.addData(result);
             oModalManager.appendList();
             return true;
         }
         
-//        if(ubuntudo.utility.ajax( "POST", "/personal", param, callback)) {
-//            document.getElementById("add_wrap").style.display = "block";
-//        }
+        if(ubuntudo.utility.ajax( "POST", "/personal", param, callback)) {
+            document.getElementById("add_wrap").style.display = "block";
+        }
     });
     
 });

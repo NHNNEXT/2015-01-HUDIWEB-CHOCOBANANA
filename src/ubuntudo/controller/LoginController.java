@@ -23,7 +23,7 @@ import core.utils.RSAUtils;
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	String loginSuccessedViewUri = "jsp/personal.jsp";
+	String loginSuccessedViewUri = "/personal";
 	String loginFailedViewUri = "jsp/loginFail.jsp";
 
 	@RequestMapping(method = RequestMethod.POST)

@@ -22,7 +22,7 @@ public class StartController{
 		//로그인 되었을 경우 개인별페이지로 리다이렉트
 		if(session.getAttribute("user") != null) {
 			//이미 로그인한 상태일 때, redirect  to personal page
-			return "redirect:jsp/personal.jsp";
+			return "redirect:/personal";
 		}
 		
 		//로그인이 안되었을 경우 startPage로 리다이렉트

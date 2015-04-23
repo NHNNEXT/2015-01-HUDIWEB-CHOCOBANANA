@@ -67,6 +67,6 @@ public class SignUpController {
 		}
 
 		// redirect to personal page
-		return new AjaxRedirectResponse("success", "/jsp/personal.jsp");
+		return new AjaxRedirectResponse("success", "/personal");
 	}
 }

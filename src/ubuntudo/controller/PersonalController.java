@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -18,20 +20,30 @@ import ubuntudo.model.TodoEntity;
 import ubuntudo.model.UserEntity;
 
 @Controller
-@RequestMapping(value = "/personal")
 public class PersonalController {
-//	private static final Logger logger = LoggerFactory.getLogger(PersonalController.class);
+	private static final Logger logger = LoggerFactory.getLogger(PersonalController.class);
 	TodoDao tdao = new TodoDao();
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/personal", method = RequestMethod.GET)
+	public String execute (HttpSession session) {
+		if(session.getAttribute("user") == null){
+			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
+			return "redirect:/start";
+		}
+		logger.debug("/personal 요청에 대해 응답");
+		return "personal";	
+	}
+	
+	@RequestMapping(value = "/personal/todo", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<TodoEntity> getPersonalTodos(HttpSession session) {
+		logger.debug("/personal/todo 요청에 대해 응답");
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		ArrayList<TodoEntity> todoArray = tdao.getPersonalTodos(user.getUid());
 		return todoArray;
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody ArrayList<TodoEntity> addPersonalTodo(HttpSession session, HttpServletRequest req) throws ServletRequestBindingException {
+	@RequestMapping(value="/personal", method = RequestMethod.POST)
+	public @ResponseBody TodoEntity addPersonalTodo(HttpSession session, HttpServletRequest req) throws ServletRequestBindingException {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
 		Long pid = ServletRequestUtils.getRequiredLongParameter(req, "pid");
@@ -39,14 +51,10 @@ public class PersonalController {
 		String contents = ServletRequestUtils.getRequiredStringParameter(req, "contents");
 		String duedate = ServletRequestUtils.getRequiredStringParameter(req, "dueDate");
 		Date due = Date.valueOf(duedate);
-		ArrayList<TodoEntity> todoArray = null;
 		
 		TodoEntity newTodo = new TodoEntity(pid, title, contents, due, uid);
-//		boolean result = tdao.addPersonalTodo(newTodo);
-//		if(result) {
-//			
-//			todoArray = tdao.getPersonalTodos(uid);
-//		}
-		return todoArray;
+		TodoEntity resultTodo = tdao.addPersonalTodo(newTodo);
+		
+		return resultTodo;
 	}
 }
