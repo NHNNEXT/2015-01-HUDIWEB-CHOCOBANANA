@@ -2,21 +2,21 @@ package ubuntudo.model;
 
 public class GuildEntity {
 	long gid;
-	String guildName;
 	long leaderId;
+	String guildName;
 	String status;
 
 	// for guild creation
-	public GuildEntity(String guildName, long leaderId) {
-		this.guildName = guildName;
+	public GuildEntity(long leaderId, String guildName) {
 		this.leaderId = leaderId;
+		this.guildName = guildName;
 	}
 	
 	// for general purpose
-	public GuildEntity(long gid, String guildName, long leaderId, String status) {
+	public GuildEntity(long gid, long leaderId, String guildName, String status) {
 		this.gid = gid;
-		this.guildName = guildName;
 		this.leaderId = leaderId;
+		this.guildName = guildName;
 		this.status = status;
 	}
 	
@@ -31,11 +31,11 @@ public class GuildEntity {
 	public void setGid(long gid){
 		this.gid = gid;
 	}
-	public String getGuildName() {
-		return guildName;
-	}
 	public long getLeaderId() {
 		return leaderId;
+	}
+	public String getGuildName() {
+		return guildName;
 	}
 	public String getStatus() {
 		return status;
@@ -43,6 +43,6 @@ public class GuildEntity {
 
 	@Override
 	public String toString() {
-		return "\nGuildEntity [gid=" + gid + ", guildName=" + guildName + ", leaderId=" + leaderId + ", status=" + status + "]";
+		return "\nGuildEntity [gid=" + gid + ", leaderId=" + leaderId + ", guildName=" + guildName + ", status=" + status + "]";
 	}
 }
