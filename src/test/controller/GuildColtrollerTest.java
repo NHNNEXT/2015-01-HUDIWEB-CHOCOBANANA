@@ -14,6 +14,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import ubuntudo.controller.guild.GuildController;
 import ubuntudo.model.GuildEntity;
 
+import com.google.gson.Gson;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:/ubuntudo-servlet.xml")
 public class GuildColtrollerTest {
@@ -41,6 +43,11 @@ public class GuildColtrollerTest {
 		String guildName = "uild10";
 		List<GuildEntity> guildList =guildController.retrieveGuildSearchController(guildName);
 		System.out.println(guildList.toString());
+
+		Gson gson =new Gson();
+    String json = gson.toJson(guildList);
+    System.out.println(json);
+    
 		assertNotNull(guildList);
 	}
 	

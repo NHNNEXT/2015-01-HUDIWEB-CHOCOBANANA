@@ -68,6 +68,13 @@
 			<version>2.7</version>
 		</dependency>
 
+		<!-- GSON -->
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.2.4</version>
+		</dependency>
+
 		<!-- logger -->
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
@@ -75,7 +82,7 @@
 			<version>1.1.2</version>
 		</dependency>
 
-		<!--  FasterXML -->
+		<!-- FasterXML -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
