@@ -17,6 +17,9 @@ public class PartyControllerTest {
 	
 	@Test
 	public void insertPartyControllerTest() {
-		partyController.insertPartyController(1l, 1l, "The Party1");
+		long pid = 3l;
+		long leaderId = 1l;
+		String partyName = "Mark Party100-3";
+		partyController.insertPartyController(pid, leaderId, partyName);
 	}
 }

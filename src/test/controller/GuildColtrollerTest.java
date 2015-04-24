@@ -1,5 +1,7 @@
 package test.controller;
 
+import static org.junit.Assert.*;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +18,27 @@ public class GuildColtrollerTest {
 	private GuildController guildController;
 	
 	@Test
-	public void insertGuildControllerTest() {
-		guildController.insertGuildController(1l, "The Guild1");
+	public void insertNewGuildControllerTest() {
+		long leaderId = 101l;
+		String newGuildName = "The Guild101";
+		assertEquals(1, guildController.insertNewGuildController(leaderId, newGuildName));
 	}
+
+	@Test
+	public void insertUserToGuildControllerTest() {
+		long guildId = 1l;
+		long userId = 1l;
+		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
+	}
+	
+
+	
+	
+	
+//	@Test
+//	public void retrieveGuildAndPartyControllerTest() {
+//		long demanderIdSearch = 1l;
+//		String guildNameSearch = "";
+//		guildController.retrieveGuildAndPartyController(demanderIdSearch, guildNameSearch);
+//	}
 }

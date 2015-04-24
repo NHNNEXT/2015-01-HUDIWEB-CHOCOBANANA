@@ -12,4 +12,10 @@ public class QueryCollection {
 	
 	// for creation of party
 	protected String INSERT_PARTY = "insert into party (gid, leader_id, party_name, status) values (?, ?, ?, '123123')";
+	
+	// for user registration to party
+	protected String INSERT_USER_TO_GUILD = "insert into user_guild_relation (uid, gid, status) values (?, ?, '123123')";
+	
+	// for user registration to party
+	protected String GET_LAST_ID = "select LAST_INSERT_ID() as last_id";
 }

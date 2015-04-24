@@ -17,7 +17,15 @@ public class GuildController {
 	GuildBiz gbiz;
 	
 	@RequestMapping(value = "/insert", method = RequestMethod.POST)
-	public int insertGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
-		return gbiz.insertGuildBiz(new GuildEntity(leaderId, guildName));
+	public int insertNewGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
+		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
+
+	public int insertUserToGuildController(long guildId, long userId) {
+		return gbiz.insertUserToGuildBiz(guildId, userId);
+	}
+
+//	public String retrieveGuildAndPartyController(long demanderIdSearch, String guildNameSearch) {
+//		return gbiz.retrieveGuildAndPartyBiz(demanderIdSearch, guildNameSearch);
+//	}
 }
