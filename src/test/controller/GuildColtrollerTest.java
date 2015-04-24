@@ -19,9 +19,9 @@ public class GuildColtrollerTest {
 	
 	@Test
 	public void insertNewGuildControllerTest() {
-		long leaderId = 101l;
-		String newGuildName = "The Guild101";
-		assertEquals(1, guildController.insertNewGuildController(leaderId, newGuildName));
+		long leaderId = 106l;
+		String newGuildName = "The Guild106";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
 	}
 
 	@Test

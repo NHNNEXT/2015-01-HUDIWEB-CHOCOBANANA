@@ -35,7 +35,7 @@ public class GuildDao extends QueryCollection {
 	}
 
 	public int insertNewGuildDao(GuildEntity guild) {
-		logger.debug("inserting: " + guild.toString());
+		logger.debug("inserting new guild..." + guild.toString());
 		return jdbcTemplate.update(INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
 	}
 
@@ -61,7 +61,7 @@ public class GuildDao extends QueryCollection {
 	}
 
 	public int insertUserToGuildDao(long guildId, long userId) {
-		logger.debug("inserting... guildId: " + guildId + ", userId: " + userId);
+		logger.debug("inserting user to guild... guildId: " + guildId + ", userId: " + userId);
 		return jdbcTemplate.update(INSERT_USER_TO_GUILD, guildId, userId);
 	}
 
