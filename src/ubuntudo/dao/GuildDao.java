@@ -87,6 +87,6 @@ public class GuildDao extends QueryCollection {
 				}
 			}
 		};
-		return jdbcTemplate.query(RETRIEVE_GUILD_LIST, rowMapper, "%" + guildName + "%");
+		return jdbcTemplate.query(RETRIEVE_GUILD_LIST, rowMapper, makeLikeParam(guildName));
 	}
 }

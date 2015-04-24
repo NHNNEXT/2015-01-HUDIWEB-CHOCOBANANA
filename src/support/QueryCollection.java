@@ -21,4 +21,8 @@ public class QueryCollection {
 
 	// for user registration to party
 	protected String RETRIEVE_GUILD_LIST = "SELECT gid, leader_id, guild_name, status FROM guild where guild_name like ?";
+
+	protected String makeLikeParam(String param) {
+		return "%" + param + "%";
+	}
 }
