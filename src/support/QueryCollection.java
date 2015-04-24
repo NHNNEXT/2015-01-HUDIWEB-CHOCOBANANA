@@ -20,7 +20,10 @@ public class QueryCollection {
 	protected String GET_LAST_ID = "select LAST_INSERT_ID() as last_id";
 
 	// for user registration to party
-	protected String RETRIEVE_GUILD_LIST = "SELECT gid, leader_id, guild_name, status FROM guild where guild_name like ?";
+	protected String RETRIEVE_GUILD_LIST = "select gid, leader_id, guild_name, status FROM guild where guild_name like ?";
+	
+	// for user registration to party
+	protected String RETRIEVE_PARTY_LIST = "select pid, gid, leader_id, party_name, status from party where party_name like ?";
 
 	protected String makeLikeParam(String param) {
 		return "%" + param + "%";

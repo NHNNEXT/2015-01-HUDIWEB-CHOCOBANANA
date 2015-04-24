@@ -1,5 +1,7 @@
 package ubuntudo.biz;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import ubuntudo.dao.PartyDao;
@@ -12,5 +14,9 @@ public class PartyBiz {
 	
 	public int insertPartyBiz(PartyEntity party) {
 		return pdao.insertPartyDao(party);
+	}
+	
+	public List<PartyEntity> retrievePartySearchBiz(String partyName) {
+		return pdao.retrievePartySearchDao(partyName);
 	}
 }
