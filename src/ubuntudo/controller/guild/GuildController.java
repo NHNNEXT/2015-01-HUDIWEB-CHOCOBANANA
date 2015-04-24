@@ -1,5 +1,7 @@
 package ubuntudo.controller.guild;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,6 +25,10 @@ public class GuildController {
 
 	public int insertUserToGuildController(long guildId, long userId) {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
+	}
+
+	public List<GuildEntity> retrieveGuildSearchController(String guildName) {
+		return gbiz.retrieveGuildSearchBiz(guildName);
 	}
 
 //	public String retrieveGuildAndPartyController(long demanderIdSearch, String guildNameSearch) {

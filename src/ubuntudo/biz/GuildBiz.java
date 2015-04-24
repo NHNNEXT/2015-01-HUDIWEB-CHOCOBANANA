@@ -1,5 +1,7 @@
 package ubuntudo.biz;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +62,11 @@ public class GuildBiz {
 		return gdao.insertUserToGuildDao(guildId, userId);
 	}
 
+	public List<GuildEntity> retrieveGuildSearchBiz(String guildName) {
+		return gdao.retrieveGuildSearchDao(guildName);
+	}
+
+	
 	// public String retrieveGuildAndPartyBiz(long demanderIdSearch, String
 	// guildNameSearch) {
 	// return gdao.retrieveGuildAndPartyDao(demanderIdSearch, guildNameSearch);

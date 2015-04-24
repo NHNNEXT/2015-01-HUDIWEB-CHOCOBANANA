@@ -75,4 +75,18 @@ public class GuildDao extends QueryCollection {
 		}; 
 		return jdbcTemplate.queryForObject(GET_LAST_ID, rowMapper);
 	}
+
+	public List<GuildEntity> retrieveGuildSearchDao(String guildName) {
+		logger.debug("searching guild by guild name... guildName: " + guildName);
+		RowMapper<GuildEntity> rowMapper = new RowMapper<GuildEntity>() {
+			public GuildEntity mapRow(ResultSet rs, int rowNum) {
+				try {
+					return new GuildEntity(rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("guild_name"), rs.getString("status"));
+				} catch (SQLException e) {
+					throw new BeanInstantiationException(UserEntity.class, e.getMessage(), e);
+				}
+			}
+		};
+		return jdbcTemplate.query(RETRIEVE_GUILD_LIST, rowMapper, "%" + guildName + "%");
+	}
 }
