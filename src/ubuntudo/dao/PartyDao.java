@@ -22,7 +22,7 @@ import ubuntudo.model.PartyEntity;
 @Repository("PartyDao")
 public class PartyDao extends QueryCollection {
 	private static final Logger logger = LoggerFactory.getLogger(PartyDao.class);
-	
+
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
@@ -31,12 +31,12 @@ public class PartyDao extends QueryCollection {
 		ResourceDatabasePopulator populator = new ResourceDatabasePopulator();
 		DatabasePopulatorUtils.execute(populator, jdbcTemplate.getDataSource());
 	}
-	
+
 	public int insertPartyDao(PartyEntity party) {
 		logger.debug("inserting: " + party.toString());
 		return jdbcTemplate.update(INSERT_PARTY, party.getGid(), party.getleaderId(), party.getPartyName());
 	}
-	
+
 	public List<PartyEntity> retrievePartySearchDao(String partyName) {
 		logger.debug("searching Party by Party name... partyName: " + partyName);
 		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
@@ -49,5 +49,10 @@ public class PartyDao extends QueryCollection {
 			}
 		};
 		return jdbcTemplate.query(RETRIEVE_PARTY_LIST, rowMapper, makeLikeParam(partyName));
+	}
+
+	public int updatePartyDao(PartyEntity party) {
+		logger.debug("updating current party to: " + party);
+		return jdbcTemplate.update(UPDATE_PARTY, party.getleaderId(), party.getPartyName(), party.getStatus(), party.getPid());
 	}
 }

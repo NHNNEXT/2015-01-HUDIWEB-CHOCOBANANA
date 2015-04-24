@@ -30,8 +30,4 @@ public class GuildController {
 	public List<GuildEntity> retrieveGuildSearchController(String guildName) {
 		return gbiz.retrieveGuildSearchBiz(guildName);
 	}
-
-//	public String retrieveGuildAndPartyController(long demanderIdSearch, String guildNameSearch) {
-//		return gbiz.retrieveGuildAndPartyBiz(demanderIdSearch, guildNameSearch);
-//	}
 }

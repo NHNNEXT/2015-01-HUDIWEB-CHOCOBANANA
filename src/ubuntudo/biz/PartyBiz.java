@@ -8,15 +8,19 @@ import ubuntudo.dao.PartyDao;
 import ubuntudo.model.PartyEntity;
 
 public class PartyBiz {
-	
+
 	@Autowired
 	private PartyDao pdao;
-	
+
 	public int insertPartyBiz(PartyEntity party) {
 		return pdao.insertPartyDao(party);
 	}
-	
+
 	public List<PartyEntity> retrievePartySearchBiz(String partyName) {
 		return pdao.retrievePartySearchDao(partyName);
+	}
+
+	public int updatePartyBiz(PartyEntity partyEntity) {
+		return pdao.updatePartyDao(partyEntity);
 	}
 }

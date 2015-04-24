@@ -37,26 +37,16 @@ public class GuildColtrollerTest {
 		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
 	}
 
-	
 	@Test
 	public void retrieveGuildSearchControllerTest() {
 		String guildName = "uild10";
-		List<GuildEntity> guildList =guildController.retrieveGuildSearchController(guildName);
+		List<GuildEntity> guildList = guildController.retrieveGuildSearchController(guildName);
 		System.out.println(guildList.toString());
 
-		Gson gson =new Gson();
-    String json = gson.toJson(guildList);
-    System.out.println(json);
-    
+		Gson gson = new Gson();
+		String json = gson.toJson(guildList);
+		System.out.println(json);
+
 		assertNotNull(guildList);
 	}
-	
-	
-	// @Test
-	// public void retrieveGuildAndPartyControllerTest() {
-	// long demanderIdSearch = 1l;
-	// String guildNameSearch = "";
-	// guildController.retrieveGuildAndPartyController(demanderIdSearch,
-	// guildNameSearch);
-	// }
 }

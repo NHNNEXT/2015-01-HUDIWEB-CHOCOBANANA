@@ -24,6 +24,9 @@ public class QueryCollection {
 	
 	// for user registration to party
 	protected String RETRIEVE_PARTY_LIST = "select pid, gid, leader_id, party_name, status from party where party_name like ?";
+	
+	// for user registration to party
+	protected String UPDATE_PARTY = "update party set leader_id = ?, party_name = ?, status = ? where pid = ?";
 
 	protected String makeLikeParam(String param) {
 		return "%" + param + "%";
