@@ -19,7 +19,7 @@ import support.QueryCollection;
 import ubuntudo.model.UserEntity;
 
 @Repository("userDao")
-public class UserDao extends QueryCollection{
+public class UserDao extends QueryCollection {
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired
@@ -47,7 +47,6 @@ public class UserDao extends QueryCollection{
 				}
 			}
 		};
-		logger.info("<----retrieveUser");
 		return jdbcTemplate.queryForObject(RETRIEVE_USER, rowMapper, email, passwd);
 	}
 

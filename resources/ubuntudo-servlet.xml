@@ -10,44 +10,39 @@
 
 	<context:component-scan base-package="ubuntudo.controller" />
 	<context:component-scan base-package="ubuntudo.dao" />
+	<context:component-scan base-package="ubuntudo.biz" />
+
 	<mvc:annotation-driven />
+	<context:annotation-config />
+
 	<mvc:resources location="/commons/css/" mapping="/css/**" />
 	<mvc:resources location="/commons/img/" mapping="/commons/img/**" />
 	<mvc:resources location="/commons/js/" mapping="/commons/js/**" />
 	<mvc:resources location="/commons/lib/" mapping="/commons/lib/**" />
 
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
+	<bean id="gbiz" class="ubuntudo.biz.GuildBiz" />
+	<bean id="gdao" class="ubuntudo.dao.GuildDao" />
+
+	<bean id="pbiz" class="ubuntudo.biz.PartyBiz" />
+	<bean id="pdao" class="ubuntudo.dao.PartyDao" />
 
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/jsp/" p:suffix=".jsp" />
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource" />
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-
-
-
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://192.168.56.101:3306/dev" />
 		<property name="username" value="mark" />
 		<property name="password" value="k" />
 	</bean>
-	<context:annotation-config />
-	<tx:annotation-driven transaction-manager="transactionManager" />
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
-		p:dataSource-ref="dataSource" />
 </beans>
-<!-- 
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-		
-jdbc.driverClass=com.mysql.jdbc.Driver
-jdbc.url=jdbc:jdbc:mysql://192.168.56.101:3306/dev
-jdbc.username=mark
-jdbc.password=k  -->

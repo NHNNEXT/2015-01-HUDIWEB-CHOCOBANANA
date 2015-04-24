@@ -1,11 +1,16 @@
 package ubuntudo.biz;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import ubuntudo.dao.GuildDao;
 import ubuntudo.model.GuildEntity;
 
 public class GuildBiz {
-	public int insertGuildBiz(GuildEntity guildEntity) {
-		GuildDao gdao = new GuildDao();
-		return gdao.insertGuildDao(guildEntity);
+	
+	@Autowired
+	private GuildDao gdao;
+	
+	public int insertGuildBiz(GuildEntity guild) {
+		return gdao.insertGuildDao(guild);
 	}
 }
