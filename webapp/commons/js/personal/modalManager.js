@@ -61,7 +61,7 @@ ubuntudo.ui.detailModal = (function() {
         //tid찾기 - li에다가 data로 심는 게 나을 것 같다.
         for(var i = 0; i < elTarget.childElementCount; i++) {
             if(elTarget.children[i].className === CLASSNAME.TID) {
-                id = elTarget.children[i].innerHTML;
+                id = elTarget.children[i].innerHTML * 1; // 1을 곱한 건 string->int변환하기 위해
                 break;
             }
         }

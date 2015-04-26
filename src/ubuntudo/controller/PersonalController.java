@@ -51,7 +51,7 @@ public class PersonalController {
 		String title = ServletRequestUtils.getRequiredStringParameter(req, "title");
 		String contents = ServletRequestUtils.getRequiredStringParameter(req, "contents");
 		String duedate = ServletRequestUtils.getRequiredStringParameter(req, "dueDate");
-		Date due = Date.valueOf(duedate);
+		Date due = Date.valueOf(duedate); // duedate가 null값이면 error난다. "-"가 없어도 에러난다.
 		logger.debug("param check: uid={}, pid={}, title={}, contents={}, due={}", uid, pid, title, contents, due);
 
 		TodoEntity newTodo = new TodoEntity(pid, title, contents, due, uid);

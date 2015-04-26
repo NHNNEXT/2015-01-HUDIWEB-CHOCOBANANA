@@ -22,7 +22,7 @@ public class TodoDao extends JDBCManager{
 			pstmt.setLong(1, uid);
 			resultSet = pstmt.executeQuery();
 			System.out.println(resultSet.toString());
-			if (resultSet.next()) {
+			while (resultSet.next()) {
 				TodoEntity todo = new TodoEntity(resultSet.getLong("tid"),
 						resultSet.getLong("pid"),
 						resultSet.getString("title"),
@@ -31,7 +31,6 @@ public class TodoDao extends JDBCManager{
 						resultSet.getString("status"),
 						resultSet.getLong("editer_id"));
 				todos.add(todo);
-		
 			}
 		} catch (SQLException e) {
 			System.out.println("DB getPersonalTodos Error: " + e.getMessage());

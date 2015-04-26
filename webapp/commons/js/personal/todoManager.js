@@ -12,11 +12,15 @@ ubuntudo.ui.todoManager = (function() {
     
     //CSS에 의존하는 리스트 템플릿
     var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
+      
+    function TodoManager () {
+        //DB의 todo 테이블에 의존하는 컬럼 네임 (엄밀하게는 서버의 todoEntity객체 field명)    
+    };
     
-    var appendList = function (data) {
-        this.data = data;
+    TodoManager.prototype.appendList = function (data, fieldName) {
         var elTargetList = {};
-        var today = new Date();
+        var now = new Date();
+        var today = new Date(now.yyyymmdd());
         var dataLength = data.length;
             
         //elTargetList mapping
@@ -29,77 +33,41 @@ ubuntudo.ui.todoManager = (function() {
         //duedate에 따라 각 섹션에 투두 추가
         for(var i = 0; i < dataLength; i++) {
             var todoInfo = data[i];
-            var due = new Date(todoInfo[this.FIELD_NAME.DUEDATE]);
-            var dayDiff = Math.abs(today.diffDays(due));
+            var due = new Date(todoInfo[fieldName.DUEDATE]);
+            var dayDiff = Math.abs(due.diffDays(today));
             var explain = "남음";
             var elTarget = elTargetList[CLASSNAME.PAST]; //김태곤 교수님께 질문: 초기화를 안해줬더니 due<today여도 future 섹션에 들어가는 이유...
             
             if(due < today) {
                 explain = "지남";
                 eltarget = elTargetList[CLASSNAME.PAST];
-            }else if(due === today) {
-                elTarget = elTargetList[CLASSNAME.TODAY];
-            }else {
+            }else if(due > today) {
                 elTarget = elTargetList[CLASSNAME.FUTURE];
+            }else {
+                elTarget = elTargetList[CLASSNAME.TODAY];
             }
             
-            elTarget.innerHTML += _makeInnerHTML.call(this, todoInfo, dayDiff, explain);
+            elTarget.innerHTML += _makeInnerHTML(todoInfo, dayDiff, explain, fieldName);
         }
     };
-    
-    function addData (data) {
-        this.data.push(data);
-        //dueDate별로 다시 정렬하기
-        return this.data;
-    };
-    
-    function TodoManager () {
-        //DB의 todo 테이블에 의존하는 컬럼 네임 (엄밀하게는 서버의 todoEntity객체 field명)
-        this.FIELD_NAME = {
-            TID: "tid",
-            ASSIGNER_ID: "assigner_id",
-            PARTY_ID: "pid",
-            PARTY_NAME: "pName",
-            TITLE: "title",
-            CONTENTS: "contents",
-            DUEDATE: "dueDate",
-            LAST_EDITER_ID: "last_editer_id"
-        };
-        
-        this.appendList = appendList.bind(this);     
-        this.addData = addData.bind(this);
-    };
-    
-    TodoManager.prototype.appendList = this.appendList;
-    
-    TodoManager.prototype.getData = function () {
-        return this.data;
-    };
-    
-    TodoManager.prototype.setData = function(data) {
-        this.data = data;
-    };
-    
-    TodoManager.prototype.getFieldName = function () {
-        return this.FIELD_NAME;
-    };
 
-    function _makeInnerHTML (todoInfo, dayDiff, explain) {
-        var field = this.FIELD_NAME;
+    function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {
+        var field = fieldName;
         return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain); //pNAME넘어와야 함
         
     };
     
-    function _bind(context, method) {
-        return function() {
-            return method.apply(context, arguments);
-        };
-    };
-
     Date.prototype.diffDays = function (date) {
         var timeDiff = Math.abs(this.getTime() - date.getTime());
         var diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
         return diffDays;
+    };
+    
+    Date.prototype.yyyymmdd = function() {
+       var yyyy = this.getFullYear().toString();
+       var mm = (this.getMonth()+1).toString(); // getMonth() is zero-based
+       var dd  = this.getDate().toString();
+       return yyyy + "-" + (mm[1]?mm:"0"+mm[0]) + "-" + (dd[1]?dd:"0"+dd[0]); // padding
     };
     
     return TodoManager;

@@ -1,6 +1,20 @@
 // 투두 추가 버튼 누르면 display block
 var addTodoBtn = document.getElementsByClassName("todo_add_btn")[0];
-addTodoBtn.addEventListener('click', function(){
+addTodoBtn.addEventListener('click', function(e){
+    
+    //value 초기화 - 이부분이 beforeShow()에 들어갈 부분
+    var elTarget = e.target;
+    if(eltarget.className !== "add_todo") {
+        elTarget = elTarget.parentElement;
+    }
+    if(elTarget.className === "add_todo") {
+        return;
+    }
+    var form = document.querySelector(".add_todo");
+    form.querySelector("#datepicker").value = "만기기한이 없습니다.";
+    form.querySelector(".input_todoName").value = "";
+    form.querySelector(".input_todoComment").value ="";
+    
 	document.getElementById("add_wrap").style.display = "block";
 });
 

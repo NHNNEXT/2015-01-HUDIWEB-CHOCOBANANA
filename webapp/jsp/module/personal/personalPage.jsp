@@ -51,10 +51,10 @@
 			</section>
 		</main>
     </div>
-    <script language="javascript" type="text/javascript" src="/commons/js/personal/ubuntudo_personal.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/personal/data_manager.js"></script>
-	<script language="javascript" type="text/javascript" src="/commons/js/personal/todo_manager.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/personal/modal_manager.js"></script>    
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/ubuntudoPersonal.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/dataManager.js"></script>
+	<script language="javascript" type="text/javascript" src="/commons/js/personal/todoManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/modalManager.js"></script>    
 	<script language="javascript" type="text/javascript" src="/commons/js/start/utility.js"></script>
 </body>
 </html>
