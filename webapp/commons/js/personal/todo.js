@@ -61,39 +61,7 @@ ubuntudo.ui.todoManager = (function() {
         
         this.appendList = appendList.bind(this);
                 
-        //테스트용
-//        this.data = [
-//			  {
-//			    "tid" : "1",
-//			    "assigner_id" : "1",
-//			    "pid" : "-1",
-//			    "pName": "개인",
-//			    "title" : "벚꽃놀이",
-//			    "contents" : "",
-//			    "duedate" : "2015.05.15",
-//			    "last_editer_id" : "1"
-//			  },
-//			  {
-//				"tid" : "2",
-//                "assigner_id" : "1",
-//                "pid" : "1",
-//                "pName": "자구알",
-//                "title" : "자구알 3주차 숙제",
-//                "contents" : "",
-//                "duedate" : "2015.04.08",
-//                "last_editer_id" : "1"
-//              },
-//			  {
-//			    "tid" : "3",
-//			    "assigner_id" : "1",
-//			    "pid" : "2",
-//			    "pName": "HCI",
-//			    "title" : "HCI 3주차 숙제",
-//			    "contents" : "빨리하자!",
-//			    "duedate" : "2015.04.07",
-//			    "last_editer_id" : "1"
-//			 }
-//		  ];
+       
     };
     
     TodoManager.prototype.appendList = this.appendList;
@@ -119,7 +87,6 @@ ubuntudo.ui.todoManager = (function() {
         var field = this.FIELD_NAME;
         return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain); //pNAME넘어와야 함
         
-        //return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1)).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain);
     };
     
     function _bind(context, method) {

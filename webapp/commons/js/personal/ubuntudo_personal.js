@@ -20,6 +20,8 @@ window.addEventListener("load", function () {
     
     var elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
+    
+    
     //이 아래부터는 data가 오고 난 후부터 해야하는데... async라 데이터가 언제 올지 ㅠㅠ => appendList에서 이벤트를 발생시키자!
     var oDetailModal = new ubuntudo.ui.detailModal(oTodoManager.getData(), oTodoManager.getFieldName());
     var oModalManager = new ubuntudo.ui.modalManager(oDetailModal);
@@ -54,7 +56,7 @@ window.addEventListener("load", function () {
         }
         var contents = document.getElementsByName("contents")[0].value;
 
-        var param = "pid=" + pid + "&date=" + date + "&title=" + title + "&contents=" + contents;
+        var param = "pid=" + pid + "&dueDate=" + date + "&title=" + title + "&contents=" + contents;
 
         var callback = function (result) {
             oTodoManager.addData(result);
@@ -62,9 +64,15 @@ window.addEventListener("load", function () {
             return true;
         }
         
-        if(ubuntudo.utility.ajax( "POST", "/personal", param, callback)) {
-            document.getElementById("add_wrap").style.display = "block";
-        }
+        ubuntudo.utility.ajax({
+            "method": "POST", 
+            "uri": "/personal", 
+            "param" : param, 
+            "callback" : callback
+        });
+        
+        document.getElementById("add_wrap").style.display = "none";
+        e.stopPropagation(); 
     });
     
 });

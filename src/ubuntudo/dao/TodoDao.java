@@ -3,10 +3,14 @@ package ubuntudo.dao;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import ubuntudo.JDBCManager;
 import ubuntudo.model.TodoEntity;
 
 public class TodoDao extends JDBCManager{
+	private static final Logger logger = LoggerFactory.getLogger(TodoDao.class);
 
 	public ArrayList<TodoEntity> getPersonalTodos(Long uid) {
 		conn = getConnection();
@@ -44,6 +48,7 @@ public class TodoDao extends JDBCManager{
 		conn = getConnection();
 		//아래는 트랜잭션으로 이뤄져야할 부분
 		try {
+			logger.debug("transaction start");
 			String insertTodoSql = "INSERT INTO todo VALUES (null,?,?,?,?,'todo01',?)";
 			String lastTodoIdSql = "SELECT LAST_INSERT_ID() tid";
 			String getLastTodoSql = "SELECT * FROM todo WHERE tid = ?";
@@ -57,13 +62,15 @@ public class TodoDao extends JDBCManager{
 			pstmt.setDate(4, todo.getDueDate());
 			pstmt.setLong(5, todo.getEditerId());
 			pstmt.executeUpdate();
-			
+			logger.debug("todo add completed");
+
 			pstmt = conn.prepareStatement(lastTodoIdSql);
 			resultSet = pstmt.executeQuery();
 			if (resultSet.next()) {
 					tid = resultSet.getLong("tid");		
 			}
-			
+			logger.debug("last todo id retreived");
+
 			pstmt = conn.prepareStatement(getLastTodoSql);
 			pstmt.setLong(1, tid);
 			resultSet = pstmt.executeQuery();
@@ -76,7 +83,8 @@ public class TodoDao extends JDBCManager{
 						resultSet.getString("status"),
 						resultSet.getLong("editer_id"));
 			}
-			
+			logger.debug("todo retreived");
+
 			pstmt = conn.prepareStatement(insertHistorySql);
 			pstmt.setLong(1, tid);
 			pstmt.setLong(2, result.getPid());
@@ -86,11 +94,14 @@ public class TodoDao extends JDBCManager{
 			pstmt.setString(6, result.getStatus());
 			pstmt.setLong(7, result.getEditerId());
 			pstmt.executeUpdate();
-			
+			logger.debug("todo history added");
+
 			pstmt = conn.prepareStatement(insertRelationSql);
 			pstmt.setLong(1, tid);
 			pstmt.setLong(2, result.getEditerId());
 			pstmt.executeUpdate();
+			logger.debug("todo user relation added");
+
 			
 		} catch (SQLException e) {
 			System.out.println("DB getPersonalTodos Error: " + e.getMessage());
