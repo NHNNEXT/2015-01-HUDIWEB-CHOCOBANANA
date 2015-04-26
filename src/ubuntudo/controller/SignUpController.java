@@ -48,7 +48,7 @@ public class SignUpController {
 						_email, _password);
 
 				// 복호화된 정보들을 DB에 넣는다.
-				userdao.insertUser(name, _email, _password); // 여기서 에러 생기면 이미 있는 
+				userdao.insertUserDao(name, _email, _password); // 여기서 에러 생기면 이미 있는 
 																// id와
 																// password라고
 																// 알려줘야 하는데...
@@ -57,7 +57,7 @@ public class SignUpController {
 				session.removeAttribute("RSAWebKey");
 
 				// 세션에 user 정보 넣어두기
-				UserEntity user = userdao.retrieveUser(_email, _password);
+				UserEntity user = userdao.retrieveUserDao(_email, _password);
 				session.setAttribute("user", user);
 			} catch (Exception e) {
 				// "잘못된 경로로 접근하셨습니다" 페이지로 리다이렉트 해야 함

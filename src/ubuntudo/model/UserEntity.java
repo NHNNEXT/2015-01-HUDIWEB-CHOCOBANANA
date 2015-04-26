@@ -38,8 +38,6 @@ public class UserEntity {
 
 	@Override
 	public String toString() {
-		return "UserDto [uid=" + uid + ", name=" + name + ", email=" + email
-				+ ", passwd=" + passwd + "]";
+		return "UserDto [uid=" + uid + ", name=" + name + ", email=" + email + ", passwd=" + passwd + "]";
 	}
-
 }
