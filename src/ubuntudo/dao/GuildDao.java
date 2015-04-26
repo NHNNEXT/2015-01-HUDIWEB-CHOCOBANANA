@@ -16,13 +16,13 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
-import support.QueryCollection;
+import support.Qrys;
 import ubuntudo.model.Any;
 import ubuntudo.model.GuildEntity;
 import ubuntudo.model.UserEntity;
 
 @Repository("guildDao")
-public class GuildDao extends QueryCollection {
+public class GuildDao {
 	private static final Logger logger = LoggerFactory.getLogger(GuildDao.class);
 
 	@Autowired
@@ -36,7 +36,7 @@ public class GuildDao extends QueryCollection {
 
 	public int insertNewGuildDao(GuildEntity guild) {
 		logger.debug("inserting new guild..." + guild.toString());
-		return jdbcTemplate.update(INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
+		return jdbcTemplate.update(Qrys.INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
 	}
 
 	public List<Any> retrieveGuildAndPartyDao(long demanderIdSearch, String guildNameSearch) {
@@ -62,7 +62,7 @@ public class GuildDao extends QueryCollection {
 
 	public int insertUserToGuildDao(long guildId, long userId) {
 		logger.debug("inserting user to guild... guildId: " + guildId + ", userId: " + userId);
-		return jdbcTemplate.update(INSERT_USER_TO_GUILD, guildId, userId);
+		return jdbcTemplate.update(Qrys.INSERT_USER_TO_GUILD, guildId, userId);
 	}
 
 	public long getLastGuildId() {
@@ -73,10 +73,10 @@ public class GuildDao extends QueryCollection {
 				return rs.getLong("last_id");
 			}
 		}; 
-		return jdbcTemplate.queryForObject(GET_LAST_ID, rowMapper);
+		return jdbcTemplate.queryForObject(Qrys.GET_LAST_ID, rowMapper);
 	}
 
-	public List<GuildEntity> retrieveGuildSearchDao(String guildName) {
+	public List<GuildEntity> retrieveGuildListSearchDao(String guildName) {
 		logger.debug("searching guild by guild name... guildName: " + guildName);
 		RowMapper<GuildEntity> rowMapper = new RowMapper<GuildEntity>() {
 			public GuildEntity mapRow(ResultSet rs, int rowNum) {
@@ -87,6 +87,6 @@ public class GuildDao extends QueryCollection {
 				}
 			}
 		};
-		return jdbcTemplate.query(RETRIEVE_GUILD_LIST, rowMapper, makeLikeParam(guildName));
+		return jdbcTemplate.query(Qrys.RETRIEVE_GUILD_LIST, rowMapper, Qrys.makeLikeParam(guildName));
 	}
 }

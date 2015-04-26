@@ -18,14 +18,14 @@ public class PartyController {
 	@Autowired
 	PartyBiz pbiz;
 
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertNewParty", method = RequestMethod.POST)
 	public int insertPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
 		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));
 	}
 
-	@RequestMapping(value = "/retrievePartySearch", method = RequestMethod.POST)
-	public List<PartyEntity> retrievePartySearchController(@RequestParam("partyName") String partyName) {
-		return pbiz.retrievePartySearchBiz(partyName);
+	@RequestMapping(value = "/retrievePartyListSearch", method = RequestMethod.POST)
+	public List<PartyEntity> retrievePartyListSearchController(@RequestParam("partyName") String partyName) {
+		return pbiz.retrievePartyListSearchBiz(partyName);
 	}
 
 	@RequestMapping(value = "/updateParty", method = RequestMethod.POST)

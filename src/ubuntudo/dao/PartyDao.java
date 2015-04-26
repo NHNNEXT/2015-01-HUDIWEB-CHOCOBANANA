@@ -16,11 +16,11 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
-import support.QueryCollection;
+import support.Qrys;
 import ubuntudo.model.PartyEntity;
 
 @Repository("PartyDao")
-public class PartyDao extends QueryCollection {
+public class PartyDao {
 	private static final Logger logger = LoggerFactory.getLogger(PartyDao.class);
 
 	@Autowired
@@ -34,25 +34,25 @@ public class PartyDao extends QueryCollection {
 
 	public int insertPartyDao(PartyEntity party) {
 		logger.debug("inserting: " + party.toString());
-		return jdbcTemplate.update(INSERT_PARTY, party.getGid(), party.getleaderId(), party.getPartyName());
+		return jdbcTemplate.update(Qrys.INSERT_PARTY, party.getGid(), party.getleaderId(), party.getPartyName());
 	}
 
-	public List<PartyEntity> retrievePartySearchDao(String partyName) {
+	public List<PartyEntity> retrievePartyListSearchDao(String partyName) {
 		logger.debug("searching Party by Party name... partyName: " + partyName);
 		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
 			public PartyEntity mapRow(ResultSet rs, int rowNum) {
 				try {
-					return new PartyEntity(rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("party_name"), rs.getString("status"));
+					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("party_name"), rs.getString("status"));
 				} catch (SQLException e) {
 					throw new BeanInstantiationException(PartyEntity.class, e.getMessage(), e);
 				}
 			}
 		};
-		return jdbcTemplate.query(RETRIEVE_PARTY_LIST, rowMapper, makeLikeParam(partyName));
+		return jdbcTemplate.query(Qrys.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParam(partyName));
 	}
 
 	public int updatePartyDao(PartyEntity party) {
 		logger.debug("updating current party to: " + party);
-		return jdbcTemplate.update(UPDATE_PARTY, party.getleaderId(), party.getPartyName(), party.getStatus(), party.getPid());
+		return jdbcTemplate.update(Qrys.UPDATE_PARTY, party.getleaderId(), party.getPartyName(), party.getStatus(), party.getPid());
 	}
 }

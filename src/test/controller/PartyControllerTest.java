@@ -1,5 +1,7 @@
 package test.controller;
 
+import static org.junit.Assert.*;
+
 import java.util.List;
 
 import org.junit.Test;
@@ -22,24 +24,22 @@ public class PartyControllerTest {
 
 	@Test
 	public void insertPartyControllerTest() {
-		long pid = 3l;
-		long leaderId = 1l;
-		String partyName = "Mark Party100-3";
+		long gid = 3l;
+		long leaderId = 13l;
+		String partyName = "Mark Party13";
 
-		partyController.insertPartyController(pid, leaderId, partyName);
+		assertEquals(1, partyController.insertPartyController(gid, leaderId, partyName));
 	}
 
 	@Test
-	public void retrievePartySearchTest() {
-		String partyName = "y P";
-		List<PartyEntity> partyList = partyController.retrievePartySearchController(partyName);
-
-		System.out.println(partyList.toString());
+	public void retrievePartyListSearchTest() {
+		String partyName = "13";
+		List<PartyEntity> partyList = partyController.retrievePartyListSearchController(partyName);
+		assertNotNull(partyList);
 
 		Gson gson = new Gson();
-		String json = gson.toJson(partyList);
-		System.out.println(json);
-
+		String partyListJson = gson.toJson(partyList);
+		System.out.println(partyListJson);
 	}
 
 	@Test
@@ -49,6 +49,6 @@ public class PartyControllerTest {
 		String partyName = "Mark Party EDITED";
 		String status = "830408";
 
-		partyController.updatePartyController(pid, leaderId, partyName, status);
+		assertEquals(1, partyController.updatePartyController(pid, leaderId, partyName, status));
 	}
 }

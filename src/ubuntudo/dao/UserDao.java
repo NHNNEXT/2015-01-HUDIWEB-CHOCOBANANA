@@ -15,11 +15,11 @@ import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
-import support.QueryCollection;
+import support.Qrys;
 import ubuntudo.model.UserEntity;
 
 @Repository("userDao")
-public class UserDao extends QueryCollection {
+public class UserDao extends Qrys {
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
 	@Autowired

@@ -18,16 +18,18 @@ public class GuildController {
 	@Autowired
 	GuildBiz gbiz;
 	
-	@RequestMapping(value = "/insert", method = RequestMethod.POST)
+	@RequestMapping(value = "/insertNewGuild", method = RequestMethod.POST)
 	public int insertNewGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
 
-	public int insertUserToGuildController(long guildId, long userId) {
+	@RequestMapping(value = "/insertUserToGuild", method = RequestMethod.POST)
+	public int insertUserToGuildController(@RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
 	}
 
-	public List<GuildEntity> retrieveGuildSearchController(String guildName) {
-		return gbiz.retrieveGuildSearchBiz(guildName);
+	@RequestMapping(value = "/retrieveGuildListSearch", method = RequestMethod.POST)
+	public List<GuildEntity> retrieveGuildListSearchController(@RequestParam("guildName") String guildName) {
+		return gbiz.retrieveGuildListSearchBiz(guildName);
 	}
 }

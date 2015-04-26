@@ -25,8 +25,8 @@ public class GuildColtrollerTest {
 
 	@Test
 	public void insertNewGuildControllerTest() {
-		long leaderId = 106l;
-		String newGuildName = "The Guild106";
+		long leaderId = 20l;
+		String newGuildName = "The Guild20";
 		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
 	}
 
@@ -39,8 +39,8 @@ public class GuildColtrollerTest {
 
 	@Test
 	public void retrieveGuildSearchControllerTest() {
-		String guildName = "uild10";
-		List<GuildEntity> guildList = guildController.retrieveGuildSearchController(guildName);
+		String guildName = "d2";
+		List<GuildEntity> guildList = guildController.retrieveGuildListSearchController(guildName);
 		System.out.println(guildList.toString());
 
 		Gson gson = new Gson();

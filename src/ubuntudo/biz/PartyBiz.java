@@ -16,8 +16,8 @@ public class PartyBiz {
 		return pdao.insertPartyDao(party);
 	}
 
-	public List<PartyEntity> retrievePartySearchBiz(String partyName) {
-		return pdao.retrievePartySearchDao(partyName);
+	public List<PartyEntity> retrievePartyListSearchBiz(String partyName) {
+		return pdao.retrievePartyListSearchDao(partyName);
 	}
 
 	public int updatePartyBiz(PartyEntity partyEntity) {

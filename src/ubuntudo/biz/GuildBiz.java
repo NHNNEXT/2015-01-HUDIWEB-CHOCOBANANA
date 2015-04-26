@@ -62,8 +62,8 @@ public class GuildBiz {
 		return gdao.insertUserToGuildDao(guildId, userId);
 	}
 
-	public List<GuildEntity> retrieveGuildSearchBiz(String guildName) {
-		return gdao.retrieveGuildSearchDao(guildName);
+	public List<GuildEntity> retrieveGuildListSearchBiz(String guildName) {
+		return gdao.retrieveGuildListSearchDao(guildName);
 	}
 
 	
