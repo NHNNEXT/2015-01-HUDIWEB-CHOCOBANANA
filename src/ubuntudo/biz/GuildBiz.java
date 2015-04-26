@@ -64,4 +64,8 @@ public class GuildBiz {
 	public List<GuildEntity> retrieveGuildListSearchBiz(String guildName) {
 		return gdao.retrieveGuildListSearchDao(guildName);
 	}
+
+	public int updateGuildBiz(GuildEntity guildEntity) {
+		return gdao.updateGuildDao(guildEntity);
+	}
 }

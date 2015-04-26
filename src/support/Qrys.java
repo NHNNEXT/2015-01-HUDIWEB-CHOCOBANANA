@@ -31,6 +31,9 @@ public class Qrys {
 	// for user registration to party
 	public static String INSERT_USER_TO_PARTY = "insert into user_party_relation (uid, pid, status) values (?, ?, '123123')";
 
+	// for party update
+	public static String UPDATE_GUILD = "update guild set leader_id = ?, guild_name = ?, status = ? where gid = ?";
+
 	public static String makeLikeParam(String param) {
 		return "%" + param + "%";
 	}

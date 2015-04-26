@@ -14,10 +14,10 @@ import ubuntudo.model.GuildEntity;
 @Controller
 @RequestMapping(value = "/guild")
 public class GuildController {
-	
+
 	@Autowired
 	GuildBiz gbiz;
-	
+
 	@RequestMapping(value = "/insertNewGuild", method = RequestMethod.POST)
 	public int insertNewGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
@@ -31,5 +31,11 @@ public class GuildController {
 	@RequestMapping(value = "/retrieveGuildListSearch", method = RequestMethod.POST)
 	public List<GuildEntity> retrieveGuildListSearchController(@RequestParam("guildName") String guildName) {
 		return gbiz.retrieveGuildListSearchBiz(guildName);
+	}
+
+	@RequestMapping(value = "/updateGuild", method = RequestMethod.POST)
+	public int updateGuildController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName,
+			@RequestParam("status") String status) {
+		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName, status));
 	}
 }

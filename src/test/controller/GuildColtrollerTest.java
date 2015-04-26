@@ -49,4 +49,14 @@ public class GuildColtrollerTest {
 
 		assertNotNull(guildList);
 	}
+
+	@Test
+	public void updateGuildControllerTest() {
+		long gid = 20l;
+		long leaderId = 105l;
+		String guildName = "Guild EDITED";
+		String status = "830408";
+
+		assertEquals(1, guildController.updateGuildController(gid, leaderId, guildName, status));
+	}
 }

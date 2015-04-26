@@ -67,4 +67,9 @@ public class GuildDao {
 		};
 		return jdbcTemplate.query(Qrys.RETRIEVE_GUILD_LIST, rowMapper, Qrys.makeLikeParam(guildName));
 	}
+
+	public int updateGuildDao(GuildEntity guild) {
+		logger.debug("updating current guild to: " + guild);
+		return jdbcTemplate.update(Qrys.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
+	}
 }
