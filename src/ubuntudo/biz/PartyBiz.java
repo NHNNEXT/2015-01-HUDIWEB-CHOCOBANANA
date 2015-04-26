@@ -70,4 +70,8 @@ public class PartyBiz {
 	public int updatePartyBiz(PartyEntity partyEntity) {
 		return pdao.updatePartyDao(partyEntity);
 	}
+
+	public List<PartyEntity> retrievePartyInGuildListBiz(long gid) {
+		return pdao.retrievePartyInGuildListDao(gid);
+	}
 }

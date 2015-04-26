@@ -33,6 +33,9 @@ public class Qrys {
 
 	// for party update
 	public static String UPDATE_GUILD = "update guild set leader_id = ?, guild_name = ?, status = ? where gid = ?";
+	
+	// for retrieve party in guild
+	public static String RETRIEVE_PARTY_IN_GUILD = "select pid, gid, leader_id, party_name, status from party where gid = ?";
 
 	public static String makeLikeParam(String param) {
 		return "%" + param + "%";

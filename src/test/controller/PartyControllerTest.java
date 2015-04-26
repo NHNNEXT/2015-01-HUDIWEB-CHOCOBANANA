@@ -58,4 +58,15 @@ public class PartyControllerTest {
 
 		assertEquals(1, partyController.updatePartyController(pid, leaderId, partyName, status));
 	}
+	
+	@Test
+	public void retrievePartyInGuildTest() {
+		long gid = 3l;
+		List<PartyEntity> partyList = partyController.retrievePartyInGuildListController(gid);
+		assertNotNull(partyList);
+		
+		Gson gson = new Gson();
+		String partyListJson = gson.toJson(partyList);
+		System.out.println(partyListJson);
+	}
 }

@@ -71,4 +71,18 @@ public class PartyDao {
 		logger.debug("updating current party to: " + party);
 		return jdbcTemplate.update(Qrys.UPDATE_PARTY, party.getLeaderId(), party.getPartyName(), party.getStatus(), party.getPid());
 	}
+
+	public List<PartyEntity> retrievePartyInGuildListDao(long gid) {
+		logger.debug("searching Party in guild... guild id: " + gid);
+		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
+			public PartyEntity mapRow(ResultSet rs, int rowNum) {
+				try {
+					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("party_name"), rs.getString("status"));
+				} catch (SQLException e) {
+					throw new BeanInstantiationException(PartyEntity.class, e.getMessage(), e);
+				}
+			}
+		};
+		return jdbcTemplate.query(Qrys.RETRIEVE_PARTY_IN_GUILD, rowMapper, gid);
+	}
 }

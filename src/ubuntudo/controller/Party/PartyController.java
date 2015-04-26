@@ -38,4 +38,9 @@ public class PartyController {
 			@RequestParam("status") String status) {
 		return pbiz.updatePartyBiz(new PartyEntity(pid, leaderId, partyName, status));
 	}
+	
+	@RequestMapping(value = "/retrievePartyInGuildList", method = RequestMethod.POST)
+	public List<PartyEntity> retrievePartyInGuildListController(@RequestParam("gid") long gid) {
+		return pbiz.retrievePartyInGuildListBiz(gid);
+	}
 }
