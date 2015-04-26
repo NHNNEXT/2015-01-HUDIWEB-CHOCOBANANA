@@ -17,7 +17,6 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 import support.Qrys;
-import ubuntudo.model.Any;
 import ubuntudo.model.GuildEntity;
 import ubuntudo.model.UserEntity;
 
@@ -38,33 +37,7 @@ public class GuildDao {
 		logger.debug("inserting new guild..." + guild.toString());
 		return jdbcTemplate.update(Qrys.INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
 	}
-
-	public List<Any> retrieveGuildAndPartyDao(long demanderIdSearch, String guildNameSearch) {
-		RowMapper<Any> rowMapper = new RowMapper<Any>() {
-			public Any mapRow(ResultSet rs, int rowNum) {
-				try {
-					Any any = new Any();
-					any.setOne(rs.getString(1));
-					any.setTwo(rs.getString(2));
-					any.setThree(rs.getString(3));
-					any.setFour(rs.getString(4));
-					any.setFive(rs.getString(5));
-					any.setSix(rs.getString(6));
-					any.setSeven(rs.getString(7));
-					return any;
-				} catch (SQLException e) {
-					throw new BeanInstantiationException(UserEntity.class, e.getMessage(), e);
-				}
-			}
-		};
-		return jdbcTemplate.query("", rowMapper);
-	}
-
-	public int insertUserToGuildDao(long guildId, long userId) {
-		logger.debug("inserting user to guild... guildId: " + guildId + ", userId: " + userId);
-		return jdbcTemplate.update(Qrys.INSERT_USER_TO_GUILD, guildId, userId);
-	}
-
+	
 	public long getLastGuildId() {
 		RowMapper<Long> rowMapper = new RowMapper<Long>() {
 			
@@ -74,6 +47,11 @@ public class GuildDao {
 			}
 		}; 
 		return jdbcTemplate.queryForObject(Qrys.GET_LAST_ID, rowMapper);
+	}
+	
+	public int insertUserToGuildDao(long guildId, long userId) {
+		logger.debug("inserting user to guild... guildId: " + guildId + ", userId: " + userId);
+		return jdbcTemplate.update(Qrys.INSERT_USER_TO_GUILD, guildId, userId);
 	}
 
 	public List<GuildEntity> retrieveGuildListSearchDao(String guildName) {

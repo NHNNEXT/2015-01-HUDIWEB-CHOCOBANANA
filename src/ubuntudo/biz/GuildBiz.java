@@ -48,7 +48,6 @@ public class GuildBiz {
 		logger.debug("newGuildId: " + newGuildId);
 
 		// 3. 생성한 길드의 gid로 현재 사용자를 길드에 가입시킴
-		// int insertGuildUserResult = insertGuildUserRelationDao()
 		if ((insertUserToGuildResult = gdao.insertUserToGuildDao(newGuildId, guild.getLeaderId())) != 1) {
 			transactionManager.rollback(status);
 			return -1;
@@ -65,10 +64,4 @@ public class GuildBiz {
 	public List<GuildEntity> retrieveGuildListSearchBiz(String guildName) {
 		return gdao.retrieveGuildListSearchDao(guildName);
 	}
-
-	
-	// public String retrieveGuildAndPartyBiz(long demanderIdSearch, String
-	// guildNameSearch) {
-	// return gdao.retrieveGuildAndPartyDao(demanderIdSearch, guildNameSearch);
-	// }
 }

@@ -24,11 +24,18 @@ public class PartyControllerTest {
 
 	@Test
 	public void insertPartyControllerTest() {
-		long gid = 3l;
-		long leaderId = 13l;
-		String partyName = "Mark Party13";
+		long gid = 50l;
+		long leaderId = 50l;
+		String partyName = "Mark Party50";
 
-		assertEquals(1, partyController.insertPartyController(gid, leaderId, partyName));
+		assertEquals(1, partyController.insertNewPartyController(gid, leaderId, partyName));
+	}
+
+	@Test
+	public void insertUserToPartyControllerTest() {
+		long partyId = 1l;
+		long userId = 1l;
+		assertEquals(1, partyController.insertUserToPartyController(partyId, userId));
 	}
 
 	@Test

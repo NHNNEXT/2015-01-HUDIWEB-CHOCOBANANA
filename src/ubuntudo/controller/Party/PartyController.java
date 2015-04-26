@@ -19,8 +19,13 @@ public class PartyController {
 	PartyBiz pbiz;
 
 	@RequestMapping(value = "/insertNewParty", method = RequestMethod.POST)
-	public int insertPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
+	public int insertNewPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
 		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));
+	}
+
+	@RequestMapping(value = "/insertUserToParty", method = RequestMethod.POST)
+	public int insertUserToPartyController(@RequestParam("partyId") long partyId, @RequestParam("userId") long userId) {
+		return pbiz.insertUserToPartyBiz(partyId, userId);
 	}
 
 	@RequestMapping(value = "/retrievePartyListSearch", method = RequestMethod.POST)

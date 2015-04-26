@@ -36,7 +36,7 @@ public class PartyEntity {
 		return gid;
 	}
 
-	public long getleaderId() {
+	public long getLeaderId() {
 		return leaderId;
 	}
 
