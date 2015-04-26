@@ -58,10 +58,9 @@ window.addEventListener("load", function () {
 
         var param = "pid=" + pid + "&dueDate=" + date + "&title=" + title + "&contents=" + contents;
 
-        var callback = function (result) {
-            oTodoManager.addData(result);
-            oModalManager.appendList();
-            return true;
+        var callback = function (result){
+            var newResult = oTodoManager.addData(result);
+            oTodoManager.appendList(newResult);
         }
         
         ubuntudo.utility.ajax({
@@ -70,6 +69,7 @@ window.addEventListener("load", function () {
             "param" : param, 
             "callback" : callback
         });
+        
         
         document.getElementById("add_wrap").style.display = "none";
         e.stopPropagation(); 

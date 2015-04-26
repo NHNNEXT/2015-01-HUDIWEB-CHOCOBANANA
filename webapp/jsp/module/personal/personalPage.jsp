@@ -52,8 +52,9 @@
 		</main>
     </div>
     <script language="javascript" type="text/javascript" src="/commons/js/personal/ubuntudo_personal.js"></script>
-	<script language="javascript" type="text/javascript" src="/commons/js/personal/todo.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/personal/modal.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/data_manager.js"></script>
+	<script language="javascript" type="text/javascript" src="/commons/js/personal/todo_manager.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/personal/modal_manager.js"></script>    
 	<script language="javascript" type="text/javascript" src="/commons/js/start/utility.js"></script>
 </body>
 </html>

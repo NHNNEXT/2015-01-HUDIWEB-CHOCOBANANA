@@ -47,23 +47,11 @@ public class PersonalController {
 		logger.debug("/personal POST요청에 대해 응답");
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
-		logger.debug("uid={}", uid);
-
 		Long pid = ServletRequestUtils.getRequiredLongParameter(req, "pid");
-		logger.debug("pid={}", pid);
-
 		String title = ServletRequestUtils.getRequiredStringParameter(req, "title");
-		logger.debug("title={}", title);
-
 		String contents = ServletRequestUtils.getRequiredStringParameter(req, "contents");
-		logger.debug("contents={}", contents);
-
 		String duedate = ServletRequestUtils.getRequiredStringParameter(req, "dueDate");
-		logger.debug("date={}", duedate);
-
 		Date due = Date.valueOf(duedate);
-		logger.debug("date={}", due);
-
 		logger.debug("param check: uid={}, pid={}, title={}, contents={}, due={}", uid, pid, title, contents, due);
 
 		TodoEntity newTodo = new TodoEntity(pid, title, contents, due, uid);

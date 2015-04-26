@@ -14,6 +14,7 @@ ubuntudo.ui.todoManager = (function() {
     var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
     
     var appendList = function (data) {
+        this.data = data;
         var elTargetList = {};
         var today = new Date();
         var dataLength = data.length;
@@ -46,6 +47,12 @@ ubuntudo.ui.todoManager = (function() {
         }
     };
     
+    function addData (data) {
+        this.data.push(data);
+        //dueDate별로 다시 정렬하기
+        return this.data;
+    };
+    
     function TodoManager () {
         //DB의 todo 테이블에 의존하는 컬럼 네임 (엄밀하게는 서버의 todoEntity객체 field명)
         this.FIELD_NAME = {
@@ -59,9 +66,8 @@ ubuntudo.ui.todoManager = (function() {
             LAST_EDITER_ID: "last_editer_id"
         };
         
-        this.appendList = appendList.bind(this);
-                
-       
+        this.appendList = appendList.bind(this);     
+        this.addData = addData.bind(this);
     };
     
     TodoManager.prototype.appendList = this.appendList;
@@ -72,11 +78,6 @@ ubuntudo.ui.todoManager = (function() {
     
     TodoManager.prototype.setData = function(data) {
         this.data = data;
-    };
-    
-    TodoManager.prototype.addData = function (data) {
-        this.data.push(data);
-        //dueDate별로 다시 정렬하기
     };
     
     TodoManager.prototype.getFieldName = function () {
