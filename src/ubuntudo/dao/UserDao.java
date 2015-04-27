@@ -4,10 +4,12 @@ import java.sql.SQLException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 
 import ubuntudo.JDBCManager;
 import ubuntudo.model.UserEntity;
 
+@Repository
 public class UserDao extends JDBCManager {
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
@@ -17,6 +19,14 @@ public class UserDao extends JDBCManager {
 		conn = getConnection();
 		boolean insertResult = false;
 
+		/*
+		 * 현재는 직접 만든 JDBCManager를 상속받아 사용하지만
+		 * 
+		 * Spring에서는 이를 Template-method pattern으로 추상화한 JDBCTemplate이 존재합니다.
+		 * 학습하셔서 한번 적용해보시길 바랍니다. :)
+		 * 
+		 * 여유가 된다면 직접 만들어보는 것도 좋아요.
+		 */
 		try {
 			pstmt = conn.prepareStatement("insert into user (name, email, passwd) values (?, ?, ?)");
 			pstmt.setString(1, name);
@@ -44,6 +54,8 @@ public class UserDao extends JDBCManager {
 
 		try {
 			pstmt = conn.prepareStatement("select uid, name, email, passwd from user where email = ? and passwd = ?");
+			
+			// 그리고 항상 로거를 사용하시는 것이 좋습니다 
 			System.out.println(email);
 			System.out.println(passwd);
 			

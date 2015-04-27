@@ -3,13 +3,15 @@ package ubuntudo.model;
 import java.sql.Date;
 
 public class TodoEntity {
-	Long tid;
-	Long pid;
-	String title;
-	String contents;
-	Date duedate;
-	String status;
-	Long editerId;
+	
+	// test 때문이 아니라면 기본적으로 private으로 해주세요
+	private Long tid;
+	private Long pid;
+	private String title;
+	private String contents;
+	private Date duedate;
+	private String status;
+	private Long editerId;
 	
 	public TodoEntity(Long pid, String title, String contents, Date dueDate, Long editerId) {
 		this(null, pid, title, contents, dueDate, "1", editerId);
