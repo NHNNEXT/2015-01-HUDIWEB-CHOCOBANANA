@@ -17,7 +17,7 @@ public class TodoDao extends JDBCManager{
 		ArrayList<TodoEntity> todos = new ArrayList<TodoEntity>();
 		
 		try {
-			String sql = "SELECT * FROM todo WHERE tid IN (SELECT tid FROM todo_user_relation WHERE uid = ? AND completed = 'trel00') ORDER BY dueDate";
+			String sql = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM todo t INNER JOIN party p ON t.pid = p.pid WHERE tid IN (SELECT tid FROM todo_user_relation WHERE uid = ? AND completed = 'trel00') ORDER BY dueDate";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, uid);
 			resultSet = pstmt.executeQuery();
@@ -29,7 +29,8 @@ public class TodoDao extends JDBCManager{
 						resultSet.getString("contents"),
 						resultSet.getDate("duedate"),
 						resultSet.getString("status"),
-						resultSet.getLong("editer_id"));
+						resultSet.getLong("editer_id"),
+						resultSet.getString("p_name"));
 				todos.add(todo);
 			}
 		} catch (SQLException e) {
@@ -50,7 +51,7 @@ public class TodoDao extends JDBCManager{
 			logger.debug("transaction start");
 			String insertTodoSql = "INSERT INTO todo VALUES (null,?,?,?,?,'todo01',?)";
 			String lastTodoIdSql = "SELECT LAST_INSERT_ID() tid";
-			String getLastTodoSql = "SELECT * FROM todo WHERE tid = ?";
+			String getLastTodoSql = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM todo t INNER JOIN party p ON t.pid = p.pid WHERE tid = ?";
 			String insertHistorySql = "INSERT INTO content_history VALUES(null,?,?,?,?,?, now(), ?,?)";
 			String insertRelationSql = "INSERT INTO todo_user_relation VALUES(?,?,'trel00')";
 			
@@ -80,7 +81,8 @@ public class TodoDao extends JDBCManager{
 						resultSet.getString("contents"),
 						resultSet.getDate("duedate"),
 						resultSet.getString("status"),
-						resultSet.getLong("editer_id"));
+						resultSet.getLong("editer_id"),
+						resultSet.getString("p_name"));
 			}
 			logger.debug("todo retreived");
 

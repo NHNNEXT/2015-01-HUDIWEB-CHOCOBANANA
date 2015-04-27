@@ -13,8 +13,7 @@ ubuntudo.ui.todoManager = (function() {
     //CSS에 의존하는 리스트 템플릿
     var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
       
-    function TodoManager () {
-        //DB의 todo 테이블에 의존하는 컬럼 네임 (엄밀하게는 서버의 todoEntity객체 field명)    
+    function TodoManager () {  
     };
     
     TodoManager.prototype.appendList = function (data, fieldName) {
@@ -53,7 +52,7 @@ ubuntudo.ui.todoManager = (function() {
 
     function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {
         var field = fieldName;
-        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain); //pNAME넘어와야 함
+        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
         
     };
     
