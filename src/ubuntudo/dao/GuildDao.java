@@ -20,7 +20,7 @@ import support.Qrys;
 import ubuntudo.model.GuildEntity;
 import ubuntudo.model.UserEntity;
 
-@Repository("guildDao")
+@Repository
 public class GuildDao {
 	private static final Logger logger = LoggerFactory.getLogger(GuildDao.class);
 

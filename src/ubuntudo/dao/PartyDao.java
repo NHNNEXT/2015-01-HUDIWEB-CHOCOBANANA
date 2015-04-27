@@ -19,7 +19,7 @@ import org.springframework.stereotype.Repository;
 import support.Qrys;
 import ubuntudo.model.PartyEntity;
 
-@Repository("PartyDao")
+@Repository
 public class PartyDao {
 	private static final Logger logger = LoggerFactory.getLogger(PartyDao.class);
 

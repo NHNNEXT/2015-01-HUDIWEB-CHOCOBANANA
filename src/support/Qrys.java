@@ -5,7 +5,7 @@ public class Qrys {
 	public static String INSERT_USER = "insert into user (name, email, passwd) values (?, ?, ?)";
 
 	// for login
-	public static String RETRIEVE_USER = "select uid, name, email, passwd from user where email = ? and passwd = ?";
+	public static String RETRIEVE_USER = "SELECT uid, name, email, passwd FROM user WHERE email = ? AND passwd = ?";
 
 	// for creation of guild
 	public static String INSERT_GUILD = "insert into guild (guild_name, leader_id, status) values (?, ?, '123123')";

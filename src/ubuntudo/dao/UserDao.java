@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
 import support.Qrys;
 import ubuntudo.model.UserEntity;
 
-@Repository("userDao")
+@Repository
 public class UserDao extends Qrys {
 	private static final Logger logger = LoggerFactory.getLogger(UserDao.class);
 
@@ -38,6 +38,8 @@ public class UserDao extends Qrys {
 
 	public UserEntity retrieveUserDao(String email, String passwd) {
 		logger.info("retrieveUserDao()");
+		logger.debug("email:{}, passwd: {}", email, passwd);
+		
 		RowMapper<UserEntity> rowMapper = new RowMapper<UserEntity>() {
 			public UserEntity mapRow(ResultSet rs, int rowNum) {
 				try {
@@ -47,6 +49,7 @@ public class UserDao extends Qrys {
 				}
 			}
 		};
+		logger.debug("jdbcTemplate:{}", jdbcTemplate);
 		return jdbcTemplate.queryForObject(RETRIEVE_USER, rowMapper, email, passwd);
 	}
 

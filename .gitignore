@@ -12,3 +12,6 @@
 /resources/ConnectionInfo.xml
 /ChocoBanana.iml
 .springBeans
+
+/*property files*/
+/resources/local_properties

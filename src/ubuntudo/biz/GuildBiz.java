@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
@@ -13,6 +14,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import ubuntudo.dao.GuildDao;
 import ubuntudo.model.GuildEntity;
 
+@Service
 public class GuildBiz {
 	private static final Logger logger = LoggerFactory.getLogger(GuildBiz.class);
 
@@ -21,6 +23,10 @@ public class GuildBiz {
 
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
+	
+	public GuildBiz() {
+		
+	}
 
 	public int insertNewGuildBiz(GuildEntity guild) {
 

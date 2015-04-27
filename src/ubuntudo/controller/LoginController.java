@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,7 +23,10 @@ import core.utils.RSAUtils;
 @RequestMapping(value = "/login")
 public class LoginController {
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
-
+	
+	@Autowired
+	private UserDao userDao;
+	
 	String loginSuccessedViewUri = "/personal";
 	String loginFailedViewUri = "jsp/loginFail.jsp";
 
@@ -41,9 +45,7 @@ public class LoginController {
 		logger.debug("Logging in email: {}", _email);
 		logger.debug("Logging in passwd: {}", _password);
 
-		UserDao uDao = new UserDao();
-		
-		UserEntity currentUser = uDao.retrieveUserDao(_email, _password);
+		UserEntity currentUser = userDao.retrieveUserDao(_email, _password);
 
 		AjaxRedirectResponse res = new AjaxRedirectResponse();
 		if (currentUser != null) {
