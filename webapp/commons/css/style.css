@@ -280,16 +280,16 @@ ul.btn_wrapper {
 }
 
 /*detail_modal*/
-.light_box {
+.detail_modal .light_box {
     position: absolute;
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.3);
     z-index: 300;
 }
 
-.task {
+.detail_modal .task {
     position: absolute;
     width: 50%;
     min-width: 500px;
@@ -299,7 +299,87 @@ ul.btn_wrapper {
     left: 0;
     right: 0;
     z-index: 400;
-    background-color: aqua;
+    border: 1px solid rgba(129, 129, 129, 0.0980392);
+    background-color: #f7f7f7;
+}
+
+.detail_modal .title, .detail_modal .detail_wrapper, detail_modal .btn_wrapper {
+}
+
+.detail_modal .title {
+    padding: 10px;
+    font-size: 50px;
+    color: #000;
+    border-bottom: 1px solid rgba(129, 129, 129, 0.0980392);
+    background-color: #fff;
+}
+
+.detail_modal .detail_wrapper {
+    padding: 5px 20px 5px 20px;   
+}
+
+.detail_modal .tid {
+    display: none;
+}
+
+.detail_modal .party, .due_date {
+    display: inline-block;
+    color: #dd4b39;
+ 	text-transform: uppercase;
+    font-weight: 700;
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.detail_modal .due_date{
+    color: #000;
+}
+
+.detail_modal .detail_wrapper .note {
+    display: block;
+    padding: 10px;
+    width: calc(100% - 20px);
+    height: 200px;
+    border: 1px dashed #a0a0a0;
+    background: transparent;
+    overflow:auto;
+    resize:none;
+    outline: none;    
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    color: #a0a0a0;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.detail_modal .btn_wrapper{
+    position: relative;
+    text-align: right;
+    padding: 7px 17px 10px 0;
+}
+
+.detail_modal .btn_wrapper button{
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    color: #a0a0a0;
+    background-color: #fff;
+    padding: 5px 20px 5px 20px;
+    border:1px solid #a0a0a0;
+ 	text-transform: uppercase;
+}
+
+.detail_modal .btn_wrapper button:hover{
+    background-color: #dd4b39;
+    color: #fff;
+    cursor: pointer;
+    border: 1px solid #dd4b39;
+}
+
+.detail_modal .btn_wrapper .edit_btn {
+    margin-right: 10px;
 }
 
 
