@@ -4,7 +4,7 @@ addTodoBtn.addEventListener('click', function(e){
     
     //value 초기화 - 이부분이 beforeShow()에 들어갈 부분
     var elTarget = e.target;
-    while(elTarget.className !== "add_todo") {
+    if(elTarget.className !== "add_todo") {
         elTarget = elTarget.parentElement;
     }
     if(elTarget.className === "add_todo") {
