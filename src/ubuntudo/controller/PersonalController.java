@@ -45,6 +45,10 @@ public class PersonalController {
 	@RequestMapping(value="/personal", method = RequestMethod.POST)
 	public @ResponseBody TodoEntity addPersonalTodo(HttpSession session, HttpServletRequest req) throws ServletRequestBindingException {
 		logger.debug("/personal POST요청에 대해 응답");
+		if(session.getAttribute("user") == null){
+			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
+			//return "redirect:/start"; string으로 보내야하는데... 어쩐다...
+		}
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
 		Long pid = ServletRequestUtils.getRequiredLongParameter(req, "pid");
