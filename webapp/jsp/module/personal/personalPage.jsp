@@ -1,23 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-    <div class="detail_modal" style="display:none">
-        <div class="light_box"></div>
-        <div class="task">
-            <div class="title"><textarea type="text" placeholder="To do..."></textarea></div>
-            <div class="detail_wrapper">
-                <span class="tid"></span>
-                <span class="party"></span>
-                <span class="due_date"></span>
-                <textarea class="note"></textarea>
-            </div>
-            <div class="btn_wrapper">
-                <button class="edit_btn">edit</button>
-                <button class="delete_btn">delete</button>
-            </div>
-        </div>
-    </div>
-    
+
     <div id="container" class="ns_personal">
 		<aside>
 			<div class="party_pavicon">휴</div>
