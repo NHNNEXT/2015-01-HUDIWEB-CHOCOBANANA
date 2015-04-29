@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,7 +70,7 @@ public class PersonalController {
 	}
 	
 	@RequestMapping(value="/personal/todo/complete/{tid}", method = RequestMethod.GET)
-	public @ResponseBody AjaxRedirectResponse completePersonalTodo(HttpSession session, @PathVariable("tid") Long tid) throws ServletRequestBindingException {
+	public @ResponseBody ModelMap completePersonalTodo(HttpSession session, @PathVariable("tid") Long tid) throws ServletRequestBindingException {
 		logger.debug("/personal/todo/complete/{tid} GET요청에 대해 응답");
 		if(session.getAttribute("user") == null){
 			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
@@ -81,13 +82,14 @@ public class PersonalController {
 		TodoUserRelationEntity info = new TodoUserRelationEntity(tid, uid);
 		//boolean result = tdao.complete(info);
 		boolean result = true; //test
-		AjaxRedirectResponse ajaxRedirectResponse;
-		if(result) {
-			ajaxRedirectResponse = new AjaxRedirectResponse("success", null);
+		ModelMap model = new ModelMap();
+	    model.put("tid", tid);
+	    if(result) {
+		    model.put("status", "success");
 		}
 		else {
-			ajaxRedirectResponse = new AjaxRedirectResponse("fail", null);
+		    model.put("status", "fail");
 		}
-		return ajaxRedirectResponse;
+		return model;
 	}
 }

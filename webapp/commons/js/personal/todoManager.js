@@ -67,20 +67,12 @@ ubuntudo.ui.todoManager = (function() {
                 break;
             }
         }
-        index = util.findIndex(oDataManager.getData(), "tid", tid);
-        
-        function _callback (result) {
-            var status = result.status;
-            if(status === "success") {
-                this.removeData(index);
-            }
-        }
         
         util.ajax({
             "method": "GET", 
             "uri": "/personal/todo/complete/" + tid, 
             "param" : null, 
-            "callback" : _callback.bind(oDataManager) 
+            "callback" : oDataManager.removeData
         });      
     }
     

@@ -36,9 +36,13 @@ ubuntudo.ui.dataManager = (function() {
         window.dispatchEvent(dataChangedEvent);
     };
     
-    function removeData (index) {
-        this.data.splice(index, 1);
-        window.dispatchEvent(dataChangedEvent);
+    function removeData (result) {
+        if(result.status === "success") {
+            var tid = result.tid;
+            var index = ubuntudo.utility.findIndex(this.data, "tid", tid);
+            this.data.splice(index, 1);
+            window.dispatchEvent(dataChangedEvent);
+        }
     }
     
     DataManager.prototype.getFieldName = function() {
