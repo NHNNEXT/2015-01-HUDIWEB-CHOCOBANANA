@@ -30,18 +30,25 @@ window.addEventListener("load", function () {
         oModalManager = new ubuntudo.ui.modalManager(oDetailModal);  
         oTodoManager.appendList(data, fieldName);
         if(elCompleteBtnList !== undefined) {
-            [].forEach.call(elCompleteBtnList, _complete); 
+            [].forEach.call(elCompleteBtnList, _removeEvent); 
         }
         elCompleteBtnList = document.getElementsByClassName('complete_btn');
-        [].forEach.call(elCompleteBtnList, _complete); 
+        [].forEach.call(elCompleteBtnList, _addEvent); 
                         
         /*
         *@private
         */
-        function _complete(element) {
-            element.addEventListener("click", function(ev) {
-            oTodoManager.complete(ev);
-        })};
+        function _addEvent(element) {
+            element.addEventListener("click", _complete);
+        };
+        
+        function _removeEvent(element) {
+            element.removeEventListener("click", _complete);
+        };
+                                        
+        function _complete(ev) {
+            oTodoManager.complete(ev, oDataManager);
+        };
     });
     
     [].forEach.call(elList, function(element) {

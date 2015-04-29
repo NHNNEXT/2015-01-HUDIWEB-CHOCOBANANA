@@ -11,12 +11,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.dao.TodoDao;
+import ubuntudo.model.AjaxRedirectResponse;
 import ubuntudo.model.TodoEntity;
+import ubuntudo.model.TodoUserRelationEntity;
 import ubuntudo.model.UserEntity;
 
 @Controller
@@ -47,7 +51,7 @@ public class PersonalController {
 		logger.debug("/personal/todo POST요청에 대해 응답");
 		if(session.getAttribute("user") == null){
 			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
-			//return "redirect:/start"; string으로 보내야하는데... 어쩐다...
+			//return "redirect:/start"; string으로 보내야하는데... 어쩐다... ->  나중에 주기적으로 ajax요청 보낼 때 체크해서 redirect해주면 될 듯?!
 		}
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
@@ -62,5 +66,28 @@ public class PersonalController {
 		TodoEntity resultTodo = tdao.addPersonalTodo(newTodo);
 		
 		return resultTodo;
+	}
+	
+	@RequestMapping(value="/personal/todo/complete/{tid}", method = RequestMethod.GET)
+	public @ResponseBody AjaxRedirectResponse completePersonalTodo(HttpSession session, @PathVariable("tid") Long tid) throws ServletRequestBindingException {
+		logger.debug("/personal/todo/complete/{tid} GET요청에 대해 응답");
+		if(session.getAttribute("user") == null){
+			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
+			//return "redirect:/start"; 로 보내야함.
+		}
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Long uid = user.getUid();
+		logger.debug("param check: uid={}, tid={}", uid, tid);
+		TodoUserRelationEntity info = new TodoUserRelationEntity(tid, uid);
+		//boolean result = tdao.complete(info);
+		boolean result = true; //test
+		AjaxRedirectResponse ajaxRedirectResponse;
+		if(result) {
+			ajaxRedirectResponse = new AjaxRedirectResponse("success", null);
+		}
+		else {
+			ajaxRedirectResponse = new AjaxRedirectResponse("fail", null);
+		}
+		return ajaxRedirectResponse;
 	}
 }

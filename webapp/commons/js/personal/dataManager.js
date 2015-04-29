@@ -18,6 +18,7 @@ ubuntudo.ui.dataManager = (function() {
         this.setData = setData.bind(this);
         this.getData = getData.bind(this);
         this.addData = addData.bind(this);
+        this.removeData = removeData.bind(this);
     }
     
     function setData (datas) {

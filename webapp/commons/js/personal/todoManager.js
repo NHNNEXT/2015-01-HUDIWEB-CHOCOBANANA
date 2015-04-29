@@ -60,33 +60,28 @@ ubuntudo.ui.todoManager = (function() {
         var tid;
         var index;
         
-        //sibling 중 classname 이 tid인 녀석을 찾아 value를 찾아 
+        //sibling 중 classname 이 tid인 녀석을 찾아 value를 찾는다.
         for(i = 0; i < siblingCount; i++){
             if(elSibling[i].className === "tid") {
                 tid = elSibling[i].innerHTML;
+                break;
             }
         }
         index = util.findIndex(oDataManager.getData(), "tid", tid);
-        param = "tid=" + tid;
         
         function _callback (result) {
             var status = result.status;
             if(status === "success") {
-                oDataManager.removeData(index);
+                this.removeData(index);
             }
         }
         
-        
         util.ajax({
             "method": "GET", 
-            "uri": "/personal/todo/complete", 
-            "param" : param, 
-            "callback" : _callback; 
-        });
-        
-        
-
-        
+            "uri": "/personal/todo/complete/" + tid, 
+            "param" : null, 
+            "callback" : _callback.bind(oDataManager) 
+        });      
     }
     
     TodoManager.prototype.add = function (elTarget) {
