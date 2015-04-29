@@ -71,20 +71,43 @@ module.exports = function (grunt) {
     // The actual grunt server settings
     connect: {
       options: {
-        port: 9000,
-        open: true,
-        livereload: 35729,
-        // Change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+       port: 9000,
+       livereload: 35728,
+       hostname: 'localhost'
       },
+      proxies: [{
+    	  context: ' ',
+    	  host: 'localhost',
+    	  port: 8080
+      }],
       livereload: {
         options: {
-          middleware: function(connect) {
-            return [
-              connect.static('.tmp'),
-              connect().use('/bower_components', connect.static('./bower_components')),
-              connect.static(config.app)
-            ];
+        	 open: true,
+        	 base:[
+        	       '.tmp',
+        	       '<%= config.app %>'
+        	       ],
+          middleware: function(connect,options) {
+        	  var middlewares = [];
+              
+              if (!Array.isArray(options.base)) {
+                options.base = [options.base];
+              }
+                 
+              // Setup the proxy
+              middlewares.push(require('grunt-connect-proxy/lib/utils').proxyRequest);
+       
+              // Serve static files
+              options.base.forEach(function(base) {
+                middlewares.push(connect.static(base));
+              });
+              
+              // Make directory browse-able.
+              var directory = options.directory || options.base[options.base.length - 1];
+              middlewares.push(connect.directory(directory));
+              
+           
+            return middlewares;
           }
         }
       },
@@ -388,6 +411,7 @@ module.exports = function (grunt) {
       'wiredep',
       'concurrent:server',
       'autoprefixer',
+      'configureProxies:server',
       'connect:livereload',
       'watch'
     ]);

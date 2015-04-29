@@ -6,9 +6,9 @@ a:link, a:visited{color: #66757f;}
 
 
 /*header*/
-header {
+#global-header {
   width: 100%;
-  height: 60px;
+  height: $header_height;
 }
 
 .left_section {
