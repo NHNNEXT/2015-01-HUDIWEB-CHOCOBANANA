@@ -15,11 +15,9 @@ import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.dao.TodoDao;
-import ubuntudo.model.AjaxRedirectResponse;
 import ubuntudo.model.TodoEntity;
 import ubuntudo.model.TodoUserRelationEntity;
 import ubuntudo.model.UserEntity;
@@ -80,8 +78,7 @@ public class PersonalController {
 		Long uid = user.getUid();
 		logger.debug("param check: uid={}, tid={}", uid, tid);
 		TodoUserRelationEntity info = new TodoUserRelationEntity(tid, uid);
-		//boolean result = tdao.complete(info);
-		boolean result = true; //test
+		boolean result = tdao.complete(info);
 		ModelMap model = new ModelMap();
 	    model.put("tid", tid);
 	    if(result) {
