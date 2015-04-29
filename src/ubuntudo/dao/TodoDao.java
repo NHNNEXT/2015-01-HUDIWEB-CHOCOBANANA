@@ -69,7 +69,7 @@ public class TodoDao extends JDBCManager{
 			if (resultSet.next()) {
 					tid = resultSet.getLong("tid");		
 			}
-			logger.debug("last todo id retreived");
+			logger.debug("last todo id retreived. tid: {}", tid);
 
 			pstmt = conn.prepareStatement(getLastTodoSql);
 			pstmt.setLong(1, tid);
@@ -84,7 +84,7 @@ public class TodoDao extends JDBCManager{
 						resultSet.getLong("editer_id"),
 						resultSet.getString("p_name"));
 			}
-			logger.debug("todo retreived");
+			logger.debug("todo retreived.");
 
 			pstmt = conn.prepareStatement(insertHistorySql);
 			pstmt.setLong(1, tid);

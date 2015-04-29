@@ -35,11 +35,10 @@ ubuntudo.ui.todoManager = (function() {
             var due = new Date(todoInfo[fieldName.DUEDATE]);
             var dayDiff = Math.abs(due.diffDays(today));
             var explain = "남음";
-            var elTarget = elTargetList[CLASSNAME.PAST]; //김태곤 교수님께 질문: 초기화를 안해줬더니 due<today여도 future 섹션에 들어가는 이유...
-            
+            var elTarget;             
             if(due < today) {
                 explain = "지남";
-                eltarget = elTargetList[CLASSNAME.PAST];
+                elTarget = elTargetList[CLASSNAME.PAST];
             }else if(due > today) {
                 elTarget = elTargetList[CLASSNAME.FUTURE];
             }else {
