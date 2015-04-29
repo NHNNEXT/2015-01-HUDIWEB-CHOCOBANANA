@@ -18,6 +18,7 @@ ubuntudo.ui.dataManager = (function() {
         this.setData = setData.bind(this);
         this.getData = getData.bind(this);
         this.addData = addData.bind(this);
+        this.removeData = removeData.bind(this);
     }
     
     function setData (datas) {
@@ -31,9 +32,18 @@ ubuntudo.ui.dataManager = (function() {
     
     function addData (data) {
         this.data.push(data);
-        //dueDate별로 다시 정렬하기
+        //dueDate별로 다시 정렬해야함
         window.dispatchEvent(dataChangedEvent);
     };
+    
+    function removeData (result) {
+        if(result.status === "success") {
+            var tid = result.tid;
+            var index = ubuntudo.utility.findIndex(this.data, "tid", tid);
+            this.data.splice(index, 1);
+            window.dispatchEvent(dataChangedEvent);
+        }
+    }
     
     DataManager.prototype.getFieldName = function() {
         return FIELD_NAME;

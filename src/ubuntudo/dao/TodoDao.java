@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import ubuntudo.JDBCManager;
 import ubuntudo.model.TodoEntity;
+import ubuntudo.model.TodoUserRelationEntity;
 
 public class TodoDao extends JDBCManager{
 	private static final Logger logger = LoggerFactory.getLogger(TodoDao.class);
@@ -21,7 +22,6 @@ public class TodoDao extends JDBCManager{
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, uid);
 			resultSet = pstmt.executeQuery();
-			System.out.println(resultSet.toString());
 			while (resultSet.next()) {
 				TodoEntity todo = new TodoEntity(resultSet.getLong("tid"),
 						resultSet.getLong("pid"),
@@ -34,7 +34,7 @@ public class TodoDao extends JDBCManager{
 				todos.add(todo);
 			}
 		} catch (SQLException e) {
-			System.out.println("DB getPersonalTodos Error: " + e.getMessage());
+			logger.info("DB getPersonalTodos Error: " + e.getMessage());
 		} finally {
 			close(resultSet, pstmt, conn);
 		}
@@ -105,7 +105,26 @@ public class TodoDao extends JDBCManager{
 
 			
 		} catch (SQLException e) {
-			System.out.println("DB getPersonalTodos Error: " + e.getMessage());
+			logger.info("DB getPersonalTodos Error: " + e.getMessage());
+		} finally {
+			close(resultSet, pstmt, conn);
+		}
+		return result;
+	}
+
+	public boolean complete(TodoUserRelationEntity info) {
+		conn = getConnection();
+		boolean result = false;
+		
+		try {
+			String sql = "update todo_user_relation SET completed = 'trel01' WHERE tid = ? AND uid = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, info.getTid());
+			pstmt.setLong(2, info.getUid());
+			pstmt.executeUpdate();
+			result = true;
+		} catch (SQLException e) {
+			logger.info("DB getPersonalTodos Error: " + e.getMessage());
 		} finally {
 			close(resultSet, pstmt, conn);
 		}
