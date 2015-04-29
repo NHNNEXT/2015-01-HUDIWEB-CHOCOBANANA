@@ -16,6 +16,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 import support.Qrys;
+import support.QrysU;
 import ubuntudo.model.UserEntity;
 
 @Repository
@@ -33,7 +34,7 @@ public class UserDao extends Qrys {
 
 	public int insertUserDao(String name, String email, String passwd) {
 		logger.debug("insertUserDao()");
-		return jdbcTemplate.update(INSERT_USER, name, email, passwd);
+		return jdbcTemplate.update(QrysU.INSERT_USER, name, email, passwd);
 	}
 
 	public UserEntity retrieveUserDao(String email, String passwd) {
@@ -50,7 +51,7 @@ public class UserDao extends Qrys {
 			}
 		};
 		logger.debug("jdbcTemplate:{}", jdbcTemplate);
-		return jdbcTemplate.queryForObject(RETRIEVE_USER, rowMapper, email, passwd);
+		return jdbcTemplate.queryForObject(QrysU.RETRIEVE_USER, rowMapper, email, passwd);
 	}
 
 	public boolean validateUser(String email) {

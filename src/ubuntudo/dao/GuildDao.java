@@ -17,6 +17,8 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 import support.Qrys;
+import support.QrysG;
+import support.QrysU;
 import ubuntudo.model.GuildEntity;
 import ubuntudo.model.UserEntity;
 
@@ -35,7 +37,7 @@ public class GuildDao {
 
 	public int insertNewGuildDao(GuildEntity guild) {
 		logger.debug("inserting new guild..." + guild.toString());
-		return jdbcTemplate.update(Qrys.INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
+		return jdbcTemplate.update(QrysG.INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
 	}
 	
 	public long getLastGuildId() {
@@ -51,7 +53,7 @@ public class GuildDao {
 	
 	public int insertUserToGuildDao(long guildId, long userId) {
 		logger.debug("inserting user to guild... guildId: " + guildId + ", userId: " + userId);
-		return jdbcTemplate.update(Qrys.INSERT_USER_TO_GUILD, guildId, userId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_GUILD, guildId, userId);
 	}
 
 	public List<GuildEntity> retrieveGuildListSearchDao(String guildName) {
@@ -59,17 +61,17 @@ public class GuildDao {
 		RowMapper<GuildEntity> rowMapper = new RowMapper<GuildEntity>() {
 			public GuildEntity mapRow(ResultSet rs, int rowNum) {
 				try {
-					return new GuildEntity(rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("guild_name"), rs.getString("status"));
+					return new GuildEntity(rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("g_name"), rs.getString("deleted"));
 				} catch (SQLException e) {
 					throw new BeanInstantiationException(UserEntity.class, e.getMessage(), e);
 				}
 			}
 		};
-		return jdbcTemplate.query(Qrys.RETRIEVE_GUILD_LIST, rowMapper, Qrys.makeLikeParam(guildName));
+		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST, rowMapper, Qrys.makeLikeParam(guildName));
 	}
 
 	public int updateGuildDao(GuildEntity guild) {
 		logger.debug("updating current guild to: " + guild);
-		return jdbcTemplate.update(Qrys.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
+		return jdbcTemplate.update(QrysG.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
 	}
 }

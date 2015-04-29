@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import support.QrysT;
 import ubuntudo.JDBCManager;
 import ubuntudo.model.TodoEntity;
 
@@ -17,8 +18,7 @@ public class TodoDao extends JDBCManager{
 		ArrayList<TodoEntity> todos = new ArrayList<TodoEntity>();
 		
 		try {
-			String sql = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM todo t INNER JOIN party p ON t.pid = p.pid WHERE tid IN (SELECT tid FROM todo_user_relation WHERE uid = ? AND completed = 'trel00') ORDER BY dueDate";
-			pstmt = conn.prepareStatement(sql);
+			pstmt = conn.prepareStatement(QrysT.RETRIEVE_TODO_FOR_PERSONAL_VIEW);
 			pstmt.setLong(1, uid);
 			resultSet = pstmt.executeQuery();
 			System.out.println(resultSet.toString());
@@ -69,7 +69,7 @@ public class TodoDao extends JDBCManager{
 			if (resultSet.next()) {
 					tid = resultSet.getLong("tid");		
 			}
-			logger.debug("last todo id retreived");
+			logger.debug("last todo id retreived: tid={}", tid);
 
 			pstmt = conn.prepareStatement(getLastTodoSql);
 			pstmt.setLong(1, tid);
