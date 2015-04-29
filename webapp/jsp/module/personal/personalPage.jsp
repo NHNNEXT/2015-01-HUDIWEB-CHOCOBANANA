@@ -28,7 +28,7 @@
 			<section>
 				<div class="category">
 					<h1 class="name">Past</h1>
-					<span class="date">~ 2015.04.06</span>
+					<span class="date">~ ${yesterday}</span>
 				</div>
 				<ul class="past">
 				</ul>
@@ -36,7 +36,7 @@
 			<section>
 				<div class="category">
 					<h1 class="name">Today</h1>
-					<span class="date">2015.04.07</span>
+					<span class="date">${today}</span>
 				</div>
 				<ul class="today">
 				</ul>
@@ -44,7 +44,7 @@
 			<section>
 				<div class="category">
 					<h1 class="name">Future</h1>
-					<span class="date">2015.04.08 ~</span>
+					<span class="date">${tomorrow} ~</span>
 				</div>
 				<ul  class="future">
 				</ul>
