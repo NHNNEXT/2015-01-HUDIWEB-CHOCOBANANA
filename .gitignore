@@ -20,4 +20,4 @@ node_modules
 dist
 .tmp
 .sass-cache
-bower_components
+/webapp/bower_components
