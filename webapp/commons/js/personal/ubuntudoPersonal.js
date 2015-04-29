@@ -12,6 +12,7 @@ window.addEventListener("load", function () {
     var oTodoManager = new ubuntudo.ui.todoManager();
     var elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
+    var elCompleteBtnList;
     var oDetailModal;
     var oModalManager;
     
@@ -28,6 +29,19 @@ window.addEventListener("load", function () {
         oDetailModal = new ubuntudo.ui.detailModal(data, fieldName);
         oModalManager = new ubuntudo.ui.modalManager(oDetailModal);  
         oTodoManager.appendList(data, fieldName);
+        if(elCompleteBtnList !== undefined) {
+            [].forEach.call(elCompleteBtnList, _complete); 
+        }
+        elCompleteBtnList = document.getElementsByClassName('complete_btn');
+        [].forEach.call(elCompleteBtnList, _complete); 
+                        
+        /*
+        *@private
+        */
+        function _complete(element) {
+            element.addEventListener("click", function(ev) {
+            oTodoManager.complete(ev);
+        })};
     });
     
     [].forEach.call(elList, function(element) {
@@ -35,10 +49,10 @@ window.addEventListener("load", function () {
         oModalManager.showModal(ev);
     })});
 
-    elLightBox.addEventListener("click", function(e) {
+    elLightBox.addEventListener("click", function() {
         oModalManager.hideModal();
     });
-                      
+                          
     //submit 버튼 누르면 투두 추가 요청 - 리팩토링 필요
     var submitBtn = document.querySelector(".add_todo .submit_btn");
     submitBtn.addEventListener('click', function(e) {

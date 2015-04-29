@@ -48,6 +48,50 @@ ubuntudo.ui.todoManager = (function() {
             elTarget.innerHTML += _makeInnerHTML(todoInfo, dayDiff, explain, fieldName);
         }
     };
+    
+    TodoManager.prototype.complete = function (ev, oDataManager) {
+        ev.stopPropagation();
+        var elTarget = ev.target;
+        var elSibling = elTarget.parentElement.childNodes;
+        var siblingCount = elTarget.parentElement.childElementCount;
+        var util = ubuntudo.utility;
+        var param;
+        var i;
+        var tid;
+        var index;
+        
+        //sibling 중 classname 이 tid인 녀석을 찾아 value를 찾아 
+        for(i = 0; i < siblingCount; i++){
+            if(elSibling[i].className === "tid") {
+                tid = elSibling[i].innerHTML;
+            }
+        }
+        index = util.findIndex(oDataManager.getData(), "tid", tid);
+        param = "tid=" + tid;
+        
+        function _callback (result) {
+            var status = result.status;
+            if(status === "success") {
+                oDataManager.removeData(index);
+            }
+        }
+        
+        
+        util.ajax({
+            "method": "GET", 
+            "uri": "/personal/todo/complete", 
+            "param" : param, 
+            "callback" : _callback; 
+        });
+        
+        
+
+        
+    }
+    
+    TodoManager.prototype.add = function (elTarget) {
+    
+    }
 
     function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {
         var field = fieldName;

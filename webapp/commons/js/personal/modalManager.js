@@ -8,9 +8,8 @@ ubuntudo.ui.modalManager = (function() {
     }
     
     ModalManager.prototype.showModal = function(ev) {
-        if(this.modal.beforeShow(ev) === true) {
-            this.elModal.style.display = "block";
-        }
+        this.modal.beforeShow(ev);
+        this.elModal.style.display = "block";
     }
     
     ModalManager.prototype.hideModal = function() {
@@ -32,7 +31,6 @@ ubuntudo.ui.detailModal = (function() {
         PARTY :"party",
         DUEDATE : "due_date",
         CONTENTS : "note",
-        COMPLETE_BTN: "complete_btn"
 	};    
     
     function DetailModal (todoData, fieldName) {
@@ -46,12 +44,6 @@ ubuntudo.ui.detailModal = (function() {
     DetailModal.prototype.beforeShow = function(ev) {
         var elTarget = ev.target;
         var id;
-        
-        /*주석처리한 부분을 모듈로 하여 private 함수로 뽑을 예정*/
-        //완료버튼이면 modalShow하지 않도록 방어코드   
-        if(elTarget.className === CLASSNAME.COMPLETE_BTN) {
-            return false;
-        }
         
         //todo찾기
         while(elTarget.className !== CLASSNAME.TODO ) {
@@ -90,8 +82,6 @@ ubuntudo.ui.detailModal = (function() {
             	this.elDetail.children[i].value = todoInfo[field.CONTENTS];    
             }
         }
-        
-        return true;
     };
 
     return DetailModal;

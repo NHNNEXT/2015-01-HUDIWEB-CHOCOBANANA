@@ -31,9 +31,14 @@ ubuntudo.ui.dataManager = (function() {
     
     function addData (data) {
         this.data.push(data);
-        //dueDate별로 다시 정렬하기
+        //dueDate별로 다시 정렬해야함
         window.dispatchEvent(dataChangedEvent);
     };
+    
+    function removeData (index) {
+        this.data.splice(index, 1);
+        window.dispatchEvent(dataChangedEvent);
+    }
     
     DataManager.prototype.getFieldName = function() {
         return FIELD_NAME;
