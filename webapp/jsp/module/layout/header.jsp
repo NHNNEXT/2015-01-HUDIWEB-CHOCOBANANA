@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html class="no-js">
 <head>
 <meta charset="UTF-8">
 <title>Ubuntu.do</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width">
+	<link rel="shortcut icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
@@ -14,11 +17,15 @@
 	src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <body>
+    <!--[if lt IE 10]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+    <![endif]-->
 	<header>
 	<div class="logo">
 		<!--<img src=""/>-->
 	</div>
-	<nav> <a href="">home</a> <a href="">guild</a> </nav>
+	<nav> <a href="">home</a> <a href="/guild.html">guild</a> </nav>
 	<div class="left_section">
 		<div class="search_wrapper">
 			<form method="post" action="">

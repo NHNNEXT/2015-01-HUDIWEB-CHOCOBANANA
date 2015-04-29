@@ -1,0 +1,291 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>Ubuntu.do</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/gulid.css">
+  <!-- endbuild -->
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="/styles/todo_modal.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+</head>
+<body>
+<h1 class="blind">우분투두</h1>
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+<header id="global-header">
+  <div class="logo">
+    <!--<img src=""/>-->
+  </div>
+
+
+  <nav>
+    <h1 class="blind"> 페이지 메뉴 </h1>
+    <h2 class="blind">홈</h2>
+    <a href="">home</a>
+
+    <h2 class="blind">길드</h2>
+    <a href="/guild">guild</a>
+  </nav>
+  <section class="left_section">
+    <h1 class="blind">검색창,Todo추가,내정보</h1>
+
+    <div class="search_wrapper">
+      <h2 class="blind">검색창</h2>
+
+      <form method="post" action="">
+        <input class="search_input" value="Search guilds" type="text">
+        <input class="search_submit" type="submit" value="">
+      </form>
+    </div>
+    <div class="addBtn_and_profile_container">
+      <h2 class="blind">투두 추가</h2>
+      <ul class="btn_wrapper">
+        <li class="todo_add_btn">
+          <div id="add_wrap" style="display:none;">
+            <div class="modal_effect_shadow"></div>
+            <div class="modal_effect"></div>
+            <form class="add_todo">
+              <!-- 파티 설정	-->
+              <div class="select_party">
+                <label id="selected_party_name">개인</label>
+                <select id="select_party_list" onchange="showSelectedParty()">
+                  <option>개인</option>
+                  <option>네트워크</option>
+                  <option>자구알</option>
+                </select>
+              </div>
+
+              <!-- 날짜선택 -->
+              <input id="datepicker" class="calendario calendar_box hasDatepicker" name="date" value="만기기한이 없습니다.">
+
+              <!-- 일정 이름 -->
+              <input type="text" name="title" class="input_todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름"
+                     required="">
+
+              <!-- 상세 내용 -->
+            <textarea name="contents" class="input_todoComment" cols="50" rows="5"
+                      placeholder="상세내용을 입력해주세요."></textarea>
+
+              <!-- 버튼 -->
+              <div class="todo_modal_btn">
+                <!-- <input type = "reset" value = "reset"/> -->
+                <input type="submit" value="submit" class="submit_btn">
+                <input type="button" value="cancel" class="cancel_btn">
+              </div>
+            </form>
+          </div>
+        </li>
+        <li class="profile"></li>
+      </ul>
+    </div>
+  </section>
+  <script type="text/javascript" src="/scripts/add_todo_modal/todo_modal.js"></script>
+</header>
+
+<div class="detail_modal" style="display:none">
+  <div class="light_box"></div>
+  <div class="task">
+    <div class="title"><textarea type="text" placeholder="To do..."></textarea></div>
+    <div class="detail_wrapper">
+      <span class="tid"></span>
+      <span class="party"></span>
+      <span class="due_date"></span>
+      <textarea class="note"></textarea>
+    </div>
+    <div class="btn_wrapper">
+      <button class="edit_btn">edit</button>
+      <button class="delete_btn">delete</button>
+    </div>
+  </div>
+</div>
+
+<section id="container" class="gd_page">
+  <h1 class="blind">길드 리스트 페이지</h1>
+  <header id="gd-header">
+    <div class="gd-header-content">
+      <div class="gd-header-avatar">
+        <div class="avatar person large">
+        </div>
+      </div>
+      <div class="gd-header-person">
+		  	<span class="large">
+					회원님의 그룹들
+			  </span>
+        <span class="small"> </span>
+      </div>
+    </div>
+    <div class="gd-header-navbar">
+      <snb class="sub-nav-content">
+        <h2 class="blind">그룹 서브 네비게이션 바</h2>
+        <div class="links">
+          <a class="link selected" data-track="headerSubnavGroupListClick" href="/group/list" role="menuitem"
+            >그룹 목록</a>
+          <h3 class="blind">그룹목록</h3>
+          <a class="link" data-track="headerSubnavCreateGroupClick" href="/group/new" role="menuitem"
+            >그룹 생성</a>
+          <h3 class="blind">그룹 생성</h3>
+        </div>
+        <div class="tools">
+        </div>
+      </snb>
+    </div>
+  </header>
+  <section id="gd-body">
+    <h1 class="blind">길드 페이지 본문</h1>
+    <section id="gd-list-container">
+      <h1>내가 속한 길드들</h1>
+      <ul id="gd-list">
+        <li class="gd-container list1">
+          <article class="guild-01">
+            <header class="gd-title">
+              <h1 class="gd-list-title">길드명-1</h1>
+              <!-- 다른 요소들. 날짜? 멤버? 등등 -->
+            </header>
+            <section class="gd pt-list-container">
+              <h1 class="blind">길드명-1의 파티리스트</h1>
+              <ul class="gd pt-list-01">
+                <li class="pt-container-01">
+                  <article class="party-01">
+                    <header>
+                      <h1 class="gd-pt-title">파티명-1</h1>
+                    </header>
+                    <div class="gd pt-content">
+                      <p>파티1의 내용들</p>
+                    </div>
+                  </article>
+                </li>
+                <li class="pt-container 02">
+                  <article class="party-02">
+                    <header>
+                      <h1 class="gd-pt-title">파티명-2</h1>
+                    </header>
+                    <div class="gd pt-content">
+                      <p>파티2의 내용들</p>
+                    </div>
+                  </article>
+                </li>
+                <li class="pt-container 03">
+                  <article class="party-03">
+                    <header>
+                      <h1 class="gd-pt-title">파티명-3</h1>
+                    </header>
+                    <div class="gd pt-content">
+                      <p>파티3의 내용들</p>
+                    </div>
+                  </article>
+                </li>
+              </ul>
+            </section>
+          </article>
+        </li>
+        <li class="gd-container 02">
+          <article class="guild-02">
+            <p>${guild.gid}</p>
+            <header class="gd-title">
+              <h1 class="gd-list-title">${guild.guildName}</h1>
+              <!-- 다른 요소들. 날짜? 멤버? 등등 -->
+            </header>
+            <section class="gd pt-list-container">
+              <h1 class="blind">${guild.gid}의 party-list</h1>
+              <ul class="gd pt-list-01">
+                <li class="pt-container-01">
+                  <article class="party-01">
+                    <header>
+                      <h1 class="gd-pt-title">${party.partyName}</h1>
+                    </header>
+                    <div class="gd pt-content">
+                      <p>파티1의 내용들</p>
+                    </div>
+                  </article>
+                </li>
+                <li class="pt-container 02">
+                  <article class="party-02">
+                    <header>
+                      <h1 class="gd-pt-title">파티명-2</h1>
+                    </header>
+                    <div class="gd pt-content">
+                      <p>파티2의 내용들</p>
+                    </div>
+                  </article>
+                </li>
+                <li class="pt-container 03">
+                  <article class="party-03">
+                    <header>
+                      <h1 class="gd-pt-title">파티명-3</h1>
+                    </header>
+                    <div class="gd pt-content">
+                      <p>파티3의 내용들</p>
+                    </div>
+                  </article>
+                </li>
+              </ul>
+            </section>
+          </article>
+        </li>
+        <li class="gd-container 03"></li>
+      </ul>
+      </article>
+    </section>
+  </section>
+</section>
+
+
+<script language="javascript" type="text/javascript" src="/scripts/personal/ubuntudoPersonal.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/personal/dataManager.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/personal/todoManager.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/personal/modalManager.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/start/utility.js"></script>
+
+
+<div id="ui-datepicker-div"
+     class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-datepicker-default"></div>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+  (function (b, o, i, l, e, r) {
+    b.GoogleAnalyticsObject = l;
+    b[l] || (b[l] =
+      function () {
+        (b[l].q = b[l].q || []).push(arguments)
+      });
+    b[l].l = +new Date;
+    e = o.createElement(i);
+    r = o.getElementsByTagName(i)[0];
+    e.src = '//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e, r)
+  }(window, document, 'script', 'ga'));
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
+
+<!-- build:js({app,.tmp}) scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+</body>
+</html>

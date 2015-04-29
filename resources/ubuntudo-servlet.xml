@@ -17,10 +17,10 @@
 	<mvc:annotation-driven />
 	<context:annotation-config />
 
-	<mvc:resources location="/commons/css/" mapping="/css/**" />
-	<mvc:resources location="/commons/img/" mapping="/commons/img/**" />
-	<mvc:resources location="/commons/js/" mapping="/commons/js/**" />
-	<mvc:resources location="/commons/lib/" mapping="/commons/lib/**" />
+	<mvc:resources location="/styles/" mapping="/css/**" />
+	<mvc:resources location="/images/" mapping="/commons/img/**" />
+	<mvc:resources location="/scripts/" mapping="/commons/js/**" />
+	<mvc:resources location="/lib/" mapping="/commons/lib/**" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
