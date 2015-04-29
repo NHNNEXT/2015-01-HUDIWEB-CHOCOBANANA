@@ -55,7 +55,7 @@ public class TodoEntity {
 	
 	@Override
 	public String toString() {
-		return "TodoEntity [tid=" + tid + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", duedate=" + duedate
+		return "\nTodoEntity [tid=" + tid + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", duedate=" + duedate
 				+ ", status=" + status + ", editerId=" + editerId + ", pName=" + pName+"]";
 	}
 	
