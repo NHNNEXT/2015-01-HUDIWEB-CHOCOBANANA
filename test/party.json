@@ -1,0 +1,16 @@
+[
+  {
+    "pid":3,
+    "gid":50,
+    "leaderId":105,
+    "partyName":"Mark Party EDITED",
+    "status":"1"
+  },
+  {
+    "pid":-1,
+    "gid":-1,
+    "leaderId":-1,
+    "partyName":"personal",
+    "status":"0"
+  }
+]
