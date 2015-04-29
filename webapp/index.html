@@ -1,0 +1,186 @@
+<!doctype html>
+<html class="no-js">
+<head>
+  <meta charset="utf-8">
+  <title>Ubuntu.do</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+  <!-- build:css(.) styles/vendor.css -->
+  <!-- bower:css -->
+  <!-- endbower -->
+  <!-- endbuild -->
+  <!-- build:css(.tmp) styles/main.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+  <!-- build:js scripts/vendor/modernizr.js -->
+  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- endbuild -->
+
+  <link rel="stylesheet" href="/styles/reset.css">
+  <link rel="stylesheet" href="/styles/style.css">
+  <link rel="stylesheet" type="text/css" href="/styles/todo_modal.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+</head>
+<body>
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience.</p>
+<![endif]-->
+<header>
+  <div class="logo">
+    <!--<img src=""/>-->
+  </div>
+  <nav><a href="">home</a> <a href="/guild.html">guild</a></nav>
+  <div class="left_section">
+    <div class="search_wrapper">
+      <form method="post" action="">
+        <input class="search_input" value="Search guilds" type="text">
+        <input class="search_submit" type="submit" value="">
+      </form>
+    </div>
+    <div class="addBtn_and_profile_container">
+      <ul class="btn_wrapper">
+        <li class="todo_add_btn">
+          <div id="add_wrap" style="display:none;">
+            <div class="modal_effect_shadow"></div>
+            <div class="modal_effect"></div>
+            <form class="add_todo">
+              <!-- 파티 설정	-->
+              <div class="select_party">
+                <label id="selected_party_name">개인</label>
+                <select id="select_party_list" onchange="showSelectedParty()">
+                  <option>개인</option>
+                  <option>네트워크</option>
+                  <option>자구알</option>
+                </select>
+              </div>
+
+              <!-- 날짜선택 -->
+              <input id="datepicker" class="calendario calendar_box hasDatepicker" name="date" value="만기기한이 없습니다.">
+
+              <!-- 일정 이름 -->
+              <input type="text" name="title" class="input_todoName" placeholder="일정 이름" autocomplete="off" alt="일정 이름"
+                     required="">
+
+              <!-- 상세 내용 -->
+            <textarea name="contents" class="input_todoComment" cols="50" rows="5"
+                      placeholder="상세내용을 입력해주세요."></textarea>
+
+              <!-- 버튼 -->
+              <div class="todo_modal_btn">
+                <!-- <input type = "reset" value = "reset"/> -->
+                <input type="submit" value="submit" class="submit_btn">
+                <input type="button" value="cancel" class="cancel_btn">
+              </div>
+            </form>
+          </div>
+        </li>
+        <li class="profile"></li>
+      </ul>
+    </div>
+  </div>
+
+
+  <script type="text/javascript" src="/scripts/add_todo_modal/todo_modal.js"></script>
+</header>
+
+
+<div class="detail_modal" style="display:none">
+  <div class="light_box"></div>
+  <div class="task">
+    <div class="title"><textarea type="text" placeholder="To do..."></textarea></div>
+    <div class="detail_wrapper">
+      <span class="tid"></span>
+      <span class="party"></span>
+      <span class="due_date"></span>
+      <textarea class="note"></textarea>
+    </div>
+    <div class="btn_wrapper">
+      <button class="edit_btn">edit</button>
+      <button class="delete_btn">delete</button>
+    </div>
+  </div>
+</div>
+
+<div id="container" class="ns_personal">
+
+
+  <aside>
+    <div class="party_pavicon">휴</div>
+    <div class="party_pavicon">휴</div>
+
+  </aside>
+  <main>
+    <section>
+      <div class="category">
+        <h1 class="name">Past</h1>
+        <span class="date">~ 2015.04.06</span>
+      </div>
+      <ul class="past">
+        <li class="todo"><span class="tid">1</span>
+
+          <div class="party_pavicon">p</div>
+          <h2>asd</h2>
+
+          <p>1일 지남</p><a class="complete_btn"></a></li>
+      </ul>
+    </section>
+    <section>
+      <div class="category">
+        <h1 class="name">Today</h1>
+        <span class="date">2015.04.07</span>
+      </div>
+      <ul class="today"></ul>
+    </section>
+    <section>
+      <div class="category">
+        <h1 class="name">Future</h1>
+        <span class="date">2015.04.08 ~</span>
+      </div>
+      <ul class="future"></ul>
+    </section>
+  </main>
+</div>
+<script language="javascript" type="text/javascript" src="/scripts/personal/ubuntudoPersonal.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/personal/dataManager.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/personal/todoManager.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/personal/modalManager.js"></script>
+<script language="javascript" type="text/javascript" src="/scripts/start/utility.js"></script>
+
+
+<div id="ui-datepicker-div"
+     class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all ui-datepicker-default"></div>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+  (function (b, o, i, l, e, r) {
+    b.GoogleAnalyticsObject = l;
+    b[l] || (b[l] =
+      function () {
+        (b[l].q = b[l].q || []).push(arguments)
+      });
+    b[l].l = +new Date;
+    e = o.createElement(i);
+    r = o.getElementsByTagName(i)[0];
+    e.src = '//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e, r)
+  }(window, document, 'script', 'ga'));
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script>
+
+<!-- build:js({app,.tmp}) scripts/main.js -->
+<script src="scripts/main.js"></script>
+<!-- endbuild -->
+</body>
+</html>
