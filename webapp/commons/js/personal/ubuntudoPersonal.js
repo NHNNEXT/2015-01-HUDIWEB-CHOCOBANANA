@@ -64,7 +64,7 @@ window.addEventListener("load", function () {
 
         util.ajax({
             "method": "POST", 
-            "uri": "/personal", 
+            "uri": "/personal/todo", 
             "param" : param, 
             "callback" : oDataManager.addData
         });

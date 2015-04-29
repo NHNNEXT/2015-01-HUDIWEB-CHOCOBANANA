@@ -42,9 +42,9 @@ public class PersonalController {
 		return todoArray;
 	}
 	
-	@RequestMapping(value="/personal", method = RequestMethod.POST)
+	@RequestMapping(value="/personal/todo", method = RequestMethod.POST)
 	public @ResponseBody TodoEntity addPersonalTodo(HttpSession session, HttpServletRequest req) throws ServletRequestBindingException {
-		logger.debug("/personal POST요청에 대해 응답");
+		logger.debug("/personal/todo POST요청에 대해 응답");
 		if(session.getAttribute("user") == null){
 			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
 			//return "redirect:/start"; string으로 보내야하는데... 어쩐다...
