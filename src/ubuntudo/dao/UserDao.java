@@ -53,21 +53,21 @@ public class UserDao extends Qrys {
 		return jdbcTemplate.queryForObject(RETRIEVE_USER, rowMapper, email, passwd);
 	}
 
-	public boolean validateUser(String email) {
-		logger.info("---->UserDao.validateUser");
-		String qry = "select uid, name, email from user where email = ?";
+	public UserEntity validateUser(String email) {
+		logger.info("---->UserDao.validateUser()");
+		logger.debug("email:{}", email);
+		
 		RowMapper<UserEntity> rowMapper = new RowMapper<UserEntity>() {
 			public UserEntity mapRow(ResultSet rs, int rowNum) {
 				try {
-					return new UserEntity(rs.getString("uid"), rs.getString("name"), rs.getString("email"));
+					return new UserEntity(rs.getLong("uid"), null, rs.getString("email"), null);
 				} catch (SQLException e) {
 					throw new BeanInstantiationException(UserEntity.class, e.getMessage(), e);
 				}
 			}
 		};
+		logger.debug("jdbcTemplate:{}", jdbcTemplate);
 		logger.info("<----UserDao.validateUser");
-		if (jdbcTemplate.queryForObject(qry, rowMapper, email) != null)
-			return true;
-		return false;
+		return jdbcTemplate.queryForObject(VALIDATE_USER, rowMapper, email);
 	}
 }

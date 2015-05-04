@@ -19,8 +19,10 @@
 
 	<mvc:resources location="/styles/" mapping="/css/**" />
 	<mvc:resources location="/images/" mapping="/commons/img/**" />
+	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/scripts/" mapping="/commons/js/**" />
 	<mvc:resources location="/lib/" mapping="/commons/lib/**" />
+	<mvc:resources location="/bower_components/" mapping="/bower_components/**" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 

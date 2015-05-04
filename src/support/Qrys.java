@@ -3,6 +3,9 @@ package support;
 public class Qrys {
 	// for user registration
 	public static String INSERT_USER = "insert into user (name, email, passwd) values (?, ?, ?)";
+	
+	// for user validation
+	public static String VALIDATE_USER = "SELECT uid, email FROM user WHERE email = ?";
 
 	// for login
 	public static String RETRIEVE_USER = "SELECT uid, name, email, passwd FROM user WHERE email = ? AND passwd = ?";

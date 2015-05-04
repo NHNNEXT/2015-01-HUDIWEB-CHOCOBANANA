@@ -1,7 +1,8 @@
 {
 "version": 3,
-"mappings": "",
-"sources": [],
+
+"mappings": "AAGA,UAAW;EACT,UAAU,ECJI,IAAI",
+"sources": ["gulid.scss","_variable.scss"],
 "names": [],
 "file": "gulid.css"
 }

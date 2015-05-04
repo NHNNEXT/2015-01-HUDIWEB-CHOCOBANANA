@@ -49,7 +49,7 @@
     position: relative;
     width: 200px;
     height: 40px;
-    background: url(/commons/img/select_arrow.png) 180px center no-repeat; /* 화살표 이미지 */
+    background: url(/images/select_arrow.png) 180px center no-repeat; /* 화살표 이미지 */
     border: 1px solid #E9DDDD;
 }
 .select_party label#selected_party_name {
@@ -127,7 +127,7 @@ body {
   width: 20px;
   height: 20px;
   text-indent: 9999px;
-  1border: 2px solid #b0aead;
+  /*border: 2px solid #b0aead;*/
   border-radius: 100%;
   cursor: pointer;
   overflow: hidden;

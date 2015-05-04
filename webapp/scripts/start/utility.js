@@ -3,6 +3,8 @@
  * Edited by dahye on 2015. 4. 18 ('findIndex', 'ajax', 'echo' function added)
  */
 (function () {
+	'use strict';
+
     ubuntudo.utility.typeCheck = function (object) {
         var rtn = '';
         if (typeof object === 'object') {
@@ -33,7 +35,7 @@
                     callback(result);
                 }
             }
-        }
+        };
     };
 
     //ajax로 대체하여 중복제거해야 할듯 - 다혜
@@ -53,19 +55,19 @@
                     callback(result);
                 }
             }
-        }
+        };
     };
 
 
     //getJSONData와 postJSONData 중복제거용 - 다혜
-    ubuntudo.utility.ajax = function (object) { 
+    ubuntudo.utility.ajax = function (object) {
         var method = object.method;
         var uri = object.uri;
         var param = object.param;
         var callback = object.callback;
         //var context = object.context;
         //var object = {"method": null, 등등}을 돌면서 object의 value채워넣기
-        
+
         var util = ubuntudo.utility;
         var request = new XMLHttpRequest();
         //this.insId = insId++;
@@ -81,10 +83,10 @@
                     callback(result);
                 }
             }
-        }
+        };
     };
 
-//    ubuntudo.utility.syncRequest = function (method, uri, param, callback) { 
+//    ubuntudo.utility.syncRequest = function (method, uri, param, callback) {
 //        var util = ubuntudo.utility;
 //        var request = new XMLHttpRequest();
 //        request.open(method, uri, false);
@@ -105,8 +107,7 @@
     };
 
     ubuntudo.utility.findIndex = function findIndex(object, key, value) {
-        var index = 0;
-        var util = ubuntudo.utility;
+        //var util = ubuntudo.utility;
         var length = Object.keys(object).length;
         for(var index = 0; index < length; index++) {
             if(object[index][key] === value) {
@@ -114,5 +115,5 @@
             }
         }
     };
-   
+
 })();
