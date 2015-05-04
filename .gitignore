@@ -16,3 +16,9 @@
 /webapp/bower_components
 /*property files*/
 /resources/local_properties
+
+node_modules
+dist
+.tmp
+.sass-cache
+/webapp/bower_components

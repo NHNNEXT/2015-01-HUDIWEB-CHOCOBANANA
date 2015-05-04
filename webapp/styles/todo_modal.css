@@ -1,0 +1,277 @@
+.modal_effect_shadow{
+  border-color: transparent;
+  border-style: dashed dashed solid;
+  border-width: 0 8.5px 8.5px;
+  position: absolute;
+  left: 6.5px;
+  z-index: 1;
+  height: 0;
+  width: 0;
+  -webkit-animation: gb__a .2s;
+  animation: gb__a .2s;
+  border-bottom-color: #ccc;
+  border-bottom-color: rgba(0,0,0,.2);
+  top: 31px;
+}
+
+.modal_effect{
+  border-color: transparent;
+  border-bottom-color: #fff;
+  border-style: dashed dashed solid;
+  border-width: 0 8.5px 8.5px;
+  position: absolute;
+  left: 6.5px;
+  top: 32px;
+  z-index: 20;
+  height: 0;
+  width: 0;
+  -webkit-animation: gb__a .2s;
+}
+
+/* 폼 박스*/
+.add_todo {
+  width: 388px;
+  height: 326px;
+  position:absolute;
+  background-color: #fff;
+  z-index : 10;
+  padding:10px;
+    border-color: rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  margin-top : 40px;
+  right:-90px;
+}
+
+/* 그룹 선택 */
+.select_party {
+    float: left;
+    position: relative;
+    width: 200px;
+    height: 40px;
+    background: url(/images/select_arrow.png) 180px center no-repeat; /* 화살표 이미지 */
+    border: 1px solid #E9DDDD;
+}
+.select_party label#selected_party_name {
+    position: absolute;
+    font-size: 14px;
+    color: #a97228;
+    top: 13px;
+    left: 12px;
+    letter-spacing: 1px;
+ 	line-height : 15px;
+}
+.select_party select#select_party_list {
+    width: 100%;
+    height: 40px;
+    min-height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    opacity: 0;
+    filter: alpha(opacity=0); /* IE 8 */
+}
+/* //그룹 선택 */
+
+
+
+/* 날짜 선택 박스 */
+.calendar_box {
+    float: left;
+    width: 150px;
+    height: 40px;
+    border: 1px solid #E9DDDD;
+    margin-left: 10px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #a97228;
+    letter-spacing: 1px;
+}
+
+/* 캘린더 */
+body {
+  /*background : #f3f3f3;*/
+  font-family : 'Open Sans', sans-serif;
+}
+
+.ui-datepicker {
+  font-size : 11px ;
+  padding : 8px;
+  background: #fff;
+  border-color: rgba(0,0,0,.2);
+  -webkit-box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,.2);
+  z-index:2;
+}
+.ui-datepicker-default {
+  padding: 0;
+}
+.calendar {
+  position: absolute;
+  width: 280px;
+  left: 50%;
+  top: 50%;
+  margin: -145px 0px 0px -140px;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 2px solid #b0aead;
+}
+.ui-datepicker-header {
+  height: 30px;
+  line-height: 30px;
+  color: #b0aead;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.ui-datepicker-prev, .ui-datepicker-next {
+  width: 20px;
+  height: 20px;
+  text-indent: 9999px;
+  /*border: 2px solid #b0aead;*/
+  border-radius: 100%;
+  cursor: pointer;
+  overflow: hidden;
+  margin-top: 12px;
+}
+.ui-datepicker-prev {
+  float: left;
+  margin-left: 12px;
+}
+.ui-datepicker-prev:after{
+    transform: rotate(45deg);
+    margin: -33px 0px 0px 8px;
+}
+.ui-datepicker-next{
+  float: right;
+  margin-right: 12px;
+}
+.ui-datepicker-next:after{
+    transform: rotate(-135deg);
+    margin: -33px 0px 0px 6px;
+}
+.ui-datepicker-prev:after, .ui-datepicker-next:after{
+  content: '';
+  position: absolute;
+  display: block;
+  width: 4px;
+  height: 4px;
+  border-left: 2px solid #b0aead;
+  border-bottom: 2px solid #b0aead;
+}
+.ui-datepicker-prev:hover, .ui-datepicker-next:hover, .ui-datepicker-prev:hover:after, .ui-datepicker-next:hover:after {
+  border-color: #5ed1cc;
+}
+
+.ui-datepicker-title{
+  text-align: center;
+}
+
+.ui-datepicker-calendar{
+  background: #fff;
+  padding-top: 40px;
+  width: 100%;
+  text-align: center;
+}
+.ui-datepicker-calendar thead tr th span {
+          display: block;
+          width :24px;
+          color: #aaa;
+          margin-top: 12px;
+          margin-bottom :7px;
+          padding-left: 5px;
+          padding-right: 5px;
+          font-size: 11px;
+          font-weight :500;
+}
+.ui-state-default{
+  display: block;
+  text-decoration: none;
+  color: rgb(17,17,17);
+  height: 25px;
+  line-height: 25px;
+  font-size: 11px;
+}
+.ui-state-default:hover{
+    background: #dd4b36;
+    color: #fff;
+    border-radius: 25px;
+}
+.ui-state-highlight{
+  color: #8dd391;
+}
+
+.ui-state-active{
+  color: #fff;
+  background: rgba(0,0,0, 1);
+  border-radius: 25px;
+}
+.ui-datepicker-unselectable .ui-state-default{
+    color: #eee;
+    border: 0;
+}
+table {
+  border-collapse: collapse;
+}
+/* // 날짜 선택 */
+
+
+/* 일정 이름 */
+.input_todoName {
+    clear: both;
+    float: left;
+    width: 362px;
+    height: 40px;
+    border: 1px solid #E9DDDD;
+    margin-top: 10px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: #a97228;
+    letter-spacing: 1px;
+}
+
+
+
+/* 상세 내용 입력 */
+.input_todoComment {
+    clear: both;
+    float: left;
+    width: 362px;
+    height: 130px;
+    border: 1px solid #E9DDDD;
+    margin-top: 10px;
+    padding: 12px;
+    font-size: 14px;
+    color: #a97228;
+    letter-spacing: 1px;
+}
+
+
+/* 버튼 */
+.todo_modal_btn {
+    clear: both;
+    width: 250px;
+    height: 46px;
+    margin: 0 auto;
+}
+
+.todo_modal_btn input{
+    display: block;
+    float: left;
+    margin: 10px;
+    width: 100px;
+    height: 46px;
+    /*padding: 15px 0 14px;*/
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    font-size: 16px;
+    color: #393939;
+    background: #E9DDDD;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: -1px;
+    border: 0 none;
+    cursor: pointer;
+}

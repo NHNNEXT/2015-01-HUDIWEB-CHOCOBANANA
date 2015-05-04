@@ -6,6 +6,8 @@ import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.spec.RSAPublicKeySpec;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.http.HttpSession;
 
@@ -41,6 +43,7 @@ public class StartController{
          
 		model.addAttribute("RSAModulus", publicKeyModulus);
 		model.addAttribute("RSAExponent", publicKeyExponent);
+		
 		return "start";
 	}
 }

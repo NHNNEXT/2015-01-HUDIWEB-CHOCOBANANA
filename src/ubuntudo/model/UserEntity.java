@@ -19,6 +19,11 @@ public class UserEntity {
 		this.email = email;
 		this.passwd = passwd;
 	}
+	
+	// use this constructor for validating a user.
+	public UserEntity(String email) {
+		this(null,null,email,null);
+	}
 
 	public Long getUid() {
 		return uid;

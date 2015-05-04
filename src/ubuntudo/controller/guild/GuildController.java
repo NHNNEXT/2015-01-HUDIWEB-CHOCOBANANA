@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.biz.GuildBiz;
 import ubuntudo.model.GuildEntity;
@@ -29,7 +30,7 @@ public class GuildController {
 	}
 
 	@RequestMapping(value = "/retrieveGuildListSearch", method = RequestMethod.POST)
-	public List<GuildEntity> retrieveGuildListSearchController(@RequestParam("guildName") String guildName) {
+	public @ResponseBody List<GuildEntity> retrieveGuildListSearchController(@RequestParam("guildName") String guildName) {
 		return gbiz.retrieveGuildListSearchBiz(guildName);
 	}
 

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,8 @@ public class SignUpController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(SignUpController.class);
 
-	UserDao userdao = new UserDao();
+	@Autowired
+	UserDao userdao;
 
 	@RequestMapping(method = RequestMethod.POST)
 	public @ResponseBody AjaxRedirectResponse execute(HttpServletRequest request,
