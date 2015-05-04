@@ -12,6 +12,7 @@
 /resources/ConnectionInfo.xml
 /ChocoBanana.iml
 .springBeans
-
+.tmp
+/webapp/bower_components
 /*property files*/
 /resources/local_properties
