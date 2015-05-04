@@ -5,11 +5,12 @@
 ubuntudo = {};
 ubuntudo.ui = {};
 ubuntudo.utility = {};
+ubuntudo.lib = {};
 
 window.addEventListener("load", function () {
-
+	'use strict';
 	var elTarget = document.querySelector(".signup_box");
-	var validateManager = new ubuntudo.ui.validateManager(elTarget);
+	var validateManager = new ubuntudo.ui.ValidateManager(elTarget);
 	validateManager.validateForms();
 
 });

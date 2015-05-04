@@ -79,7 +79,7 @@ li {
 	height: 30px;
 	left: 40px;
 	top: 40px;
-	background: url("../img/ubuntudo_logo.png") no-repeat;
+	background: url("/images/ubuntudo_logo.png") no-repeat;
 	background-size: 100%;
 	position: absolute;
 }

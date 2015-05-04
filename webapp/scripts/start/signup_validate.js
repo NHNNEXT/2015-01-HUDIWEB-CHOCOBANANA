@@ -1,7 +1,8 @@
 /**
  * Created by jjungmac on 2015. 4. 3..
  */
-ubuntudo.ui.validateManager = (function () {
+ubuntudo.ui.ValidateManager = (function () {
+	'use strict';
 
 	// HTML에 의존하는 CLASS,ID 캐싱
 	var CLASSNAME = {
@@ -18,7 +19,7 @@ ubuntudo.ui.validateManager = (function () {
 		PASSWORD_MESSAGE: "signup_password_message",
 		PASSWORD_CHECK_MESSAGE: "signup_password_check_message",
 		SIGNUP_FORM: "signup_form"
-	}
+	};
 
 	// 에러출력 메세지 캐싱
 	var MESSAGE = {
@@ -31,7 +32,7 @@ ubuntudo.ui.validateManager = (function () {
 		CONFIRM_PASSWORD: "비밀번호가 일치한다요!",
 		NOT_CONFIRM_PASSWORD: "비밀번호가 일치하지 않는다요!"
 
-	}
+	};
 
 	//ajax 모듈을 위해 util 모듈 가져옴.
 	var util = ubuntudo.utility;
@@ -41,12 +42,13 @@ ubuntudo.ui.validateManager = (function () {
 	function ValidateManager(elBase) {
 		if (this instanceof ValidateManager) {
 			this.elForm = document.getElementById(IDNAME.SIGNUP_FORM);
-			this.elEmail = document.getElementById(IDNAME.EMAIL);
-			this.elPassword = document.getElementById(IDNAME.PASSWORD);
-			this.elPassword2 = document.getElementById(IDNAME.PASSWORD_CHECK);
-			this.elEmailMsg = document.getElementById(IDNAME.EMAIL_MESSAGE);
-			this.elPasswordMsg = document.getElementById(IDNAME.PASSWORD_MESSAGE);
-			this.elPassword2Msg = document.getElementById(IDNAME.PASSWORD_CHECK_MESSAGE);
+			this.elEmail = this.elForm.querySelector("#"+IDNAME.EMAIL);
+			this.elPassword = this.elForm.querySelector("#"+IDNAME.PASSWORD);
+			this.elPassword2 = this.elForm.querySelector("#"+IDNAME.PASSWORD_CHECK);
+			this.elEmailMsg = this.elForm.querySelector("#"+IDNAME.EMAIL_MESSAGE);
+			this.elPasswordMsg = this.elForm.querySelector("#"+IDNAME.PASSWORD_MESSAGE);
+			this.elPassword2Msg = this.elForm.querySelector("#"+IDNAME.PASSWORD_CHECK_MESSAGE);
+
 
 		} else {
 			return new ValidateManager(elBase);
@@ -60,7 +62,7 @@ ubuntudo.ui.validateManager = (function () {
 	ValidateManager.prototype.validateForms = function () {
 		var inputTimer = null;
 		this.elForm.addEventListener("keyup", function (e) {
-			if (CheckKeyCode(e)) {
+			if (checkKeyCode(e)) {
 				if (inputTimer !== null) {
 					clearTimeout(inputTimer);
 				}
@@ -77,7 +79,7 @@ ubuntudo.ui.validateManager = (function () {
 				}.bind(this), 300);
 			}
 		}.bind(this));
-	}
+	};
 
 
 	ValidateManager.prototype.validateEmail = function () {
@@ -89,7 +91,7 @@ ubuntudo.ui.validateManager = (function () {
 		// isEmail, isHan은 naver 회원가입js 참고함.
 		function _checkRegexpEmail() {
 			var email = elEmail.value;
-			var isEmail = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+			var isEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			var isHan = /[ㄱ-ㅎ가-힣]/g;
 			if (!isEmail.test(email) || isHan.test(email)) {
 				elMsg.style.display = "block";
@@ -104,12 +106,12 @@ ubuntudo.ui.validateManager = (function () {
 		//postJSONData(URL, param, callback)임.
 		function _ajaxSearchEmail() {
 			var email = "email=" + elEmail.value;
-			util.postJSONData("/validate", email, _showValidationMessage);
+			util.postJSONData("/validate/user", email, _showValidationMessage);
 		}
 
 		function _showValidationMessage(ajaxResult) {
 			if (ajaxResult.hasOwnProperty("status")) {
-				if (ajaxResult.status === "false") {
+				if (ajaxResult.status === "fail") {
 					elMsg.className = CLASSNAME.OK;
 					elMsg.innerHTML = MESSAGE.GOOD_EMAIL;
 				}
@@ -123,7 +125,7 @@ ubuntudo.ui.validateManager = (function () {
 			}
 		}
 		_checkRegexpEmail();
-	}
+	};
 
 	ValidateManager.prototype.validatePassword = function () {
 
@@ -134,7 +136,7 @@ ubuntudo.ui.validateManager = (function () {
 		//TODO 각 check 항목별로 Message를 다르게 분리해야함.
 		function _isValidPassword(str) {
 			//empty check
-			if (str == "") {
+			if (str === "") {
 				return false;
 			}
 			/* check whether input value is included space or not */
@@ -146,10 +148,8 @@ ubuntudo.ui.validateManager = (function () {
 				return false;
 			}
 			var isPW = /^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!#$%&'"*+/=?^_`{|}()~;:,@<>-]).*$/;
-			if (!isPW.test(str)) {
-				return false;
-			}
-			return true;
+			return isPW.test(str);
+
 		}
 
 		function _checkPassword1() {
@@ -169,20 +169,20 @@ ubuntudo.ui.validateManager = (function () {
 		}
 
 		_checkPassword1();
-	}
+	};
 
-	//TODO function이름이 validatePassword2인데 뭔가 다른거로 바꿔야할듯.
+	//TODO function 이름이 validatePassword2인데 뭔가 다른거로 바꿔야할듯.
 	ValidateManager.prototype.validatePassword2 = function () {
 		var password1 = this.elPassword.value;
 		var password2 = this.elPassword2.value;
 		var elMsg = this.elPassword2Msg;
 
 		function checkPassword2() {
-			if (password2 == "") {
+			if (password2 === "") {
 				elMsg.className = CLASSNAME.ERROR;
 				elMsg.innerHTML = MESSAGE.DEFAULT;
 			}
-			if (password1 != password2) {
+			if (password1 !== password2) {
 				elMsg.className = CLASSNAME.ERROR;
 				elMsg.innerHTML = MESSAGE.NOT_CONFIRM_PASSWORD;
 			} else {
@@ -192,10 +192,10 @@ ubuntudo.ui.validateManager = (function () {
 			elMsg.style.display = "block";
 		}
 		checkPassword2();
-	}
+	};
 
 
-	function CheckKeyCode(e) {
+	function checkKeyCode(e) {
 		var KeyCode = 0;
 		if (window.event) { // IE Chrome Safari
 			KeyCode = e.keyCode;
@@ -232,7 +232,6 @@ ubuntudo.ui.validateManager = (function () {
 			case 122: // F11
 			case 123: // F12
 				return false;
-				break;
 			default:
 				return true;
 		}
@@ -240,11 +239,7 @@ ubuntudo.ui.validateManager = (function () {
 
 // space 가 있으면 true, 없으면 false
 	function checkSpace(str) {
-		if (str.search(/\s/) != -1) {
-			return true;
-		} else {
-			return false;
-		}
+		return str.search(/\s/) !== -1;
 	}
 	return ValidateManager;
 })();

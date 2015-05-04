@@ -66,8 +66,7 @@ ul.btn_wrapper {
   top: 12px;
   width: 26px;
   height: 16px;
-  background-image: url(https://d3ptyyxy2at9ui.cloudfront.net/08f446c3fb93cb51b620b7d6a713a42b.png);
-  background-position: 0px -16px;
+  background: url(https://d3ptyyxy2at9ui.cloudfront.net/08f446c3fb93cb51b620b7d6a713a42b.png) 0px -16px;
   float: left;
   z-index: 2;
   cursor: pointer; }
@@ -111,13 +110,11 @@ ul.btn_wrapper {
 
 .search_submit {
   position: relative;
-  top: 0px;
+  top: 0;
   outline: none;
   border: none;
-  background-color: transparent;
   background-origin: padding-box;
-  background-image: url(https://d3ptyyxy2at9ui.cloudfront.net/08f446c3fb93cb51b620b7d6a713a42b.png);
-  background-position: 0px -1498.5px;
+  background: transparent url(https://d3ptyyxy2at9ui.cloudfront.net/08f446c3fb93cb51b620b7d6a713a42b.png) 0px -1498.5px;
   width: 17px;
   height: 17px; }
 
@@ -227,14 +224,11 @@ ul.btn_wrapper {
   /* Safari */
   transition: all .3s;
   border-left: 1px solid rgba(129, 129, 129, 0.2);
-  background-color: #42c7b7;
-  background-image: url("/images/check_icon.png");
-  background-repeat: no-repeat;
-  background-size: 20px 15px;
-  background-position: center; }
+  background: #42c7b7 url("/images/check_icon.png") no-repeat center;
+  background-size: 20px 15px; }
 
 .ns_personal .todo:hover .complete_btn {
-  right: 0px;
+  right: 0;
   cursor: pointer; }
 
 /*detail_modal*/

@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
+
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
 
