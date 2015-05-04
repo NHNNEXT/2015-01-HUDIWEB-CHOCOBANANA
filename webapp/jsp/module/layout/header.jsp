@@ -12,8 +12,9 @@
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
-<script src="bower_components/jquery-ui/jquery-ui.js"></script>
 <script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.js"></script>
+
 </head>
 <body>
 	<h1 class="blind">우분투두</h1>
@@ -32,6 +33,7 @@
 			<h2 class="blind">홈</h2>
 			<a href="/guild">guild</a>
 			<h2 class="blind">길드</h2>
+
 		</nav>
 		<section class="left_section">
 			<h1 class="blind">검색창,Todo추가,내정보</h1>

@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 
   // Configurable paths
   var config = {
-    app: 'webapp',
+    app: 'webapp/',
     dist: 'webapp/dist'
   };
 
@@ -76,7 +76,7 @@ module.exports = function (grunt) {
        hostname: 'localhost'
       },
       proxies: [{
-    	  context: ' ',
+    	  context: '/',
     	  host: 'localhost',
     	  port: 8080
       }],
@@ -102,11 +102,11 @@ module.exports = function (grunt) {
                 middlewares.push(connect.static(base));
               });
               
-              // Make directory browse-able.
-              var directory = options.directory || options.base[options.base.length - 1];
-              middlewares.push(connect.directory(directory));
+//              // Make directory browse-able.
+//              var directory = options.directory || options.base[options.base.length - 1];
+//              middlewares.push(connect.directory(directory));
               
-           
+      
             return middlewares;
           }
         }
