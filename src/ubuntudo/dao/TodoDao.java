@@ -114,9 +114,22 @@ public class TodoDao extends JDBCManager {
 		return result;
 	}
 
-	public int updateTodoDao(TodoEntity todo) {
+	public int updatePersonalTodoDao(TodoEntity todo) {
 		logger.debug("updating: " + todo.toString());
-		logger.debug("executine: " + QrysT.UPDATE_TODO);
-		return jdbcTemplate.update(QrysT.UPDATE_TODO, todo.getTitle(), todo.getContents(), todo.getDueDate(), todo.getEditerId(), todo.getTid());
+		logger.debug("executing: " + QrysT.UPDATE_PERSONAL_TODO);
+		return jdbcTemplate.update(QrysT.UPDATE_PERSONAL_TODO, todo.getTitle(), todo.getContents(), todo.getDueDate(), todo.getEditerId(), todo.getTid());
 	}
+
+	public int createPersonalTodoHistoryDao(TodoEntity todo) {
+		logger.debug("creating history: " + todo.getTid());
+		logger.debug("executing: " + QrysT.CREATE_PERSONAL_TODO_HISTORY);
+		return jdbcTemplate.update(QrysT.CREATE_PERSONAL_TODO_HISTORY, todo.getTid());
+	}
+
+	public int deletePersonalTodoDao(TodoEntity todo) {
+		logger.debug("deleting: " + todo.toString());
+		logger.debug("executing: " + QrysT.DELETE_PERSONAL_TODO);
+		return jdbcTemplate.update(QrysT.DELETE_PERSONAL_TODO, todo.getTid());
+	}
+
 }

@@ -22,9 +22,9 @@ public class TodoController {
 	@Autowired
 	TodoBiz tbiz;
 
-	@RequestMapping(value = "/updateTodo", method = RequestMethod.POST)
+	@RequestMapping(value = "/updatePersonalTodo", method = RequestMethod.POST)
 	public @ResponseBody void updateTodoController(HttpSession session, long tid, String title_edit, String note_edit, String due_date_edit) {
-		logger.debug("===>updateTodo");
+		logger.debug("===>updatePersonalTodo");
 
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		long uid = user.getUid();
@@ -35,7 +35,21 @@ public class TodoController {
 		logger.debug("new note_edit: " + note_edit);
 		logger.debug("new due_date_edit: " + due_date_edit);
 
-		tbiz.updateTodoBiz(new TodoEntity(tid, title_edit, note_edit, due_date_edit, uid));
-		logger.debug("<===updateTodo");
+		tbiz.updatePersonalTodoBiz(new TodoEntity(tid, title_edit, note_edit, due_date_edit, uid));
+		logger.debug("<===updateTupdatePersonalTodoodo");
+	}
+
+	@RequestMapping(value = "/deletePersonalTodo", method = RequestMethod.POST)
+	public @ResponseBody void deleteTodoController(HttpSession session, long tid) {
+		logger.debug("===>deletePersonalTodo");
+
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		long uid = user.getUid();
+
+		logger.debug("current user: " + uid);
+		logger.debug("current todo: " + tid);
+
+		tbiz.deletePersonalTodoBiz(new TodoEntity(tid, "", "", "", uid));
+		logger.debug("<===deletePersonalTodo");
 	}
 }

@@ -96,12 +96,35 @@ editBtn.addEventListener('click', function(e) {
 
     util.ajax({
         "method": "POST", 
-        "uri": "/todo/updateTodo", 
+        "uri": "/todo/updatePersonalTodo", 
         "param" : param, 
         "callback" : oDataManager.addData
     });
-    
     document.getElementsByClassName("detail_modal")[0].style.display = "none";
-    
-    document.getElementById('note_edit').value;
+}); 
+
+var deleteTodoBtn = document.querySelector(".btn_wrapper .delete_btn");
+deleteTodoBtn.addEventListener('click', function(e) {
+	e.preventDefault();
+	e.stopPropagation(); 
+	
+	var util = ubuntudo.utility;
+	var oDataManager = new ubuntudo.ui.dataManager();
+	var oTodoManager = new ubuntudo.ui.todoManager();
+	var elList = document.querySelectorAll("section ul");
+	var elLightBox = document.querySelector(".light_box");
+	var oDetailModal;
+	var oModalManager;
+	
+	var tid = document.querySelector(".detail_wrapper .tid").textContent;
+	
+	var param = "tid=" + tid;
+	
+	util.ajax({
+		"method": "POST", 
+		"uri": "/todo/deletePersonalTodo", 
+		"param" : param, 
+		"callback" : oDataManager.addData
+	});
+	document.getElementsByClassName("detail_modal")[0].style.display = "none";
 }); 
