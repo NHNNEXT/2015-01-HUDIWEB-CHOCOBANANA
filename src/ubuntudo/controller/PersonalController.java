@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import ubuntudo.biz.TodoBiz;
 import ubuntudo.dao.TodoDao;
 import ubuntudo.model.TodoEntity;
 import ubuntudo.model.UserEntity;
@@ -23,17 +24,17 @@ import ubuntudo.model.UserEntity;
 public class PersonalController {
 	private static final Logger logger = LoggerFactory.getLogger(PersonalController.class);
 	TodoDao tdao = new TodoDao();
-	
-	@RequestMapping(value="/personal", method = RequestMethod.GET)
-	public String execute (HttpSession session) {
-		if(session.getAttribute("user") == null){
+
+	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	public String execute(HttpSession session) {
+		if (session.getAttribute("user") == null) {
 			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
 			return "redirect:/start";
 		}
 		logger.debug("/personal 요청에 대해 응답");
-		return "personal";	
+		return "personal";
 	}
-	
+
 	@RequestMapping(value = "/personal/todo", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<TodoEntity> getPersonalTodos(HttpSession session) {
 		logger.debug("/personal/todo 요청에 대해 응답");
@@ -41,13 +42,13 @@ public class PersonalController {
 		ArrayList<TodoEntity> todoArray = tdao.getPersonalTodos(user.getUid());
 		return todoArray;
 	}
-	
-	@RequestMapping(value="/personal", method = RequestMethod.POST)
+
+	@RequestMapping(value = "/personal", method = RequestMethod.POST)
 	public @ResponseBody TodoEntity addPersonalTodo(HttpSession session, HttpServletRequest req) throws ServletRequestBindingException {
 		logger.debug("/personal POST요청에 대해 응답");
-		if(session.getAttribute("user") == null){
+		if (session.getAttribute("user") == null) {
 			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
-			//return "redirect:/start"; string으로 보내야하는데... 어쩐다...
+			// return "redirect:/start"; string으로 보내야하는데... 어쩐다...
 		}
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
@@ -58,9 +59,9 @@ public class PersonalController {
 		Date due = Date.valueOf(duedate); // duedate가 null값이면 error난다. "-"가 없어도 에러난다.
 		logger.debug("param check: uid={}, pid={}, title={}, contents={}, due={}", uid, pid, title, contents, due);
 
-		TodoEntity newTodo = new TodoEntity(pid, title, contents, due, uid);
+		TodoEntity newTodo = new TodoEntity(pid, title, contents, duedate, uid);
 		TodoEntity resultTodo = tdao.addPersonalTodo(newTodo);
-		
+
 		return resultTodo;
 	}
 }

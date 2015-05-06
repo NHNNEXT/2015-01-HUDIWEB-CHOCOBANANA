@@ -11,7 +11,7 @@ ubuntudo.ui.todoManager = (function() {
 	}; 
     
     //CSS에 의존하는 리스트 템플릿
-    var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
+    var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><span class="pid"><%=pid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
       
     function TodoManager () {  
     };
@@ -52,7 +52,7 @@ ubuntudo.ui.todoManager = (function() {
 
     function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {
         var field = fieldName;
-        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
+        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=pid%>", todoInfo[field.PARTY_ID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
         
     };
     

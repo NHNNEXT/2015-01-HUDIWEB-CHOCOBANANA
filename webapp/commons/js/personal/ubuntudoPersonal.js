@@ -73,5 +73,35 @@ window.addEventListener("load", function () {
     }); 
 });
 
+var editBtn = document.querySelector(".btn_wrapper .edit_btn");
+editBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation(); 
 
+    var util = ubuntudo.utility;
+    var oDataManager = new ubuntudo.ui.dataManager();
+    var oTodoManager = new ubuntudo.ui.todoManager();
+    var elList = document.querySelectorAll("section ul");
+    var elLightBox = document.querySelector(".light_box");
+    var oDetailModal;
+    var oModalManager;
 
+    var tid = document.querySelector(".detail_wrapper .tid").textContent;
+    var title_edit = document.getElementById('title_edit').innerHTML;
+    var note_edit = document.getElementById('note_edit').value;
+    var due_date_edit = document.getElementById('due_date_edit').innerHTML;
+    
+
+    var param = "tid=" + tid + "&title_edit=" + title_edit + "&note_edit=" + note_edit + "&due_date_edit=" + due_date_edit;
+
+    util.ajax({
+        "method": "POST", 
+        "uri": "/todo/updateTodo", 
+        "param" : param, 
+        "callback" : oDataManager.addData
+    });
+    
+    document.getElementsByClassName("detail_modal")[0].style.display = "none";
+    
+    document.getElementById('note_edit').value;
+}); 

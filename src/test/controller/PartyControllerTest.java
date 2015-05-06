@@ -28,7 +28,7 @@ public class PartyControllerTest {
 		long leaderId = 50l;
 		String partyName = "Mark Party50";
 
-		assertEquals(1, partyController.insertNewPartyController(gid, leaderId, partyName));
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
 	}
 
 	@Test
@@ -40,7 +40,7 @@ public class PartyControllerTest {
 
 	@Test
 	public void retrievePartyListSearchTest() {
-		String partyName = "13";
+		String partyName = "";
 		List<PartyEntity> partyList = partyController.retrievePartyListSearchController(partyName);
 		assertNotNull(partyList);
 
@@ -54,17 +54,17 @@ public class PartyControllerTest {
 		long pid = 3l;
 		long leaderId = 105l;
 		String partyName = "Mark Party EDITED";
-		String status = "830408";
+		String status = "1";
 
 		assertEquals(1, partyController.updatePartyController(pid, leaderId, partyName, status));
 	}
-	
+
 	@Test
 	public void retrievePartyInGuildTest() {
-		long gid = 3l;
+		long gid = -1l;
 		List<PartyEntity> partyList = partyController.retrievePartyInGuildListController(gid);
 		assertNotNull(partyList);
-		
+
 		Gson gson = new Gson();
 		String partyListJson = gson.toJson(partyList);
 		System.out.println(partyListJson);

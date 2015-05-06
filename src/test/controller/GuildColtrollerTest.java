@@ -39,7 +39,7 @@ public class GuildColtrollerTest {
 
 	@Test
 	public void retrieveGuildSearchControllerTest() {
-		String guildName = "d2";
+		String guildName = "";
 		List<GuildEntity> guildList = guildController.retrieveGuildListSearchController(guildName);
 		System.out.println(guildList.toString());
 
@@ -52,10 +52,10 @@ public class GuildColtrollerTest {
 
 	@Test
 	public void updateGuildControllerTest() {
-		long gid = 20l;
+		long gid = 3l;
 		long leaderId = 105l;
 		String guildName = "Guild EDITED";
-		String status = "830408";
+		String status = "0";
 
 		assertEquals(1, guildController.updateGuildController(gid, leaderId, guildName, status));
 	}
