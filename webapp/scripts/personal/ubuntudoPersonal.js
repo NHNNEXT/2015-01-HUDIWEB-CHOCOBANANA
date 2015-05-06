@@ -13,7 +13,7 @@ window.addEventListener("load", function () {
 	var util = ubuntudo.utility;
 	var oDataManager = new ubuntudo.ui.DataManager();
 	var oTodoManager = new ubuntudo.ui.TodoManager();
-	var elList = document.querySelectorAll("section ul");
+	var elList = document.querySelectorAll(".ns_personal section ul");
 	var elLightBox = document.querySelector(".light_box");
 	var elCompleteBtnList;
 	var oDetailModal;

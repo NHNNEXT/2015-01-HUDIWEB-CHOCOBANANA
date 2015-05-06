@@ -35,19 +35,19 @@ function showSelectedParty() {
 /* jshint ignore:end */
 // 달력 나오는 j query
 $(function() {
-  var mydatepicker = $("#datepicker");
-  mydatepicker.datepicker({
-    firstDay: 0,
-    minDate: 0,
-    dayNamesMin:
-        [ "일", "월", "화", "수", "목", "금", "토" ] ,
-    dateFormat: "yy-mm-dd"
-  });
+    var myDatepicker = $("#datepicker");
+    myDatepicker.datepicker({ 
+        firstDay: 0,
+        minDate: 0,
+        dayNamesMin: [ "일", "월", "화", "수", "목", "금", "토" ],
+        dateFormat: "yy-mm-dd"
+    });
 
-  $("#ui-datepicker-div").addClass("ui-datepicker-default");
+    $("#ui-datepicker-div").addClass("ui-datepicker-default");
 
-	mydatepicker.click(function() {
-   $("#ui-datepicker-div").removeClass("ui-datepicker-default");
-  });
+    myDatepicker.click(function() {
+       $("#ui-datepicker-div").removeClass("ui-datepicker-default");
+    });
 });
+
 
