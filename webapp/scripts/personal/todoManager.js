@@ -55,11 +55,8 @@ ubuntudo.ui.TodoManager = (function() {
         var elTarget = ev.target;
         var elSibling = elTarget.parentElement.childNodes;
         var siblingCount = elTarget.parentElement.childElementCount;
-        var util = ubuntudo.utility;
-        //var param;
         var i;
         var tid;
-        //var index;
 
         //sibling 중 classname 이 tid인 녀석을 찾아 value를 찾는다.
         for(i = 0; i < siblingCount; i++){
@@ -69,7 +66,7 @@ ubuntudo.ui.TodoManager = (function() {
             }
         }
 
-        util.ajax({
+        ubuntudo.utility.ajax({
             "method": "GET",
             "uri": "/personal/todo/complete/" + tid,
             "param" : null,
@@ -77,8 +74,34 @@ ubuntudo.ui.TodoManager = (function() {
         });
     };
 
-    TodoManager.prototype.add = function (/*elTarget*/) {
+    /*클래스네임, 태그네임 등 html에 의존하는 부분 빼야한다. 리팩토링 필요 - 다혜 */
+    TodoManager.prototype.add = function (ev, oDataManager) {
+        ev.preventDefault();
+		ev.stopPropagation();
 
+		//var form = document.querySelector(".add_todo");
+		//var pid = form.querySelector(".add_todo select").value;
+		var pid = -1;
+		var date = document.getElementsByName("date")[0].value;
+		if (date === "만기기한이 없습니다.") {
+			date = new Date();
+			//date = date.toISOString().slice(0,10).replace(/-/g,"-"); 이러면 27일인데 26일이 나옴. 이유를 찾아보자.
+			date = date.yyyymmdd();
+		}
+		var title = document.getElementsByName("title")[0].value;
+		if (title === "") {
+			return "제목을 채워야 합니다.";
+		}
+        
+		var contents = document.getElementsByName("contents")[0].value;
+		var param = "pid=" + pid + "&dueDate=" + date + "&title=" + title + "&contents=" + contents;
+
+		ubuntudo.utility.ajax({
+			"method": "POST",
+			"uri": "/personal/todo",
+			"param": param,
+			"callback": oDataManager.addData
+		});
     };
 
     function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {

@@ -14,7 +14,8 @@ ubuntudo.ui.ModalManager = (function() {
         this.elModal.style.display = "block";
     };
 
-    ModalManager.prototype.hideModal = function() {
+    ModalManager.prototype.hideModal = function(ev) {
+        ev.stopPropagation();
         this.elModal.style.display = "none";
     };
 
@@ -89,3 +90,43 @@ ubuntudo.ui.DetailModal = (function() {
 
     return DetailModal;
 })();
+
+ubuntudo.ui.TodoAddModal = (function() {
+	'use strict';
+    
+    // HTML에 의존하는 name 캐싱
+    var IDNAME = {
+		MODAL: "#add_wrap",
+	};
+    
+    var CLASSNAME = {
+        
+    }
+    
+    function TodoAddModal () {
+        this.elModal = document.querySelector(IDNAME.MODAL);
+    }
+    
+    TodoAddModal.prototype.beforeShow = function(ev) {
+        var elTarget = ev.target;
+        var elCurTarget = ev.currentTarget;
+        
+        if(elTarget.className !== "add_todo") {
+            elTarget = elTarget.parentElement;
+        }
+        
+        //form내용 초기화
+        if(elTarget.className !== "add_todo") {
+            //elTarget === elCurTarget
+            var form = document.querySelector(".add_todo");
+            form.querySelector("#datepicker").value = "만기기한이 없습니다.";
+            form.querySelector(".input_todoName").value = "";
+            form.querySelector(".input_todoComment").value ="";
+        }
+    }
+    
+    return TodoAddModal;
+})();
+
+
+
