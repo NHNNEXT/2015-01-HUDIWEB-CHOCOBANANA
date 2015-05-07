@@ -21,6 +21,15 @@
   "globals": {
     "ubuntudo": true,
     "CryptoJS": true,
-    "rsalib": true
-  }
+    "rsalib": true,
+    "require": true,
+    "escape": true
+  },
+  "predef": [
+        "require",
+        "define",
+        "escape",
+    "CryptoJS",
+    "requirejs"
+    ]
 }

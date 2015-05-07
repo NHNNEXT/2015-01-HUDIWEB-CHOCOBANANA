@@ -14,8 +14,8 @@ window.addEventListener("load", function () {
 	var oTodoManager = new ubuntudo.ui.TodoManager();
 	var elList = document.querySelectorAll(".ns_personal section ul");
 	var elLightBox = document.querySelector(".light_box");
-  
-        
+
+
 	var elCompleteBtnList;
 	var oDetailModal;
 	var oModalManager;
@@ -48,13 +48,13 @@ window.addEventListener("load", function () {
 
 		var data = oDataManager.getData();
 		var fieldName = oDataManager.getFieldName();
-		
+
         oDetailModal = new ubuntudo.ui.DetailModal(data, fieldName);
 		oModalManager = new ubuntudo.ui.ModalManager(oDetailModal);
-        
+
         // todo data리스트 다시 그리기
-        oTodoManager.appendList(data, fieldName); 
-		
+        oTodoManager.appendList(data, fieldName);
+
         // 각 완료 버튼에 이벤트 다시 걸기
         if (elCompleteBtnList !== undefined) {
 			[].forEach.call(elCompleteBtnList, _removeEvent);
@@ -73,13 +73,13 @@ window.addEventListener("load", function () {
 	elLightBox.addEventListener("click", function (ev) {
 		oModalManager.hideModal(ev);
 	});
-    
+
     /*add todo modal관련 이벤트 등록*/
     var elAddTodoBtn = document.querySelector(".todo_add_btn");
     var elCancelBtn = document.querySelector(".cancel_btn");
     var oTodoAddModal = new ubuntudo.ui.TodoAddModal();
     var oTodoAddModalManager = new ubuntudo.ui.ModalManager(oTodoAddModal);
-    
+
     elAddTodoBtn.addEventListener("click", function(ev){
         oTodoAddModalManager.showModal(ev);
     });
@@ -87,7 +87,7 @@ window.addEventListener("load", function () {
     elCancelBtn.addEventListener("click", function(ev){
 	   oTodoAddModalManager.hideModal(ev);
     });
-    
+
 	/* submit 버튼 누르면 투두 추가 */
 	var elSubmitBtn = document.querySelector(".add_todo .submit_btn");
 	elSubmitBtn.addEventListener('click', function (ev) {
@@ -98,8 +98,9 @@ window.addEventListener("load", function () {
 
 //달력 관련 jquery (datepicker)
 $(function() {
+	'use strict';
     var myDatepicker = $("#datepicker");
-    myDatepicker.datepicker({ 
+    myDatepicker.datepicker({
         firstDay: 0,
         minDate: 0,
         dayNamesMin: [ "일", "월", "화", "수", "목", "금", "토" ],

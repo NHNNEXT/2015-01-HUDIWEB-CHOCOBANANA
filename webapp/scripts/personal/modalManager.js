@@ -93,28 +93,29 @@ ubuntudo.ui.DetailModal = (function() {
 
 ubuntudo.ui.TodoAddModal = (function() {
 	'use strict';
-    
+
     // HTML에 의존하는 name 캐싱
     var IDNAME = {
 		MODAL: "#add_wrap",
 	};
-    
-    var CLASSNAME = {
-        
-    }
-    
+
+    //var CLASSNAME = {
+    //
+    //};
+    //
     function TodoAddModal () {
         this.elModal = document.querySelector(IDNAME.MODAL);
     }
-    
+
     TodoAddModal.prototype.beforeShow = function(ev) {
         var elTarget = ev.target;
-        var elCurTarget = ev.currentTarget;
-        
+	    /* jshint ignore:start */
+	    var elCurTarget = ev.currentTarget; //unused 객체입니당.
+	    /* jshint ignore:end */
         if(elTarget.className !== "add_todo") {
             elTarget = elTarget.parentElement;
         }
-        
+
         //form내용 초기화
         if(elTarget.className !== "add_todo") {
             //elTarget === elCurTarget
@@ -123,8 +124,8 @@ ubuntudo.ui.TodoAddModal = (function() {
             form.querySelector(".input_todoName").value = "";
             form.querySelector(".input_todoComment").value ="";
         }
-    }
-    
+    };
+
     return TodoAddModal;
 })();
 

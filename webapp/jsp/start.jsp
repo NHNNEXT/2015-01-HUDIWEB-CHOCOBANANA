@@ -1,22 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--  
+<!--
                 .o8                                  .                        .o8
                "888                                .o8                       "888
     oooo  oooo  888oooo.  oooo  oooo  ooo. .oo.  .o888oo oooo  oooo      .oooo888  .oooooo.
     `888  `888  d88' `88b `888  `888  `888P"Y88b   888   `888  `888     d88' `88b  d88' `88b
      888   888  888   888  888   888   888   888   888    888   888     888   888  888   888
      888   888  888   888  888   888   888   888   888 .  888   888     888   888  888   888
-     `V88V"V8P' `Y8bod8P'  `V88V"V8P' o888o o888o  "888"  `V88V"V8P' '0 `Y8bod8P'  `Y8bod8P' 
+     `V88V"V8P' `Y8bod8P'  `V88V"V8P' o888o o888o  "888"  `V88V"V8P' '0 `Y8bod8P'  `Y8bod8P'
 
 
-초코바나나 화이팅! 
+초코바나나 화이팅!
 		                                                          					            -->
 <!-- sp = start page = 시작 페이지 -->
 
 <html lang="ko">
-
+ <script type = "text/javascript" data-main="/commons/js/main.js" src="http://requirejs.org/docs/release/2.1.17/minified/require.js"></script>
 <head>
 	<meta charset="utf-8">
 	<title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
@@ -107,16 +107,16 @@
 <script language="javascript" type="text/javascript" src="commons/js/start/startPage.js"></script>
 
 <!-- RSA 자바스크립트 라이브러리 -->
-<script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
+<!-- <script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
 <script type="text/javascript" src="/commons/lib/js/RSA/rsa.js"></script>
 <script type="text/javascript" src="/commons/lib/js/RSA/prng4.js"></script>
 <script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
-<!-- RSA 암호화 처리 스크립트 -->
+RSA 암호화 처리 스크립트
 <script type="text/javascript" src="/commons/js/start/encrypt.js"></script>
-<!-- hash 스크립트 -->
+hash 스크립트
 <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
-<!-- validate 스크립트 -->
+validate 스크립트
 <script language="javascript" type="text/javascript" src="commons/js/start/ubuntudo_main.js"></script>
-	<script language="javascript" type="text/javascript" src="commons/js/start/signup_validate.js"></script>
-	<script language="javascript" type="text/javascript" src="commons/js/start/utility.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/start/validate.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/start/utility.js"></script> -->
 </html>

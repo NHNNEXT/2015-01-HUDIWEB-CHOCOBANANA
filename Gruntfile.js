@@ -36,7 +36,7 @@ module.exports = function (grunt) {
       },
       js: {
         files: ["<%= config.app %>/scripts/{,*/}*.js"],
-        tasks: ["jshint"],
+//        tasks: ["jshint"],
         options: {
           livereload: true
         }
@@ -72,7 +72,7 @@ module.exports = function (grunt) {
     connect: {
       options: {
        port: 9000,
-       livereload: 35728,
+       livereload: 35729,
        hostname: "localhost"
       },
       proxies: [{
@@ -274,7 +274,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
     svgmin: {
       dist: {
         files: [{
@@ -285,7 +284,6 @@ module.exports = function (grunt) {
         }]
       }
     },
-
     htmlmin: {
       dist: {
         options: {
@@ -366,7 +364,7 @@ module.exports = function (grunt) {
     // reference in your app
     modernizr: {
       dist: {
-        devFile: "bower_components/modernizr/modernizr.js",
+        devFile: "<%= config.app %>/bower_components/modernizr/modernizr.js",
         outputFile: "<%= config.dist %>/scripts/vendor/modernizr.js",
         files: {
           src: [
@@ -378,6 +376,32 @@ module.exports = function (grunt) {
         uglify: true
       }
     },
+//    requirejs: {
+//    	  compile: {
+//    	    options: {
+//    	      baseUrl: "<%= config.app %>",
+//    	      mainConfigFile: "<%= config.app %>/main.js",
+//    	      paths: {
+//    	    	  'jquery': '<%= config.app %>/bower_components/jquery/dist/jquery.min'    	    	  
+//    	      },
+//    	      done: function(done, output) {
+//    	        var duplicates = require('rjs-build-analysis').duplicates(output);
+//
+//    	        if (Object.keys(duplicates).length > 0) {
+//    	          grunt.log.subhead('Duplicates found in requirejs build:');
+//    	          for (var key in duplicates) {
+//    	            grunt.log.error(duplicates[key] + ": " + key);
+//    	          }
+//    	          return done(new Error('r.js built duplicate modules, please check the excludes option.'));
+//    	        } else {
+//    	          grunt.log.success("No duplicates found!");
+//    	        }
+//
+//    	        done();
+//    	      }
+//    	    }
+//    	  }
+//    	},
 
     // Run some tasks in parallel to speed up build process
     concurrent: {
@@ -442,14 +466,13 @@ module.exports = function (grunt) {
     "useminPrepare",
     "concurrent:dist",
     "autoprefixer",
-    "concat",
-    "cssmin",
-    "uglify",
+//    "cssmin",
+//    "uglify",
     "copy:dist",
     "modernizr",
     "rev",
     "usemin",
-    "htmlmin"
+//    "htmlmin"
   ]);
 
   grunt.registerTask("default", [
