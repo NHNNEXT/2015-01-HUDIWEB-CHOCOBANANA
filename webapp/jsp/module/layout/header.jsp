@@ -67,7 +67,7 @@
 
 								<!-- 날짜선택 -->
 								<input id="datepicker"
-									class="calendario calendar_box hasDatepicker" name="date"
+									class="calendario calendar_box" name="date"
 									value="만기기한이 없습니다.">
 
 								<!-- 일정 이름 -->
