@@ -77,7 +77,7 @@ public class PersonalController {
 				"param check: uid={}, pid={}, title={}, contents={}, due={}",
 				uid, pid, title, contents, due);
 
-		TodoEntity newTodo = new TodoEntity(pid, title, contents, due, uid);
+		TodoEntity newTodo = new TodoEntity(pid, title, contents, duedate, uid);
 		TodoEntity resultTodo = tdao.addPersonalTodo(newTodo);
 
 		return resultTodo;

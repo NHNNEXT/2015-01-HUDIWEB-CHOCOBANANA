@@ -17,6 +17,8 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 import support.Qrys;
+import support.QrysP;
+import support.QrysU;
 import ubuntudo.model.PartyEntity;
 
 @Repository
@@ -34,7 +36,7 @@ public class PartyDao {
 
 	public int insertPartyDao(PartyEntity party) {
 		logger.debug("inserting: " + party.toString());
-		return jdbcTemplate.update(Qrys.INSERT_PARTY, party.getGid(), party.getLeaderId(), party.getPartyName());
+		return jdbcTemplate.update(QrysP.INSERT_PARTY, party.getGid(), party.getLeaderId(), party.getPartyName());
 	}
 
 	public long getLastPartyId() {
@@ -50,7 +52,7 @@ public class PartyDao {
 	
 	public int insertUserToPartyDao(long partyId, long userId) {
 		logger.debug("inserting user to party... partyId: " + partyId + ", userId: " + userId);
-		return jdbcTemplate.update(Qrys.INSERT_USER_TO_PARTY, partyId, userId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_PARTY, partyId, userId);
 	}
 
 	public List<PartyEntity> retrievePartyListSearchDao(String partyName) {
@@ -58,18 +60,18 @@ public class PartyDao {
 		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
 			public PartyEntity mapRow(ResultSet rs, int rowNum) {
 				try {
-					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("party_name"), rs.getString("status"));
+					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("party_leader_id"), rs.getString("p_name"), rs.getString("deleted"));
 				} catch (SQLException e) {
 					throw new BeanInstantiationException(PartyEntity.class, e.getMessage(), e);
 				}
 			}
 		};
-		return jdbcTemplate.query(Qrys.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParam(partyName));
+		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParam(partyName));
 	}
 
 	public int updatePartyDao(PartyEntity party) {
 		logger.debug("updating current party to: " + party);
-		return jdbcTemplate.update(Qrys.UPDATE_PARTY, party.getLeaderId(), party.getPartyName(), party.getStatus(), party.getPid());
+		return jdbcTemplate.update(QrysP.UPDATE_PARTY, party.getLeaderId(), party.getPartyName(), party.getStatus(), party.getPid());
 	}
 
 	public List<PartyEntity> retrievePartyInGuildListDao(long gid) {
@@ -77,12 +79,12 @@ public class PartyDao {
 		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
 			public PartyEntity mapRow(ResultSet rs, int rowNum) {
 				try {
-					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("leader_id"), rs.getString("party_name"), rs.getString("status"));
+					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("party_leader_id"), rs.getString("p_name"), rs.getString("deleted"));
 				} catch (SQLException e) {
 					throw new BeanInstantiationException(PartyEntity.class, e.getMessage(), e);
 				}
 			}
 		};
-		return jdbcTemplate.query(Qrys.RETRIEVE_PARTY_IN_GUILD, rowMapper, gid);
+		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_IN_GUILD, rowMapper, gid);
 	}
 }

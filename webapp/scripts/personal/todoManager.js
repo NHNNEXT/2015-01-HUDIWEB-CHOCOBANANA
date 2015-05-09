@@ -12,11 +12,10 @@ ubuntudo.ui.TodoManager = (function() {
 	};
 
     //CSS에 의존하는 리스트 템플릿
-    var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
-
-    function TodoManager () {
-    }
-
+    var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><span class="pid"><%=pid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
+      
+    function TodoManager () {  
+    };
     TodoManager.prototype.appendList = function (data, fieldName) {
         var elTargetList = {};
         var now = new Date();
@@ -106,10 +105,11 @@ ubuntudo.ui.TodoManager = (function() {
 
     function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {
         var field = fieldName;
-        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
 
-    }
-
+        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=pid%>", todoInfo[field.PARTY_ID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
+        
+    };
+    
     Date.prototype.diffDays = function (date) {
         var timeDiff = Math.abs(this.getTime() - date.getTime());
 	    return Math.ceil(timeDiff / (1000 * 3600 * 24)); //diffDays variable
