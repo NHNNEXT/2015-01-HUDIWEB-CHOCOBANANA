@@ -82,7 +82,7 @@ ubuntudo.ui.TodoManager = (function() {
 		//var pid = form.querySelector(".add_todo select").value;
 		var pid = -1;
 		var date = document.getElementsByName("date")[0].value;
-		if (date === "만기기한이 없습니다.") {
+		if (date === "오늘") {
 			date = new Date();
 			//date = date.toISOString().slice(0,10).replace(/-/g,"-"); 이러면 27일인데 26일이 나옴. 이유를 찾아보자.
 			date = date.yyyymmdd();
