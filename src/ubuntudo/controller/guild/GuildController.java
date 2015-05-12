@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ubuntudo.biz.GuildBiz;
+import ubuntudo.biz.GuildBizImpl;
 import ubuntudo.model.GuildEntity;
 
 @Controller
@@ -17,7 +17,7 @@ import ubuntudo.model.GuildEntity;
 public class GuildController {
 
 	@Autowired
-	GuildBiz gbiz;
+	GuildBizImpl gbiz;
 
 	@RequestMapping(value = "/insertNewGuild", method = RequestMethod.POST)
 	public int insertNewGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
