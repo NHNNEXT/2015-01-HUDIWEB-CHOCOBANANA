@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import ubuntudo.controller.guild.GuildController;
+import ubuntudo.controller.GuildController;
 import ubuntudo.model.GuildEntity;
 
 import com.google.gson.Gson;
