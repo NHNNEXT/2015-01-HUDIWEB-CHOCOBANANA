@@ -2,7 +2,7 @@ package support;
 
 public class QrysT extends Qrys {
 	// for retrieve todos personal view
-	public static String RETRIEVE_TODO_FOR_PERSONAL_VIEW = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM todo t INNER JOIN party p ON t.pid = p.pid WHERE tid IN (SELECT tid FROM todo_user_relation WHERE uid = ? AND completed = 'trel00') ORDER BY dueDate";
+	public static String RETRIEVE_TODO_FOR_PERSONAL_VIEW = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM todo t INNER JOIN party p ON t.pid = p.pid WHERE tid IN (SELECT tid FROM todo_user_relation WHERE uid = ? AND completed = 'trel00') AND t.status <> 'todo03' AND t.status <> 'todo04' ORDER BY dueDate";
 
 	// for update personal todo
 	public static String UPDATE_PERSONAL_TODO = "update todo set title = ?, contents = ?, duedate = ?, status = 'todo02', editer_id = ? where tid = ?";

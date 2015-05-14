@@ -1,14 +1,14 @@
 package ubuntudo.model;
 
 public class TodoEntity {
-	Long tid;
-	Long pid;
-	String title;
-	String contents;
-	String dueDate;
-	String status;
-	Long editerId;
-	String partyName;
+	private Long tid;
+	private Long pid;
+	private String title;
+	private String contents;
+	private String dueDate;
+	private String status;
+	private Long editerId;
+	private String partyName;
 
 	// for update todo. currently only contents are can be edited.
 	// if changed to be able to edit other columns, edit this constructor.
