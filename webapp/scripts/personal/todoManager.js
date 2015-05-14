@@ -36,15 +36,14 @@ ubuntudo.ui.TodoManager = (function() {
             var dayDiff = Math.abs(due.diffDays(today));
             var explain = "남음";
             var elTarget;
-            if(due < today) {
-                explain = "지남";
-                elTarget = elTargetList[CLASSNAME.PAST];
+            if(dayDiff === 0) {
+                elTarget = elTargetList[CLASSNAME.TODAY];
             }else if(due > today) {
                 elTarget = elTargetList[CLASSNAME.FUTURE];
             }else {
-                elTarget = elTargetList[CLASSNAME.TODAY];
+                explain = "지남";
+                elTarget = elTargetList[CLASSNAME.PAST];
             }
-
             elTarget.innerHTML += _makeInnerHTML(todoInfo, dayDiff, explain, fieldName);
         }
     };
@@ -110,9 +109,11 @@ ubuntudo.ui.TodoManager = (function() {
         
     };
     
-    Date.prototype.diffDays = function (date) {
-        var timeDiff = Math.abs(this.getTime() - date.getTime());
-	    return Math.ceil(timeDiff / (1000 * 3600 * 24)); //diffDays variable
+    Date.prototype.diffDays = function (date) {     
+        var date1 = Date.UTC(this.getFullYear(), this.getMonth(), this.getDate());
+        var date2 = Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
+        var ms = Math.abs(date1-date2);
+        return Math.floor(ms/1000/60/60/24);     
     };
 
     Date.prototype.yyyymmdd = function() {
