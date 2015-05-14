@@ -12,4 +12,8 @@ public class QrysT extends Qrys {
 	
 	// for delete personal todo
 	public static String DELETE_PERSONAL_TODO = "update todo set status = 'todo03' where tid = ?";
+	
+	public static String COMPLETE_TODO = "update todo_user_relation SET completed = 'trel01' WHERE tid = ? AND uid = ?";
+	public static String INSERT_TODO = "INSERT INTO todo VALUES (null,?,?,?,?,'todo01',?)";
+	
 }

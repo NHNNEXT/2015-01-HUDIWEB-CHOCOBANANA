@@ -32,17 +32,14 @@ public class TodoDao extends JDBCManager {
 	}
 
 	public ArrayList<TodoEntity> getPersonalTodos(Long uid) {
-		logger.info("getPersonalTodos");
-		
+		logger.debug("getPersonalTodos");
 		ArrayList<TodoEntity> todos = new ArrayList<TodoEntity>();
-
 		List<Map<String, Object>> rows = jdbcTemplate.queryForList(QrysT.RETRIEVE_TODO_FOR_PERSONAL_VIEW);
 		for (Map<String, Object> row : rows) {
 			TodoEntity todo = new TodoEntity((Long)row.get("tid"), (Long)row.get("pid"), (String)row.get("title"), (String)row.get("contents"),
 					(String)row.get("duedate"), (String)row.get("status"), (Long)row.get("editer_id"), (String)row.get("p_name"));
 			todos.add(todo);
 		}
-		
 		return todos;
 	}
 
@@ -111,22 +108,8 @@ public class TodoDao extends JDBCManager {
 	}
 
 	public boolean complete(TodoUserRelationEntity info) {
-		conn = getConnection();
-		boolean result = false;
-		
-		try {
-			String sql = "update todo_user_relation SET completed = 'trel01' WHERE tid = ? AND uid = ?";
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, info.getTid());
-			pstmt.setLong(2, info.getUid());
-			pstmt.executeUpdate();
-			result = true;
-		} catch (SQLException e) {
-			logger.info("DB getPersonalTodos Error: " + e.getMessage());
-		} finally {
-			close(resultSet, pstmt, conn);
-		}
-		return result;
+		logger.debug("complete()");		
+		return (jdbcTemplate.update(QrysT.COMPLETE_TODO, info.getTid(), info.getUid()) == 1);
 	}
 
 	public int updatePersonalTodoDao(TodoEntity todo) {
