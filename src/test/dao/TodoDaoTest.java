@@ -43,7 +43,7 @@ public class TodoDaoTest {
 		map.put("p_name", "personal");
 		rows.add(map);
        
-		Mockito.when(jdbcTemplate.queryForList(QrysT.RETRIEVE_TODO_FOR_PERSONAL_VIEW)).thenReturn(rows);
+		Mockito.when(jdbcTemplate.queryForList(QrysT.RETRIEVE_TODO_FOR_PERSONAL_VIEW, new Long(1))).thenReturn(rows);
 		ArrayList<TodoEntity> todos = todoDao.getPersonalTodos(new Long(1));
 	    
 	    assertEquals(new Long(1), todos.get(0).getTid());

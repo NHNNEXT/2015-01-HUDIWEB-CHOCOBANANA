@@ -12,13 +12,14 @@ public class TodoEntity {
 
 	// for update todo. currently only contents are can be edited.
 	// if changed to be able to edit other columns, edit this constructor.
-	public TodoEntity(long tid, String title, String newNote, String dueDate, long uid) {
-		this.tid = tid;
-		this.title = title;
-		this.contents = newNote;
-		this.dueDate = dueDate;
-		this.editerId = uid;
-	}
+//	public TodoEntity(long tid, String title, String newNote, String dueDate, long uid) {
+//		this.tid = tid;
+//		this.title = title;
+//		this.contents = newNote;
+//		this.dueDate = dueDate;
+//		this.editerId = uid;
+//	} 
+	//param type을 long서 Long으로 바꾸면 생성자가 겹쳐서 주석처리함. - dahye
 
 	public TodoEntity(Long pid, String title, String contents, String dueDate, Long editerId) {
 		this(null, pid, title, contents, dueDate, null, editerId, null);

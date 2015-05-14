@@ -97,7 +97,7 @@ ubuntudo.ui.TodoManager = (function() {
 
 		ubuntudo.utility.ajax({
 			"method": "POST",
-			"uri": "/personal/todo",
+			"uri": "/todo",
 			"param": param,
 			"callback": oDataManager.addData
 		});

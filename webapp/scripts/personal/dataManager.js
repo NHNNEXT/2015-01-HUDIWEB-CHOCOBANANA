@@ -9,7 +9,7 @@ ubuntudo.ui.DataManager = (function() {
             TID: "tid",
             ASSIGNER_ID: "assigner_id",
             PARTY_ID: "pid",
-            PARTY_NAME: "pName",
+            PARTY_NAME: "partyName",
             TITLE: "title",
             CONTENTS: "contents",
             DUEDATE: "dueDate",
