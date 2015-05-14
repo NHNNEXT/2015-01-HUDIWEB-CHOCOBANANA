@@ -2,6 +2,8 @@ package ubuntudo.dao;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -30,23 +32,17 @@ public class TodoDao extends JDBCManager {
 	}
 
 	public ArrayList<TodoEntity> getPersonalTodos(Long uid) {
-		conn = getConnection();
+		logger.info("getPersonalTodos");
+		
 		ArrayList<TodoEntity> todos = new ArrayList<TodoEntity>();
 
-		try {
-			pstmt = conn.prepareStatement(QrysT.RETRIEVE_TODO_FOR_PERSONAL_VIEW);
-			pstmt.setLong(1, uid);
-			resultSet = pstmt.executeQuery();
-			while (resultSet.next()) {
-				TodoEntity todo = new TodoEntity(resultSet.getLong("tid"), resultSet.getLong("pid"), resultSet.getString("title"), resultSet.getString("contents"),
-						resultSet.getString("duedate"), resultSet.getString("status"), resultSet.getLong("editer_id"), resultSet.getString("p_name"));
-				todos.add(todo);
-			}
-		} catch (SQLException e) {
-			logger.info("DB getPersonalTodos Error: " + e.getMessage());
-		} finally {
-			close(resultSet, pstmt, conn);
+		List<Map<String, Object>> rows = jdbcTemplate.queryForList(QrysT.RETRIEVE_TODO_FOR_PERSONAL_VIEW);
+		for (Map<String, Object> row : rows) {
+			TodoEntity todo = new TodoEntity((Long)row.get("tid"), (Long)row.get("pid"), (String)row.get("title"), (String)row.get("contents"),
+					(String)row.get("duedate"), (String)row.get("status"), (Long)row.get("editer_id"), (String)row.get("p_name"));
+			todos.add(todo);
 		}
+		
 		return todos;
 	}
 

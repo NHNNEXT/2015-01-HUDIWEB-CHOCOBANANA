@@ -8,7 +8,7 @@ public class TodoEntity {
 	String dueDate;
 	String status;
 	Long editerId;
-	String pName;
+	String partyName;
 
 	// for update todo. currently only contents are can be edited.
 	// if changed to be able to edit other columns, edit this constructor.
@@ -32,7 +32,7 @@ public class TodoEntity {
 		this.dueDate = dueDate;
 		this.status = status;
 		this.editerId = editerId;
-		this.pName = pName;
+		this.partyName = pName;
 	}
 
 	public Long getTid() {
@@ -63,13 +63,13 @@ public class TodoEntity {
 		return editerId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getPartyName() {
+		return partyName;
 	}
 
 	@Override
 	public String toString() {
 		return "\nTodoEntity [tid=" + tid + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", duedate=" + dueDate + ", status=" + status
-				+ ", editerId=" + editerId + ", pName=" + pName + "]";
+				+ ", editerId=" + editerId + ", pName=" + partyName + "]";
 	}
 }
