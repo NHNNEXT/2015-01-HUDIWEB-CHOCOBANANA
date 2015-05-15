@@ -1,10 +1,10 @@
 package ubuntudo.model;
 
 public class GuildEntity {
-	long gid;
-	long leaderId;
-	String guildName;
-	String status;
+	private long gid;
+	private long leaderId;
+	private String guildName;
+	private String status;
 
 	// for guild creation
 	public GuildEntity(long leaderId, String guildName) {

@@ -112,14 +112,15 @@ $(function() {
        $("#ui-datepicker-div").removeClass("ui-datepicker-default");
     });
 });
+
 var editBtn = document.querySelector(".btn_wrapper .edit_btn");
 editBtn.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation(); 
 
     var util = ubuntudo.utility;
-    var oDataManager = new ubuntudo.ui.dataManager();
-    var oTodoManager = new ubuntudo.ui.todoManager();
+    var oDataManager = new ubuntudo.ui.DataManager();
+    var oTodoManager = new ubuntudo.ui.TodoManager();
     var elList = document.querySelectorAll("section ul");
     var elLightBox = document.querySelector(".light_box");
     var oDetailModal;
@@ -148,12 +149,7 @@ deleteTodoBtn.addEventListener('click', function(e) {
 	e.stopPropagation(); 
 	
 	var util = ubuntudo.utility;
-	var oDataManager = new ubuntudo.ui.dataManager();
-	var oTodoManager = new ubuntudo.ui.todoManager();
-	var elList = document.querySelectorAll("section ul");
-	var elLightBox = document.querySelector(".light_box");
-	var oDetailModal;
-	var oModalManager;
+	var oDataManager = new ubuntudo.ui.DataManager();
 	
 	var tid = document.querySelector(".detail_wrapper .tid").textContent;
 	

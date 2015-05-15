@@ -23,12 +23,8 @@ public class TodoBiz {
 	private DataSourceTransactionManager transactionManager;
 
 	public int updatePersonalTodoBiz(TodoEntity todo) {
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("example-transaction");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-		TransactionStatus status = transactionManager.getTransaction(def);
-
+		TransactionStatus status = getTransactionStatus();
+		
 		int updatePersonalTodoResult = 0;
 		int createPersonalTodoHistoryResult = 0;
 
@@ -52,11 +48,7 @@ public class TodoBiz {
 	}
 
 	public int deletePersonalTodoBiz(TodoEntity todo) {
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("example-transaction");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-
-		TransactionStatus status = transactionManager.getTransaction(def);
+		TransactionStatus status = getTransactionStatus();
 
 		int deletePersonalTodoResult = 0;
 		int createPersonalTodoHistoryResult = 0;
@@ -79,5 +71,25 @@ public class TodoBiz {
 		transactionManager.commit(status);
 
 		return deletePersonalTodoResult + createPersonalTodoHistoryResult;
+	}
+	
+	public TodoEntity addTodo (TodoEntity todo) {
+		TransactionStatus status = getTransactionStatus();
+		tdao.insertTodo(todo);
+		Long tid = tdao.getLastInsertedTodoId();
+		TodoEntity lastTodo = tdao.getLastTodo(tid);
+		tdao.insertHistory(tid, lastTodo);
+		tdao.insertRelation(tid, lastTodo);
+		transactionManager.commit(status);
+		return lastTodo;
+	}
+	
+	//중복 제거용 메소드 추출
+	private TransactionStatus getTransactionStatus() {
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setName("example-transaction");
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+
+		return transactionManager.getTransaction(def);
 	}
 }

@@ -1,24 +1,25 @@
 package ubuntudo.model;
 
 public class TodoEntity {
-	Long tid;
-	Long pid;
-	String title;
-	String contents;
-	String dueDate;
-	String status;
-	Long editerId;
-	String pName;
+	private Long tid;
+	private Long pid;
+	private String title;
+	private String contents;
+	private String dueDate;
+	private String status;
+	private Long editerId;
+	private String partyName;
 
 	// for update todo. currently only contents are can be edited.
 	// if changed to be able to edit other columns, edit this constructor.
-	public TodoEntity(long tid, String title, String newNote, String dueDate, long uid) {
-		this.tid = tid;
-		this.title = title;
-		this.contents = newNote;
-		this.dueDate = dueDate;
-		this.editerId = uid;
-	}
+//	public TodoEntity(long tid, String title, String newNote, String dueDate, long uid) {
+//		this.tid = tid;
+//		this.title = title;
+//		this.contents = newNote;
+//		this.dueDate = dueDate;
+//		this.editerId = uid;
+//	} 
+	//param type을 long서 Long으로 바꾸면 생성자가 겹쳐서 주석처리함. - dahye
 
 	public TodoEntity(Long pid, String title, String contents, String dueDate, Long editerId) {
 		this(null, pid, title, contents, dueDate, null, editerId, null);
@@ -32,7 +33,7 @@ public class TodoEntity {
 		this.dueDate = dueDate;
 		this.status = status;
 		this.editerId = editerId;
-		this.pName = pName;
+		this.partyName = pName;
 	}
 
 	public Long getTid() {
@@ -63,13 +64,13 @@ public class TodoEntity {
 		return editerId;
 	}
 
-	public String getpName() {
-		return pName;
+	public String getPartyName() {
+		return partyName;
 	}
 
 	@Override
 	public String toString() {
 		return "\nTodoEntity [tid=" + tid + ", pid=" + pid + ", title=" + title + ", contents=" + contents + ", duedate=" + dueDate + ", status=" + status
-				+ ", editerId=" + editerId + ", pName=" + pName + "]";
+				+ ", editerId=" + editerId + ", pName=" + partyName + "]";
 	}
 }

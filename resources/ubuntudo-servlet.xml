@@ -15,6 +15,8 @@
 	<context:component-scan base-package="ubuntudo.biz" />
 
 	<mvc:annotation-driven />
+	<context:property-placeholder
+		location="classpath:local_properties/database.properties" />
 	<context:annotation-config />
 
 	<mvc:resources location="/styles/" mapping="/css/**" />
@@ -43,11 +45,12 @@
 
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/mydb" />
-		<property name="username" value="root" />
-		<property name="password" value="asdf" />
+		<property name="driverClassName" value="${database.driverClassname}" />
+		<property name="url" value="${database.url}" />
+		<property name="username" value="${database.username}" />
+		<property name="password" value="${database.password}" />
 	</bean>
+	
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />

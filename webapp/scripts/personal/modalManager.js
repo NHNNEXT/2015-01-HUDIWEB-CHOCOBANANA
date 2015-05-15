@@ -80,7 +80,7 @@ ubuntudo.ui.DetailModal = (function() {
                 this.elDetail.children[i].innerHTML = todoInfo[field.PARTY_NAME];
             }
             else if(this.elDetail.children[i].className === CLASSNAME.DUEDATE) {
-                this.elDetail.children[i].innerHTML = todoInfo[field.DUEDATE];
+                this.elDetail.children[i].innerHTML = (new Date(todoInfo[field.DUEDATE])).yyyymmdd();
             }
             else if(this.elDetail.children[i].className === CLASSNAME.CONTENTS) {
             	this.elDetail.children[i].value = todoInfo[field.CONTENTS];
@@ -101,7 +101,7 @@ ubuntudo.ui.TodoAddModal = (function() {
     
     var CLASSNAME = {
         
-    }
+    };
     
     function TodoAddModal () {
         this.elModal = document.querySelector(IDNAME.MODAL);
@@ -119,11 +119,11 @@ ubuntudo.ui.TodoAddModal = (function() {
         if(elTarget.className !== "add_todo") {
             //elTarget === elCurTarget
             var form = document.querySelector(".add_todo");
-            form.querySelector("#datepicker").value = "만기기한이 없습니다.";
+            form.querySelector("#datepicker").value = "오늘";
             form.querySelector(".input_todoName").value = "";
             form.querySelector(".input_todoComment").value ="";
         }
-    }
+    };
     
     return TodoAddModal;
 })();

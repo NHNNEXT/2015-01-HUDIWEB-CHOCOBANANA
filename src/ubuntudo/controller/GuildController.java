@@ -1,4 +1,4 @@
-package ubuntudo.controller.guild;
+package ubuntudo.controller;
 
 import java.util.List;
 

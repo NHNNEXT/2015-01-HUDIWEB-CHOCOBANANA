@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import ubuntudo.controller.Party.PartyController;
+import ubuntudo.controller.PartyController;
 import ubuntudo.model.PartyEntity;
 
 import com.google.gson.Gson;

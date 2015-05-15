@@ -1,4 +1,4 @@
-package ubuntudo.controller.Party;
+package ubuntudo.controller;
 
 import java.util.List;
 

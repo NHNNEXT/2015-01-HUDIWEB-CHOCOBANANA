@@ -1,9 +1,9 @@
 package ubuntudo.model;
 
 public class TodoUserRelationEntity {
-	Long tid;
-	Long uid;
-	String completed;
+	private Long tid;
+	private Long uid;
+	private String completed;
 	
 	public TodoUserRelationEntity (Long tid, Long uid) {
 		this(tid, uid, null);

@@ -1,11 +1,11 @@
 package ubuntudo.model;
 
 public class PartyEntity {
-	long pid;
-	long gid;
-	long leaderId;
-	String partyName;
-	String status;
+	private long pid;
+	private long gid;
+	private long leaderId;
+	private String partyName;
+	private String status;
 
 	public PartyEntity(long gid, long leaderId, String partyName) {
 		this.gid = gid;
