@@ -57,11 +57,11 @@ ubuntudo.ui.DataManager = (function() {
         return FIELD_NAME;
     };
     
-    function updateData (result) {
+    function updateData(result) {
         
     }
     
-    function deleteData (result) {
+    function deleteData(result) {
            
     }
     
