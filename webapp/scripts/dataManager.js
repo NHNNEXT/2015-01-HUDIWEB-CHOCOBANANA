@@ -56,6 +56,15 @@ ubuntudo.ui.DataManager = (function() {
     DataManager.prototype.getFieldName = function() {
         return FIELD_NAME;
     };
+    
+    function updateData (result) {
+        
+    }
+    
+    function deleteData (result) {
+           
+    }
+    
 
     return DataManager;
 })();

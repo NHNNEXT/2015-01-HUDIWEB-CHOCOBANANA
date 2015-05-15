@@ -20,6 +20,7 @@
     
     <div id="container" class="ns_personal">
 		<aside>
+		
 			<div class="party_pavicon">휴</div>
 			<div class="party_pavicon">휴</div>
 
@@ -52,9 +53,9 @@
 		</main>
     </div>
     <script language="javascript" type="text/javascript" src="/commons/js/personal/ubuntudoPersonal.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/personal/dataManager.js"></script>
-	<script language="javascript" type="text/javascript" src="/commons/js/personal/todoManager.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/personal/modalManager.js"></script>    
-	<script language="javascript" type="text/javascript" src="/commons/js/start/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/dataManager.js"></script>
+	<script language="javascript" type="text/javascript" src="/commons/js/todoManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/modalManager.js"></script>    
+	<script language="javascript" type="text/javascript" src="/commons/js/utility.js"></script>
 </body>
 </html>
