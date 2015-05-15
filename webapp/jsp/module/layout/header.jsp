@@ -11,6 +11,7 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <link rel="stylesheet" href="/css/reset.css">
 <link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/guild.css">
 <link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
 
 <script src="bower_components/jquery/dist/jquery.js"></script>
@@ -66,9 +67,8 @@
 								</div>
 
 								<!-- 날짜선택 -->
-								<input id="datepicker"
-									class="calendario calendar_box" name="date"
-									value="만기기한이 없습니다.">
+								<input id="datepicker" class="calendario calendar_box"
+									name="date" value="만기기한이 없습니다.">
 
 								<!-- 일정 이름 -->
 								<input type="text" name="title" class="input_todoName"

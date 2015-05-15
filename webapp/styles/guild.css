@@ -16,7 +16,7 @@
 .ns_guild .guild_cover_img {
 	width: 100%;
 	height: 100%;
-	background: url(bg.jpg) 50% 50% / cover;
+	background: url("/images/bg.jpg") 50% 50% / cover;
 }
 
 .ns_guild .guild_cover_img_gradient {
@@ -32,7 +32,7 @@
 .ns_guild .setting_icon {
 	width: 30px;
 	height: 30px;
-	background-image: url(party_setting.png);
+	background-image: url(/images/party_setting.png);
 	background-size: 30px;
 	position: absolute;
 	top: 10px;
@@ -64,7 +64,7 @@
 	display: inline-block;
 }
 
-.ns_guild .btn_wrap .guild_join_btn {
+.ns_guild .btn_wrap .guild_join_btn, .ns_guild .btn_wrap .guild_leave_btn {
 	margin-top: -23px;
 position: absolute;
   background: #dd4b39;
@@ -83,7 +83,7 @@ position: absolute;
   text-decoration: none;
 }
 
-.ns_guild .btn_wrap .guild_join_btn:hover {
+.ns_guild .btn_wrap .guild_join_btn:hover, .ns_guild .btn_wrap .guild_leave_btn:hover {
   background: #FF5540;
   background-image: -webkit-linear-gradient(top, #FF5540, #dd4b39);
   background-image: -moz-linear-gradient(top, #FF5540, #dd4b39);

@@ -74,4 +74,9 @@ public class GuildDao {
 		logger.debug("updating current guild to: " + guild);
 		return jdbcTemplate.update(QrysG.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
 	}
+
+	public int getGuildinfo(Long gid) {
+		
+		return 0;
+	}
 }

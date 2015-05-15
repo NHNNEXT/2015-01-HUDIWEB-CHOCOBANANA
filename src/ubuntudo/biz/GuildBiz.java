@@ -74,4 +74,8 @@ public class GuildBiz {
 	public int updateGuildBiz(GuildEntity guildEntity) {
 		return gdao.updateGuildDao(guildEntity);
 	}
+
+	public int getGuildInfo(Long gid) {
+		return gdao.getGuildinfo(gid);
+	}
 }

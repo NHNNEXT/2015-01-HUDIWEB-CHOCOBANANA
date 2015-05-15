@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,9 +25,15 @@ public class GuildController {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	//@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public int insertUserToGuildController(@RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
+	}
+
+	//
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	public @ResponseBody int insertUserToGuild(@RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
+		return 1;
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
@@ -40,7 +47,11 @@ public class GuildController {
 		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName, status));
 	}
 	
-	//@RequestMapping(value = "", method = RequestMethod.GET)
+	//길드의 첫페이지
+	@RequestMapping(value = "/{gid}", method = RequestMethod.GET)
+	public String guild(@PathVariable("gid") Long gid) {
+		return "guild";
+	}
 
 	//guild/overview GET - html
 	//guild/overview/data GET - json
