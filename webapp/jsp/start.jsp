@@ -107,10 +107,10 @@
 <script language="javascript" type="text/javascript" src="commons/js/start/startPage.js"></script>
 
 <!-- RSA 자바스크립트 라이브러리 -->
-<script type="text/javascript" src="/commons/lib/js/RSA/jsbn.js"></script>
-<script type="text/javascript" src="/commons/lib/js/RSA/rsa.js"></script>
-<script type="text/javascript" src="/commons/lib/js/RSA/prng4.js"></script>
-<script type="text/javascript" src="/commons/lib/js/RSA/rng.js"></script>
+<script type="text/javascript" src="commons/js/lib/RSA/jsbn.js"></script>
+<script type="text/javascript" src="commons/js/lib/RSA/rsa.js"></script>
+<script type="text/javascript" src="commons/js/lib/RSA/prng4.js"></script>
+<script type="text/javascript" src="commons/js/lib/RSA/rng.js"></script>
 <!-- RSA 암호화 처리 스크립트 -->
 <script type="text/javascript" src="/commons/js/start/encrypt.js"></script>
 <!-- hash 스크립트 -->
@@ -118,5 +118,5 @@
 <!-- validate 스크립트 -->
 <script language="javascript" type="text/javascript" src="commons/js/start/ubuntudo_main.js"></script>
 	<script language="javascript" type="text/javascript" src="commons/js/start/signup_validate.js"></script>
-	<script language="javascript" type="text/javascript" src="commons/js/start/utility.js"></script>
+	<script language="javascript" type="text/javascript" src="commons/js/utility.js"></script>
 </html>

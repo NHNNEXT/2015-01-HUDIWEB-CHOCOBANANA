@@ -135,8 +135,8 @@ editBtn.addEventListener('click', function(e) {
     var param = "tid=" + tid + "&title_edit=" + title_edit + "&note_edit=" + note_edit + "&due_date_edit=" + due_date_edit;
 
     util.ajax({
-        "method": "POST", 
-        "uri": "/todo/updatePersonalTodo", 
+        "method": "PUT", 
+        "uri": "/todo", 
         "param" : param, 
         "callback" : oDataManager.addData
     });
@@ -152,13 +152,11 @@ deleteTodoBtn.addEventListener('click', function(e) {
 	var oDataManager = new ubuntudo.ui.DataManager();
 	
 	var tid = document.querySelector(".detail_wrapper .tid").textContent;
-	
-	var param = "tid=" + tid;
-	
+		
 	util.ajax({
-		"method": "POST", 
-		"uri": "/todo/deletePersonalTodo", 
-		"param" : param, 
+		"method": "DELETE", 
+		"uri": "/todo/" + tid, 
+		"param" : null, 
 		"callback" : oDataManager.addData
 	});
 	document.getElementsByClassName("detail_modal")[0].style.display = "none";

@@ -1,0 +1,134 @@
+/* .ns-party */
+.ns_guild main {
+	width: 100%;
+	height: calc(100vh - 120px);
+	background-color: rgb(241, 241, 241);
+}
+
+.ns_guild .guild_header {
+	position: relative;
+	width: 100%;
+	height: 220px;
+	min-height: 200px;
+	background-color: #FABFBF; /* 커버 사진이 없으면 기본 연한 빨간색 */
+}
+
+.ns_guild .guild_cover_img {
+	width: 100%;
+	height: 100%;
+	background: url(bg.jpg) 50% 50% / cover;
+}
+
+.ns_guild .guild_cover_img_gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,0.03) 8%,rgba(0,0,0,0.11) 21%,rgba(0,0,0,0.61) 78%,rgba(0,0,0,0.7) 95%,rgba(0,0,0,0.7) 100%);
+}
+
+/* .ns_party .setting_icon랑 같음 */
+.ns_guild .setting_icon {
+	width: 30px;
+	height: 30px;
+	background-image: url(party_setting.png);
+	background-size: 30px;
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	cursor: pointer;
+	opacity: 0.7;
+}
+
+
+.ns_guild .guild_name_wrap {
+	position: absolute;
+	width: 90%;
+	left: 50px;
+	bottom: 50px;
+}
+
+
+.ns_guild .guild_name_wrap .guild_name {
+	font-size: 30px;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, .8);
+	margin: 21px 20px 13px 0;
+	display: inline-block;
+}
+
+.ns_guild .btn_wrap {
+	width: 200px;
+	display: inline-block;
+}
+
+.ns_guild .btn_wrap .guild_join_btn {
+	margin-top: -23px;
+position: absolute;
+  background: #dd4b39;
+  background-image: -webkit-linear-gradient(top, #dd4b39, #CD4434);
+  background-image: -moz-linear-gradient(top, #dd4b39, #CD4434);
+  background-image: -ms-linear-gradient(top, #dd4b39, #CD4434);
+  background-image: -o-linear-gradient(top, #dd4b39, #CD4434);
+  background-image: linear-gradient(to bottom, #dd4b39, #CD4434);
+  -webkit-border-radius: 3;
+  -moz-border-radius: 3;
+  border-radius: 3px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 7px 14px 7px 14px;
+  text-decoration: none;
+}
+
+.ns_guild .btn_wrap .guild_join_btn:hover {
+  background: #FF5540;
+  background-image: -webkit-linear-gradient(top, #FF5540, #dd4b39);
+  background-image: -moz-linear-gradient(top, #FF5540, #dd4b39);
+  background-image: -ms-linear-gradient(top, #FF5540, #dd4b39);
+  background-image: -o-linear-gradient(top, #FF5540, #dd4b39);
+  background-image: linear-gradient(to bottom, #FF5540, #dd4b39);
+  text-decoration: none;
+}
+
+.ns_guild .guild_info {
+	display: inline-block;
+	position: absolute;
+	left: 50px;
+	bottom: 35px;
+	font-size: 15px;
+	color: #fff;
+	-webkit-font-smoothing: antialiased;
+	text-shadow: 0 1px 4px rgba(0, 0, 0, .9);
+	font-weight: bold;
+}
+
+.ns_guild .party_list_wrap {
+	width: calc(100% - 60px);
+	height: calc(100vh - 340px);
+	margin: 30px;
+	border-radius: 5px;
+	background-color: #fff;
+	border: 1px solid rgba(129,129,129,0.2);
+}
+
+.ns_guild .party_list {
+	width: 250px;
+	height: 170px;
+	background-color: #ffd454;
+}
+
+/*.add_icon {
+	background-image: url(plus.png);
+}*/
+
+.ns_guild .party_list .party_name {
+	color: #fff;
+	float: left;
+	position: relative;
+	font-size: 20px;
+	width: 250px;
+	margin: 60px;
+}
