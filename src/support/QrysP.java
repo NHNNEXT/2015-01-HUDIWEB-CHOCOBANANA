@@ -13,5 +13,7 @@ public class QrysP extends Qrys {
 	// for retrieve party in guild
 	public static String RETRIEVE_PARTY_IN_GUILD = "select pid, gid, party_leader_id, p_name, deleted from party where gid = ?";
 
+	// for retrieving my all party list
+	public static String RETRIEVE_MY_PARTY_LIST = "";
 
 }

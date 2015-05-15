@@ -3,6 +3,7 @@ package ubuntudo.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -17,6 +18,7 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 import support.Qrys;
+import support.QrysG;
 import support.QrysP;
 import support.QrysU;
 import ubuntudo.model.PartyEntity;
@@ -52,7 +54,7 @@ public class PartyDao {
 	
 	public int insertUserToPartyDao(long partyId, long userId) {
 		logger.debug("inserting user to party... partyId: " + partyId + ", userId: " + userId);
-		return jdbcTemplate.update(QrysU.INSERT_USER_TO_PARTY, partyId, userId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_PARTY, userId, partyId);
 	}
 
 	public List<PartyEntity> retrievePartyListSearchDao(String partyName) {
@@ -86,5 +88,10 @@ public class PartyDao {
 			}
 		};
 		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_IN_GUILD, rowMapper, gid);
+	}
+	
+	public List<Map<String, Object>> retrieveMyPartyListDao(long uid) {
+		logger.debug("retrieving my parties... party id: " + uid);
+		return jdbcTemplate.queryForList(QrysP.RETRIEVE_MY_PARTY_LIST, uid);
 	}
 }

@@ -1,12 +1,14 @@
 package ubuntudo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.biz.PartyBiz;
 import ubuntudo.model.PartyEntity;
@@ -44,4 +46,10 @@ public class PartyController {
 	public List<PartyEntity> retrievePartyInGuildListController(@RequestParam("gid") long gid) {
 		return pbiz.retrievePartyInGuildListBiz(gid);
 	}
+	
+	// retrieve a list of all the guild of particular user
+//	@RequestMapping(value = "/retrieveMyGuild", method = RequestMethod.POST)
+//	public @ResponseBody List<Map<String, Object>> retrieveMyGuildListController(@RequestParam("uid") long uid) {
+//		return gbiz.retrieveMyGuildListBiz(uid);
+//	}
 }

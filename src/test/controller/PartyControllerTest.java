@@ -24,10 +24,64 @@ public class PartyControllerTest {
 
 	@Test
 	public void insertPartyControllerTest() {
-		long gid = 50l;
-		long leaderId = 50l;
-		String partyName = "Mark Party50";
+		long gid = 1l;
+		long leaderId = 1l;
+		String partyName = "1s party guild 1 party 1";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
 
+		gid = 1l;
+		leaderId = 1l;
+		partyName = "1s party guild 1 party 2";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+
+		gid = 2l;
+		leaderId = 1l;
+		partyName = "1s party guild 2 party 3";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+
+		gid = 2l;
+		leaderId = 1l;
+		partyName = "1s party guild 2 party 4";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 3l;
+		leaderId = 1l;
+		partyName = "1s party guild 3 party 5";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 3l;
+		leaderId = 1l;
+		partyName = "1s party guild 3 party 6";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+
+		gid = 4l;
+		leaderId = 2l;
+		partyName = "2s party guild 4 party 7";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 4l;
+		leaderId = 2l;
+		partyName = "2s party guild 4 party 8";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 5l;
+		leaderId = 2l;
+		partyName = "2s party guild 5 party 9";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 5l;
+		leaderId = 2l;
+		partyName = "2s party guild 5 party 10";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 6l;
+		leaderId = 2l;
+		partyName = "2s party guild 6 party 11";
+		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
+		
+		gid = 6l;
+		leaderId = 2l;
+		partyName = "2s party guild 6 party 12";
 		assertEquals(2, partyController.insertNewPartyController(gid, leaderId, partyName));
 	}
 
