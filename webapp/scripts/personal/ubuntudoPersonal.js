@@ -98,6 +98,8 @@ window.addEventListener("load", function () {
 
 //달력 관련 jquery (datepicker)
 $(function() {
+	'use strict';
+
     var myDatepicker = $("#datepicker");
     myDatepicker.datepicker({ 
         firstDay: 0,
@@ -115,6 +117,7 @@ $(function() {
 
 var editBtn = document.querySelector(".btn_wrapper .edit_btn");
 editBtn.addEventListener('click', function(e) {
+	'use strict';
     e.preventDefault();
     e.stopPropagation(); 
 
@@ -145,6 +148,7 @@ editBtn.addEventListener('click', function(e) {
 
 var deleteTodoBtn = document.querySelector(".btn_wrapper .delete_btn");
 deleteTodoBtn.addEventListener('click', function(e) {
+	'use strict';
 	e.preventDefault();
 	e.stopPropagation(); 
 	
