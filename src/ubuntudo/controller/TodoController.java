@@ -27,7 +27,7 @@ public class TodoController {
 	@Autowired
 	TodoBiz tbiz;
 
-	@RequestMapping(value = "/updatePersonalTodo", method = RequestMethod.POST)
+	@RequestMapping(value="/{tid}", method = RequestMethod.PUT)
 	public @ResponseBody void updateTodoController(HttpSession session,
 			long tid, String title_edit, String note_edit, String due_date_edit) {
 		logger.debug("===>updatePersonalTodo");
@@ -45,7 +45,7 @@ public class TodoController {
 		logger.debug("<===updateTupdatePersonalTodoodo");
 	}
 
-	@RequestMapping(value = "/deletePersonalTodo", method = RequestMethod.POST)
+	@RequestMapping(value="/{tid}", method = RequestMethod.DELETE)
 	public @ResponseBody void deleteTodoController(HttpSession session, long tid) {
 		logger.debug("===>deletePersonalTodo");
 

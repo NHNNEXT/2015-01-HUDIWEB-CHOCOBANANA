@@ -19,24 +19,27 @@ public class GuildController {
 	@Autowired
 	GuildBiz gbiz;
 
-	@RequestMapping(value = "/insertNewGuild", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
 
-	@RequestMapping(value = "/insertUserToGuild", method = RequestMethod.POST)
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public int insertUserToGuildController(@RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
 	}
 
-	@RequestMapping(value = "/retrieveGuildListSearch", method = RequestMethod.POST)
+	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public @ResponseBody List<GuildEntity> retrieveGuildListSearchController(@RequestParam("guildName") String guildName) {
 		return gbiz.retrieveGuildListSearchBiz(guildName);
 	}
 
-	@RequestMapping(value = "/updateGuild", method = RequestMethod.POST)
+	@RequestMapping(method = RequestMethod.PUT)
 	public int updateGuildController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName,
 			@RequestParam("status") String status) {
 		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName, status));
 	}
+	
+	//@RequestMapping(method = RequestMethod.GET)
+
 }
