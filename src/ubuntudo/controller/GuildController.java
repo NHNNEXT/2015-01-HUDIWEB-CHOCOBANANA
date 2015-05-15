@@ -18,7 +18,7 @@ public class GuildController {
 
 	@Autowired
 	GuildBiz gbiz;
-
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewGuildController(@RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
@@ -40,6 +40,11 @@ public class GuildController {
 		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName, status));
 	}
 	
-	//@RequestMapping(method = RequestMethod.GET)
+	//@RequestMapping(value = "", method = RequestMethod.GET)
+
+	//guild/overview GET - html
+	//guild/overview/data GET - json
+	
+	
 
 }

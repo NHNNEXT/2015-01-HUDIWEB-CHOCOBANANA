@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestBindingException;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,7 +28,7 @@ public class TodoController {
 	@Autowired
 	TodoBiz tbiz;
 
-	@RequestMapping(value="/{tid}", method = RequestMethod.PUT)
+	@RequestMapping(method = RequestMethod.PUT)
 	public @ResponseBody void updateTodoController(HttpSession session,
 			long tid, String title_edit, String note_edit, String due_date_edit) {
 		logger.debug("===>updatePersonalTodo");
@@ -45,8 +46,8 @@ public class TodoController {
 		logger.debug("<===updateTupdatePersonalTodoodo");
 	}
 
-	@RequestMapping(value="/{tid}", method = RequestMethod.DELETE)
-	public @ResponseBody void deleteTodoController(HttpSession session, long tid) {
+	@RequestMapping(value = "/{tid}", method = RequestMethod.DELETE)
+	public @ResponseBody void deleteTodoController(HttpSession session, @PathVariable("tid") Long tid) {
 		logger.debug("===>deletePersonalTodo");
 
 		UserEntity user = (UserEntity) session.getAttribute("user");
