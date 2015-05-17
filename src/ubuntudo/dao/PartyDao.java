@@ -91,6 +91,6 @@ public class PartyDao {
 	
 	public List<Map<String, Object>> retrieveMyPartyListDao(long uid) {
 		logger.debug("retrieving my parties... party id: " + uid);
-		return jdbcTemplate.queryForList(QrysP.RETRIEVE_MY_PARTY_LIST, uid);
+		return jdbcTemplate.queryForList(QrysP.RETRIEVE_MY_PARTY_LIST, uid, uid);
 	}
 }

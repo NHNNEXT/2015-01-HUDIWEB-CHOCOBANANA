@@ -40,15 +40,15 @@ public class PartyController {
 			@RequestParam("status") String status) {
 		return pbiz.updatePartyBiz(new PartyEntity(pid, leaderId, partyName, status));
 	}
-	
-	//나중에 다시 uri 생각해보기
+
+	// 나중에 다시 uri 생각해보기
 	@RequestMapping(value = "/guild", method = RequestMethod.GET)
 	public List<PartyEntity> retrievePartyInGuildListController(@RequestParam("gid") long gid) {
 		return pbiz.retrievePartyInGuildListBiz(gid);
 	}
-	
+
 	// retrieve a list of all the guild of particular user
-	@RequestMapping(value = "", method = RequestMethod.POST)
+	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody List<Map<String, Object>> retrieveMyPartyListController(@RequestParam("uid") long uid) {
 		return pbiz.retrieveMyPartyListBiz(uid);
 	}

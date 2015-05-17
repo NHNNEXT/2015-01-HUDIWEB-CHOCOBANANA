@@ -22,14 +22,37 @@ import com.google.gson.Gson;
 public class GuildColtrollerTest {
 
 	Gson gson = new Gson();
-	
+
 	@Autowired
 	private GuildController guildController;
 
 	@Test
 	public void insertNewGuildControllerTest() {
-		long leaderId = 2l;
-		String newGuildName = "2's guild 3";
+		long leaderId = 0l;
+		String newGuildName = "";
+
+		leaderId = 1l;
+		newGuildName = "1s guild 1";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 1l;
+		newGuildName = "1s guild 2";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 1l;
+		newGuildName = "1s guild 3";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 2l;
+		newGuildName = "2s guild 1";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 2l;
+		newGuildName = "2s guild 2";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 2l;
+		newGuildName = "2s guild 3";
 		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
 	}
 
@@ -65,12 +88,12 @@ public class GuildColtrollerTest {
 
 		assertEquals(1, guildController.updateGuildController(gid, leaderId, guildName, status));
 	}
-	
+
 	@Test
 	public void retrieveMyGuildListControllerTest() {
 		long uid = 1l;
 		List<Map<String, Object>> map = guildController.retrieveMyGuildListController(uid);
 		System.out.println(gson.toJson(map));
-		assertNotNull(guildController.retrieveMyGuildListController(uid));
+		assertNotNull(map);
 	}
 }
