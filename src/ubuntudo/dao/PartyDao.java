@@ -18,7 +18,6 @@ import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Repository;
 
 import support.Qrys;
-import support.QrysG;
 import support.QrysP;
 import support.QrysU;
 import ubuntudo.model.PartyEntity;

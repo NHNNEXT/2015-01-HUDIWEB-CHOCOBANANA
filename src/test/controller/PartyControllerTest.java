@@ -3,6 +3,7 @@ package test.controller;
 import static org.junit.Assert.*;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -119,6 +120,17 @@ public class PartyControllerTest {
 		List<PartyEntity> partyList = partyController.retrievePartyInGuildListController(gid);
 		assertNotNull(partyList);
 
+		Gson gson = new Gson();
+		String partyListJson = gson.toJson(partyList);
+		System.out.println(partyListJson);
+	}
+	
+	@Test
+	public void retrieveMyPartyListControllerTest() {
+		long uid = 1l;
+		List<Map<String, Object>> partyList = partyController.retrieveMyPartyListController(uid);
+		assertNotNull(partyList);
+		
 		Gson gson = new Gson();
 		String partyListJson = gson.toJson(partyList);
 		System.out.println(partyListJson);

@@ -48,8 +48,8 @@ public class PartyController {
 	}
 	
 	// retrieve a list of all the guild of particular user
-//	@RequestMapping(value = "/retrieveMyGuild", method = RequestMethod.POST)
-//	public @ResponseBody List<Map<String, Object>> retrieveMyGuildListController(@RequestParam("uid") long uid) {
-//		return gbiz.retrieveMyGuildListBiz(uid);
-//	}
+	@RequestMapping(value = "", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String, Object>> retrieveMyPartyListController(@RequestParam("uid") long uid) {
+		return pbiz.retrieveMyPartyListBiz(uid);
+	}
 }
