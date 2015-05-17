@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,20 +21,48 @@ import com.google.gson.Gson;
 @ContextConfiguration("classpath:/ubuntudo-servlet.xml")
 public class GuildColtrollerTest {
 
+	Gson gson = new Gson();
+
 	@Autowired
 	private GuildController guildController;
 
 	@Test
 	public void insertNewGuildControllerTest() {
-		long leaderId = 20l;
-		String newGuildName = "The Guild20";
+		long leaderId = 0l;
+		String newGuildName = "";
+
+		leaderId = 1l;
+		newGuildName = "1s guild 1";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 1l;
+		newGuildName = "1s guild 2";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 1l;
+		newGuildName = "1s guild 3";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 2l;
+		newGuildName = "2s guild 1";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 2l;
+		newGuildName = "2s guild 2";
+		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
+
+		leaderId = 2l;
+		newGuildName = "2s guild 3";
 		assertEquals(2, guildController.insertNewGuildController(leaderId, newGuildName));
 	}
 
 	@Test
 	public void insertUserToGuildControllerTest() {
-		long guildId = 1l;
+		long guildId = 6l;
 		long userId = 1l;
+		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
+		guildId = 3l;
+		userId = 2l;
 		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
 	}
 
@@ -58,5 +87,13 @@ public class GuildColtrollerTest {
 		String status = "0";
 
 		assertEquals(1, guildController.updateGuildController(gid, leaderId, guildName, status));
+	}
+
+	@Test
+	public void retrieveMyGuildListControllerTest() {
+		long uid = 1l;
+		List<Map<String, Object>> map = guildController.retrieveMyGuildListController(uid);
+		System.out.println(gson.toJson(map));
+		assertNotNull(map);
 	}
 }

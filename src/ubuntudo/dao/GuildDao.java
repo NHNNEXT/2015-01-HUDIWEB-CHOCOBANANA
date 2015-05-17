@@ -3,6 +3,7 @@ package ubuntudo.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -39,21 +40,21 @@ public class GuildDao {
 		logger.debug("inserting new guild..." + guild.toString());
 		return jdbcTemplate.update(QrysG.INSERT_GUILD, guild.getGuildName(), guild.getLeaderId());
 	}
-	
+
 	public long getLastGuildId() {
 		RowMapper<Long> rowMapper = new RowMapper<Long>() {
-			
+
 			@Override
 			public Long mapRow(ResultSet rs, int rowNum) throws SQLException {
 				return rs.getLong("last_id");
 			}
-		}; 
+		};
 		return jdbcTemplate.queryForObject(Qrys.GET_LAST_ID, rowMapper);
 	}
-	
+
 	public int insertUserToGuildDao(long guildId, long userId) {
 		logger.debug("inserting user to guild... guildId: " + guildId + ", userId: " + userId);
-		return jdbcTemplate.update(QrysU.INSERT_USER_TO_GUILD, guildId, userId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_GUILD, userId, guildId);
 	}
 
 	public List<GuildEntity> retrieveGuildListSearchDao(String guildName) {
@@ -67,11 +68,16 @@ public class GuildDao {
 				}
 			}
 		};
-		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST, rowMapper, Qrys.makeLikeParam(guildName));
+		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST_SEARCH, rowMapper, Qrys.makeLikeParam(guildName));
 	}
 
 	public int updateGuildDao(GuildEntity guild) {
 		logger.debug("updating current guild to: " + guild);
 		return jdbcTemplate.update(QrysG.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
+	}
+
+	public List<Map<String, Object>> retrieveMyGuildListDao(long uid) {
+		logger.debug("retrieving my guilds... guild id: " + uid);
+		return jdbcTemplate.queryForList(QrysG.RETRIEVE_MY_GUILD_LIST, uid);
 	}
 }

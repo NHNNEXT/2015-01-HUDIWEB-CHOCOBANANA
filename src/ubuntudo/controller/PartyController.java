@@ -1,12 +1,14 @@
 package ubuntudo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.biz.PartyBiz;
 import ubuntudo.model.PartyEntity;
@@ -38,10 +40,16 @@ public class PartyController {
 			@RequestParam("status") String status) {
 		return pbiz.updatePartyBiz(new PartyEntity(pid, leaderId, partyName, status));
 	}
-	
-	//나중에 다시 uri 생각해보기
+
+	// 나중에 다시 uri 생각해보기
 	@RequestMapping(value = "/guild", method = RequestMethod.GET)
 	public List<PartyEntity> retrievePartyInGuildListController(@RequestParam("gid") long gid) {
 		return pbiz.retrievePartyInGuildListBiz(gid);
+	}
+
+	// retrieve a list of all the guild of particular user
+	@RequestMapping(value = "/", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String, Object>> retrieveMyPartyListController(@RequestParam("uid") long uid) {
+		return pbiz.retrieveMyPartyListBiz(uid);
 	}
 }

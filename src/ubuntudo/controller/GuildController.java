@@ -1,6 +1,7 @@
 package ubuntudo.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,21 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import core.utils.DateUtil;
 import ubuntudo.biz.GuildBiz;
-import ubuntudo.controller.PersonalController;
 import ubuntudo.model.GuildEntity;
 
 @Controller
 @RequestMapping(value = "/guild")
 public class GuildController {
-	
-	private static final Logger logger = LoggerFactory
-			.getLogger(GuildController.class);
+
+	private static final Logger logger = LoggerFactory.getLogger(GuildController.class);
 
 	@Autowired
 	GuildBiz gbiz;
-	
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String execute(HttpSession session, Model model) {
@@ -37,7 +34,7 @@ public class GuildController {
 			return "redirect:/start";
 		}
 		logger.debug("/guild 요청에 대해 응답");
-		
+
 		return "guild";
 	}
 
@@ -61,12 +58,16 @@ public class GuildController {
 			@RequestParam("status") String status) {
 		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName, status));
 	}
-	
-	//@RequestMapping(value = "", method = RequestMethod.GET)
 
-	//guild/overview GET - html
-	//guild/overview/data GET - json
-	
-	
+	// retrieve a list of all the guild of particular user
+	@RequestMapping(value = "/retrieveMyGuild", method = RequestMethod.POST)
+	public @ResponseBody List<Map<String, Object>> retrieveMyGuildListController(@RequestParam("uid") long uid) {
+		return gbiz.retrieveMyGuildListBiz(uid);
+	}
+
+	// @RequestMapping(value = "", method = RequestMethod.GET)
+
+	// guild/overview GET - html
+	// guild/overview/data GET - json
 
 }
