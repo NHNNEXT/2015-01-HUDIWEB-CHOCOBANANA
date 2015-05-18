@@ -118,6 +118,29 @@ ul.btn_wrapper {
   width: 17px;
   height: 17px; }
 
+.search_result {
+    position: absolute;
+    top: 46px;
+    float: right;
+    width: 216px;
+    background-color: #fff;
+    border: 1px solid #c6c6c6;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 100;
+
+}
+
+.search_result li{
+    padding: 5px 10px 5px 10px;
+    height: 20px;
+    line-height: 20px;
+    font-size: 13.81px;
+}
+
+.search_result li.on {
+    background-color: #efefef;
+}
+
 /* .ns-personal */
 .ns_personal aside {
   width: 60px;
