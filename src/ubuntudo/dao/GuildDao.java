@@ -68,7 +68,7 @@ public class GuildDao {
 				}
 			}
 		};
-		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST_SEARCH, rowMapper, Qrys.makeLikeParam(guildName));
+		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST_SEARCH, rowMapper, guildName+"%");
 	}
 
 	public int updateGuildDao(GuildEntity guild) {

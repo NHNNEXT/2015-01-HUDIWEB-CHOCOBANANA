@@ -94,6 +94,15 @@ window.addEventListener("load", function () {
        oTodoManager.add(ev, oDataManager);
 	   oTodoAddModalManager.hideModal(ev);
 	});
+    
+    /*길드 검색 이벤트 등록*/
+    var elSearchResultList =  document.querySelector(".search_result_list");
+    var elSearchInput = document.getElementById("global-header").querySelector(".search_input");
+    var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
+    elSearchInput.addEventListener("keyup", function(ev) {
+        //백스페이스로 input창을 다 지우는 경우에 왜 autoComplete(ev)를 실행하지 않는 걸까?
+        oSearchManager.autoComplete(ev);
+    })
 });
 
 //달력 관련 jquery (datepicker)

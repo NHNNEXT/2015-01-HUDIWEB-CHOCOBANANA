@@ -47,10 +47,8 @@
 					<input class="search_submit" type="submit" value="">
 				</form>
 			</div>
-            <div class="search_result" style="display: block">
+            <div class="search_result" style="display: none">
                 <ul class="search_result_list">
-                    <li class="on"><a href="/jsp/guild.jsp">길드1</a></li>
-                    <li><a href="/">길드2</a></li>
                 </ul>
             </div>
 			<div class="addBtn_and_profile_container">

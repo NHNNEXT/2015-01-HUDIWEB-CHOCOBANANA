@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -55,8 +56,8 @@ public class GuildController {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
-	public @ResponseBody List<GuildEntity> retrieveGuildListSearchController(@RequestParam("guildName") String guildName) {
+	@RequestMapping(value = "/search/{gname}", method = RequestMethod.GET)
+	public @ResponseBody List<GuildEntity> retrieveGuildListSearchController(@PathVariable("gname") String guildName) {
 		return gbiz.retrieveGuildListSearchBiz(guildName);
 	}
 
