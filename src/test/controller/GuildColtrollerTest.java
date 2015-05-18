@@ -96,4 +96,12 @@ public class GuildColtrollerTest {
 		System.out.println(gson.toJson(map));
 		assertNotNull(map);
 	}
+	
+	@Test
+	public void retrieveMyGuildAndPartyListControllerTest() {
+		long uid = 1l;
+		String gp = guildController.retrieveMyGuildAndPartyListController(uid);
+		System.out.println(gp);
+		assertNotNull(gp);
+	}
 }

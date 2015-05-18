@@ -78,7 +78,7 @@ public class PartyBiz {
 		return pdao.retrievePartyInGuildListDao(gid);
 	}
 
-	public List<Map<String, Object>> retrieveMyPartyListBiz(long uid) {
-		return pdao.retrieveMyPartyListDao(uid);
+	public List<Map<String, Object>> retrievePartyListOfMyGuildsBiz(long uid) {
+		return pdao.retrievePartyListOfMyGuildsDao(uid);
 	}
 }

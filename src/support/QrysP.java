@@ -14,6 +14,6 @@ public class QrysP extends Qrys {
 	public static String RETRIEVE_PARTY_IN_GUILD = "select pid, gid, party_leader_id, p_name, deleted from party where gid = ?";
 
 	// for retrieving my all party list
-	public static String RETRIEVE_MY_PARTY_LIST = "select ugr.gid, g.g_name, g.leader_id, ug.name, p.pid, p.p_name, p.party_leader_id, up.name, ifnull(upr.state, -1) status from user_guild_relation ugr join guild g on ugr.gid = g.gid join party p on g.gid = p.gid left outer join user_party_relation upr on upr.pid = p.pid and upr.uid = ? join user ug on ug.uid = g.leader_id join user up on up.uid = p.party_leader_id where ugr.uid = ?";
+	public static String RETRIEVE_PARTY_LIST_OF_MY_GUILDS = "select ugr.gid, g.g_name, g.leader_id, ug.name, p.pid, p.p_name, p.party_leader_id, up.name, ifnull(upr.state, -1) status from user_guild_relation ugr join guild g on ugr.gid = g.gid join party p on g.gid = p.gid left outer join user_party_relation upr on upr.pid = p.pid and upr.uid = ? join user ug on ug.uid = g.leader_id join user up on up.uid = p.party_leader_id where ugr.uid = ?";
 
 }
