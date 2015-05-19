@@ -105,8 +105,6 @@ module.exports = function (grunt) {
 //              // Make directory browse-able.
 //              var directory = options.directory || options.base[options.base.length - 1];
 //              middlewares.push(connect.directory(directory));
-              
-      
             return middlewares;
           }
         }

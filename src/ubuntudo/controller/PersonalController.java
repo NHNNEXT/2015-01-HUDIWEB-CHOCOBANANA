@@ -22,14 +22,14 @@ import ubuntudo.model.TodoUserRelationEntity;
 import ubuntudo.model.UserEntity;
 import core.utils.DateUtil;
 
-@Controller
+@Controller @RequestMapping(value = "/personal")
 public class PersonalController {
 	private static final Logger logger = LoggerFactory.getLogger(PersonalController.class);
 	
 	@Autowired
 	TodoDao tdao;
 
-	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	public String execute(HttpSession session, Model model) {
 		if (session.getAttribute("user") == null) {
 			logger.debug("/personal 요청에 대해 응답 - 세션이 정상적이지 않을때");
@@ -44,7 +44,7 @@ public class PersonalController {
 		return "personal";
 	}
 
-	@RequestMapping(value = "/personal/todo", method = RequestMethod.GET)
+	@RequestMapping(value = "/todo", method = RequestMethod.GET)
 	public @ResponseBody ArrayList<TodoEntity> getPersonalTodos(
 			HttpSession session) {
 		logger.debug("/personal/todo 요청에 대해 응답");
@@ -53,7 +53,7 @@ public class PersonalController {
 		return todoArray;
 	}
 
-	@RequestMapping(value = "/personal/todo/complete/{tid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/todo/complete/{tid}", method = RequestMethod.GET)
 	public @ResponseBody ModelMap completePersonalTodo(HttpSession session,
 			@PathVariable("tid") Long tid)
 			throws ServletRequestBindingException {

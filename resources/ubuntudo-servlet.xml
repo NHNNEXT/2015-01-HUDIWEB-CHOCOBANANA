@@ -23,7 +23,7 @@
 	<mvc:resources location="/images/" mapping="/commons/img/**" />
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/scripts/" mapping="/commons/js/**" />
-	<mvc:resources location="/lib/" mapping="/commons/lib/**" />
+	<mvc:resources location="/scripts/lib/" mapping="/commons/lib/**" />
 	<mvc:resources location="/bower_components/" mapping="/bower_components/**" />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
@@ -50,7 +50,7 @@
 		<property name="username" value="${database.username}" />
 		<property name="password" value="${database.password}" />
 	</bean>
-	
+
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
