@@ -76,8 +76,14 @@ public class GuildDao {
 		return jdbcTemplate.update(QrysG.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
 	}
 
+
 	public List<Map<String, Object>> retrieveMyGuildListDao(long uid) {
-		logger.debug("retrieving my guilds... guild id: " + uid);
+		logger.debug("retrieving my guilds... user id: " + uid);
 		return jdbcTemplate.queryForList(QrysG.RETRIEVE_MY_GUILD_LIST, uid);
+	}
+
+	public List<Map<String, Object>> retrieveGuildDetail(long gid) {
+		logger.debug("retrieving detail info of a guild... guild id: " + gid);
+		return jdbcTemplate.queryForList(QrysG.RETRIEVE_GUILD_DETAIL, gid, gid, gid);
 	}
 }

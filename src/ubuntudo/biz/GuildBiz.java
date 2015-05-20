@@ -13,7 +13,9 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ubuntudo.dao.GuildDao;
+import ubuntudo.dao.PartyDao;
 import ubuntudo.model.GuildEntity;
+import core.utils.DateUtil;
 
 @Service
 public class GuildBiz {
@@ -21,6 +23,9 @@ public class GuildBiz {
 
 	@Autowired
 	private GuildDao gdao;
+
+	@Autowired
+	private PartyDao pdao;
 
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
@@ -78,5 +83,11 @@ public class GuildBiz {
 
 	public List<Map<String, Object>> retrieveMyGuildListBiz(long uid) {
 		return gdao.retrieveMyGuildListDao(uid);
+	}
+
+	public String retrieveGuildDetailAndPartyListBiz(long uid, long gid) {
+		String guildDetail = DateUtil.gson.toJson(gdao.retrieveGuildDetail(gid));
+		String partyListInGuild = DateUtil.gson.toJson(pdao.retrievePartyInGuildDao(uid, gid));
+		return "{\"result\":{\"guildDetail\":" + guildDetail + ",\"parties\":" + partyListInGuild	+ "}}";
 	}
 }

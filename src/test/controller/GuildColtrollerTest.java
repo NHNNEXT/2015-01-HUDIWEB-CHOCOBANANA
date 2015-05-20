@@ -58,10 +58,18 @@ public class GuildColtrollerTest {
 
 	@Test
 	public void insertUserToGuildControllerTest() {
-		long guildId = 6l;
-		long userId = 1l;
+		long guildId = 0l;
+		long userId = 0l;
+
+		guildId = 6l;
+		userId = 1l;
 		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
+
 		guildId = 3l;
+		userId = 2l;
+		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
+		
+		guildId = 1l;
 		userId = 2l;
 		assertEquals(1, guildController.insertUserToGuildController(guildId, userId));
 	}
@@ -96,12 +104,21 @@ public class GuildColtrollerTest {
 		System.out.println(gson.toJson(map));
 		assertNotNull(map);
 	}
-	
+
 	@Test
 	public void retrieveMyGuildAndPartyListControllerTest() {
 		long uid = 1l;
 		String gp = guildController.retrieveMyGuildAndPartyListController(uid);
 		System.out.println(gp);
 		assertNotNull(gp);
+	}
+
+	@Test
+	public void retrieveGuildDetailAndPartyListControllerTest() {
+		long uid = 1l;
+		long gid = 1l;
+		String guildDetailAndPartyList = guildController.retrieveGuildDetailAndPartyListController(uid, gid);
+		System.out.println(guildDetailAndPartyList);
+		assertNotNull(guildDetailAndPartyList);
 	}
 }

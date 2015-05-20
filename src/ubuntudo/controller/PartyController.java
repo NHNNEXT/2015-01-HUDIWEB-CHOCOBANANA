@@ -3,8 +3,11 @@ package ubuntudo.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +23,12 @@ public class PartyController {
 	@Autowired
 	PartyBiz pbiz;
 
+	@RequestMapping(method = RequestMethod.GET)
+	public String execute(HttpSession session, Model model) {
+		System.out.println(session.getAttribute("user"));
+		return "personal";
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
 		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));
@@ -43,10 +52,10 @@ public class PartyController {
 
 	// 나중에 다시 uri 생각해보기
 	@RequestMapping(value = "/guild", method = RequestMethod.GET)
-	public List<PartyEntity> retrievePartyInGuildListController(@RequestParam("gid") long gid) {
-		return pbiz.retrievePartyInGuildListBiz(gid);
+	public List<Map<String, Object>> retrievePartyInGuildListController(@RequestParam("uid") long uid, @RequestParam("gid") long gid) {
+		return pbiz.retrievePartyInGuildListBiz(uid, gid);
 	}
-
+	
 	// retrieve a list of all the guild of particular user
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody List<Map<String, Object>> retrieveMyPartyListController(@RequestParam("uid") long uid) {
