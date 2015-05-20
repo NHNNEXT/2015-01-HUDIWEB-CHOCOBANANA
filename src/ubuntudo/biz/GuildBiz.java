@@ -1,6 +1,7 @@
 package ubuntudo.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,9 +24,9 @@ public class GuildBiz {
 
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
-	
+
 	public GuildBiz() {
-		
+
 	}
 
 	public int insertNewGuildBiz(GuildEntity guild) {
@@ -75,7 +76,7 @@ public class GuildBiz {
 		return gdao.updateGuildDao(guildEntity);
 	}
 
-	public int getGuildInfo(Long gid) {
-		return gdao.getGuildinfo(gid);
+	public List<Map<String, Object>> retrieveMyGuildListBiz(long uid) {
+		return gdao.retrieveMyGuildListDao(uid);
 	}
 }

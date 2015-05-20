@@ -3,6 +3,7 @@ package ubuntudo.dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
@@ -41,18 +42,18 @@ public class PartyDao {
 
 	public long getLastPartyId() {
 		RowMapper<Long> rowMapper = new RowMapper<Long>() {
-			
+
 			@Override
 			public Long mapRow(ResultSet rs, int rowNum) throws SQLException {
 				return rs.getLong("last_id");
 			}
-		}; 
+		};
 		return jdbcTemplate.queryForObject(Qrys.GET_LAST_ID, rowMapper);
 	}
-	
+
 	public int insertUserToPartyDao(long partyId, long userId) {
 		logger.debug("inserting user to party... partyId: " + partyId + ", userId: " + userId);
-		return jdbcTemplate.update(QrysU.INSERT_USER_TO_PARTY, partyId, userId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_PARTY, userId, partyId);
 	}
 
 	public List<PartyEntity> retrievePartyListSearchDao(String partyName) {
@@ -86,5 +87,10 @@ public class PartyDao {
 			}
 		};
 		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_IN_GUILD, rowMapper, gid);
+	}
+
+	public List<Map<String, Object>> retrievePartyListOfMyGuildsDao(long uid) {
+		logger.debug("retrieving parties in my guild... uid: " + uid);
+		return jdbcTemplate.queryForList(QrysP.RETRIEVE_PARTY_LIST_OF_MY_GUILDS, uid, uid);
 	}
 }

@@ -1,6 +1,7 @@
 package ubuntudo.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,5 +76,9 @@ public class PartyBiz {
 
 	public List<PartyEntity> retrievePartyInGuildListBiz(long gid) {
 		return pdao.retrievePartyInGuildListDao(gid);
+	}
+
+	public List<Map<String, Object>> retrievePartyListOfMyGuildsBiz(long uid) {
+		return pdao.retrievePartyListOfMyGuildsDao(uid);
 	}
 }
