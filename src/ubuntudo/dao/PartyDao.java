@@ -75,18 +75,9 @@ public class PartyDao {
 		return jdbcTemplate.update(QrysP.UPDATE_PARTY, party.getLeaderId(), party.getPartyName(), party.getStatus(), party.getPid());
 	}
 
-	public List<PartyEntity> retrievePartyInGuildListDao(long gid) {
+	public List<Map<String, Object>> retrievePartyInGuildDao(long uid, long gid) {
 		logger.debug("searching Party in guild... guild id: " + gid);
-		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
-			public PartyEntity mapRow(ResultSet rs, int rowNum) {
-				try {
-					return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"), rs.getLong("party_leader_id"), rs.getString("p_name"), rs.getString("deleted"));
-				} catch (SQLException e) {
-					throw new BeanInstantiationException(PartyEntity.class, e.getMessage(), e);
-				}
-			}
-		};
-		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_IN_GUILD, rowMapper, gid);
+		return jdbcTemplate.queryForList(QrysP.RETRIEVE_PARTY_IN_GUILD, uid, gid);
 	}
 
 	public List<Map<String, Object>> retrievePartyListOfMyGuildsDao(long uid) {

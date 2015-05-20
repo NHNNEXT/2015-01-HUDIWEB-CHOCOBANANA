@@ -91,6 +91,12 @@ public class GuildController {
 		return "{\"result\":{\"guilds\":" + gson.toJson(gbiz.retrieveMyGuildListBiz(uid)) + ",\"parties\":" + gson.toJson(pbiz.retrievePartyListOfMyGuildsBiz(uid))	+ "}}";
 	}
 
+	// retrieve detail info of a guild and a list of all the party in a particular guild
+	@RequestMapping(value = "/guild", method = RequestMethod.GET)
+	public String retrieveGuildDetailAndPartyListController(@RequestParam("uid") long uid, @RequestParam("gid") long gid) {
+		return gbiz.retrieveGuildDetailAndPartyListBiz(uid, gid);
+	}
+
 	// @RequestMapping(value = "", method = RequestMethod.GET)
 
 	// guild/overview GET - html
