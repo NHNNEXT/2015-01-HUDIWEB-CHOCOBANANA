@@ -1,8 +1,9 @@
 /* .ns-party */
 .ns_party main {
-	width: 100%;
-	height: calc(100vh - 120px);
-	padding: 30px 15px;
+	width: auto;
+	min-width: 600px;
+	height: calc(100vh - 90px);
+	padding: 15px 15px;
 	background-color: rgb(241, 241, 241);
 }
 
@@ -19,7 +20,7 @@
 	/*height: calc((100%)/3);*/
 	height: 220px;
 	min-height: 200px;
-	margin: 0 15px;
+	margin-bottom: 15px;
 	border-radius: 5px;
 	background-color: #fff;
 	float: left;
@@ -29,12 +30,12 @@
 .ns_party .cover {
 	width: 100%;
 	height: 160px;
-	background: url(bg.jpg) 50% 50% / cover;
+	background: url(/images/bg.jpg) 50% 50% / cover;
 	background-color: #dd4b39; /* 커버 사진이 없으면 기본 빨간색 */
 }
 
 .ns_party .cover::after {
-  background: url(party_cover_effect.png) repeat-x left 0 bottom 59px;
+  background: url(/images/party_cover_effect.png) repeat-x left 0 bottom 59px;
   bottom: 0;
   content: '';
   left: 0;
@@ -50,7 +51,7 @@
 	position: absolute;
 	left: 15px;
 	bottom: 15px;
-	background: url(profile.jpg) 50% 50% / cover;
+	background: url(/images/profile.jpg) 50% 50% / cover;
 	border: 4px solid #ffffff;
 	border-radius: 150px;
 	-webkit-border-radius: 150px;
@@ -60,7 +61,7 @@
 .ns_party .setting_icon {
 	width: 30px;
 	height: 30px;
-	background-image: url(party_setting.png);
+	background-image: url(/images/party_setting.png);
 	background-size: 30px;
 	position: absolute;
 	top: 10px;
@@ -120,7 +121,7 @@
 	display: block;
 }
 
-.ns_party .party_join_btn {
+.ns_party .party_join_btn, .ns_party .party_leave_btn {
 position: absolute;
 right: 9px;
 bottom: 180px;
@@ -152,27 +153,27 @@ bottom: 180px;
 
 .ns_party .party_all_todos {
 	width: 100%;
-	height: calc((100%)*2/3);
-	margin: 15px;
 	border-radius: 5px;
 	background-color: #fff;
 	float: left;
 	border: 1px solid rgba(129,129,129,0.2);
+}
 
+.ns_party .party_todo_list {
+	width: 100%;
+	height: calc(((100vh - 388px)));
 }
 
 .ns_party .right_side {
-	width: 70%;
+	width: 73%;
 	height: 100%;
-	float: left;
-	margin-left: 15px;
+	float: right;
 }
 
 .ns_party .party_detail {
 	/*display: inline-block;*/
 	width: 100%;
 	height: 100%;
-	margin: 0 15px;
 	border-radius: 5px;
 	background-color: #fff;
 	float: left;
@@ -192,6 +193,63 @@ bottom: 180px;
 .ns_party .name {
 	padding : 10px;
 	font-weight: 200;
-	font-size: 20px;
+	font-size: 20px 10px 20px 10px;
  	text-transform: uppercase;
+}
+
+/* 파티 통계 관련 CSS - 다혜 추가*/
+.ns_party .left_column {
+	float: left;
+	height: calc(100vh - 200px);
+	padding: 20px 20px 10px 20px;
+	width: calc(50% - 40px);
+	overflow: hidden;
+}
+
+.ns_party .right_column {
+	float: right;
+	margin-top: 20px;
+	margin-right: 20px;
+	width: calc(50% - 20px);
+	height: calc(100vh - 200px);
+	padding: 20 20px 20px 10px;
+	display: inline-block;
+	outline: 1px solid #efefef;
+	border-bottom: 1px solid #dcdce0;
+}
+
+.ns_party .top_user_list {
+	display: block;
+}
+
+.ns_party .notification {
+	margin-top: 0px;
+ 	position: relative;
+	width: 100%;
+	height: auto;
+	outline: 1px solid #efefef;
+	display:inline-block;
+	outline: 1px solid #efefef;
+	border-bottom: 1px solid #dcdce0;
+}
+
+.ns_party .complete_ratio {
+	margin-top: 20px;
+	width: 100%;
+	display: inline-block;
+	outline: 1px solid #efefef;
+	overflow: hidden;
+	border-bottom: 1px solid #dcdce0;
+}
+
+.ns_party .static_title {
+	background-color: #eee;
+	padding: 15px;
+	font-size: 20px;
+}
+
+.ns_party #myChart {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	position: relative;
 }

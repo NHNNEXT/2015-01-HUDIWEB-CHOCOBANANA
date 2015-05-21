@@ -51,7 +51,7 @@ public class GuildController {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
 
-	// @RequestMapping(value = "/user", method = RequestMethod.POST)
+	//@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public int insertUserToGuildController( @RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
 	}

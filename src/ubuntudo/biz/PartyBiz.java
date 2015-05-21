@@ -1,5 +1,6 @@
 package ubuntudo.biz;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,9 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ubuntudo.dao.PartyDao;
 import ubuntudo.model.PartyEntity;
+import ubuntudo.model.PartyInfo;
+import ubuntudo.model.TodoEntity;
+import ubuntudo.model.UserEntity;
 
 @Service
 public class PartyBiz {
@@ -80,5 +84,34 @@ public class PartyBiz {
 
 	public List<Map<String, Object>> retrievePartyListOfMyGuildsBiz(long uid) {
 		return pdao.retrievePartyListOfMyGuildsDao(uid);
+	}
+
+	public PartyInfo getPartyInfo(Long uid, Long pid) {
+		logger.debug("uid: {}", uid);
+		String partyName = pdao.getPartyName(pid);
+		String guildName = pdao.getGuildName(pid);
+		Integer memberNum = pdao.getMemberNum(pid);
+		Integer todoNum = pdao.getTodoNum(pid);
+		Float completeRatio = getCompleteRatio(pid);
+		ArrayList<UserEntity> topUserList = pdao.getTopUserList(pid);
+		Integer isSignUp = pdao.isUserSignUp(uid, pid);
+		logger.debug("isSignUp: {}", isSignUp);
+		return new PartyInfo(partyName, guildName, memberNum, todoNum, completeRatio, topUserList, isSignUp);
+	}
+
+	private Float getCompleteRatio(Long pid) {
+		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
+		def.setName("example-transaction");
+		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
+		TransactionStatus status = transactionManager.getTransaction(def);
+		pdao.setVariables(pid);
+		pdao.callStoredProcedure();
+		Float ratio = pdao.getComplteRatio();
+		transactionManager.commit(status);
+		return ratio;
+	}
+
+	public ArrayList<TodoEntity> getPartyTodos(Long pid) {
+		return pdao.getPartyTodos(pid);
 	}
 }

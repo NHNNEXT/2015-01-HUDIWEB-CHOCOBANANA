@@ -6,6 +6,7 @@ public class UserEntity {
 	private String name;
 	private String email;
 	private String passwd;
+	private Long todoCount;
 
 	// use this constructor when system registering a user.
 	public UserEntity(String name, String email, String passwd) {
@@ -24,6 +25,12 @@ public class UserEntity {
 	public UserEntity(String email) {
 		this(null,null,email,null);
 	}
+	
+	public UserEntity(String name, String email, Long todoCount) {
+		this.name = name;
+		this.email = email;
+		this.todoCount = todoCount;
+	}
 
 	public Long getUid() {
 		return uid;
@@ -39,6 +46,10 @@ public class UserEntity {
 
 	public String getPasswd() {
 		return passwd;
+	}
+
+	public Long getTodoCount() {
+		return todoCount;
 	}
 
 	@Override
