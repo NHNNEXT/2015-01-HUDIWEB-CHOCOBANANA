@@ -14,7 +14,6 @@ window.addEventListener("load", function () {
 	var oTodoManager = new ubuntudo.ui.TodoManager();
 	var elList = document.querySelectorAll(".ns_personal section ul");
 	var elLightBox = document.querySelector(".light_box");
-  
         
 	var elCompleteBtnList;
 	var oDetailModal;
@@ -100,8 +99,7 @@ window.addEventListener("load", function () {
     var elSearchInput = document.getElementById("global-header").querySelector(".search_input");
     var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
     elSearchInput.addEventListener("keyup", function(ev) {
-        //백스페이스로 input창을 다 지우는 경우에 왜 autoComplete(ev)를 실행하지 않는 걸까?
-        oSearchManager.autoComplete(ev);
+    	oSearchManager.autoComplete(ev);
     })
 });
 
