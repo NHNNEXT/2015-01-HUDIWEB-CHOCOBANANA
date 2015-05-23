@@ -42,15 +42,19 @@
 }
 
 
-.ns_guild .guild_name_wrap {
+.ns_guild .guildName_and_btn_wrap {
 	position: absolute;
 	width: 90%;
 	left: 50px;
 	bottom: 50px;
 }
 
+.ns_guild .guildName_and_btn_wrap .g_name {
+	display: inline-block;
+}
 
-.ns_guild .guild_name_wrap .guild_name {
+
+.ns_guild .guildName_and_btn_wrap .guild_name {
 	font-size: 30px;
 	color: #fff;
 	-webkit-font-smoothing: antialiased;

@@ -9,6 +9,7 @@ retrieveGuildDetailAndPartyListController()
 
 // 파티목록에서 (파티 목록 나열은 pid순으로??)
 파티이름 = result[1].p_name
+내가 가입한 파티(state = 1) / 내가 가입하지 않은 파티(state = -1)에 대해서는 파티 색깔로 구분하기
 
 // 파티 추가할때 
 파티이름으로 입력한 값을 p_name에 저장해야함.
@@ -17,14 +18,38 @@ pid도 같이 새로 추가해야
 
 */
 
-
 ubuntudo = {};
+ubuntudo.ui = {};
 ubuntudo.utility = {};
+// ubuntudo.dataChangedEvent = new CustomEvent("dataChanged");
 
-(function () {
+window.addEventListener("load", function () {
     'use strict';
     var joinBtn = document.querySelector(".guild_join_btn");
     var leaveBtn = document.querySelector(".guild_leave_btn");
+    
+    var href = window.location.href;
+    var gid = href.substr(href.lastIndexOf("/")+1);
+    var util = ubuntudo.utility;
+    util.ajax({
+        "method": "GET",
+        "uri": "/guild/info/"+ gid,
+        "param": null,
+        "callback": setGuildInfo
+    });
+    
+    function setGuildInfo(guildInfoData) {
+    	var data = guildInfoData;
+    	var guildName = guildInfoData["result"].guildDetail[0].g_name;
+    	
+    	
+    	var G_NAME_TEMPLATE = '<h1 class="guild_name"><%=g_name%></h1>';
+    	
+    	document.getElementsByClassName("g_name")[0].innerHTML = G_NAME_TEMPLATE.replace("<%=g_name%>", guildName);
+    	
+    }
+    
+    
     
     // 길드 가입하기 버튼 클릭 시
     // 멤버수 늘려야함 
@@ -70,4 +95,4 @@ ubuntudo.utility = {};
         leaveBtn.style.display = "none";
     }
     
-})();
+});

@@ -34,6 +34,7 @@ function addParty(){
 	
 	 /* pid, p_name, party_leader_id도 함께 추가해야함 */
 	/*
+	 * 서버 연결도 필요함!
 	 * pid++
 	 * p_name = partyName
 	 * party_leader = 현재 로그인한 유저

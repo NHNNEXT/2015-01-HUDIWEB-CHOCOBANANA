@@ -8,8 +8,9 @@
 			<div class="guild_cover_img_gradient"></div>
 		</div>
 		<div class="setting_icon"></div>
-		<div class="guild_name_wrap">
-			<h1 class="guild_name">길드명</h1>
+		<div class="guildName_and_btn_wrap">
+			<div class="g_name"></div>
+			<!-- <h1 class="guild_name">길드명</h1> -->
 			<div class="btn_wrap">
 				<div class="guild_join_btn" style="display: block">가입하기</div>
 				<div class="guild_leave_btn" style="display: none">탈퇴하기</div>
