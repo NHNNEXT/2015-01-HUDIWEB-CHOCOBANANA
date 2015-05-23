@@ -253,3 +253,59 @@ bottom: 180px;
 	margin-bottom: 20px;
 	position: relative;
 }
+
+/*party todo 관련 css*/
+.ns_party .todo {
+  width: calc(100% - 20px);
+  position: relative;
+  padding: 10px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(129, 129, 129, 0.2); }
+
+.ns_party .todo .tid, .ns_party .todo .pid {
+  display: none; }
+
+.ns_party .party_pavicon {
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #42a5f5;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  color: #fff;
+  display: inline-block; }
+
+.ns_party .todo h2, .ns_party .todo p {
+  position: relative; 
+  display: inline-block;}
+
+.ns_party .todo h2 {
+  top: 3px;
+  padding: 0 5px;
+  color: #000;
+  font-weight: 200; }
+
+.ns_party .todo p {
+  top: 6px;
+  font-size: 10px;
+  overflow: hidden; }
+
+.ns_party .close_btn {
+  position: absolute;
+  top: 0;
+  right: -54px;
+  display: inline-block;
+  width: 53px;
+  height: 53px;
+  -webkit-transition: all .3s ease;
+  /* Safari */
+  transition: all .3s;
+  border-left: 1px solid rgba(129, 129, 129, 0.2);
+  background: #dd4b39 url("/images/check_icon.png") no-repeat center;
+  background-size: 20px 15px; }
+
+.ns_party .todo:hover .close_btn {
+  right: 0;
+  cursor: pointer; }
+

@@ -38,7 +38,6 @@
 			</div>
 			<div class="party_todo_list">
 				<ul class="todo_list">
-
 				</ul>
 			</div>
 		</section>

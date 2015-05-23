@@ -38,7 +38,7 @@ public class QrysP extends Qrys {
 	public static String IS_USER_SIGNUP = "select count(*) count from user_party_relation where uid = ? AND pid = ?";
 	
 	// party todo list
-	public static String GET_PARTY_TODO_LIST = "SELECT * FROM  todo t WHERE t.pid = ?";
+	public static String GET_PARTY_TODO_LIST = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM  todo t JOIN party p ON t.pid = p.pid WHERE t.pid = ?";
 	
 	// party list that user signs up
 	public static String GET_PARTY_LIST = "SELECT * FROM  todo t WHERE t.pid = ?";
