@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import ubuntudo.biz.GuildBiz;
 import ubuntudo.biz.PartyBiz;
 import ubuntudo.model.GuildEntity;
+import ubuntudo.model.UserEntity;
 
 import com.google.gson.Gson;
 
@@ -89,16 +90,17 @@ public class GuildController {
 	}
 
 	// retrieve a list of all the guild of particular user
-	@RequestMapping(value = "/retrieveMyGuildAndParty", method = RequestMethod.POST)
-	public @ResponseBody String retrieveMyGuildAndPartyListController( @RequestParam("uid") long uid) {
+	@RequestMapping(value = "/overview", method = RequestMethod.GET)
+	public @ResponseBody String retrieveMyGuildAndPartyListController(HttpSession session) {
+		UserEntity user = (UserEntity)session.getAttribute("user");
+		Long uid = user.getUid();
 		return "{\"result\":{\"guilds\":"
 				+ gson.toJson(gbiz.retrieveMyGuildListBiz(uid))
 				+ ",\"parties\":"
 				+ gson.toJson(pbiz.retrievePartyListOfMyGuildsBiz(uid)) + "}}";
 	}
 
-	// retrieve detail info of a guild and a list of all the party in a
-	// particular guild
+	// retrieve detail info of a guild and a list of all the party in a particular guild
 	@RequestMapping(value = "/guild", method = RequestMethod.GET)
 	public String retrieveGuildDetailAndPartyListController( @RequestParam("uid") long uid, @RequestParam("gid") long gid) {
 		return gbiz.retrieveGuildDetailAndPartyListBiz(uid, gid);

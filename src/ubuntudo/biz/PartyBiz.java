@@ -100,14 +100,7 @@ public class PartyBiz {
 	}
 
 	private Float getCompleteRatio(Long pid) {
-		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
-		def.setName("example-transaction");
-		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
-		TransactionStatus status = transactionManager.getTransaction(def);
-		pdao.setVariables(pid);
-		pdao.callStoredProcedure();
-		Float ratio = pdao.getComplteRatio();
-		transactionManager.commit(status);
+		Float ratio = pdao.getComplteRatio(pid);
 		return ratio;
 	}
 

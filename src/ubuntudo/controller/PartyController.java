@@ -31,7 +31,7 @@ public class PartyController {
 	PartyBiz pbiz;
 
 	@RequestMapping(value = "/{pid}", method = RequestMethod.GET)
-	public String execute(HttpSession session, @PathVariable("pid") Long pid, Model model) {
+	public String getPartyPage(HttpSession session, @PathVariable("pid") Long pid, Model model) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		model.addAttribute("partyInfo", pbiz.getPartyInfo(user.getUid(), pid));
 		return "party";

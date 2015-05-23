@@ -149,17 +149,7 @@ public class PartyDao {
 		return users;
 	}
 
-	public int setVariables(Long pid) {
-		logger.debug("set variable @pid as {}", pid);
-		return jdbcTemplate.update(QrysP.SET_VAR_FOR_SP_GET_RATIO, pid);
-	}
-
-	public int callStoredProcedure() {
-		logger.debug("call stored procedure");
-		return jdbcTemplate.update(QrysP.CALL_SP_GET_RATIO);
-	}
-
-	public Float getComplteRatio() {
+	public Float getComplteRatio(Long pid) {
 		logger.debug("get complete ratio");
 		RowMapper<Float> rowMapper = new RowMapper<Float>() {
 			@Override
@@ -167,7 +157,7 @@ public class PartyDao {
 				return rs.getFloat("completeRatio");
 			}
 		};
-		return jdbcTemplate.queryForObject(QrysP.GET_RATIO, rowMapper);
+		return jdbcTemplate.queryForObject(QrysP.GET_RATIO, rowMapper, pid, pid);
 	}
 
 	public Integer isUserSignUp(Long uid, Long pid) {

@@ -28,11 +28,9 @@ public class QrysP extends Qrys {
 	// party info - the number of party todo
 	public static String GET_PARTY_TODO_NUMBER = "SELECT COUNT(*) todoCount FROM  todo t WHERE t.pid = ?";
 
-	// party info - the ratio of party todo completiON - 트랜잭션으로 이뤄져야 한다.
-	public static String SET_VAR_FOR_SP_GET_RATIO = "SET @pid = ?, @ratio = 0";
-	public static String CALL_SP_GET_RATIO = "CALL spGetPartyTodoCompleteRatio(@pid, @ratio)";
-	public static String GET_RATIO = "SELECT @ratio completeRatio";
-
+	// party info - the ratio of party todo completiON 
+	public static String GET_RATIO = "select (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ?) AND completed = 'trel01')/ (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ?)) as completeRatio";
+	
 	// party info - the member list who completes party todo well.
 	public static String GET_TOP3_MEMBERS = "SELECT u.name, u.email, COUNT(tur.tid) count FROM todo_user_relation tur JOIN user u ON tur.uid = u.uid WHERE tur.tid IN (SELECT tid FROM todo WHERE pid = ?) AND tur.completed = 'trel01' GROUP BY tur.uid ORDER BY COUNT(tur.tid) DESC LIMIT 3";
 	
@@ -44,7 +42,4 @@ public class QrysP extends Qrys {
 	
 	// party list that user signs up
 	public static String GET_PARTY_LIST = "SELECT * FROM  todo t WHERE t.pid = ?";
-
-	
-
 }
