@@ -14,5 +14,8 @@ public class QrysU extends Qrys {//
 	public static String INSERT_USER_TO_GUILD = "insert into user_guild_relation (uid, gid, state) values (?, ?, '0')";
 
 	// for user registration to party
-	public static String INSERT_USER_TO_PARTY = "insert into user_party_relation (uid, pid, state) values (?, ?, '01')";
+	public static String INSERT_USER_TO_EXISTING_PARTY = "insert into user_party_relation (uid, pid, state) values (?, ?, '01')";
+	
+	// for user registration to party
+	public static String INSERT_USER_TO_NEW_PARTY = "insert into user_party_relation (uid, pid, state) values (?, (select LAST_INSERT_ID()), '01')";
 }
