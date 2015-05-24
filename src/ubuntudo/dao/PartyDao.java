@@ -182,4 +182,9 @@ public class PartyDao {
 		}
 		return todos;
 	}
+
+	public List<Map<String, Object>> getPartyListOfUser(Long uid) {
+		logger.debug("get party list of user {}", uid);
+		return jdbcTemplate.queryForList(QrysP.GET_PARTY_LIST_OF_USER, uid);
+	}
 }

@@ -90,17 +90,21 @@ ubuntudo.ui.TodoManager = (function() {
     };
 
     /*클래스네임, 태그네임 등 html에 의존하는 부분 빼야한다. 리팩토링 필요 - 다혜 */
-    TodoManager.prototype.add = function (ev, oDataManager) {
+    TodoManager.prototype.add = function (ev, oDataManager, oTodoAddModal) {
         ev.preventDefault();
 		ev.stopPropagation();
 
-		//var form = document.querySelector(".add_todo");
-		//var pid = form.querySelector(".add_todo select").value;
-		var pid = -1;
+		var pname = document.querySelector("form.add_todo").querySelector("#selected_party_name").innerHTML;
+		var pid;
+        if(pname !== "개인") {
+            pid = oTodoAddModal.getPidFromPartyName(pname);
+        }else {
+            pid = -1;
+        }
+
 		var date = document.getElementsByName("date")[0].value;
 		if (date === "오늘") {
 			date = new Date();
-			//date = date.toISOString().slice(0,10).replace(/-/g,"-"); 이러면 27일인데 26일이 나옴. 이유를 찾아보자.
 			date = date.yyyymmdd();
 		}
 		var title = document.getElementsByName("title")[0].value;

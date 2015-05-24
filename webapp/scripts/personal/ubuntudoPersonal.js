@@ -6,22 +6,21 @@ ubuntudo.ui = {};
 ubuntudo.utility = {};
 ubuntudo.dataChangedEvent = new CustomEvent("dataChanged");
 
-window.addEventListener("load", function () {
-	'use strict';
+function showSelectedParty () {
+	var selectList = document.getElementById("select_party_list");
+    var selected = document.getElementById("selected_party_name");
+   	var partyName = selectList.value;
+    selected.innerHTML = partyName;
+    selected.pid = selectList.pid;
+} 
 
-	var util = ubuntudo.utility;
-	var oDataManager = new ubuntudo.ui.DataManager();
-	var oTodoManager = new ubuntudo.ui.TodoManager();
-	var elList = document.querySelectorAll(".ns_personal section ul");
-	var elLightBox = document.querySelector(".light_box");
-  
-        
-	var elCompleteBtnList;
-	var oDetailModal;
-	var oModalManager;
+window.addEventListener("load", function () {
+	'use strict';      
 	// modal창 중 detailModal을 선택해서 ModalManager에 넣는것 같은데, 이런 형태면 Modal을 관리하는 인터페이스 같은 객체가 있어야할 뜻..
 
     /*todo data 서버에 요청하여 받아오기*/
+	var util = ubuntudo.utility;
+	var oDataManager = new ubuntudo.ui.DataManager();
 	util.ajax({
 		"method": "GET",
 		"uri": "/personal/todo",
@@ -29,7 +28,20 @@ window.addEventListener("load", function () {
 		"callback": oDataManager.setData
 	});
 
+	/*user가 가입한 파티 리스트 서버에 요청하여 받아오기*/
+	var oTodoAddModal = new ubuntudo.ui.TodoAddModal(); 	
+	util.ajax({
+		"method": "GET",
+		"uri": "/party",
+		"param": null,
+		"callback": oTodoAddModal.setPartyList
+	});
+
     /*todo data에 변화가 있을 때 list를 다시 그리고, 다시 그려진 각 리스트에 이벤트 새롭게 등록.*/
+	var oTodoManager = new ubuntudo.ui.TodoManager();
+	var elCompleteBtnList;
+	var oDetailModal;
+	var oModalManager;
 	window.addEventListener("dataChanged", function () {
 		/*
 		 *@private
@@ -64,12 +76,13 @@ window.addEventListener("load", function () {
 	});
 
     /*detail modal관련 이벤트 등록*/
+    var elList = document.querySelectorAll(".ns_personal section ul");
+	var elLightBox = document.querySelector(".light_box");
 	[].forEach.call(elList, function (element) {
 		element.addEventListener("click", function (ev) {
 			oModalManager.showModal(ev);
 		});
 	});
-
 	elLightBox.addEventListener("click", function (ev) {
 		oModalManager.hideModal(ev);
 	});
@@ -77,7 +90,7 @@ window.addEventListener("load", function () {
     /*add todo modal관련 이벤트 등록*/
     var elAddTodoBtn = document.querySelector(".todo_add_btn");
     var elCancelBtn = document.querySelector(".cancel_btn");
-    var oTodoAddModal = new ubuntudo.ui.TodoAddModal();
+    //oTodoAddModal은 위에서 만들어 둠
     var oTodoAddModalManager = new ubuntudo.ui.ModalManager(oTodoAddModal);
     
     elAddTodoBtn.addEventListener("click", function(ev){
@@ -91,7 +104,7 @@ window.addEventListener("load", function () {
 	/* submit 버튼 누르면 투두 추가 */
 	var elSubmitBtn = document.querySelector(".add_todo .submit_btn");
 	elSubmitBtn.addEventListener('click', function (ev) {
-       oTodoManager.add(ev, oDataManager);
+       oTodoManager.add(ev, oDataManager, oTodoAddModal);
 	   oTodoAddModalManager.hideModal(ev);
 	});
     

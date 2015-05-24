@@ -43,6 +43,14 @@ public class PartyController {
 		return pbiz.getPartyTodos(pid);
 	}
 	
+	//유저가 가입한 party list - personal, guildOverview, guild, party 페이지 모두에서 이 컨트롤러를 부른다. 
+	@RequestMapping(method = RequestMethod.GET)
+	public @ResponseBody List<Map<String, Object>> getPartyListOfUserController(HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Long uid = user.getUid();
+		return pbiz.getPartyListOfUser(uid);
+	}
+	
 	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
 		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));

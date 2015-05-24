@@ -309,3 +309,7 @@ bottom: 180px;
   right: 0;
   cursor: pointer; }
 
+ .ns_party .party_todo_list {
+ 	overflow:scroll;
+ }
+

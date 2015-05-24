@@ -67,11 +67,9 @@
 							<form class="add_todo">
 								<!-- 파티 설정 -->
 								<div class="select_party">
-									<label id="selected_party_name">개인</label> <select
-										id="select_party_list" onchange="showSelectedParty()">
+									<label id="selected_party_name"></label> 
+									<select id="select_party_list" onchange="showSelectedParty()">
 										<option>개인</option>
-										<option>네트워크</option>
-										<option>자구알</option>
 									</select>
 								</div>
 

@@ -107,4 +107,8 @@ public class PartyBiz {
 	public ArrayList<TodoEntity> getPartyTodos(Long pid) {
 		return pdao.getPartyTodos(pid);
 	}
+
+	public List<Map<String, Object>> getPartyListOfUser(Long uid) {
+		return pdao.getPartyListOfUser(uid);
+	}
 }
