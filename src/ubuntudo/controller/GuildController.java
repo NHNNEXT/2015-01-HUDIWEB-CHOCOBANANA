@@ -47,12 +47,15 @@ public class GuildController {
 		return "guild";
 	}
 
+	// creates a guild.
+	// also add the creator to the guild which is just created.
 	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewGuildController( @RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
 
-	//@RequestMapping(value = "/user", method = RequestMethod.POST)
+	// add a user to a guild.
+	// @RequestMapping(value = "/user", method = RequestMethod.POST)
 	public int insertUserToGuildController( @RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
 		return gbiz.insertUserToGuildBiz(guildId, userId);
 	}
@@ -63,18 +66,16 @@ public class GuildController {
 		return 1;
 	}
 
+	// retrieve a list of guilds containing the parameter in the name of the guild.
 	@RequestMapping(value = "/search/{gname}", method = RequestMethod.GET)
 	public @ResponseBody List<GuildEntity> retrieveGuildListSearchController( @PathVariable("gname") String guildName) {
 		return gbiz.retrieveGuildListSearchBiz(guildName);
 	}
 
+	// update the information of a guild.
 	@RequestMapping(method = RequestMethod.PUT)
-	public int updateGuildController(@RequestParam("gid") long gid, 
-			@RequestParam("leaderId") long leaderId,
-			@RequestParam("guildName") String guildName,
-			@RequestParam("status") String status) {
-		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName,
-				status));
+	public int updateGuildController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId,	@RequestParam("guildName") String guildName,	@RequestParam("status") String status) {
+		return gbiz.updateGuildBiz(new GuildEntity(gid, leaderId, guildName, status));
 	}
 
 	// 길드의 첫페이지
@@ -90,11 +91,12 @@ public class GuildController {
 	}
 
 	// retrieve a list of all the guild of particular user
+	// also retrieves a list of all the parties which are contained in the guilds.
 	@RequestMapping(value = "/overview", method = RequestMethod.GET)
 	public @ResponseBody String retrieveMyGuildAndPartyListController(HttpSession session) {
 		UserEntity user = (UserEntity)session.getAttribute("user");
 		Long uid = user.getUid();
-		return "{\"result\":{\"guilds\":"
+		return "{\"result\":{\"guilds\":" 
 				+ gson.toJson(gbiz.retrieveMyGuildListBiz(uid))
 				+ ",\"parties\":"
 				+ gson.toJson(pbiz.retrievePartyListOfMyGuildsBiz(uid)) + "}}";

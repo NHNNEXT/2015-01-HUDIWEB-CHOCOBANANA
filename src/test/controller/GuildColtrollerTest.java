@@ -76,7 +76,7 @@ public class GuildColtrollerTest {
 
 	@Test
 	public void retrieveGuildSearchControllerTest() {
-		String guildName = "";
+		String guildName = "1";
 		List<GuildEntity> guildList = guildController.retrieveGuildListSearchController(guildName);
 		System.out.println(guildList.toString());
 

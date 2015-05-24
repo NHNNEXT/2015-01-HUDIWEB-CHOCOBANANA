@@ -115,18 +115,41 @@ position: absolute;
 }
 
 .ns_guild .party_list {
-	width: 250px;
+	margin: 10px 0 0 10px;
+	width: calc(25% - 13px);
 	height: 170px;
 	cursor: pointer;
 	float: left;
-	background-color: #a4a4a4;
+	background-color: #D95D4F;
 }
 
 .ns_guild .party_list:hover {
 	background-color: #E77669;
 }
 
-.add_icon {
+.ns_guild .party_name {
+	color: #fff;
+	position: relative;
+	font-size: 20px;
+	width: 50px;
+	margin: 0 auto;
+	top: 70px;	
+}
+
+.ns_guild .add_party {
+	margin: 10px 0 0 10px;
+	width: calc(25% - 13px);
+	height: 170px;
+	/* cursor: pointer;*/
+	float: left;
+	background-color: #a4a4a4;
+}
+
+.ns_guild .add_party:hover {
+	background-color: #BBBBBB;
+}
+
+.ns_guild .add_icon {
 	width:50px;
 	height:50px;
 	background-image: url("/images/plus.png");
@@ -136,7 +159,7 @@ position: absolute;
 	top: 40px;
 }
 
-.ns_guild .party_list .party_name {
+.ns_guild .add_party .party_add_content {
 	color: #fff;
 	position: relative;
 	font-size: 20px;
@@ -145,5 +168,42 @@ position: absolute;
 	top: 50px;
 }
 
+.ns_guild .form_input_partyName {
+	margin: 0 auto;
+	width: 247px;
+}
 
+.ns_guild .input_partyName {
+	top: 40px;
+	position: relative;
+	width: 179px;
+	height: 40px;
+	margin-left: 20px;
+	padding: 0 12px;
+	font-size: 14px;
+	color: #626262;
+	letter-spacing: 1px;
+}
 
+.ns_guild .btn_effect {
+	display: block;
+	float: left;
+	position: relative;
+	top: 45px;
+	left: 30px;
+	margin: 5px;
+	width: 80px;
+	height: 40px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	-ms-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	font-size: 14px;
+	color: #FFFFFF;
+	background: #D86F63;
+	text-align: center;
+	letter-spacing: -1px;
+	border: 0 none;
+	cursor: pointer;
+}

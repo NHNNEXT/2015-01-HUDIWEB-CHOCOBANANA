@@ -56,9 +56,15 @@ public class PartyDao {
 		return jdbcTemplate.queryForObject(Qrys.GET_LAST_ID, rowMapper);
 	}
 
-	public int insertUserToPartyDao(long partyId, long userId) {
+	public int insertUserToExistingPartyDao(long partyId, long userId) {
 		logger.debug("inserting user to party... partyId: " + partyId + ", userId: " + userId);
-		return jdbcTemplate.update(QrysU.INSERT_USER_TO_PARTY, userId, partyId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_EXISTING_PARTY, userId, partyId);
+	}
+
+	// this method must be executed with insertPartyDao() in ONE transaction.
+	public int insertUserToNewPartyDao(long userId) {
+		logger.debug("inserting user to a new party... userId: " + userId);
+		return jdbcTemplate.update(QrysU.INSERT_USER_TO_NEW_PARTY, userId);
 	}
 
 	public List<PartyEntity> retrievePartyListSearchDao(String partyName) {
@@ -74,7 +80,7 @@ public class PartyDao {
 				}
 			}
 		};
-		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParam(partyName));
+		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParamBoth(partyName));
 	}
 
 	public int updatePartyDao(PartyEntity party) {
