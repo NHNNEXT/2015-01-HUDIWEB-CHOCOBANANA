@@ -1,12 +1,6 @@
 /*
 retrieveGuildDetailAndPartyListController()
 
-// 길드 헤더에서
-길드 이름 = result[0].g_name
-리더 = result[0].leader_id
-멤버수 = result[0].members
-파티수 = result[0].parties
-
 // 파티목록에서 (파티 목록 나열은 pid순으로??)
 파티이름 = result[1].p_name
 내가 가입한 파티(state = 1) / 내가 가입하지 않은 파티(state = -1)에 대해서는 파티 색깔로 구분하기
@@ -31,6 +25,7 @@ window.addEventListener("load", function () {
     var href = window.location.href;
     var gid = href.substr(href.lastIndexOf("/")+1);
     var util = ubuntudo.utility;
+    
     util.ajax({
         "method": "GET",
         "uri": "/guild/info/"+ gid,
@@ -38,16 +33,22 @@ window.addEventListener("load", function () {
         "callback": setGuildInfo
     });
     
+    // 길드 헤더에 길드 정보(길드명, 리더이름, 멤버수, 파티수)를 setting하는 함수
     function setGuildInfo(guildInfoData) {
     	var data = guildInfoData;
     	var guildName = guildInfoData["result"].guildDetail[0].g_name;
-    	
+    	var leader = guildInfoData["result"].guildDetail[0].name;
+    	var members = guildInfoData["result"].guildDetail[0].members;
+    	var parties = guildInfoData["result"].guildDetail[0].parties;
     	
     	var G_NAME_TEMPLATE = '<h1 class="guild_name"><%=g_name%></h1>';
+    	var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span>멤버 <%=members%></span> <span>•</span> <span>파티 <%=parties%></span>';
     	
     	document.getElementsByClassName("g_name")[0].innerHTML = G_NAME_TEMPLATE.replace("<%=g_name%>", guildName);
+    	document.getElementsByClassName("guild_info")[0].innerHTML = G_INFO_TEMPLATE.replace("<%=leader%>", leader).replace("<%=members%>", members).replace("<%=parties%>", parties);
     	
     }
+    
     
     
     

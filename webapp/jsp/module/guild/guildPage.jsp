@@ -17,8 +17,6 @@
 			</div>
 		</div>
 		<div class="guild_info">
-			<span class="leader_name">리더이름</span> <span>•</span> <span>멤버
-				540명</span> <span>•</span> <span>파티 0</span>
 		</div>
 	</div>
 
