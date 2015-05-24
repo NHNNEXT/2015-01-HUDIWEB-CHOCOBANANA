@@ -28,22 +28,27 @@ public class PartyController {
 		System.out.println(session.getAttribute("user"));
 		return "personal";
 	}
-	
+
+	// creates a party.
+	// also add the creator to the party which is just created.
 	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
-		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));
+		return pbiz.insertNewPartyBiz(new PartyEntity(gid, leaderId, partyName));
 	}
-
+	
+	// add a user to a party.
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public int insertUserToPartyController(@RequestParam("partyId") long partyId, @RequestParam("userId") long userId) {
-		return pbiz.insertUserToPartyBiz(partyId, userId);
+		return pbiz.insertUserToExistingPartyBiz(partyId, userId);
 	}
 
+	//retrieves a list of parties containing the parameter in the name of the party.
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public List<PartyEntity> retrievePartyListSearchController(@RequestParam("partyName") String partyName) {
 		return pbiz.retrievePartyListSearchBiz(partyName);
 	}
 
+	// update the information of a party.
 	@RequestMapping(method = RequestMethod.PUT)
 	public int updatePartyController(@RequestParam("pid") long pid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName,
 			@RequestParam("status") String status) {
@@ -51,12 +56,13 @@ public class PartyController {
 	}
 
 	// 나중에 다시 uri 생각해보기
+	// retrieves a list of parties that are contained in a guild.
 	@RequestMapping(value = "/guild", method = RequestMethod.GET)
 	public List<Map<String, Object>> retrievePartyInGuildListController(@RequestParam("uid") long uid, @RequestParam("gid") long gid) {
 		return pbiz.retrievePartyInGuildListBiz(uid, gid);
 	}
 	
-	// retrieve a list of all the guild of particular user
+	// retrieve a list of all the parties that are included in the every guild of particular user.
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	public @ResponseBody List<Map<String, Object>> retrieveMyPartyListController(@RequestParam("uid") long uid) {
 		return pbiz.retrievePartyListOfMyGuildsBiz(uid);

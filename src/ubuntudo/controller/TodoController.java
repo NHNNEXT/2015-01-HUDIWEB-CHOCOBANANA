@@ -28,9 +28,10 @@ public class TodoController {
 	@Autowired
 	TodoBiz tbiz;
 
+	// updates a todo.
+	// also creates a history log about the change.
 	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody void updateTodoController(HttpSession session,
-			long tid, String title_edit, String note_edit, String due_date_edit) {
+	public @ResponseBody void updateTodoController(HttpSession session, long tid, String title_edit, String note_edit, String due_date_edit) {
 		logger.debug("===>updatePersonalTodo");
 
 		UserEntity user = (UserEntity) session.getAttribute("user");
@@ -46,6 +47,8 @@ public class TodoController {
 		logger.debug("<===updateTupdatePersonalTodoodo");
 	}
 
+	// deletes a todo.
+	// also creates a history log about the deletion.
 	@RequestMapping(value = "/{tid}", method = RequestMethod.DELETE)
 	public @ResponseBody void deleteTodoController(HttpSession session, @PathVariable("tid") Long tid) {
 		logger.debug("===>deletePersonalTodo");

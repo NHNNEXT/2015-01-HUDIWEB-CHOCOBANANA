@@ -19,8 +19,8 @@
 	};
 
 	var URI = {
-		SIGNUP : "/signup",
-		LOGIN : "/login"
+		SIGNUP : "/user/signup",
+		LOGIN : "/user/login"
 	};
 
 	function rsa(e, ids, uri) {
