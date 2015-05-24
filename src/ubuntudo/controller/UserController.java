@@ -68,7 +68,7 @@ public class UserController {
 	private UserDao uDao = new UserDao();
 
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
-	public @ResponseBody ModelMap execute(String email) throws Exception {
+	public @ResponseBody ModelMap validateEmailController(String email) throws Exception {
 		logger.info("-->Controller-->Validate");
 		logger.debug("Logging in email: {}", email);
 
