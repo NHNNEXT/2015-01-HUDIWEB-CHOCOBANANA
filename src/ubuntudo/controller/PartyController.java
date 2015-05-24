@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import ubuntudo.biz.PartyBiz;
+import ubuntudo.model.AjaxResponse;
 import ubuntudo.model.PartyEntity;
+import ubuntudo.model.UserEntity;
 
 @Controller
 @RequestMapping(value = "/party")
@@ -30,8 +32,15 @@ public class PartyController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public int insertNewPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
-		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));
+	public @ResponseBody AjaxResponse insertNewPartyController(@RequestParam("gid") long gid, HttpSession session, @RequestParam("partyName") String partyName) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Long uid = user.getUid();
+		AjaxResponse result = new AjaxResponse("fail");
+		if( pbiz.insertPartyBiz(new PartyEntity(gid, uid, partyName)) == 2) {
+			result.setStatus("success");
+			return result;
+		}
+		return result;
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)

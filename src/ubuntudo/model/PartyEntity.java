@@ -1,26 +1,21 @@
 package ubuntudo.model;
 
 public class PartyEntity {
-	private long pid;
-	private long gid;
-	private long leaderId;
+	private Long pid;
+	private Long gid;
+	private Long leaderId;
 	private String partyName;
 	private String status;
 
-	public PartyEntity(long gid, long leaderId, String partyName) {
-		this.gid = gid;
-		this.leaderId = leaderId;
-		this.partyName = partyName;
+	public PartyEntity(Long gid, Long leaderId, String partyName) {
+		this(null, gid, leaderId, partyName, null);
 	}
 
-	public PartyEntity(long pid, long leaderId, String partyName, String status) {
-		this.pid = pid;
-		this.leaderId = leaderId;
-		this.partyName = partyName;
-		this.status = status;
+	public PartyEntity(Long pid, Long leaderId, String partyName, String status) {
+		this(pid, null, leaderId, partyName, status);
 	}
 
-	public PartyEntity(long pid, long gid, long leaderId, String partyName, String status) {
+	public PartyEntity(Long pid, Long gid, Long leaderId, String partyName, String status) {
 		this.pid = pid;
 		this.gid = gid;
 		this.leaderId = leaderId;

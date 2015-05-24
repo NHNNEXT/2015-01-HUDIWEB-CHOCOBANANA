@@ -33,7 +33,8 @@ window.addEventListener("load", function () {
         "callback": setGuildInfo
     });
     
-    // 길드 헤더에 길드 정보(길드명, 리더이름, 멤버수, 파티수)를 setting하는 함수
+    // 길드 헤더에 길드 정보(길드명, 리더이름, 멤버수, 파티수)를 setting하고
+    // 길드 안에 있는 모든 파티들을 보여주는 함수
     function setGuildInfo(guildInfoData) {
     	var data = guildInfoData;
     	var guildName = guildInfoData["result"].guildDetail[0].g_name;
@@ -42,11 +43,19 @@ window.addEventListener("load", function () {
     	var parties = guildInfoData["result"].guildDetail[0].parties;
     	
     	var G_NAME_TEMPLATE = '<h1 class="guild_name"><%=g_name%></h1>';
-    	var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span>멤버 <%=members%></span> <span>•</span> <span>파티 <%=parties%></span>';
+    	var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span>멤버 <%=members%></span> <span>•</span> <span class="partyNum">파티 <%=parties%></span>';
+    	var G_PARTY_LIST_TEMPLATE = '<div class="party_list"><a href="/party/<%=pid%>" class="party_name"><%=p_name%></a></div>';
+    
     	
+    	// 길드 헤더에 길드 정보 적용 
     	document.getElementsByClassName("g_name")[0].innerHTML = G_NAME_TEMPLATE.replace("<%=g_name%>", guildName);
     	document.getElementsByClassName("guild_info")[0].innerHTML = G_INFO_TEMPLATE.replace("<%=leader%>", leader).replace("<%=members%>", members).replace("<%=parties%>", parties);
     	
+    	// 길드 안에 있는 모든 파티들을 보여줌 
+    	for (var i = 0; i < guildInfoData["result"].parties.length; i++) {
+    		document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData["result"].parties[i].p_name).replace("<%=pid%>", guildInfoData["result"].parties[i].pid);
+    
+    	}
     }
     
     
