@@ -20,9 +20,9 @@ import ubuntudo.model.UserEntity;
 import core.utils.RSAUtils;
 
 @Controller
-@RequestMapping(value = "/login")
-public class LoginController {
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+@RequestMapping(value = "/user")
+public class UserController {
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 	
 	@Autowired
 	private UserDao userDao;
@@ -30,7 +30,7 @@ public class LoginController {
 	String loginSuccessedViewUri = "/personal";
 	String loginFailedViewUri = "jsp/loginFail.jsp";
 
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody AjaxRedirectResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Login");
 		

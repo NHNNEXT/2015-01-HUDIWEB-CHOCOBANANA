@@ -20,7 +20,7 @@
 
 	var URI = {
 		SIGNUP : "/signup",
-		LOGIN : "/login"
+		LOGIN : "/user/login"
 	};
 
 	function rsa(e, ids, uri) {
