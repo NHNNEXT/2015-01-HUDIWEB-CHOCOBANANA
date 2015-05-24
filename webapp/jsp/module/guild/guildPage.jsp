@@ -38,7 +38,7 @@
 </div>
 <!-- // 여기까지 길드 페이지 쫘라락~~  -->
 <script language="javascript" type="text/javascript" src="/commons/js/guild/ubuntudoGuild.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/guild/addParty.js"></script>
+<script language="javascript" type="text/javascript" src="/commons/js/guild/guildDataManager.js"></script>
 <script language="javascript" type="text/javascript" src="/commons/js/utility.js"></script>
 </body>
 </html>

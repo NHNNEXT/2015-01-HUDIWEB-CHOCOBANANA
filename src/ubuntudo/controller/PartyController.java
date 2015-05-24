@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -32,15 +33,18 @@ public class PartyController {
 	}
 	
 	@RequestMapping(method = RequestMethod.POST)
-	public @ResponseBody AjaxResponse insertNewPartyController(@RequestParam("gid") long gid, HttpSession session, @RequestParam("partyName") String partyName) {
+	public @ResponseBody ModelMap insertNewPartyController(@RequestParam("gid") long gid, HttpSession session, @RequestParam("partyName") String partyName) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
-		AjaxResponse result = new AjaxResponse("fail");
-		if( pbiz.insertPartyBiz(new PartyEntity(gid, uid, partyName)) == 2) {
-			result.setStatus("success");
-			return result;
+		Long newPid = pbiz.insertPartyBiz(new PartyEntity(gid, uid, partyName));
+		ModelMap model = new ModelMap();
+		if(newPid > 0) {
+			model.addAttribute("status", "success");
+			model.addAttribute("newPid", newPid);
+			return model;
 		}
-		return result;
+		model.addAttribute("status", "fail");
+		return model;
 	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.POST)

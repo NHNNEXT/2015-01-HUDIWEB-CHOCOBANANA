@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -52,13 +53,21 @@ public class GuildController {
 		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
 	}
 
-	// @RequestMapping(value = "/user", method = RequestMethod.POST)
-	public int insertUserToGuildController( @RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
-		return gbiz.insertUserToGuildBiz(guildId, userId);
+	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	public  @ResponseBody ModelMap insertUserToGuildController( @RequestParam("guildId") long guildId, HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Long userId = user.getUid();
+		ModelMap model = new ModelMap();
+		if(gbiz.insertUserToGuildBiz(guildId, userId) == 1){
+			model.addAttribute("status", "success");
+			return model;
+		}
+		model.addAttribute("status", "fail");
+		return model;
 	}
 
 	// 테스트용
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
+	//@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public @ResponseBody int insertUserToGuild( @RequestParam("guildId") long guildId, @RequestParam("userId") long userId) {
 		return 1;
 	}
