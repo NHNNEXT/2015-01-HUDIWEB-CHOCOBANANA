@@ -13,29 +13,10 @@ import ubuntudo.dao.UserDao;
 import ubuntudo.model.UserEntity;
 
 @Controller
-@RequestMapping(value = "/validate")
+@RequestMapping(value = "")
 public class ValidateController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(ValidateController.class);
 	
-	@Autowired
-	private UserDao uDao = new UserDao();
 
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public @ResponseBody ModelMap execute(String email) throws Exception {
-		logger.info("-->Controller-->Validate");
-		logger.debug("Logging in email: {}", email);
-
-		
-		UserEntity result = uDao.validateUser(email);
-		logger.info("result: {}", result);
-		ModelMap model = new ModelMap();
-		if (result != null) {
-			model.put("status", "success");
-		} else {
-			model.put("status", "fail");
-		}
-		logger.info("<--Controller-->Validate");
-		return model;
-	}
 }
