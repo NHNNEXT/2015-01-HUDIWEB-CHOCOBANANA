@@ -56,13 +56,13 @@ ubuntudo.ui.TodoAddModal = (function() {
     function _makeSelectList(optionList, partyList) {
         var href = window.location.href;
         var page = href.split("\/")[3];
-        if(page === "party") {
-            var pid = href.split("\/")[4];
-            var index = ubuntudo.utility.findIndex(partyList, PARTYLIST_FIELD.PID, Number(pid));
-            var pname = partyList[index][PARTYLIST_FIELD.PNAME];
-            return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", pid).replace("<%=pname%>", pname).replace("<%=optionList%>", optionList);
+        if(page !== "party" || partyList.length < 1) {
+            return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", "-1").replace("<%=pname%>", "개인").replace("<%=optionList%>", optionList);
         }
-        return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", "-1").replace("<%=pname%>", "개인").replace("<%=optionList%>", optionList);
+        var pid = href.split("\/")[4];
+        var index = ubuntudo.utility.findIndex(partyList, PARTYLIST_FIELD.PID, Number(pid));
+        var pname = partyList[index][PARTYLIST_FIELD.PNAME];
+        return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", pid).replace("<%=pname%>", pname).replace("<%=optionList%>", optionList);
     }
 
     TodoAddModal.prototype.showSelectedParty = function () {

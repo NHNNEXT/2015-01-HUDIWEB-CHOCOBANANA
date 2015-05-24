@@ -37,8 +37,15 @@
 				<h1 class="name">TODO LIST</h1>
 			</div>
 			<div class="party_todo_list">
-				<ul class="todo_list">
-				</ul>
+			<c:choose>
+				<c:when test="${partyInfo.isSignUp  == 0}">
+					<p>파티 미가입자는 파티 투두 리스트를 볼 수 없습니다.</p>
+				</c:when>
+				<c:otherwise>
+					<ul class="todo_list">
+					</ul>
+				</c:otherwise>
+			</c:choose>
 			</div>
 		</section>
 	</div>
