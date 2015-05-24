@@ -67,7 +67,7 @@ public class PartyDao {
 				}
 			}
 		};
-		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParam(partyName));
+		return jdbcTemplate.query(QrysP.RETRIEVE_PARTY_LIST, rowMapper, Qrys.makeLikeParamBoth(partyName));
 	}
 
 	public int updatePartyDao(PartyEntity party) {
