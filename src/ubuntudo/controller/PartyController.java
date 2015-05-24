@@ -33,13 +33,13 @@ public class PartyController {
 	// also add the creator to the party which is just created.
 	@RequestMapping(method = RequestMethod.POST)
 	public int insertNewPartyController(@RequestParam("gid") long gid, @RequestParam("leaderId") long leaderId, @RequestParam("partyName") String partyName) {
-		return pbiz.insertPartyBiz(new PartyEntity(gid, leaderId, partyName));
+		return pbiz.insertNewPartyBiz(new PartyEntity(gid, leaderId, partyName));
 	}
 	
 	// add a user to a party.
 	@RequestMapping(value = "/user", method = RequestMethod.POST)
 	public int insertUserToPartyController(@RequestParam("partyId") long partyId, @RequestParam("userId") long userId) {
-		return pbiz.insertUserToPartyBiz(partyId, userId);
+		return pbiz.insertUserToExistingPartyBiz(partyId, userId);
 	}
 
 	//retrieves a list of parties containing the parameter in the name of the party.

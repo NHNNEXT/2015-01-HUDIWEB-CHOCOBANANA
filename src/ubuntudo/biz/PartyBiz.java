@@ -25,7 +25,7 @@ public class PartyBiz {
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
 
-	public int insertPartyBiz(PartyEntity party) {
+	public int insertNewPartyBiz(PartyEntity party) {
 
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setName("example-transaction");
@@ -34,7 +34,6 @@ public class PartyBiz {
 		TransactionStatus status = transactionManager.getTransaction(def);
 
 		int insertPartyResult = 0;
-		long newPartyId = 0;
 		int insertUserToPartyResult = 0;
 
 		// 1. 요청한 데이터를 이용해 파티를 생성
@@ -44,15 +43,8 @@ public class PartyBiz {
 		}
 		logger.debug("insertPartyResult: " + insertPartyResult);
 
-		// 2. 파티 생성이 완료되면 생성한 길드의 pid를 가져옴
-		if ((newPartyId = pdao.getLastPartyId()) < 1) {
-			transactionManager.rollback(status);
-			return -1;
-		}
-		logger.debug("newPartyId: " + newPartyId);
-
-		// 3. 생성한 파티의 pid로 현재 사용자를 파티에 가입시킴
-		if ((insertUserToPartyResult = pdao.insertUserToPartyDao(newPartyId, party.getLeaderId())) != 1) {
+		// 2. 생성한 파티에 현재 사용자를 가입시킴
+		if ((insertUserToPartyResult = pdao.insertUserToNewPartyDao(party.getLeaderId())) != 1) {
 			transactionManager.rollback(status);
 			return -1;
 		}
@@ -62,8 +54,8 @@ public class PartyBiz {
 		return insertPartyResult + insertUserToPartyResult;
 	}
 
-	public int insertUserToPartyBiz(long partyId, long userId) {
-		return pdao.insertUserToPartyDao(partyId, userId);
+	public int insertUserToExistingPartyBiz(long partyId, long userId) {
+		return pdao.insertUserToExistingPartyDao(partyId, userId);
 	}
 
 	public List<PartyEntity> retrievePartyListSearchBiz(String partyName) {
