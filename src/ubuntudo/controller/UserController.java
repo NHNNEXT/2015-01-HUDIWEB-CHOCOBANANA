@@ -32,7 +32,7 @@ public class UserController {
 	String loginFailedViewUri = "jsp/loginFail.jsp";
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody AjaxRedirectResponse execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public @ResponseBody AjaxRedirectResponse loginController(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		logger.info("-->Controller-->Login");
 
 		String email = request.getParameter("email");
