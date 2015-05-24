@@ -33,7 +33,7 @@
 		<div class="sp_content_wrap">
 			<div class="sp_content">
 				<div class="msg">함께 만드는<br>TODO LIST</div>
-				<form method="post" action="/signup" class="signup_box" style="display:block">
+				<form method="post" action="/user/signup" class="signup_box" style="display:block">
 					<fieldset id="signup_form">
 						<legend class="blind">회원가입</legend>
 						<div>

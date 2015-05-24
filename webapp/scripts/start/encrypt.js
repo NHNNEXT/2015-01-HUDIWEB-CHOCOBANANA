@@ -19,7 +19,7 @@
 	};
 
 	var URI = {
-		SIGNUP : "/signup",
+		SIGNUP : "/user/signup",
 		LOGIN : "/user/login"
 	};
 
