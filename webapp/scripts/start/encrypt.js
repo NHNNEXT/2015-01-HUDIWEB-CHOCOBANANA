@@ -33,10 +33,12 @@
 		var pwd = CryptoJS.SHA256(document.getElementById(ids.password).value).toString(CryptoJS.enc.Hex); //pwd는 hashing
 
 		// 서버에 보내기 전에 사용자가 입력한 값 지우기
-		document.getElementById(ids.name).value = "";
+		if(uri === URI.SIGNUP){
+			document.getElementById(ids.name).value = "";
+			document.getElementById(ids.password_check).value ="";
+		}
 		document.getElementById(ids.email).value = "";
 		document.getElementById(ids.password).value ="";
-		document.getElementById(ids.password_check).value ="";
 
 		// RSA 암호화 생성
 		var rsaKey = new rsalib.RSAKey();
