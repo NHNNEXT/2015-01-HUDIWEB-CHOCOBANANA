@@ -13,9 +13,14 @@
 <link rel="stylesheet" href="/css/style.css">
 <link rel="stylesheet" href="/css/guild.css">
 <link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
+<link rel="stylesheet" href="/css/party.css">
 
+<!-- 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
+ -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 
 </head>
 <body>
@@ -31,9 +36,9 @@
 		</div>
 		<nav>
 			<h1 class="blind">페이지 메뉴</h1>
-			<a href="#">home</a>
+			<a href="/personal">home</a>
 			<h2 class="blind">홈</h2>
-			<a href="/guild">guild</a>
+			<a href="/guild/overview">guild</a>
 			<h2 class="blind">길드</h2>
 
 		</nav>
@@ -62,11 +67,9 @@
 							<form class="add_todo">
 								<!-- 파티 설정 -->
 								<div class="select_party">
-									<label id="selected_party_name">개인</label> <select
-										id="select_party_list" onchange="showSelectedParty()">
+									<label id="selected_party_name"></label> 
+									<select id="select_party_list" onchange="showSelectedParty()">
 										<option>개인</option>
-										<option>네트워크</option>
-										<option>자구알</option>
 									</select>
 								</div>
 
@@ -96,3 +99,20 @@
 			</div>
 		</section>
 	</header>
+	
+	<div class="detail_modal" id="todo_modal"style="display:none">
+        <div class="light_box"></div>
+        <div class="task">
+            <div class="title" id="title_edit"><textarea type="text" placeholder="To do..."></textarea></div>
+            <div class="detail_wrapper">
+                <span class="tid" id="tid_edit"></span>
+                <span class="party" id="party_edit"></span>
+                <span class="due_date" id="due_date_edit"></span>
+                <textarea class="note" id="note_edit"></textarea>
+            </div>
+            <div class="btn_wrapper">
+                <button class="edit_btn">save</button>
+                <button class="delete_btn">delete</button>
+            </div>
+        </div>
+    </div>

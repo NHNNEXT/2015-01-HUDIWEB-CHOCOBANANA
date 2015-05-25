@@ -22,7 +22,7 @@ ubuntudo.ui.SearchManager = (function() {
         this.elSearchInput = elSearchInput;
         this.GUILD_FIELD = GUILD_FIELD;
         this.LIST_TEMPLATE = LIST_TEMPLATE;
-        this.URI_TEMPLTE = URI_TEMPLATE;
+        this.URI_TEMPLATE = URI_TEMPLATE;
     }
     
     SearchManager.prototype.autoComplete = function (ev) {

@@ -68,14 +68,13 @@ public class GuildDao {
 				}
 			}
 		};
-		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST_SEARCH, rowMapper, guildName+"%");
+		return jdbcTemplate.query(QrysG.RETRIEVE_GUILD_LIST_SEARCH, rowMapper, Qrys.makeLikeParamRight(guildName));
 	}
 
 	public int updateGuildDao(GuildEntity guild) {
 		logger.debug("updating current guild to: " + guild);
 		return jdbcTemplate.update(QrysG.UPDATE_GUILD, guild.getLeaderId(), guild.getGuildName(), guild.getStatus(), guild.getGid());
 	}
-
 
 	public List<Map<String, Object>> retrieveMyGuildListDao(long uid) {
 		logger.debug("retrieving my guilds... user id: " + uid);

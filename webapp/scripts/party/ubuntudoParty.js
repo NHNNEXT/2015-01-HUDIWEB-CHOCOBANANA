@@ -7,57 +7,47 @@ ubuntudo.utility = {};
 ubuntudo.dataChangedEvent = new CustomEvent("dataChanged");
 
 function showSelectedParty () {
-	var selectList = document.getElementById("select_party_list");
+    var selectList = document.getElementById("select_party_list");
     var selected = document.getElementById("selected_party_name");
-   	var partyName = selectList.value;
+    var partyName = selectList.value;
     selected.innerHTML = partyName;
     selected.pid = selectList.pid;
-} 
+}
 
 window.addEventListener("load", function () {
-	'use strict';      
+	'use strict';
+	var elList = document.querySelectorAll(".ns_party ul.todo_list");
+	var elLightBox = document.querySelector(".light_box");
+  
+	var elCompleteBtnList;
+	var oDetailModal;
+	var oModalManager;
 	// modal창 중 detailModal을 선택해서 ModalManager에 넣는것 같은데, 이런 형태면 Modal을 관리하는 인터페이스 같은 객체가 있어야할 뜻..
 
     /*todo data 서버에 요청하여 받아오기*/
-	var util = ubuntudo.utility;
-	var oDataManager = new ubuntudo.ui.DataManager();
+   	var util = ubuntudo.utility;
+   	var oDataManager = new ubuntudo.ui.DataManager();
+    var href = window.location.href;
+    var pid = href.substr(href.lastIndexOf('/') + 1);
 	util.ajax({
 		"method": "GET",
-		"uri": "/personal/todo",
+		"uri": "/party/todo/" + pid, // personal과 다른 부분... 여기만 바꿀 수 있다면 ubuntudoPersonal.js를 거의 그대로 쓸 수 있다... - 다혜
 		"param": null,
 		"callback": oDataManager.setData
 	});
 
-	/*user가 가입한 파티 리스트 서버에 요청하여 받아오기*/
-	var oTodoAddModal = new ubuntudo.ui.TodoAddModal(); 	
-	util.ajax({
-		"method": "GET",
-		"uri": "/party",
-		"param": null,
-		"callback": oTodoAddModal.setPartyList
-	});
+    /*user가 가입한 파티 리스트 서버에 요청하여 받아오기*/
+    var oTodoAddModal = new ubuntudo.ui.TodoAddModal();     
+    util.ajax({
+        "method": "GET",
+        "uri": "/party",
+        "param": null,
+        "callback": oTodoAddModal.setPartyList
+    });
 
     /*todo data에 변화가 있을 때 list를 다시 그리고, 다시 그려진 각 리스트에 이벤트 새롭게 등록.*/
-	var oTodoManager = new ubuntudo.ui.TodoManager();
-	var elCompleteBtnList;
-	var oDetailModal;
-	var oModalManager;
+   	var oTodoManager = new ubuntudo.ui.TodoManager();
 	window.addEventListener("dataChanged", function () {
-		/*
-		 *@private
-		 */
-		function _addEvent(element) {
-			element.addEventListener("click", _complete);
-		}
-
-		function _removeEvent(element) {
-			element.removeEventListener("click", _complete);
-		}
-
-		function _complete(ev) {
-			oTodoManager.complete(ev, oDataManager);
-		}
-
 		var data = oDataManager.getData();
 		var fieldName = oDataManager.getFieldName();
 		
@@ -65,24 +55,19 @@ window.addEventListener("load", function () {
 		oModalManager = new ubuntudo.ui.ModalManager(oDetailModal);
         
         // todo data리스트 다시 그리기
-        oTodoManager.appendList(data, fieldName); 
+        var elTarget = document.querySelector(".party_all_todos .todo_list");
+        oTodoManager.appendPartyTodoList(elTarget, data, fieldName); 
 		
-        // 각 완료 버튼에 이벤트 다시 걸기
-        if (elCompleteBtnList !== undefined) {
-			[].forEach.call(elCompleteBtnList, _removeEvent);
-		}
-		elCompleteBtnList = document.getElementsByClassName('complete_btn');
-		[].forEach.call(elCompleteBtnList, _addEvent);
+        // 각 닫기 버튼에 이벤트 다시 걸기
 	});
 
     /*detail modal관련 이벤트 등록*/
-    var elList = document.querySelectorAll(".ns_personal section ul");
-	var elLightBox = document.querySelector(".light_box");
 	[].forEach.call(elList, function (element) {
 		element.addEventListener("click", function (ev) {
 			oModalManager.showModal(ev);
 		});
 	});
+
 	elLightBox.addEventListener("click", function (ev) {
 		oModalManager.hideModal(ev);
 	});
@@ -90,7 +75,6 @@ window.addEventListener("load", function () {
     /*add todo modal관련 이벤트 등록*/
     var elAddTodoBtn = document.querySelector(".todo_add_btn");
     var elCancelBtn = document.querySelector(".cancel_btn");
-    //oTodoAddModal은 위에서 만들어 둠
     var oTodoAddModalManager = new ubuntudo.ui.ModalManager(oTodoAddModal);
     
     elAddTodoBtn.addEventListener("click", function(ev){
@@ -120,7 +104,6 @@ window.addEventListener("load", function () {
 //달력 관련 jquery (datepicker)
 $(function() {
 	'use strict';
-
     var myDatepicker = $("#datepicker");
     myDatepicker.datepicker({ 
         firstDay: 0,
@@ -136,6 +119,7 @@ $(function() {
     });
 });
 
+/*투두 업데이트, 삭제 관련 이벤트 - 리팩토링 필요*/
 var editBtn = document.querySelector(".btn_wrapper .edit_btn");
 editBtn.addEventListener('click', function(e) {
 	'use strict';

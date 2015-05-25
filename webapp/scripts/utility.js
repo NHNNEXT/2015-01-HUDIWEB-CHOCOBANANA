@@ -86,22 +86,6 @@
         };
     };
 
-//    ubuntudo.utility.syncRequest = function (method, uri, param, callback) {
-//        var util = ubuntudo.utility;
-//        var request = new XMLHttpRequest();
-//        request.open(method, uri, false);
-//        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//        request.send(param);
-//
-//        if (request.readyState === 4 && request.status === 200) {
-//          var result = request.responseText;
-//          result = JSON.parse(result);
-//          if(util.typeCheck(callback) === "function") {
-//              return callback(result);
-//          }
-//        }
-//    };
-
     ubuntudo.utility.echo = function (val) {
         return val;
     };

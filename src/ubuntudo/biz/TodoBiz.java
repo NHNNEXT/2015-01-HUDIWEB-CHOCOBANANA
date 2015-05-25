@@ -1,5 +1,7 @@
 package ubuntudo.biz;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,7 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ubuntudo.dao.TodoDao;
 import ubuntudo.model.TodoEntity;
+import ubuntudo.model.UserEntity;
 
 @Service("tdao")
 public class TodoBiz {
@@ -79,7 +82,13 @@ public class TodoBiz {
 		Long tid = tdao.getLastInsertedTodoId();
 		TodoEntity lastTodo = tdao.getLastTodo(tid);
 		tdao.insertHistory(tid, lastTodo);
-		tdao.insertRelation(tid, lastTodo);
+		if(todo.getPid() == -1){ //personal todo의 경우
+			tdao.insertRelation(tid, lastTodo);
+		}
+		else { //party todo의 경우
+			List<UserEntity> users = tdao.getUserListFromPid(todo.getPid());
+			tdao.insertRelation(tid, users);
+		}
 		transactionManager.commit(status);
 		return lastTodo;
 	}

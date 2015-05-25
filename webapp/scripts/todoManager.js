@@ -13,9 +13,11 @@ ubuntudo.ui.TodoManager = (function() {
 
     //CSS에 의존하는 리스트 템플릿
     var LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><span class="pid"><%=pid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="complete_btn"></a></li>';
-      
+    var PARTY_TODO_LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><span class="pid"><%=pid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="close_btn"></a></li>';
+    
     function TodoManager () {  
     };
+
     TodoManager.prototype.appendList = function (data, fieldName) {
         var elTargetList = {};
         var now = new Date();
@@ -44,9 +46,24 @@ ubuntudo.ui.TodoManager = (function() {
                 explain = "지남";
                 elTarget = elTargetList[CLASSNAME.PAST];
             }
-            elTarget.innerHTML += _makeInnerHTML(todoInfo, dayDiff, explain, fieldName);
+            elTarget.innerHTML += _makeInnerHTML(LIST_TEMPLATE, todoInfo, dayDiff, explain, fieldName);
         }
     };
+
+    TodoManager.prototype.appendPartyTodoList = function (elTarget, data, fieldName) {
+        var now = new Date();
+        var today = new Date(now.yyyymmdd());
+        for(var i = 0; i < data.length; i++) {
+            var todoInfo = data[i];
+            var due = new Date(todoInfo[fieldName.DUEDATE]);
+            var dayDiff = Math.abs(due.diffDays(today));
+            var explain = "남음";
+            if (due < today){
+                explain = "지남";
+            }
+            elTarget.innerHTML += _makeInnerHTML(PARTY_TODO_LIST_TEMPLATE, todoInfo, dayDiff, explain, fieldName);
+        }
+    }
 
     TodoManager.prototype.complete = function (ev, oDataManager) {
         ev.stopPropagation();
@@ -73,17 +90,21 @@ ubuntudo.ui.TodoManager = (function() {
     };
 
     /*클래스네임, 태그네임 등 html에 의존하는 부분 빼야한다. 리팩토링 필요 - 다혜 */
-    TodoManager.prototype.add = function (ev, oDataManager) {
+    TodoManager.prototype.add = function (ev, oDataManager, oTodoAddModal) {
         ev.preventDefault();
 		ev.stopPropagation();
 
-		//var form = document.querySelector(".add_todo");
-		//var pid = form.querySelector(".add_todo select").value;
-		var pid = -1;
+		var pname = document.querySelector("form.add_todo").querySelector("#selected_party_name").innerHTML;
+		var pid;
+        if(pname !== "개인") {
+            pid = oTodoAddModal.getPidFromPartyName(pname);
+        }else {
+            pid = -1;
+        }
+
 		var date = document.getElementsByName("date")[0].value;
 		if (date === "오늘") {
 			date = new Date();
-			//date = date.toISOString().slice(0,10).replace(/-/g,"-"); 이러면 27일인데 26일이 나옴. 이유를 찾아보자.
 			date = date.yyyymmdd();
 		}
 		var title = document.getElementsByName("title")[0].value;
@@ -102,10 +123,9 @@ ubuntudo.ui.TodoManager = (function() {
 		});
     };
 
-    function _makeInnerHTML (todoInfo, dayDiff, explain, fieldName) {
+    function _makeInnerHTML (listTemplate, todoInfo, dayDiff, explain, fieldName) {
         var field = fieldName;
-
-        return LIST_TEMPLATE.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=pid%>", todoInfo[field.PARTY_ID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
+        return listTemplate.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=pid%>", todoInfo[field.PARTY_ID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
         
     };
     

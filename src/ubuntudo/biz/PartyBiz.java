@@ -1,5 +1,6 @@
 package ubuntudo.biz;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -14,6 +15,9 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import ubuntudo.dao.PartyDao;
 import ubuntudo.model.PartyEntity;
+import ubuntudo.model.PartyInfo;
+import ubuntudo.model.TodoEntity;
+import ubuntudo.model.UserEntity;
 
 @Service
 public class PartyBiz {
@@ -25,8 +29,8 @@ public class PartyBiz {
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
 
-	public Long insertPartyBiz(PartyEntity party) {
 
+	public Long insertNewPartyBiz(PartyEntity party) {
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setName("example-transaction");
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);
@@ -34,9 +38,8 @@ public class PartyBiz {
 		TransactionStatus status = transactionManager.getTransaction(def);
 
 		int insertPartyResult = 0;
-		long newPartyId = 0;
 		int insertUserToPartyResult = 0;
-
+		Long newPartyId;
 		// 1. 요청한 데이터를 이용해 파티를 생성
 		if ((insertPartyResult = pdao.insertPartyDao(party)) != 1) {
 			transactionManager.rollback(status);
@@ -52,7 +55,8 @@ public class PartyBiz {
 		logger.debug("newPartyId: " + newPartyId);
 
 		// 3. 생성한 파티의 pid로 현재 사용자를 파티에 가입시킴
-		if ((insertUserToPartyResult = pdao.insertUserToPartyDao(newPartyId, party.getLeaderId())) != 1) {
+		if ((insertUserToPartyResult = pdao.insertUserToNewPartyDao(party.getLeaderId())) != 1) {
+
 			transactionManager.rollback(status);
 			return new Long(-1);
 		}
@@ -62,8 +66,8 @@ public class PartyBiz {
 		return newPartyId;
 	}
 
-	public int insertUserToPartyBiz(long partyId, long userId) {
-		return pdao.insertUserToPartyDao(partyId, userId);
+	public int insertUserToExistingPartyBiz(long partyId, long userId) {
+		return pdao.insertUserToExistingPartyDao(partyId, userId);
 	}
 
 	public List<PartyEntity> retrievePartyListSearchBiz(String partyName) {
@@ -80,5 +84,31 @@ public class PartyBiz {
 
 	public List<Map<String, Object>> retrievePartyListOfMyGuildsBiz(long uid) {
 		return pdao.retrievePartyListOfMyGuildsDao(uid);
+	}
+
+	public PartyInfo getPartyInfo(Long uid, Long pid) {
+		logger.debug("uid: {}", uid);
+		String partyName = pdao.getPartyName(pid);
+		String guildName = pdao.getGuildName(pid);
+		Integer memberNum = pdao.getMemberNum(pid);
+		Integer todoNum = pdao.getTodoNum(pid);
+		Float completeRatio = getCompleteRatio(pid);
+		ArrayList<UserEntity> topUserList = pdao.getTopUserList(pid);
+		Integer isSignUp = pdao.isUserSignUp(uid, pid);
+		logger.debug("isSignUp: {}", isSignUp);
+		return new PartyInfo(partyName, guildName, memberNum, todoNum, completeRatio, topUserList, isSignUp);
+	}
+
+	private Float getCompleteRatio(Long pid) {
+		Float ratio = pdao.getComplteRatio(pid);
+		return ratio;
+	}
+
+	public ArrayList<TodoEntity> getPartyTodos(Long pid) {
+		return pdao.getPartyTodos(pid);
+	}
+
+	public List<Map<String, Object>> getPartyListOfUser(Long uid) {
+		return pdao.getPartyListOfUser(uid);
 	}
 }

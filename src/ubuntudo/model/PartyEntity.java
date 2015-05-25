@@ -1,5 +1,6 @@
 package ubuntudo.model;
 
+
 public class PartyEntity {
 	private Long pid;
 	private Long gid;
@@ -22,7 +23,7 @@ public class PartyEntity {
 		this.partyName = partyName;
 		this.status = status;
 	}
-
+	
 	public long getPid() {
 		return pid;
 	}
