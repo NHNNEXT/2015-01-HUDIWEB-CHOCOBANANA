@@ -76,6 +76,17 @@ ubuntudo.ui.DataManager = (function() {
 		PartyIcon.prototype.setParent = function(parent){
 			parent.appendChild(this.element);
 		}
+		
+//		var myParticon = new  PartyIcon();
+//		myParticon.element.innerHTML = 'My';
+//		var myPartiIdentifier = document.createElement("INPUT");
+//		myPartiIdentifier.setAttribute('type', 'hidden');
+//		myPartiIdentifier.setAttribute('toggleState', 'on');
+//		myPartiIdentifier.className = -1;
+//		myParticon.element.appendChild(myPartiIdentifier);
+//		myParticon.element.addEventListener('click', toggleTodosByParty);
+//		myParticon.setParent(document.querySelector('#party_icon_list'));
+		
 		for (var i=0; i<result.length; i++){
 			var particon = new  PartyIcon();
 			
@@ -83,7 +94,8 @@ ubuntudo.ui.DataManager = (function() {
 			var partiIdentifier = document.createElement("INPUT");
 			partiIdentifier.innerHTML = result[i].pid;
 			partiIdentifier.setAttribute('type', 'hidden');
-			partiIdentifier.className = result[i].pid
+			partiIdentifier.setAttribute('toggleState', 'on');
+			partiIdentifier.className = result[i].pid;
 			particon.element.appendChild(partiIdentifier);
 			particon.element.addEventListener('click', toggleTodosByParty);
 			particon.setParent(document.querySelector('#party_icon_list'));
@@ -91,18 +103,27 @@ ubuntudo.ui.DataManager = (function() {
 	}
 	
 	function toggleTodosByParty(e){
+		var todoCountForCurrentParty = 0;
 		var todos = document.getElementsByClassName('pid');
 		var currentTodoId = e.currentTarget.childNodes[1].className;
+		
 		console.log('toggle party id: ' + currentTodoId); 
+		
 		for(var todoIdx = 0; todoIdx < todos.length; todoIdx++){
 			if(todos[todoIdx].innerHTML === currentTodoId){
+				todoCountForCurrentParty++;
+				
 				if(todos[todoIdx].parentElement.style.display === 'none'){
+					e.currentTarget.style.background = "#42a5f5";
 					todos[todoIdx].parentElement.style.display = 'block';
 				}else{
+					e.currentTarget.style.background = "#999999"
 					todos[todoIdx].parentElement.style.display = 'none';
 				}
 			}
 		}
+		if(todoCountForCurrentParty === 0)
+			alert('this party has no todo.');
 	}
 	
     return DataManager;

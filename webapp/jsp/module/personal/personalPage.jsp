@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>    
     <div id="container" class="ns_personal">
 		<aside id = party_icon_list>
-			<!-- javascript will add children here -->
+			<!-- children will be added here by javascript.-->
 		</aside>
 		<main>
 			<section>
