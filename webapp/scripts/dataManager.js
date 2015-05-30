@@ -77,15 +77,15 @@ ubuntudo.ui.DataManager = (function() {
 			parent.appendChild(this.element);
 		}
 		
-//		var myParticon = new  PartyIcon();
-//		myParticon.element.innerHTML = 'My';
-//		var myPartiIdentifier = document.createElement("INPUT");
-//		myPartiIdentifier.setAttribute('type', 'hidden');
-//		myPartiIdentifier.setAttribute('toggleState', 'on');
-//		myPartiIdentifier.className = -1;
-//		myParticon.element.appendChild(myPartiIdentifier);
-//		myParticon.element.addEventListener('click', toggleTodosByParty);
-//		myParticon.setParent(document.querySelector('#party_icon_list'));
+		var myParticon = new  PartyIcon();
+		myParticon.element.innerHTML = 'My';
+		var myPartiIdentifier = document.createElement("INPUT");
+		myPartiIdentifier.setAttribute('type', 'hidden');
+		myPartiIdentifier.setAttribute('toggleState', 'on');
+		myPartiIdentifier.className = -1;
+		myParticon.element.appendChild(myPartiIdentifier);
+		myParticon.element.addEventListener('click', toggleTodosByParty);
+		myParticon.setParent(document.querySelector('#party_icon_list'));
 		
 		for (var i=0; i<result.length; i++){
 			var particon = new  PartyIcon();
