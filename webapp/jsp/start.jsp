@@ -66,8 +66,8 @@
 						<div>
 							<label><input type="hidden" id="RSAModulus" value="${RSAModulus}" /></label>
 							<label><input type="hidden" id="RSAExponent" value="${RSAExponent}" /></label>
-							<label><input type="email" id="login_email" name="email" value="q" placeholder="이메일" autocomplete="off" alt="이메일" required></label>
-							<label><input type="password" id="login_password" name="password" value="q" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label>
+							<label><input type="email" id="login_email" name="email" value="" placeholder="이메일" autocomplete="off" alt="이메일" required></label>
+							<label><input type="password" id="login_password" name="password" value="" placeholder="비밀번호" maxlength="16" autocomplete="off" alt="비밀번호" required></label>
 							<button type="submit" class="login_btn" value="로그인">로그인</button>
 						</div>
 					</fieldset>

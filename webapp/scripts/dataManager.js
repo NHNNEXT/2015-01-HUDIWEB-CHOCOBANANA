@@ -79,14 +79,30 @@ ubuntudo.ui.DataManager = (function() {
 		for (var i=0; i<result.length; i++){
 			var particon = new  PartyIcon();
 			
-			particon.element.innerHTML = result[i].p_name.substring(0,1);
+			particon.element.innerHTML = result[i].p_name.substring(0,2);
+			var partiIdentifier = document.createElement("INPUT");
+			partiIdentifier.innerHTML = result[i].pid;
+			partiIdentifier.setAttribute('type', 'hidden');
+			partiIdentifier.className = result[i].pid
+			particon.element.appendChild(partiIdentifier);
 			particon.element.addEventListener('click', toggleTodosByParty);
 			particon.setParent(document.querySelector('#party_icon_list'));
 		}
 	}
 	
-	function toggleTodosByParty(){
-		alert('party clicked');
+	function toggleTodosByParty(e){
+		var todos = document.getElementsByClassName('pid');
+		var currentTodoId = e.currentTarget.childNodes[1].className;
+		console.log('toggle party id: ' + currentTodoId); 
+		for(var todoIdx = 0; todoIdx < todos.length; todoIdx++){
+			if(todos[todoIdx].innerHTML === currentTodoId){
+				if(todos[todoIdx].parentElement.style.display === 'none'){
+					todos[todoIdx].parentElement.style.display = 'block';
+				}else{
+					todos[todoIdx].parentElement.style.display = 'none';
+				}
+			}
+		}
 	}
 	
     return DataManager;
