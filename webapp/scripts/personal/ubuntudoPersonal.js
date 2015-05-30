@@ -115,6 +115,9 @@ window.addEventListener("load", function () {
     elSearchInput.addEventListener("keyup", function(ev) {
         oSearchManager.autoComplete(ev);
     })
+    
+
+//	displayPartyList();
 });
 
 //달력 관련 jquery (datepicker)
@@ -185,4 +188,21 @@ deleteTodoBtn.addEventListener('click', function(e) {
 		"callback" : oDataManager.addData
 	});
 	document.getElementsByClassName("detail_modal")[0].style.display = "none";
-}); 
+});
+
+var partyIconList = document.querySelector("#party_icon_list");
+window.addEventListener('load', function(e){
+	'use strict';
+	e.preventDefault();
+	e.stopPropagation(); 
+	
+	var util = ubuntudo.utility;
+	var oDataManager = new ubuntudo.ui.DataManager();
+	
+	util.ajax({
+		"method": "GET", 
+		"uri": "/party", 
+		"param" : null, 
+		"callback" : oDataManager.displayPartyList
+	});
+});

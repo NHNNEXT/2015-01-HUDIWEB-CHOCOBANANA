@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>    
     <div id="container" class="ns_personal">
-		<aside>
-		
-			<div class="party_pavicon">휴</div>
-			<div class="party_pavicon">휴</div>
-
+		<aside id = party_icon_list>
+			<!-- javascript will add children here -->
 		</aside>
 		<main>
 			<section>

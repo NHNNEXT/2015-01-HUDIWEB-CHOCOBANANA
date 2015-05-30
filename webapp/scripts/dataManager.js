@@ -22,6 +22,7 @@ ubuntudo.ui.DataManager = (function() {
         this.getData = getData.bind(this);
         this.addData = addData.bind(this);
         this.removeData = removeData.bind(this);
+        this.displayPartyList = displayPartyList.bind(this);
     }
 
     function setData (datas) {
@@ -66,6 +67,27 @@ ubuntudo.ui.DataManager = (function() {
            
     }
     
-
+	function displayPartyList(result){
+		function PartyIcon(){
+		    this.element = document.createElement('div');
+		    this.element.className = "party_pavicon";
+		}
+		
+		PartyIcon.prototype.setParent = function(parent){
+			parent.appendChild(this.element);
+		}
+		for (var i=0; i<result.length; i++){
+			var particon = new  PartyIcon();
+			
+			particon.element.innerHTML = result[i].p_name.substring(0,1);
+			particon.element.addEventListener('click', toggleTodosByParty);
+			particon.setParent(document.querySelector('#party_icon_list'));
+		}
+	}
+	
+	function toggleTodosByParty(){
+		alert('party clicked');
+	}
+	
     return DataManager;
 })();
