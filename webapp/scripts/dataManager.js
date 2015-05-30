@@ -91,16 +91,21 @@ ubuntudo.ui.DataManager = (function() {
 			var particon = new  PartyIcon();
 			
 			particon.element.innerHTML = result[i].p_name.substring(0,2);
+			particon.element.setAttribute('data-onColor', 'rgb('+randRGB()+', '+randRGB()+', '+randRGB()+')');
+			particon.element.style.backgroundColor = particon.element.getAttribute('data-onColor');
 			var partiIdentifier = document.createElement("INPUT");
 			partiIdentifier.innerHTML = result[i].pid;
 			partiIdentifier.setAttribute('type', 'hidden');
-			partiIdentifier.setAttribute('toggleState', 'on');
+			partiIdentifier.setAttribute('data-toggleState', 'on');
 			partiIdentifier.className = result[i].pid;
 			particon.element.appendChild(partiIdentifier);
 			particon.element.addEventListener('click', toggleTodosByParty);
 			particon.setParent(document.querySelector('#party_icon_list'));
 		}
 	}
+	
+    function randRGB(){ return rand(0, 255); }
+    function rand(min, max){ return Math.round(Math.random() * (max-min)) + min; }
 	
 	function toggleTodosByParty(e){
 		var todoCountForCurrentParty = 0;
@@ -114,10 +119,12 @@ ubuntudo.ui.DataManager = (function() {
 				todoCountForCurrentParty++;
 				
 				if(todos[todoIdx].parentElement.style.display === 'none'){
-					e.currentTarget.style.background = "#42a5f5";
+					e.currentTarget.style.background = e.currentTarget.getAttribute('data-onColor');
+					e.currentTarget.setAttribute('data-toggleState', 'on');
 					todos[todoIdx].parentElement.style.display = 'block';
 				}else{
 					e.currentTarget.style.background = "#999999"
+					e.currentTarget.setAttribute('data-toggleState', 'off');
 					todos[todoIdx].parentElement.style.display = 'none';
 				}
 			}
