@@ -108,10 +108,10 @@ public class UserController {
 		logger.info("-->Controller-->Validate");
 		logger.debug("Logging in email: {}", email);
 
-		UserEntity result = udao.validateUser(email);
+		String result = udao.validateUser(email);
 		logger.info("result: {}", result);
 		ModelMap model = new ModelMap();
-		if (result != null) {
+		if (result != "") {
 			model.put("status", "success");
 		} else {
 			model.put("status", "fail");

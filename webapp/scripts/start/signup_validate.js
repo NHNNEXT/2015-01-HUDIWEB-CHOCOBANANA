@@ -106,7 +106,12 @@ ubuntudo.ui.ValidateManager = (function () {
 		//postJSONData(URL, param, callback)임.
 		function _ajaxSearchEmail() {
 			var email = "email=" + elEmail.value;
-			util.postJSONData("/user/validate", email, _showValidationMessage);
+			util.ajax({
+				"method": "POST",
+				"uri": "/user/validate",
+				"param": email,
+				"callback": _showValidationMessage
+			});
 		}
 
 		function _showValidationMessage(ajaxResult) {

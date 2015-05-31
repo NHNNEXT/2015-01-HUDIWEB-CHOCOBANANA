@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanInstantiationException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.datasource.init.DatabasePopulatorUtils;
@@ -54,7 +56,7 @@ public class UserDao extends Qrys {
 		return jdbcTemplate.queryForObject(QrysU.RETRIEVE_USER, rowMapper, email, passwd);
 	}
 
-	public UserEntity validateUser(String email) {
+	public String validateUser(String email) {
 		logger.info("---->UserDao.validateUser()");
 		logger.debug("email:{}", email);
 		
@@ -69,6 +71,17 @@ public class UserDao extends Qrys {
 		};
 		logger.debug("jdbcTemplate:{}", jdbcTemplate);
 		logger.info("<----UserDao.validateUser");
-		return jdbcTemplate.queryForObject(QrysU.VALIDATE_USER, rowMapper, email);
+		String result = "";
+		try {
+				// 일단 null이 떨어지면
+			   result =  jdbcTemplate.queryForObject(QrysU.VALIDATE_USER, rowMapper, email).toString();
+			  } catch (DataAccessException e) {
+			   if (e instanceof IncorrectResultSizeDataAccessException) {
+				   // Exception 의 이유가 queryforobjcet의 리턴값이 없어서 이면
+				   result="";
+				   logger.debug( e.getMessage());
+			   }
+			  }
+		return result;
 	}
 }
