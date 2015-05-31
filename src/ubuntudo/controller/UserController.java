@@ -28,8 +28,9 @@ public class UserController {
 	@Autowired
 	private UserDao udao;
 
-	String loginSuccessedViewUri = "/personal";
-	String loginFailedViewUri = "jsp/loginFail.jsp";
+	private static String START_URI = "/";
+	private static String LOGIN_SUCCESS_URI = "/personal";
+	private static String LOGIN_FAIL_URI = "jsp/loginFail.jsp";
 
 	@RequestMapping(value = "/signup", method = RequestMethod.POST)
 	public @ResponseBody AjaxRedirectResponse signupController(HttpServletRequest request, ModelMap modelMap, HttpSession session) throws Exception {
@@ -40,38 +41,33 @@ public class UserController {
 
 		PrivateKey privateKey = (PrivateKey) session.getAttribute("RSAWebKey");
 
-		if (privateKey == null) {
-			// "잘못된 경로로 접근하셨습니다" 페이지로 리다이렉팅 해야함
-			return new AjaxRedirectResponse("false", null);
-		} else {
-			try {
-				// 암호화처리된 사용자계정정보를 복호화
-				String _email = RSAUtils.decryptRsa(privateKey, email);
-				String _password = RSAUtils.decryptRsa(privateKey, password);
-				logger.debug("decrypted email: {}, decrypted password: {}", _email, _password);
+		try {
+			// 암호화처리된 사용자계정정보를 복호화
+			String _email = RSAUtils.decryptRsa(privateKey, email);
+			String _password = RSAUtils.decryptRsa(privateKey, password);
+			logger.debug("decrypted email: {}, decrypted password: {}", _email, _password);
 
-				// 복호화된 정보들을 DB에 넣는다.
-				udao.insertUserDao(name, _email, _password); // 여기서 에러 생기면 이미 있는 id와 password라고 알려줘야 하는데...
+			// 복호화된 정보들을 DB에 넣는다.
+			udao.insertUserDao(name, _email, _password); // 여기서 에러 생기면 이미 있는 id와 password라고 알려줘야 하는데...
 
-				// RSA키 없애기
-				session.removeAttribute("RSAWebKey");
+			// RSA키 없애기
+			session.removeAttribute("RSAWebKey");
 
-				// 세션에 user 정보 넣어두기
-				UserEntity user = udao.retrieveUserDao(_email, _password);
-				session.setAttribute("user", user);
-			} catch (Exception e) {
-				// "잘못된 경로로 접근하셨습니다" 페이지로 리다이렉트 해야 함
-				logger.info("DB error");
-				logger.info("signup ERROR : " + e.getMessage());
-			}
+			// 세션에 user 정보 넣어두기
+			UserEntity user = udao.retrieveUserDao(_email, _password);
+			session.setAttribute("user", user);
+		} catch (Exception e) {
+			// "잘못된 경로로 접근하셨습니다" 페이지로 리다이렉트 해야 함
+			logger.info("DB error");
+			logger.info("signup ERROR : " + e.getMessage());
 		}
-
+	
 		// redirect to personal page
-		return new AjaxRedirectResponse("success", "/personal");
+		return new AjaxRedirectResponse("success", LOGIN_SUCCESS_URI);
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public @ResponseBody AjaxRedirectResponse loginController(HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public @ResponseBody AjaxRedirectResponse loginController(HttpServletRequest request, HttpServletResponse response) {
 		logger.info("-->Controller-->Login");
 
 		String email = request.getParameter("email");
@@ -93,18 +89,18 @@ public class UserController {
 			session.setAttribute("user", currentUser);
 			logger.info((session.getAttribute("user").toString()));
 			res.setStatus("success");
-			res.setUri(loginSuccessedViewUri);
+			res.setUri(LOGIN_SUCCESS_URI);
 			
 		} else {
 			res.setStatus("fail");
-			res.setUri(loginFailedViewUri);
+			res.setUri(LOGIN_FAIL_URI);
 		}
 		logger.info("<--Controller-->Login");
 		return res;
 	}
 
 	@RequestMapping(value = "/validate", method = RequestMethod.POST)
-	public @ResponseBody ModelMap validateEmailController(String email) throws Exception {
+	public @ResponseBody ModelMap validateEmailController(String email) {
 		logger.info("-->Controller-->Validate");
 		logger.debug("Logging in email: {}", email);
 
@@ -119,4 +115,13 @@ public class UserController {
 		logger.info("<--Controller-->Validate");
 		return model;
 	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public @ResponseBody AjaxRedirectResponse logoutController(HttpSession session)  {
+		logger.info("logout");
+		session.invalidate();
+		AjaxRedirectResponse ajaxRedirectResponse = new AjaxRedirectResponse("success", START_URI);
+		return ajaxRedirectResponse;
+	}
+
 }
