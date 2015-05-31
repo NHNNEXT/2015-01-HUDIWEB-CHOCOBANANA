@@ -130,6 +130,9 @@ public class GuildController {
 				+ ",\"parties\":"
 				+ gson.toJson(pbiz.retrievePartyListOfMyGuildsBiz(uid)) + "}}";
 	}
+	
+	
+
 
 	// retrieve detail info of a guild and a list of all the party in a particular guild
 	@RequestMapping(value = "/info/{gid}", method = RequestMethod.GET)

@@ -1,16 +1,14 @@
 ubuntudo.ui.GuildAddModal = (function() {
 	'use strict';
 	var IDNAME = {
-		ADD_GUILD_BOX: "party_add_box_btn",
-		INPUT_ADD_BTN: "inputPartyName_add_btn",
-		INPUT_CANCEL_BTN: "inputPartyName_cancel_btn",
-		MODAL_ID: "partyName_input_box_btn",
-		SUCCESS_MESSAGE: "signup_email_message",
-		FAIL_MESSAGE: "signup_password_message"
+		ADD_GUILD_BOX: "guild_add_box_btn",
+		INPUT_ADD_BTN: "input_guild_add_btn",
+		INPUT_CANCEL_BTN: "input_guild_cancel_btn",
+		MODAL_ID: "guild_input_box"
 	};
 
 	var CLASSNAME = {
-		INPUT_GUILD_NAME: "input_partyName"
+		INPUT_GUILD_NAME: "input_guild_name"
 	};
 
 
@@ -52,8 +50,8 @@ ubuntudo.ui.GuildAddModal = (function() {
 
 
 	GuildAddModal.prototype.hideModal = function () {
-		this.elAddBtn.style.display = "block";
 		this.elModal.style.display = "none";
+		this.elAddBtn.style.display = "block";
 	};
 
 	return GuildAddModal;

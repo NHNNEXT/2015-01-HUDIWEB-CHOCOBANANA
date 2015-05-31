@@ -17,6 +17,4 @@ window.addEventListener("load", function () {
 	    "param": null,
 	    "callback": oGuildOverviewManager.setGuildInfo
 	});
-
-//Hello Hwang! Your keyboard is awesome!!!
 });
