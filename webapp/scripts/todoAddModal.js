@@ -117,6 +117,9 @@ ubuntudo.ui.TodoAddModal = (function() {
             // this.partyList.push(result.party);
             // _setModalPartyList.call(this);
         }
+        else {
+            alert(result.errorMessage);
+        }
     }
 
     function _signupBtnHide () {
