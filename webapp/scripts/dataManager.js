@@ -22,6 +22,8 @@ ubuntudo.ui.DataManager = (function() {
         this.getData = getData.bind(this);
         this.addData = addData.bind(this);
         this.removeData = removeData.bind(this);
+        this.updateData = updateData.bind(this);
+        this.deleteData = deleteData.bind(this);
         this.displayPartyList = displayPartyList.bind(this);
     }
 
@@ -60,11 +62,17 @@ ubuntudo.ui.DataManager = (function() {
     };
     
     function updateData (result) {
-        
+    	if(result !== undefined || result !== null) {
+	     	var index = ubuntudo.utility.findIndex(this.data, "tid", result[FIELD_NAME.TID]);
+	        this.data[index] = result;
+	        dispatchEvent(ubuntudo.dataChangedEvent);
+    	}
     }
     
     function deleteData (result) {
-           
+     	var index = ubuntudo.utility.findIndex(this.data, "tid", result[FIELD_NAME.TID]);
+		this.data.splice(index, 1);        
+		dispatchEvent(ubuntudo.dataChangedEvent);
     }
     
 	function displayPartyList(result){

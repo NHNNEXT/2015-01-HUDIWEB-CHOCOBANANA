@@ -115,7 +115,19 @@ window.addEventListener("load", function () {
     elSearchInput.addEventListener("keyup", function(ev) {
         oSearchManager.autoComplete(ev);
     })
-    
+
+    /*todo edit, delete 관련 이벤트 등록*/
+    var editBtn = document.querySelector(".btn_wrapper .edit_btn");
+    var deleteTodoBtn = document.querySelector(".btn_wrapper .delete_btn");
+    editBtn.addEventListener('click', function(ev) {
+		oTodoManager.update(ev, oDataManager);
+	    oModalManager.hideModal(ev);
+	}); 
+
+    deleteTodoBtn.addEventListener('click', function(ev) {
+    	oTodoManager.delete(ev, oDataManager);
+    	oModalManager.hideModal(ev);
+	});
 
 //	displayPartyList();
 });
@@ -137,57 +149,6 @@ $(function() {
     myDatepicker.click(function() {
        $("#ui-datepicker-div").removeClass("ui-datepicker-default");
     });
-});
-
-var editBtn = document.querySelector(".btn_wrapper .edit_btn");
-editBtn.addEventListener('click', function(e) {
-	'use strict';
-    e.preventDefault();
-    e.stopPropagation(); 
-
-    var util = ubuntudo.utility;
-    var oDataManager = new ubuntudo.ui.DataManager();
-    var oTodoManager = new ubuntudo.ui.TodoManager();
-    var elList = document.querySelectorAll("section ul");
-    var elLightBox = document.querySelector(".light_box");
-    var oDetailModal;
-    var oModalManager;
-
-    var tid = document.querySelector(".detail_wrapper .tid").textContent;
-    var title_edit = document.getElementById('title_edit').innerHTML;
-    var note_edit = document.getElementById('note_edit').value;
-    var due_date_edit = document.getElementById('due_date_edit').innerHTML;
-    
-
-    var param = "tid=" + tid + "&title_edit=" + title_edit + "&note_edit=" + note_edit + "&due_date_edit=" + due_date_edit;
-
-    util.ajax({
-        "method": "PUT", 
-        "uri": "/todo", 
-        "param" : param, 
-        "callback" : oDataManager.addData
-    });
-    document.getElementsByClassName("detail_modal")[0].style.display = "none";
-}); 
-
-var deleteTodoBtn = document.querySelector(".btn_wrapper .delete_btn");
-deleteTodoBtn.addEventListener('click', function(e) {
-	'use strict';
-	e.preventDefault();
-	e.stopPropagation(); 
-	
-	var util = ubuntudo.utility;
-	var oDataManager = new ubuntudo.ui.DataManager();
-	
-	var tid = document.querySelector(".detail_wrapper .tid").textContent;
-		
-	util.ajax({
-		"method": "DELETE", 
-		"uri": "/todo/" + tid, 
-		"param" : null, 
-		"callback" : oDataManager.addData
-	});
-	document.getElementsByClassName("detail_modal")[0].style.display = "none";
 });
 
 var partyIconList = document.querySelector("#party_icon_list");
