@@ -121,7 +121,7 @@ public class GuildController {
 
 	// retrieve a list of all the guild of particular user
 	// also retrieves a list of all the parties which are contained in the guilds.
-	@RequestMapping(value = "/overview/info", method = RequestMethod.GET)
+	@RequestMapping(value = "/overview/info", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public @ResponseBody String retrieveMyGuildAndPartyListController(HttpSession session) {
 		UserEntity user = (UserEntity)session.getAttribute("user");
 		Long uid = user.getUid();
@@ -135,7 +135,7 @@ public class GuildController {
 
 
 	// retrieve detail info of a guild and a list of all the party in a particular guild
-	@RequestMapping(value = "/info/{gid}", method = RequestMethod.GET)
+	@RequestMapping(value = "/info/{gid}", method = RequestMethod.GET, produces="text/plain;charset=UTF-8")
 	public @ResponseBody String retrieveGuildDetailAndPartyListController( HttpSession session, @PathVariable("gid") Long gid) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();

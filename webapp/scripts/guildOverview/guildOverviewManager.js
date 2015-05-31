@@ -111,7 +111,5 @@ ubuntudo.ui.GuildOverviewManager = (function () {
 		}
 		guild_list.innerHTML = _makeGuildList();
 	};
-
 	return GuildOverviewManager;
-
 })();

@@ -43,5 +43,11 @@
 	src="/commons/js/guildOverview/guildAddModal.js"></script>
 <script language="javascript" type="text/javascript"
 	src="/commons/js/utility.js"></script>
+	
+    <script language="javascript" type="text/javascript" src="/commons/js/dataManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/modalManager.js"></script>   
+    <script language="javascript" type="text/javascript" src="/commons/js/todoAddModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/todoManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/commons/js/searchManager.js"></script>
 </body>
 </html>

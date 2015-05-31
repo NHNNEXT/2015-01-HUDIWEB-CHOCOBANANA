@@ -206,4 +206,19 @@ public class PartyDao {
 		};
 		return jdbcTemplate.queryForObject(QrysP.GET_PARTY_OF_NEW_USER, rowMapper, partyId);
 	}
+
+	public int isUserSignUpToGuild(long userId, long partyId) {
+		logger.debug("isUserSignUpToGuild");
+		RowMapper<Integer> rowMapper = new RowMapper<Integer>() {
+			@Override
+			public Integer mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return rs.getInt("count");
+			}
+		};
+		return jdbcTemplate.queryForObject(QrysP.IS_USER_SIGN_UP_TO_GUILD, rowMapper, userId, partyId);
+	}
+
+	public int assignPartyTodosToUser(long userId, long partyId) {
+		return jdbcTemplate.update(QrysP.ASSIGN_PARTY_TODOS_TO_USER, userId, partyId);
+	}
 }

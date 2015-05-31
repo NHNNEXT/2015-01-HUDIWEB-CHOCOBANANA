@@ -120,6 +120,7 @@ ul.btn_wrapper {
 
 /* .ns-personal */
 .ns_personal aside {
+  overflow : scroll;
   width: 60px;
   height: calc(100vh - 60px);
   float: left; }
