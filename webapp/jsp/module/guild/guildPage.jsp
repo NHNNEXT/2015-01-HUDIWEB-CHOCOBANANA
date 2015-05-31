@@ -22,7 +22,7 @@
 
 	<section class="party_list_wrap">
 		<div class="added_party"></div>
-		<div class="add_party" id="party_add_box_btn" style="display:block">
+		<div class="add_party" id="party_add_box_btn" style="display:none">
 			<div class="add_icon"></div>
 			<div class="party_add_content">파티 추가하기</div>
 		</div>

@@ -49,15 +49,18 @@ ubuntudo.ui.GuildDataManager = (function () {
 		
 	    var joinBtn = document.querySelector(".guild_join_btn"); // 가입하기 버튼 
 	    var leaveBtn = document.querySelector(".guild_leave_btn"); // 탈퇴하기 버튼 
+	    var partyAddBtn = document.querySelector("#party_add_box_btn");	// 파티 추가하기 버튼 
 	    
 	    /*
 	     * state가 0이면 현재 사용자가 이 길드에 가입한 상태 
 	     * state가 -1이면 현재 사용자가 이 길드에 가입하지 않은 상태 
 	     */
 	    if (state == 0) { 
+	    	partyAddBtn.style.display = "block";
 	    	joinBtn.style.display = "none";
 	        leaveBtn.style.display = "block";
 	    } else {
+	    	partyAddBtn.style.display = "none";
 	    	joinBtn.style.display = "block";
 	        leaveBtn.style.display = "none";
 	    }
