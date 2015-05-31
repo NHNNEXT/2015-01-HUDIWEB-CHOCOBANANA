@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .ghost_btn {
   font-size: 25px;
   display: inline-block;
@@ -29,7 +28,7 @@
 #gdo_container {
   position: relative; }
 
-main {
+#gdo_main {
   width: 100%;
   overflow: hidden;
   background-color: #FFF; }
@@ -39,7 +38,6 @@ main {
   height: 300px;
   min-height: 200px;
   background-color: #EEE;
-  /* 커버 사진이 없으면 기본 연한 빨간색 */
   transition: background-color 0.2s ease-out; }
 
 #gdo_header:hover,

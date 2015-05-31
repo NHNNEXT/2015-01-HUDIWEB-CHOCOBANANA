@@ -30,12 +30,11 @@
   color 0.3s ease-in;
 }
 
-
 #gdo_container {
   position: relative;
 }
 
- main {
+#gdo_main {
   width: 100%;
    overflow: hidden;
   background-color: #FFF;
@@ -45,7 +44,7 @@
   width: 100%;
   height: 300px;
   min-height: 200px;
-  background-color: #EEE; /* 커버 사진이 없으면 기본 연한 빨간색 */
+  background-color: #EEE;
    transition: background-color 0.2s ease-out;
 }
 #gdo_header:hover,

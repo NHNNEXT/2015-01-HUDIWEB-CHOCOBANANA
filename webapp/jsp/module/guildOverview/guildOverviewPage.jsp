@@ -26,7 +26,7 @@
 			</div>
 		</snb>
 	</header>
-	<main>
+	<main id="gdo_main">
 	<h1 class="blind">길드 페이지 본문</h1>
 	<section id="gdo_list_container">
 		<h1 class="blind">내가 속한 길드들</h1>
