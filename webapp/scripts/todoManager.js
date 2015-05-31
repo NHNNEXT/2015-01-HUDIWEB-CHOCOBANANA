@@ -53,6 +53,7 @@ ubuntudo.ui.TodoManager = (function() {
     TodoManager.prototype.appendPartyTodoList = function (elTarget, data, fieldName) {
         var now = new Date();
         var today = new Date(now.yyyymmdd());
+        elTarget.innerHTML = "";
         for(var i = 0; i < data.length; i++) {
             var todoInfo = data[i];
             var due = new Date(todoInfo[fieldName.DUEDATE]);

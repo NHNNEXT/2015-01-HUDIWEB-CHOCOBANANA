@@ -2,4 +2,4 @@
     pageEncoding="UTF-8"%>
 
 <jsp:include page ="./module/layout/header.jsp"/>
-<jsp:include page ="./module/guildOverview/guildPage.jsp"/>
+<jsp:include page ="./module/guildOverview/guildOverviewPage.jsp"/>

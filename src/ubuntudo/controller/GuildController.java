@@ -47,12 +47,32 @@ public class GuildController {
 
 		return "guild";
 	}
+	
+	@RequestMapping(value = "/overview", method = RequestMethod.GET)
+	public String executeOverview(HttpSession session, Model model) {
+		if (session.getAttribute("user") == null) {
+			logger.debug("/guildOverview 요청에 대해 응답 - 세션이 정상적이지 않을때");
+			return "redirect:/start";
+		}
+		logger.debug("/guild Overview 요청에 대해 응답");
+
+		return "guildOverview";
+	}
 
 	// creates a guild.
 	// also add the creator to the guild which is just created.
 	@RequestMapping(method = RequestMethod.POST)
-	public int insertNewGuildController( @RequestParam("leaderId") long leaderId, @RequestParam("guildName") String guildName) {
-		return gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName));
+	public @ResponseBody ModelMap insertNewGuildController(HttpSession session, @RequestParam("guildName") String guildName) {
+		logger.debug("/guild Create 요청에 대해 응답");
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		long leaderId = user.getUid();
+		ModelMap model = new ModelMap();
+		if(gbiz.insertNewGuildBiz(new GuildEntity(leaderId, guildName)) == 2){
+			model.addAttribute("status", "success");
+			return model;
+		}
+		model.addAttribute("status", "fail");
+		return model;
 	}
 
 	// add a user to a guild.
@@ -101,7 +121,7 @@ public class GuildController {
 
 	// retrieve a list of all the guild of particular user
 	// also retrieves a list of all the parties which are contained in the guilds.
-	@RequestMapping(value = "/overview", method = RequestMethod.GET)
+	@RequestMapping(value = "/overview/info", method = RequestMethod.GET)
 	public @ResponseBody String retrieveMyGuildAndPartyListController(HttpSession session) {
 		UserEntity user = (UserEntity)session.getAttribute("user");
 		Long uid = user.getUid();
