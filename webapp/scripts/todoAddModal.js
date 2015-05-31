@@ -112,9 +112,10 @@ ubuntudo.ui.TodoAddModal = (function() {
 
     function addPartyList(result) {
         if(result.status === "success"){
-            _signupBtnHide();
-            this.partyList.push(result.party);
-            _setModalPartyList.call(this);
+            window.location.reload();
+            // _signupBtnHide();
+            // this.partyList.push(result.party);
+            // _setModalPartyList.call(this);
         }
     }
 
