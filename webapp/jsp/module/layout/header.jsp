@@ -100,9 +100,9 @@
 							<div class="my_modal_effect_shadow"></div>
 							<div class="my_modal_effect"></div>
 							<div class="my_modal">
-								<div class="my_each_box my_modal_name">${user.name}</div>
-								<div class="my_each_box my_modal_modify">내 정보 수정</div>
-								<div class="my_each_box my_modal_logout">로그아웃</div>
+								<div class="my_each_box">${user.name}</div>
+								<div class="my_each_box">내 정보 수정</div>
+								<div class="my_each_box" id="my_modal_logout">로그아웃</div>
 							</div>
 						</div>
 					</li>

@@ -140,11 +140,11 @@
 	height: 170px;
 	cursor: pointer;
 	float: left;
-	background-color: #8D6464;
+	background-color: #77CBD6;
 }
 
 .ns_guild .unjoined_party_list:hover {
-	background-color: #A17B7B;
+	background-color: #B1D7DC;
 }
 
 .ns_guild .party_name {

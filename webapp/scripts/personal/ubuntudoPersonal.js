@@ -36,7 +36,8 @@ window.addEventListener("load", function () {
 		"param": null,
 		"callback": oTodoAddModal.setPartyList
 	});
-
+	
+	
     /*todo data에 변화가 있을 때 list를 다시 그리고, 다시 그려진 각 리스트에 이벤트 새롭게 등록.*/
 	var oTodoManager = new ubuntudo.ui.TodoManager();
 	var elCompleteBtnList;
@@ -108,6 +109,37 @@ window.addEventListener("load", function () {
 	   oTodoAddModalManager.hideModal(ev);
 	});
     
+	
+	/*   로그아웃 기능   */
+	/* profile버튼을 누르면 my_modal 표시 */
+	var profileBtn = document.querySelector(".profile");
+	profileBtn.addEventListener("click", function(ev){
+		var myModal = document.querySelector(".my_modal_wrap");
+		if(myModal.style.visibility == "visible") {
+			myModal.style.visibility = "hidden";
+		} else {
+			myModal.style.visibility = "visible";
+		}
+	});
+	
+	var logoutBtn = document.querySelector("#my_modal_logout");
+	logoutBtn.addEventListener("click", function(ev){
+		util.ajax({
+			"method": "GET", 
+			"uri": "/user/logout", 
+			"param" : null, 
+			"callback" : logoutFunc
+		});
+	});
+	
+	function logoutFunc(result) {
+		if(result.status === "success") {
+		     window.location = result.uri;
+		}
+	}
+	/*  //로그아웃 기능   */
+	
+	
     /*길드 검색 이벤트 등록*/
     var elSearchResultList =  document.querySelector(".search_result_list");
     var elSearchInput = document.getElementById("global-header").querySelector(".search_input");
