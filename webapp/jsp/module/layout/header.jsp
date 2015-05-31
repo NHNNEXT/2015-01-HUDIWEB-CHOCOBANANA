@@ -38,7 +38,7 @@
 			<h1 class="blind">페이지 메뉴</h1>
 			<a href="/personal">home</a>
 			<h2 class="blind">홈</h2>
-			<a href="/guild/overview">guild</a>
+			<a href="/guild/overview" class="guild_position">guild</a>
 			<h2 class="blind">길드</h2>
 
 		</nav>
@@ -62,8 +62,8 @@
 				<ul class="btn_wrapper">
 					<li class="todo_add_btn">
 						<div id="add_wrap" style="display: none;">
-							<div class="modal_effect_shadow"></div>
-							<div class="modal_effect"></div>
+							<div class="todo_modal_effect_shadow"></div>
+							<div class="todo_modal_effect"></div>
 							<form class="add_todo">
 								<!-- 파티 설정 -->
 								<div class="select_party">
@@ -94,7 +94,17 @@
 							</form>
 						</div>
 					</li>
-					<li class="profile"></li>
+					<li class="profile">
+						<div class="my_modal_wrap">
+							<div class="my_modal_effect_shadow"></div>
+							<div class="my_modal_effect"></div>
+							<div class="my_modal">
+								<div class="my_each_box my_modal_name">${user.name}</div>
+								<div class="my_each_box my_modal_modify">내 정보 수정</div>
+								<div class="my_each_box my_modal_logout">로그아웃</div>
+							</div>
+						</div>
+					</li>
 				</ul>
 			</div>
 		</section>

@@ -1,4 +1,4 @@
-.modal_effect_shadow{
+.todo_modal_effect_shadow{
   border-color: transparent;
   border-style: dashed dashed solid;
   border-width: 0 8.5px 8.5px;
@@ -14,7 +14,7 @@
   top: 31px;
 }
 
-.modal_effect{
+.todo_modal_effect{
   border-color: transparent;
   border-bottom-color: #fff;
   border-style: dashed dashed solid;

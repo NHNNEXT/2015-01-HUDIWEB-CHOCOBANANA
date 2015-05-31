@@ -248,6 +248,11 @@ bottom: 180px;
 	font-size: 20px;
 }
 
+.ns_party .noti_list {
+	padding: 10px;
+	font-size: 15px;
+}
+
 .ns_party #myChart {
 	margin-top: 20px;
 	margin-bottom: 20px;

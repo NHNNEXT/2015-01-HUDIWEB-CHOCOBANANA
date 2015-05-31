@@ -69,8 +69,8 @@
 }
 
 .ns_guild .btn_wrap .guild_join_btn, .ns_guild .btn_wrap .guild_leave_btn {
-	margin-top: -23px;
-position: absolute;
+  margin-top: -23px;
+  position: absolute;
   background: #dd4b39;
   background-image: -webkit-linear-gradient(top, #dd4b39, #CD4434);
   background-image: -moz-linear-gradient(top, #dd4b39, #CD4434);
@@ -85,6 +85,7 @@ position: absolute;
   font-size: 12px;
   padding: 7px 14px 7px 14px;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .ns_guild .btn_wrap .guild_join_btn:hover, .ns_guild .btn_wrap .guild_leave_btn:hover {
