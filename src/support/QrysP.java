@@ -29,7 +29,7 @@ public class QrysP extends Qrys {
 	public static String GET_PARTY_TODO_NUMBER = "SELECT COUNT(*) todoCount FROM  todo t WHERE t.pid = ? AND t.status <> 'todo03' AND t.status <> 'todo04'";
 
 	// party info - the ratio of party todo completiON 
-	public static String GET_RATIO = "select (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ?) AND completed = 'trel01')/ (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ?)) as completeRatio";
+	public static String GET_RATIO = "select (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ? AND t.status <> 'todo03') AND completed = 'trel01')/ (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ? AND t.status <> 'todo03')) as completeRatio";
 	
 	// party info - the member list who completes party todo well.
 	public static String GET_TOP3_MEMBERS = "SELECT u.name, u.email, COUNT(tur.tid) count FROM todo_user_relation tur JOIN user u ON tur.uid = u.uid WHERE tur.tid IN (SELECT tid FROM todo WHERE pid = ?) AND tur.completed = 'trel01' GROUP BY tur.uid ORDER BY COUNT(tur.tid) DESC LIMIT 3";
