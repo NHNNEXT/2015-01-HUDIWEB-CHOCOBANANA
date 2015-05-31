@@ -132,6 +132,20 @@ position: absolute;
 	background-color: #E77669;
 }
 
+.ns_guild .unjoined_party_list {
+	text-align: center;
+	margin: 10px 0 0 10px;
+	width: calc(25% - 13px);
+	height: 170px;
+	cursor: pointer;
+	float: left;
+	background-color: #8D6464;
+}
+
+.ns_guild .unjoined_party_list:hover {
+	background-color: #A17B7B;
+}
+
 .ns_guild .party_name {
 	color: #fff;
 	position: relative;

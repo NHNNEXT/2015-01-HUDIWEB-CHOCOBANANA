@@ -30,13 +30,22 @@ ubuntudo.ui.GuildDataManager = (function () {
 		document.getElementsByClassName("g_name")[0].innerHTML = G_NAME_TEMPLATE.replace("<%=g_name%>", guildName);
 		document.getElementsByClassName("guild_info")[0].innerHTML = G_INFO_TEMPLATE.replace("<%=leader%>", leader).replace("<%=members%>", members).replace("<%=parties%>", parties);
 		
-		// 길드 안에 있는 모든 파티들을 보여줌 
-		for (var i = 0; i < guildInfoData["result"].parties.length; i++) {
-			document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData["result"].parties[i].p_name).replace("<%=pid%>", guildInfoData["result"].parties[i].pid);
-
+		// 파티수가 0일 때 나오는 undefined파티가 생기는 버그 방지 조건문 
+		if ( parties > 0 ){
+			// 길드 안에 있는 모든 파티들을 보여줌 
+			for (var i = 0; i < guildInfoData["result"].parties.length; i++) {
+				
+				// 파티리스트 추가 
+				document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData["result"].parties[i].p_name).replace("<%=pid%>", guildInfoData["result"].parties[i].pid);
+				
+				// 내가 가입하지 않은 파티라면 파티div의 배경색을 바꾼다 
+				if (guildInfoData["result"].parties[i].status == -1){
+					var wrap = document.getElementsByClassName("added_party")[0];
+				    wrap.getElementsByClassName("party_list")[i].className += " unjoined_party_list";
+				}
+			}
 		}
 		
-
 	    var joinBtn = document.querySelector(".guild_join_btn"); // 가입하기 버튼 
 	    var leaveBtn = document.querySelector(".guild_leave_btn"); // 탈퇴하기 버튼 
 	    
