@@ -86,7 +86,7 @@ public class GuildBiz {
 	}
 
 	public String retrieveGuildDetailAndPartyListBiz(long uid, long gid) {
-		String guildDetail = DateUtil.gson.toJson(gdao.retrieveGuildDetail(gid));
+		String guildDetail = DateUtil.gson.toJson(gdao.retrieveGuildDetail(uid, gid));
 		String partyListInGuild = DateUtil.gson.toJson(pdao.retrievePartyInGuildDao(uid, gid));
 		return "{\"result\":{\"guildDetail\":" + guildDetail + ",\"parties\":" + partyListInGuild	+ "}}";
 	}

@@ -116,8 +116,8 @@ public class GuildController {
 	public @ResponseBody String retrieveGuildDetailAndPartyListController( HttpSession session, @PathVariable("gid") Long gid) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
-
-		return gbiz.retrieveGuildDetailAndPartyListBiz(uid, gid);
+		String guildDetailAndPartyList = gbiz.retrieveGuildDetailAndPartyListBiz(uid, gid);
+		return guildDetailAndPartyList;
 	}
 
 	// @RequestMapping(value = "", method = RequestMethod.GET)
