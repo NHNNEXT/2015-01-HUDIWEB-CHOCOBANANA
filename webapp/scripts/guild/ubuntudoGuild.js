@@ -27,12 +27,12 @@ window.addEventListener("load", function () {
     //파티 추가하기 박스에서, 취소 버튼을 눌렀을 때
     document.getElementById("inputPartyName_cancel_btn").addEventListener("click", oGuildDataManager.originalPartyAddBox);
 
-    function inputPartyName(){
+    function inputPartyName() {
         document.getElementById("party_add_box_btn").style.display = "none";
         document.getElementById("partyName_input_box_btn").style.display = "block"; 
     }
 
-    function addParty(){
+    function addParty() {
         var partyName = document.getElementsByClassName("input_partyName")[0].value;
         util.ajax({
             "method": "POST",
@@ -41,9 +41,6 @@ window.addEventListener("load", function () {
             "callback": oGuildDataManager.addPartyCallback
         });
     }
-
-    
-
 
 
     var joinBtn = document.querySelector(".guild_join_btn");

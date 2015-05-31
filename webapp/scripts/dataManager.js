@@ -22,6 +22,7 @@ ubuntudo.ui.DataManager = (function() {
         this.getData = getData.bind(this);
         this.addData = addData.bind(this);
         this.removeData = removeData.bind(this);
+        this.displayPartyList = displayPartyList.bind(this);
     }
 
     function setData (datas) {
@@ -66,6 +67,71 @@ ubuntudo.ui.DataManager = (function() {
            
     }
     
-
+	function displayPartyList(result){
+		function PartyIcon(){
+		    this.element = document.createElement('div');
+		    this.element.className = "party_pavicon";
+		}
+		
+		PartyIcon.prototype.setParent = function(parent){
+			parent.appendChild(this.element);
+		}
+		
+		var myParticon = new  PartyIcon();
+		myParticon.element.innerHTML = 'My';
+		var myPartiIdentifier = document.createElement("INPUT");
+		myPartiIdentifier.setAttribute('type', 'hidden');
+		myPartiIdentifier.setAttribute('toggleState', 'on');
+		myPartiIdentifier.className = -1;
+		myParticon.element.appendChild(myPartiIdentifier);
+		myParticon.element.addEventListener('click', toggleTodosByParty);
+		myParticon.setParent(document.querySelector('#party_icon_list'));
+		
+		for (var i=0; i<result.length; i++){
+			var particon = new  PartyIcon();
+			
+			particon.element.innerHTML = result[i].p_name.substring(0,2);
+			particon.element.setAttribute('data-onColor', 'rgb('+randRGB()+', '+randRGB()+', '+randRGB()+')');
+			particon.element.style.backgroundColor = particon.element.getAttribute('data-onColor');
+			var partiIdentifier = document.createElement("INPUT");
+			partiIdentifier.innerHTML = result[i].pid;
+			partiIdentifier.setAttribute('type', 'hidden');
+			partiIdentifier.setAttribute('data-toggleState', 'on');
+			partiIdentifier.className = result[i].pid;
+			particon.element.appendChild(partiIdentifier);
+			particon.element.addEventListener('click', toggleTodosByParty);
+			particon.setParent(document.querySelector('#party_icon_list'));
+		}
+	}
+	
+    function randRGB(){ return rand(0, 255); }
+    function rand(min, max){ return Math.round(Math.random() * (max-min)) + min; }
+	
+	function toggleTodosByParty(e){
+		var todoCountForCurrentParty = 0;
+		var todos = document.getElementsByClassName('pid');
+		var currentTodoId = e.currentTarget.childNodes[1].className;
+		
+		console.log('toggle party id: ' + currentTodoId); 
+		
+		for(var todoIdx = 0; todoIdx < todos.length; todoIdx++){
+			if(todos[todoIdx].innerHTML === currentTodoId){
+				todoCountForCurrentParty++;
+				
+				if(todos[todoIdx].parentElement.style.display === 'none'){
+					e.currentTarget.style.background = e.currentTarget.getAttribute('data-onColor');
+					e.currentTarget.setAttribute('data-toggleState', 'on');
+					todos[todoIdx].parentElement.style.display = 'block';
+				}else{
+					e.currentTarget.style.background = "#999999"
+					e.currentTarget.setAttribute('data-toggleState', 'off');
+					todos[todoIdx].parentElement.style.display = 'none';
+				}
+			}
+		}
+		if(todoCountForCurrentParty === 0)
+			alert('this party has no todo.');
+	}
+	
     return DataManager;
 })();

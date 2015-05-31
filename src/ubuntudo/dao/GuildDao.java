@@ -81,8 +81,8 @@ public class GuildDao {
 		return jdbcTemplate.queryForList(QrysG.RETRIEVE_MY_GUILD_LIST, uid);
 	}
 
-	public List<Map<String, Object>> retrieveGuildDetail(long gid) {
+	public List<Map<String, Object>> retrieveGuildDetail(long uid, long gid) {
 		logger.debug("retrieving detail info of a guild... guild id: " + gid);
-		return jdbcTemplate.queryForList(QrysG.RETRIEVE_GUILD_DETAIL, gid, gid, gid);
+		return jdbcTemplate.queryForList(QrysG.RETRIEVE_GUILD_DETAIL, gid, gid, gid, uid, gid);
 	}
 }

@@ -17,10 +17,10 @@
 			<snb class="sub-nav-content">
 			<h2 class="blind">그룹 서브 네비게이션 바</h2>
 			<div class="links">
-				<a class="link selected" data-track="headerSubnavGroupListClick"
+				<a class="link selected"
 					href="/group/list" role="menuitem">그룹 목록</a>
 				<h3 class="blind">그룹목록</h3>
-				<a class="link" data-track="headerSubnavCreateGroupClick"
+				<a class="link"
 					href="/group/new" role="menuitem">그룹 생성</a>
 				<h3 class="blind">그룹 생성</h3>
 			</div>
