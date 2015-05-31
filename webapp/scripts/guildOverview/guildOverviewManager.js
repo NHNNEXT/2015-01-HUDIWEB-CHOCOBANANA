@@ -92,7 +92,7 @@ ubuntudo.ui.GuildOverviewManager = (function () {
 									'</article>' +
 									'</li>';
 		// repaceAll 확장
-		Object.prototype.replaceAll = function(param1, param2) {
+		String.prototype.replaceAll = function(param1, param2) {
 			return this.split(param1).join(param2);
 		};
 
@@ -139,7 +139,5 @@ ubuntudo.ui.GuildOverviewManager = (function () {
 
 
 	};
-
 	return GuildOverviewManager;
-
 })();
