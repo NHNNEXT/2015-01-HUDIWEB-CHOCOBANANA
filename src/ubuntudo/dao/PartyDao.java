@@ -217,4 +217,8 @@ public class PartyDao {
 		};
 		return jdbcTemplate.queryForObject(QrysP.IS_USER_SIGN_UP_TO_GUILD, rowMapper, userId, partyId);
 	}
+
+	public int assignPartyTodosToUser(long userId, long partyId) {
+		return jdbcTemplate.update(QrysP.ASSIGN_PARTY_TODOS_TO_USER, userId, partyId);
+	}
 }

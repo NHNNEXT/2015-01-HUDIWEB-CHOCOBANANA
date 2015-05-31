@@ -51,4 +51,6 @@ public class QrysP extends Qrys {
 
 	//파티에 가입시키기 전에, 길드에 가입했는지 확인하기 위한 query
 	public static String IS_USER_SIGN_UP_TO_GUILD = "SELECT count(*) count FROM user_guild_relation WHERE uid = ? AND gid = (SELECT gid FROM party WHERE pid = ?)";
+	
+	public static String ASSIGN_PARTY_TODOS_TO_USER = "INSERT INTO todo_user_relation (SELECT tid, ?, 'trel00' FROM todo WHERE pid = ?)";
 }

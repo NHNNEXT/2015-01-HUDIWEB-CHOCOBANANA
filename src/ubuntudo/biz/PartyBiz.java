@@ -68,10 +68,13 @@ public class PartyBiz {
 
 	public PartyEntity insertUserToExistingPartyBiz(long partyId, long userId) {
 		int result = pdao.insertUserToExistingPartyDao(partyId, userId);
-		logger.debug("result: {}", result);
-		if(result <= 0){
+		if(result < 1){
 			return null;
 		}
+		//user 추가가 정상완료되었을 때 파티의 투두를 새로가입한 user에게 할당한다
+		pdao.assignPartyTodosToUser(userId, partyId);
+		
+		//가입한 파티의 정보를 반환한다.
 		return pdao.getParty(partyId);
 	}
 	
