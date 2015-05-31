@@ -1,0 +1,140 @@
+@charset "UTF-8";
+.ghost_btn {
+  font-size: 25px;
+  display: inline-block;
+  width: 200px;
+  height: 45px;
+  line-height: 45px;
+  margin: 0 auto;
+  padding: 10px;
+  color: #333;
+  border: 2px solid #333;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  text-align: center;
+  outline: none;
+  text-decoration: none;
+  opacity: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease-out, color 0.2s ease-out, visibility 0s linear 0.5s, opacity 0.5s linear; }
+
+.ghost_btn:hover,
+.ghost_btn:active {
+  background-color: #333;
+  color: #fff;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in; }
+
+#gdo_container {
+  position: relative; }
+
+main {
+  width: 100%;
+  overflow: hidden;
+  background-color: #FFF; }
+
+#gdo_header {
+  width: 100%;
+  height: 300px;
+  min-height: 200px;
+  background-color: #EEE;
+  /* 커버 사진이 없으면 기본 연한 빨간색 */
+  transition: background-color 0.2s ease-out; }
+
+#gdo_header:hover,
+#gdo_header:active {
+  background-color: #dbd1d5;
+  transition: background-color 0.3s ease-in; }
+
+#gdo_header_content {
+  height: 150px;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center; }
+
+#gdo_header_title {
+  font-size: 5em;
+  line-height: 150px;
+  color: #333;
+  display: inline-block; }
+
+#gdo_header_navbar {
+  height: 50px;
+  width: 60%;
+  margin-left: 20%;
+  margin-right: 20%;
+  text-align: center; }
+
+#guild_input_box {
+  width: 400px;
+  line-height: 45px;
+  margin: 0 auto;
+  padding: 10px;
+  overflow: hidden; }
+  #guild_input_box form {
+    height: 100%;
+    width: 100%;
+    position: relative; }
+    #guild_input_box form .input_guild_name {
+      float: left;
+      width: 180px;
+      height: 40px;
+      padding: 0 12px;
+      font-size: 14px;
+      color: #626262;
+      letter-spacing: 1px; }
+    #guild_input_box form .btn_effect {
+      display: block;
+      float: left;
+      left: 30px;
+      margin-left: 5px;
+      width: 80px;
+      height: 40px;
+      padding: 0;
+      line-height: 40px;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      border-radius: 2px;
+      font-size: 14px;
+      text-align: center;
+      letter-spacing: -1px; }
+
+#gdo_list_container {
+  position: relative; }
+
+#gdo_list {
+  overflow: hidden; }
+  #gdo_list .guild {
+    padding: 20px 20px 20px 40px; }
+  #gdo_list .gdo_list_title {
+    color: #333;
+    font-size: 40px;
+    text-align: center; }
+  #gdo_list .gdo_container {
+    transition: background-color 0.2s ease-out, color 0.2s ease-out;
+    min-height: 300px; }
+  #gdo_list .gdo_container:hover,
+  #gdo_list .gdo_container:active {
+    background-color: #ffdadf;
+    transition: background-color 0.3s ease-in, color 0.3s ease-in; }
+  #gdo_list .gdo_pt_list {
+    overflow: hidden;
+    position: relative; }
+    #gdo_list .gdo_pt_list .pt_container {
+      text-align: center;
+      margin: 10px 0 0 10px;
+      width: calc(25% - 13px);
+      height: 170px;
+      cursor: pointer;
+      float: left;
+      background-color: #D95D4F; }
+      #gdo_list .gdo_pt_list .pt_container .gdo_pt_title {
+        color: #eee;
+        position: relative;
+        font-size: 20px;
+        top: 75px; }
+
+/*# sourceMappingURL=guildOverview.css.map */

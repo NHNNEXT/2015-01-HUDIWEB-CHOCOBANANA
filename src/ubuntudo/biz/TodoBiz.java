@@ -25,7 +25,7 @@ public class TodoBiz {
 	@Autowired
 	private DataSourceTransactionManager transactionManager;
 
-	public int updatePersonalTodoBiz(TodoEntity todo) {
+	public TodoEntity updatePersonalTodoBiz(TodoEntity todo) {
 		TransactionStatus status = getTransactionStatus();
 		
 		int updatePersonalTodoResult = 0;
@@ -35,7 +35,7 @@ public class TodoBiz {
 		if ((updatePersonalTodoResult = tdao.updatePersonalTodoDao(todo)) != 1) {
 			logger.debug("updatePersonalTodoResult rollback!!");
 			transactionManager.rollback(status);
-			return -1;
+			return null;
 		}
 		logger.debug("updatePersonalTodoResult: " + updatePersonalTodoResult);
 
@@ -43,14 +43,16 @@ public class TodoBiz {
 		if ((createPersonalTodoHistoryResult = tdao.createPersonalTodoHistoryDao(todo)) != 1) {
 			logger.debug("createUpdatePersonalTodoHistoryResult rollback!!");
 			transactionManager.rollback(status);
-			return -1;
+			return null;
 		}
 		logger.debug("createPersonalTodoHistoryResult: " + createPersonalTodoHistoryResult);
 		transactionManager.commit(status);
-		return updatePersonalTodoResult + createPersonalTodoHistoryResult;
+		
+		TodoEntity result = tdao.getTodo(todo.getTid());
+		return result;
 	}
 
-	public int deletePersonalTodoBiz(TodoEntity todo) {
+	public TodoEntity deletePersonalTodoBiz(TodoEntity todo) {
 		TransactionStatus status = getTransactionStatus();
 
 		int deletePersonalTodoResult = 0;
@@ -60,7 +62,7 @@ public class TodoBiz {
 		if ((deletePersonalTodoResult = tdao.deletePersonalTodoDao(todo)) != 1) {
 			logger.debug("deletePersonalTodoResult rollback!!");
 			transactionManager.rollback(status);
-			return -1;
+			return null;
 		}
 		logger.debug("deletePersonalTodoResult: " + deletePersonalTodoResult);
 
@@ -68,19 +70,20 @@ public class TodoBiz {
 		if ((createPersonalTodoHistoryResult = tdao.createPersonalTodoHistoryDao(todo)) != 1) {
 			logger.debug("createUpdatePersonalTodoHistoryResult rollback!!");
 			transactionManager.rollback(status);
-			return -1;
+			return null;
 		}
 		logger.debug("createPersonalTodoHistoryResult: " + createPersonalTodoHistoryResult);
 		transactionManager.commit(status);
-
-		return deletePersonalTodoResult + createPersonalTodoHistoryResult;
+		
+		TodoEntity result = tdao.getTodo(todo.getTid());
+		return result;
 	}
 	
 	public TodoEntity addTodo (TodoEntity todo) {
 		TransactionStatus status = getTransactionStatus();
 		tdao.insertTodo(todo);
 		Long tid = tdao.getLastInsertedTodoId();
-		TodoEntity lastTodo = tdao.getLastTodo(tid);
+		TodoEntity lastTodo = tdao.getTodo(tid);
 		tdao.insertHistory(tid, lastTodo);
 		if(todo.getPid() == -1){ //personal todo의 경우
 			tdao.insertRelation(tid, lastTodo);

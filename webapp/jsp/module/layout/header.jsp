@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="/css/guild.css">
 <link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
 <link rel="stylesheet" href="/css/party.css">
+    <link rel="stylesheet" href="/css/guildOverview.css">
 
 <!-- 
 <script src="bower_components/jquery/dist/jquery.js"></script>

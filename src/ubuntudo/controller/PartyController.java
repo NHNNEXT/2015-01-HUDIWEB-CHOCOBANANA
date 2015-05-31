@@ -74,15 +74,25 @@ public class PartyController {
 	public @ResponseBody ModelMap insertUserToPartyController(@RequestParam("pid") long pid, HttpSession session) {
 		UserEntity user = (UserEntity) session.getAttribute("user");
 		Long uid = user.getUid();
-		PartyEntity party = pbiz.insertUserToExistingPartyBiz(pid, uid);
-		logger.debug("party: {}", party);
 		ModelMap model = new ModelMap();
-		model.addAttribute("status", "fail");
-		if(party != null) {
-			model.addAttribute("status", "success");
-			model.addAttribute("party", party);
-			logger.debug("model: {}", model);
+		//길드에 가입하지 않은 경우 
+		if(pbiz.isUserSignUpToGuild(pid, uid) != 1) {
+			model.addAttribute("status", "fail");
+			model.addAttribute("errorMessage", "길드에 가입하셔야 파티에 가입하실 수 있습니다.");
+			return model;
 		}
+		
+		//파티에 가입시키다 오류가 나는 경우
+		PartyEntity party;
+		if((party = pbiz.insertUserToExistingPartyBiz(pid, uid)) == null) {
+			model.addAttribute("status", "fail");
+			model.addAttribute("errorMessage", "파티에 가입하는 중 서버에 에러가 발생했습니다.");
+			return model;
+		}
+		
+		//정상적인 경우 
+		model.addAttribute("status", "success");
+		model.addAttribute("party", party);
 		return model;
 	}
 

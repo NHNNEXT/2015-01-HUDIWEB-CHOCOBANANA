@@ -77,8 +77,8 @@ public class TodoDao {
 	}
 
 	// add_todo 3rd step
-	public TodoEntity getLastTodo(Long tid) {
-		logger.debug("getLastTodo");
+	public TodoEntity getTodo(Long tid) {
+		logger.debug("getTodo");
 		RowMapper<TodoEntity> rowMapper = new RowMapper<TodoEntity>() {
 			public TodoEntity mapRow(ResultSet resultSet, int rowNum) {
 				try {
@@ -94,7 +94,7 @@ public class TodoDao {
 				}
 			}
 		};
-		return jdbcTemplate.queryForObject(QrysT.GET_LAST_TODO, rowMapper, tid);
+		return jdbcTemplate.queryForObject(QrysT.GET_TODO, rowMapper, tid);
 	}
 
 	// add_todo 4th step

@@ -31,7 +31,7 @@ public class TodoController {
 	// updates a todo.
 	// also creates a history log about the change.
 	@RequestMapping(method = RequestMethod.PUT)
-	public @ResponseBody void updateTodoController(HttpSession session, long tid, String title_edit, String note_edit, String due_date_edit) {
+	public @ResponseBody TodoEntity updateTodoController(HttpSession session, long tid, String title_edit, String note_edit, String due_date_edit) {
 		logger.debug("===>updatePersonalTodo");
 
 		UserEntity user = (UserEntity) session.getAttribute("user");
@@ -43,14 +43,15 @@ public class TodoController {
 		logger.debug("new note_edit: " + note_edit);
 		logger.debug("new due_date_edit: " + due_date_edit);
 
-		tbiz.updatePersonalTodoBiz(new TodoEntity(tid, null, title_edit, note_edit, due_date_edit, null, uid, null));
+		TodoEntity updatedTodo = tbiz.updatePersonalTodoBiz(new TodoEntity(tid, null, title_edit, note_edit, due_date_edit, null, uid, null));
 		logger.debug("<===updateTupdatePersonalTodoodo");
+		return updatedTodo;
 	}
 
 	// deletes a todo.
 	// also creates a history log about the deletion.
 	@RequestMapping(value = "/{tid}", method = RequestMethod.DELETE)
-	public @ResponseBody void deleteTodoController(HttpSession session, @PathVariable("tid") Long tid) {
+	public @ResponseBody TodoEntity deleteTodoController(HttpSession session, @PathVariable("tid") Long tid) {
 		logger.debug("===>deletePersonalTodo");
 
 		UserEntity user = (UserEntity) session.getAttribute("user");
@@ -59,8 +60,9 @@ public class TodoController {
 		logger.debug("current user: " + uid);
 		logger.debug("current todo: " + tid);
 		
-		tbiz.deletePersonalTodoBiz(new TodoEntity(tid, null, "", "", "", null, uid, null));
+		TodoEntity deletedTodo = tbiz.deletePersonalTodoBiz(new TodoEntity(tid, null, "", "", "", null, uid, null));
 		logger.debug("<===deletePersonalTodo");
+		return deletedTodo;
 	}
 
 	//투두 추가는 personal 페이지에서 뿐만 아니라 모든 페이지에서 일어날 수 있으므로 PersonalController가 아닌 TodoController에서 구현한다.

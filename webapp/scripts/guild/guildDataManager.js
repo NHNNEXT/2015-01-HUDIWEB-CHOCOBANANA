@@ -6,6 +6,7 @@
 
 // 길드 헤더에 길드 정보(길드명, 리더이름, 멤버수, 파티수)를 setting하고
 // 길드 안에 있는 모든 파티들을 보여주는 함수
+
 ubuntudo.ui.GuildDataManager = (function () {
 	function GuildDataManager () {
 		this.guildInfo = {};
