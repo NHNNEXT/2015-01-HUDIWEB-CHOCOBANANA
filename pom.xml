@@ -144,7 +144,7 @@
 	<build>
 		<finalName>ubuntudo</finalName>
 		<sourceDirectory>src</sourceDirectory>
-		<testSourceDirectory>src/test</testSourceDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
 		<outputDirectory>webapp/WEB-INF/classes</outputDirectory>
 		<testOutputDirectory>target/test-classes</testOutputDirectory>
 
