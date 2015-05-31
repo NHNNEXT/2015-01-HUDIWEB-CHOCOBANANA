@@ -1,3 +1,10 @@
+function showSelectedParty () {
+	var selectList = document.getElementById("select_party_list");
+    var selected = document.getElementById("selected_party_name");
+   	var partyName = selectList.value;
+    selected.innerHTML = partyName;
+    selected.pid = selectList.pid;
+} 
 
 ubuntudo = {};
 ubuntudo.ui = {};
@@ -8,7 +15,6 @@ window.addEventListener("load", function () {
 
 	var oGuildOverviewManager = new ubuntudo.ui.GuildOverviewManager();
 	var util = ubuntudo.utility;
-
 
 	oGuildOverviewManager.addEvents();
 	util.ajax({
@@ -30,7 +36,6 @@ window.addEventListener("load", function () {
 	 /*add todo modal관련 이벤트 등록*/
     var elAddTodoBtn = document.querySelector(".todo_add_btn");
     var elCancelBtn = document.querySelector(".cancel_btn");
-	var oTodoAddModal = new ubuntudo.ui.TodoAddModal(); 
 	var oTodoAddModalManager = new ubuntudo.ui.ModalManager(oTodoAddModal);
     
     elAddTodoBtn.addEventListener("click", function(ev){
@@ -43,6 +48,8 @@ window.addEventListener("load", function () {
     
 	/* submit 버튼 누르면 투두 추가 */
 	var elSubmitBtn = document.querySelector(".add_todo .submit_btn");
+	var oDataManager = new ubuntudo.ui.DataManager();
+	var oTodoManager = new ubuntudo.ui.TodoManager();
 	elSubmitBtn.addEventListener('click', function (ev) {
        oTodoManager.add(ev, oDataManager, oTodoAddModal);
 	   oTodoAddModalManager.hideModal(ev);
