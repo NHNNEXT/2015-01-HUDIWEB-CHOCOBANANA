@@ -117,6 +117,10 @@ window.addEventListener("load", function () {
     deleteTodoBtn.addEventListener('click', function(ev) {
         oTodoManager.delete(ev, oDataManager);
         oModalManager.hideModal(ev);
+        // 파티 페이지에서 특별히 추가되는 부분
+        var elPartyTodoNum = document.querySelector(".party_todoNum");
+        var partyTodoNum = parseInt(elPartyTodoNum.innerHTML);
+        elPartyTodoNum.innerHTML = partyTodoNum - 1;
     });
 });
 

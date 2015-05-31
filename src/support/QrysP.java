@@ -26,7 +26,7 @@ public class QrysP extends Qrys {
 	public static String GET_PARTY_MEMBER_NUMBER = "SELECT COUNT(*) memberCount FROM user_party_relation WHERE pid = ?";
 
 	// party info - the number of party todo
-	public static String GET_PARTY_TODO_NUMBER = "SELECT COUNT(*) todoCount FROM  todo t WHERE t.pid = ?";
+	public static String GET_PARTY_TODO_NUMBER = "SELECT COUNT(*) todoCount FROM  todo t WHERE t.pid = ? AND t.status <> 'todo03' AND t.status <> 'todo04'";
 
 	// party info - the ratio of party todo completiON 
 	public static String GET_RATIO = "select (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ?) AND completed = 'trel01')/ (select count(*) from todo_user_relation where tid IN (select tid from todo t where t.pid = ?)) as completeRatio";
@@ -39,9 +39,6 @@ public class QrysP extends Qrys {
 	
 	// party todo list
 	public static String GET_PARTY_TODO_LIST = "SELECT t.tid, t.pid, t.title, t.contents, t.duedate, t.status, t.editer_id, p.p_name FROM  todo t JOIN party p ON t.pid = p.pid WHERE t.pid = ? AND t.status <> 'todo03' AND t.status <> 'todo04' ORDER BY dueDate";
-	
-	// party list that user signs up
-	public static String GET_PARTY_LIST = "SELECT * FROM  todo t WHERE t.pid = ?";
 	
 	// party list for user
 	public static String GET_PARTY_LIST_OF_USER ="SELECT pid, p_name partyName FROM party WHERE pid IN (SELECT pid FROM user_party_relation WHERE uid = ?) AND deleted = 0";
