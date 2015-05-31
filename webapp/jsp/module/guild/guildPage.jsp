@@ -28,7 +28,8 @@
 		</div>
 		<div class="add_party" id="partyName_input_box_btn" style="display:none">
 			<form class="form_input_partyName">
-				<input type="text" class="input_partyName" name="fname" placeholder="파티 이름 입력" required>
+                <input type="hidden" class="input_gid" name="gid" value="">
+				<input type="text" class="input_partyName" name="partyName" placeholder="파티 이름 입력" required>
 				<button type="button" class="btn_effect" id="inputPartyName_add_btn">추가</button>
  				<button type="button" class="btn_effect" id="inputPartyName_cancel_btn">취소</button>
 			</form>

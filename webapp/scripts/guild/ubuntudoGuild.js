@@ -17,8 +17,8 @@ window.addEventListener("load", function () {
 	    "param": null,
 	    "callback": oGuildDataManager.setGuildInfo
 	});
-
-    // 파티 추가하기 박스를 눌렀을 때
+	document.getElementsByClassName("input_gid")[0].value = gid;
+		// 파티 추가하기 박스를 눌렀을 때
     document.getElementById("party_add_box_btn").addEventListener("click", inputPartyName);
 
     //파티 추가하기 박스에서, 추가 버튼을 눌렀을 때
