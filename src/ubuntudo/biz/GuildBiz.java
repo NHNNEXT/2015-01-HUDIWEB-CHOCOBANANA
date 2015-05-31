@@ -66,6 +66,7 @@ public class GuildBiz {
 		}
 		logger.debug("insertUserToGuildResult: " + insertUserToGuildResult);
 		transactionManager.commit(status);
+		logger.debug("Return : {} ",insertUserToGuildResult+insertGuildResult);
 		return insertGuildResult + insertUserToGuildResult;
 	}
 

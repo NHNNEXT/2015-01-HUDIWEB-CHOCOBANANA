@@ -39,7 +39,7 @@ ubuntudo.ui.GuildOverviewManager = (function () {
 	function GuildOverviewManager() {
 		if (this instanceof GuildOverviewManager) {
 			this.elGdoHeader = document.querySelector("#"+IDNAME.OVERVIEW_HEADER);
-			this.guildModal = new ubuntudo.ui.GuildAddModal();
+			this.guildModal = new ubuntudo.ui.GuildAddModal(this);
 			this.elAddBtn = this.elGdoHeader.querySelector("#" + IDNAME.ADD_GUILD_BOX);
 			this.elGuildList = document.querySelector("#" + IDNAME.GUILD_LIST);
 			this.guildInfo = {};
@@ -59,6 +59,8 @@ ubuntudo.ui.GuildOverviewManager = (function () {
 	GuildOverviewManager.prototype.hideModal = function () {
 		this.guildModal.hideModal();
 	};
+
+
 
 
 	GuildOverviewManager.prototype.setGuildInfo = function (guildListData) {

@@ -17,7 +17,6 @@ ubuntudo.ui.GuildAddModal = (function() {
 	var util = ubuntudo.utility;
 
 	function GuildAddModal () {
-
 		this.elModal = document.querySelector("#"+IDNAME.MODAL_ID);
 		this.elTitle = this.elModal.querySelector("." + CLASSNAME.INPUT_GUILD_NAME);
 		this.elAdd = this.elModal.querySelector("#" + IDNAME.INPUT_ADD_BTN);
@@ -34,18 +33,17 @@ ubuntudo.ui.GuildAddModal = (function() {
 			"method": "POST",
 			"uri": "/guild",
 			"param":"guildName=" + guildName,
-			"callback": addGuildCallback
+			"callback": this.addGuildCallback
 		});
+	};
+
+	GuildAddModal.prototype.addGuildCallback = function () {
+		console.log("addGuildCallback");
 	};
 
 	GuildAddModal.prototype.cancelGuild = function () {
 		this.hideModal();
 	};
-
-	function addGuildCallback () {
-		console.log("addGuildCallback");
-	}
-
 
 	GuildAddModal.prototype.showModal = function () {
 		this.elAddBtn.style.display = "none";
