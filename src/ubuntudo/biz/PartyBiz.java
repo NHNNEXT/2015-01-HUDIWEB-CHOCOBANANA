@@ -66,8 +66,13 @@ public class PartyBiz {
 		return newPartyId;
 	}
 
-	public int insertUserToExistingPartyBiz(long partyId, long userId) {
-		return pdao.insertUserToExistingPartyDao(partyId, userId);
+	public PartyEntity insertUserToExistingPartyBiz(long partyId, long userId) {
+		int result = pdao.insertUserToExistingPartyDao(partyId, userId);
+		logger.debug("result: {}", result);
+		if(result > 0){
+			return pdao.getParty(partyId);
+		}
+		return null;
 	}
 
 	public List<PartyEntity> retrievePartyListSearchBiz(String partyName) {

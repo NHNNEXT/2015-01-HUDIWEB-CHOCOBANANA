@@ -90,7 +90,7 @@ ubuntudo.ui.DataManager = (function() {
 		for (var i=0; i<result.length; i++){
 			var particon = new  PartyIcon();
 			
-			particon.element.innerHTML = result[i].p_name.substring(0,2);
+			particon.element.innerHTML = result[i].partyName.substring(0,2);
 			particon.element.setAttribute('data-onColor', 'rgb('+randRGB()+', '+randRGB()+', '+randRGB()+')');
 			particon.element.style.backgroundColor = particon.element.getAttribute('data-onColor');
 			var partiIdentifier = document.createElement("INPUT");

@@ -193,4 +193,17 @@ public class PartyDao {
 		logger.debug("get party list of user {}", uid);
 		return jdbcTemplate.queryForList(QrysP.GET_PARTY_LIST_OF_USER, uid);
 	}
+
+	public PartyEntity getParty(long partyId) {
+		logger.debug("get party");
+		RowMapper<PartyEntity> rowMapper = new RowMapper<PartyEntity>() {
+			@Override
+			public PartyEntity mapRow(ResultSet rs, int rowNum) throws SQLException {
+				return new PartyEntity(rs.getLong("pid"), rs.getLong("gid"),
+						rs.getLong("party_leader_id"), rs.getString("p_name"),
+						rs.getString("deleted"));
+			}
+		};
+		return jdbcTemplate.queryForObject(QrysP.GET_PARTY_OF_NEW_USER, rowMapper, partyId);
+	}
 }

@@ -68,12 +68,22 @@ public class PartyController {
 		model.addAttribute("status", "fail");
 		return model;
 	}
-
 	
 	// add a user to a party.
-	@RequestMapping(value = "/user", method = RequestMethod.POST)
-	public int insertUserToPartyController(@RequestParam("partyId") long partyId, @RequestParam("userId") long userId) {
-		return pbiz.insertUserToExistingPartyBiz(partyId, userId);
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public @ResponseBody ModelMap insertUserToPartyController(@RequestParam("pid") long pid, HttpSession session) {
+		UserEntity user = (UserEntity) session.getAttribute("user");
+		Long uid = user.getUid();
+		PartyEntity party = pbiz.insertUserToExistingPartyBiz(pid, uid);
+		logger.debug("party: {}", party);
+		ModelMap model = new ModelMap();
+		model.addAttribute("status", "fail");
+		if(party != null) {
+			model.addAttribute("status", "success");
+			model.addAttribute("party", party);
+			logger.debug("model: {}", model);
+		}
+		return model;
 	}
 
 	//retrieves a list of parties containing the parameter in the name of the party.

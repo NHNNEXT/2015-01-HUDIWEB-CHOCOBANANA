@@ -44,5 +44,9 @@ public class QrysP extends Qrys {
 	public static String GET_PARTY_LIST = "SELECT * FROM  todo t WHERE t.pid = ?";
 	
 	// party list for user
-	public static String GET_PARTY_LIST_OF_USER ="SELECT pid, p_name FROM party WHERE pid IN (SELECT pid FROM user_party_relation WHERE uid = ?) AND deleted = 0";
+	public static String GET_PARTY_LIST_OF_USER ="SELECT pid, p_name partyName FROM party WHERE pid IN (SELECT pid FROM user_party_relation WHERE uid = ?) AND deleted = 0";
+	
+	//party for new joined user
+	public static String GET_PARTY_OF_NEW_USER ="SELECT pid, gid, party_leader_id, p_name , deleted FROM party WHERE pid =?";
+
 }

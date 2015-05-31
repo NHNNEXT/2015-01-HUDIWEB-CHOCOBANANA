@@ -99,6 +99,12 @@ window.addEventListener("load", function () {
     elSearchInput.addEventListener("keyup", function(ev) {
         oSearchManager.autoComplete(ev);
     })
+
+    /*파티 가입하기*/
+    var elSignupBtn = document.querySelector(".party_join_btn");
+    elSignupBtn.addEventListener("click", function(ev){
+        oTodoAddModal.joinParty(ev);
+    })
 });
 
 //달력 관련 jquery (datepicker)

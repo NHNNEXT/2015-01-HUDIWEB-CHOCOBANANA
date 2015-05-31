@@ -3,7 +3,9 @@ ubuntudo.ui.TodoAddModal = (function() {
     
     // HTML에 의존하는 name 캐싱
     var CLASSNAME = {
-        SELECT_PARTY: "select_party"    
+        SELECT_PARTY: "select_party", 
+        SIGNUP_BTN: "party_join_btn",
+        LEAVE_BTN: "party_leave_btn"
     };
 
     var IDNAME = {
@@ -17,17 +19,22 @@ ubuntudo.ui.TodoAddModal = (function() {
 
     var PARTYLIST_FIELD = {
         PID: "pid",
-        PNAME: "p_name"
+        PNAME: "partyName"
     }
     
     function TodoAddModal () {
         this.elModal = document.querySelector(IDNAME.MODAL);
         this.partyList;
         this.setPartyList = setPartyList.bind(this);
+        this.addPartyList = addPartyList.bind(this);
     }
 
     function setPartyList (partyList) {
         this.partyList = partyList;
+        _setModalPartyList.call(this);
+    }
+
+    function _setModalPartyList () {
         var elTarget = document.querySelector("." + CLASSNAME.SELECT_PARTY);
         var optionList = _makeOptionList(this.partyList);
         var selectList = _makeSelectList(optionList, this.partyList);
@@ -61,8 +68,11 @@ ubuntudo.ui.TodoAddModal = (function() {
         }
         var pid = href.split("\/")[4];
         var index = ubuntudo.utility.findIndex(partyList, PARTYLIST_FIELD.PID, Number(pid));
-        var pname = partyList[index][PARTYLIST_FIELD.PNAME];
-        return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", pid).replace("<%=pname%>", pname).replace("<%=optionList%>", optionList);
+        if(index!== undefined){
+            var pname = partyList[index][PARTYLIST_FIELD.PNAME];
+            return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", pid).replace("<%=pname%>", pname).replace("<%=optionList%>", optionList);
+        }
+        return SELECT_PARTY_TEMPLATE.replace("<%=pid%>", "-1").replace("<%=pname%>", "개인").replace("<%=optionList%>", optionList);        
     }
 
     TodoAddModal.prototype.showSelectedParty = function () {
@@ -87,6 +97,33 @@ ubuntudo.ui.TodoAddModal = (function() {
             form.querySelector(".input_todoComment").value ="";
         }
     };
-    
+
+    TodoAddModal.prototype.joinParty = function(ev) {
+        var util = ubuntudo.utility;
+        var href = window.location.href;
+        var pid = href.substr(href.lastIndexOf('/') + 1);
+        util.ajax({
+            "method": "POST",
+            "uri": "/party/join", 
+            "param": "pid="+ pid,
+            "callback": this.addPartyList
+        });
+    }
+
+    function addPartyList(result) {
+        if(result.status === "success"){
+            _signupBtnHide();
+            this.partyList.push(result.party);
+            _setModalPartyList.call(this);
+        }
+    }
+
+    function _signupBtnHide () {
+        var elSignupBtn = document.querySelector("."+CLASSNAME.SIGNUP_BTN);
+        elSignupBtn.style.display = "none";
+        var elLeaveBtn = document.querySelector("."+CLASSNAME.LEAVE_BTN);
+        elLeaveBtn.style.display = "block";
+    }
+
     return TodoAddModal;
 })();
