@@ -1,140 +1,57 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="styles/gulid.css">
 
-<section id="container" class="gd_page">
+<section id="container" class="gdo_page">
 	<h1 class="blind">길드 리스트 페이지</h1>
-	<header id="gd-header">
-		<div class="gd-header-content">
-			<div class="gd-header-avatar">
+	<header id="gdo_header">
+		<div class="gdo_header_content">
+			<div class="gdo_header_avatar">
 				<div class="avatar person large"></div>
 			</div>
-			<div class="gd-header-person">
+			<div class="gdo_header_person">
 				<span class="large"> 회원님의 그룹들 </span> <span class="small"> </span>
 			</div>
 		</div>
-		<div class="gd-header-navbar">
-			<snb class="sub-nav-content">
+		<div id="gdo_header_navbar">
+			<snb class="sub_nav_content">
 			<h2 class="blind">그룹 서브 네비게이션 바</h2>
 			<div class="links">
 				<a class="link selected"
 					href="/group/list" role="menuitem">그룹 목록</a>
 				<h3 class="blind">그룹목록</h3>
-				<a class="link"
-					href="/group/new" role="menuitem">그룹 생성</a>
-				<h3 class="blind">그룹 생성</h3>
+                <div class="add_party" id="party_add_box_btn" style="display:block">
+                <div class="add_icon"></div>
+                <div class="party_add_content">길드 추가하기</div>
+                <h3 class="blind">그룹 생성</h3>
+         </div>
 			</div>
+            <div class="add_guild" id="partyName_input_box_btn" style="display:none">
+                <form class="form_input_partyName">
+                    <input type="text" class="input_partyName" name="fname" placeholder="길드 이름 입력" required>
+                    <button type="button" class="btn_effect" id="inputPartyName_add_btn">추가</button>
+                    <button type="button" class="btn_effect" id="inputPartyName_cancel_btn">취소</button>
+                </form>
+            </div>
 			<div class="tools"></div>
 			</snb>
 		</div>
 	</header>
-	<section id="gd-body">
+	<main>
 		<h1 class="blind">길드 페이지 본문</h1>
-		<section id="gd-list-container">
+		<section id="gdo_list_container">
 			<h1>내가 속한 길드들</h1>
-			<ul id="gd-list">
-				<li class="gd-container list1">
-					<article class="guild-01">
-						<header class="gd-title">
-							<h1 class="gd-list-title">길드명-1</h1>
-							<!-- 다른 요소들. 날짜? 멤버? 등등 -->
-						</header>
-						<section class="gd pt-list-container">
-							<h1 class="blind">길드명-1의 파티리스트</h1>
-							<ul class="gd pt-list-01">
-								<li class="pt-container-01">
-									<article class="party-01">
-										<header>
-											<h1 class="gd-pt-title">파티명-1</h1>
-										</header>
-										<div class="gd pt-content">
-											<p>파티1의 내용들</p>
-										</div>
-									</article>
-								</li>
-								<li class="pt-container 02">
-									<article class="party-02">
-										<header>
-											<h1 class="gd-pt-title">파티명-2</h1>
-										</header>
-										<div class="gd pt-content">
-											<p>파티2의 내용들</p>
-										</div>
-									</article>
-								</li>
-								<li class="pt-container 03">
-									<article class="party-03">
-										<header>
-											<h1 class="gd-pt-title">파티명-3</h1>
-										</header>
-										<div class="gd pt-content">
-											<p>파티3의 내용들</p>
-										</div>
-									</article>
-								</li>
-							</ul>
-						</section>
-					</article>
-				</li>
-				<li class="gd-container 02">
-					<article class="guild-02">
-						<p>${guild.gid}</p>
-						<header class="gd-title">
-							<h1 class="gd-list-title">${guild.guildName}</h1>
-							<!-- 다른 요소들. 날짜? 멤버? 등등 -->
-						</header>
-						<section class="gd pt-list-container">
-							<h1 class="blind">${guild.gid}의party-list</h1>
-							<ul class="gd pt-list-01">
-								<li class="pt-container-01">
-									<article class="party-01">
-										<header>
-											<h1 class="gd-pt-title">${party.partyName}</h1>
-										</header>
-										<div class="gd pt-content">
-											<p>파티1의 내용들</p>
-										</div>
-									</article>
-								</li>
-								<li class="pt-container 02">
-									<article class="party-02">
-										<header>
-											<h1 class="gd-pt-title">파티명-2</h1>
-										</header>
-										<div class="gd pt-content">
-											<p>파티2의 내용들</p>
-										</div>
-									</article>
-								</li>
-								<li class="pt-container 03">
-									<article class="party-03">
-										<header>
-											<h1 class="gd-pt-title">파티명-3</h1>
-										</header>
-										<div class="gd pt-content">
-											<p>파티3의 내용들</p>
-										</div>
-									</article>
-								</li>
-							</ul>
-						</section>
-					</article>
-				</li>
-				<li class="gd-container 03"></li>
+			<ul id="gdo_list">
 			</ul>
-			</article>
 		</section>
-	</section>
+    </main>
 </section>
 <script language="javascript" type="text/javascript"
-	src="/commons/js/personal/ubuntudoPersonal.js"></script>
+	src="/commons/js/guildOverview/ubuntudoGuildOverview.js"></script>
 <script language="javascript" type="text/javascript"
-	src="/commons/js/personal/dataManager.js"></script>
+	src="/commons/js/guildOverview/guildOverviewManager.js"></script>
 <script language="javascript" type="text/javascript"
-	src="/commons/js/personal/todoManager.js"></script>
+	src="/commons/js/guildOverview/guildAddModal.js"></script>
 <script language="javascript" type="text/javascript"
-	src="/commons/js/personal/modalManager.js"></script>
-<script language="javascript" type="text/javascript"
-	src="/commons/js/start/utility.js"></script>
+	src="/commons/js/utility.js"></script>
 </body>
 </html>
