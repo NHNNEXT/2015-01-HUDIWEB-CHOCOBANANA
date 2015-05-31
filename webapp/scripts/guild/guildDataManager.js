@@ -23,7 +23,7 @@ ubuntudo.ui.GuildDataManager = (function () {
 		
 		var G_NAME_TEMPLATE = '<h1 class="guild_name"><%=g_name%></h1>';
 		var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span class="memberNum">멤버 <%=members%></span> <span>•</span> <span class="partyNum">파티 <%=parties%></span>';
-		var G_PARTY_LIST_TEMPLATE = '<div class="party_list"><a href="/party/<%=pid%>" class="party_name"><%=p_name%></a></div>';
+		var G_PARTY_LIST_TEMPLATE = '<a href="/party/<%=pid%>"><div class="party_list"><div class="party_name"><%=p_name%></div></div></a>';
 
 		
 		// 길드 헤더에 길드 정보 적용 
@@ -57,8 +57,9 @@ ubuntudo.ui.GuildDataManager = (function () {
 
 	GuildDataManager.prototype.addPartyCallback = function (result) {
 		if (result.status === "success"){
+			var newPartyWrap = document.createElement("a");
 			var newParty = document.createElement("div");
-			var newPartyName = document.createElement("a");
+			var newPartyName = document.createElement("div");
 			var partyName = document.getElementsByClassName("input_partyName")[0].value;
 			var text = document.createTextNode(partyName);
 			var pid = result.newPid;
@@ -68,10 +69,11 @@ ubuntudo.ui.GuildDataManager = (function () {
 			newPartyName.className = "party_name";
 			
 			// a태그에 href 추가 
-			newPartyName.setAttribute("href", "/party/"+pid);
+			newPartyWrap.setAttribute("href", "/party/"+pid);
 			
 			// 파티 목록에 파티 추가
-			document.getElementsByClassName("added_party")[0].appendChild(newParty);
+			document.getElementsByClassName("added_party")[0].appendChild(newPartyWrap);
+			newPartyWrap.appendChild(newParty);
 			newParty.appendChild(newPartyName);
 			newPartyName.appendChild(text);
 			
