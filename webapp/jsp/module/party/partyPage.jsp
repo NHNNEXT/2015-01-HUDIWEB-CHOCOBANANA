@@ -58,12 +58,13 @@
 			<div class="left_column">
 				<div class="notification">
 					<div class="static_title">NOTIFICATION</div>
-
-					<li>새로운 투두가 등록되었습니다. "DB final exam"</li>
-					<li>새로운 투두가 등록되었습니다. "DB final report"</li>
-					<li>새로운 투두가 등록되었습니다. "DB final report"</li>
-					<li>새로운 투두가 등록되었습니다. "DB final report"</li>
-				</div>
+					<ul class="noti_list">
+						<li>새로운 투두가 등록되었습니다. "DB final exam"</li>
+						<li>새로운 투두가 등록되었습니다. "DB final report"</li>
+						<li>새로운 투두가 등록되었습니다. "DB final report"</li>
+						<li>새로운 투두가 등록되었습니다. "DB final report"</li>
+					</ul>
+					</div>
 				<div class="complete_ratio">
 					<div class="static_title">완료율</div>
 					<canvas id="myChart"></canvas>
