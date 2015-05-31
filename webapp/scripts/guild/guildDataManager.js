@@ -19,9 +19,10 @@ ubuntudo.ui.GuildDataManager = (function () {
 		var leader = guildInfoData["result"].guildDetail[0].name;
 		var members = guildInfoData["result"].guildDetail[0].members;
 		var parties = guildInfoData["result"].guildDetail[0].parties;
+		var state = guildInfoData["result"].guildDetail[0].state;
 		
 		var G_NAME_TEMPLATE = '<h1 class="guild_name"><%=g_name%></h1>';
-		var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span>멤버 <%=members%></span> <span>•</span> <span class="partyNum">파티 <%=parties%></span>';
+		var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span class="memberNum">멤버 <%=members%></span> <span>•</span> <span class="partyNum">파티 <%=parties%></span>';
 		var G_PARTY_LIST_TEMPLATE = '<div class="party_list"><a href="/party/<%=pid%>" class="party_name"><%=p_name%></a></div>';
 
 		
@@ -34,6 +35,24 @@ ubuntudo.ui.GuildDataManager = (function () {
 			document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData["result"].parties[i].p_name).replace("<%=pid%>", guildInfoData["result"].parties[i].pid);
 
 		}
+		
+
+	    var joinBtn = document.querySelector(".guild_join_btn"); // 가입하기 버튼 
+	    var leaveBtn = document.querySelector(".guild_leave_btn"); // 탈퇴하기 버튼 
+	    
+	    /*
+	     * state가 0이면 현재 사용자가 이 길드에 가입한 상태 
+	     * state가 -1이면 현재 사용자가 이 길드에 가입하지 않은 상태 
+	     */
+	    if (state == 0) { 
+	    	joinBtn.style.display = "none";
+	        leaveBtn.style.display = "block";
+	    } else {
+	    	joinBtn.style.display = "block";
+	        leaveBtn.style.display = "none";
+	    }
+	    
+
 	}
 
 	GuildDataManager.prototype.addPartyCallback = function (result) {
