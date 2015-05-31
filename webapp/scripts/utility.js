@@ -86,6 +86,38 @@
         };
     };
 
+	//getJSONData와 postJSONData 중복제거용 - 다혜
+	ubuntudo.utility.ajaxEcho = function (object) {
+		var method = object.method;
+		var uri = object.uri;
+		var param = object.param;
+		var callback = object.callback;
+		//var context = object.context;
+		//var object = {"method": null, 등등}을 돌면서 object의 value채워넣기
+
+		var util = ubuntudo.utility;
+		var request = new XMLHttpRequest();
+		//this.insId = insId++;
+		request.open(method, uri, true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.send(param);
+
+		request.onreadystatechange = function () {
+			if (request.readyState === 4 && request.status === 200) {
+				var result = request.responseText;
+				result = JSON.parse(result);
+				if(util.typeCheck(callback) === "function") {
+					callback(result);
+					setTimeout( function() {
+						util.ajaxEcho(object);
+					},5000);
+				}
+			}
+		};
+	};
+
+
+
     ubuntudo.utility.echo = function (val) {
         return val;
     };
@@ -100,4 +132,47 @@
         }
     };
 
+	ubuntudo.utility.stream = function (url,progress,finished) {
+		var xhr = new XMLHttpRequest();
+		var received = 0;
+		var util = ubuntudo.utility;
+		xhr.open("get", url, true);
+		xhr.onreadystatechange = function () {
+			var result;
+			if (xhr.readyState === 3) {
+				result = xhr.responseText.substring(received);
+				received += result.length;
+				// progress 콜백 호출
+				progress(result);
+			} else if (xhr.readyState === 4) {
+				if(util.typeCheck(finished) === "function") {
+					finished(JSON.parse(xhr.responseText));
+				}
+			}
+		};
+		xhr.send(null);
+		return xhr;
+	};
+
+	ubuntudo.utility.longPoll = function (object) {
+		var method = object.method;
+		var uri = object.uri;
+		var param = object.param;
+		var callback = object.callback;
+		var request = new XMLHttpRequest();
+		var util = ubuntudo.utility;
+		request.onreadystatechange = function() {
+			if (request.readyState === 4) {
+				// 응답이 완료되면 서버로 재연결 요청보내기
+				var result = request.responseText;
+				result = JSON.parse(result);
+				if (util.typeCheck(callback) === "function") {
+					callback(result);
+				}
+			}
+		};
+		request.open(method, uri, true);
+		request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		request.send(param);
+		};
 })();

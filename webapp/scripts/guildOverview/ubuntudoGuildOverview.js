@@ -1,4 +1,6 @@
 function showSelectedParty () {
+	'use strict';
+
 	var selectList = document.getElementById("select_party_list");
     var selected = document.getElementById("selected_party_name");
    	var partyName = selectList.value;
@@ -23,7 +25,7 @@ window.addEventListener("load", function () {
 	    "param": null,
 	    "callback": oGuildOverviewManager.setGuildInfo
 	});
-	
+
 	/*user가 가입한 파티 리스트 서버에 요청하여 받아오기*/
 	var oTodoAddModal = new ubuntudo.ui.TodoAddModal(); 	
 	util.ajax({
@@ -62,7 +64,7 @@ window.addEventListener("load", function () {
     var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
     elSearchInput.addEventListener("keyup", function(ev) {
         oSearchManager.autoComplete(ev);
-    })
+    });
 
 //Hello Hwang! Your keyboard is awesome!!!
 });
