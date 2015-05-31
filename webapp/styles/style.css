@@ -287,6 +287,10 @@ ul.btn_wrapper {
 
 .ns_personal .todo .tid {
   display: none; }
+  
+.ns_personal .todo .pid {
+  display: none; 
+}
 
 .ns_personal .party_pavicon {
   width: 32px;
