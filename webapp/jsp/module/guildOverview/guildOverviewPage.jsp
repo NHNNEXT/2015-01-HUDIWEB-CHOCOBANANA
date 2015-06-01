@@ -35,19 +35,23 @@
 	</section>
 	</main>
 </section>
+    <!-- build:js scripts/guildOverview.min.js -->
 <script language="javascript" type="text/javascript"
-	src="/commons/js/guildOverview/ubuntudoGuildOverview.js"></script>
+	src="/../../../scripts/guildOverview/ubuntudoGuildOverview.js"></script>
 <script language="javascript" type="text/javascript"
-	src="/commons/js/guildOverview/guildOverviewManager.js"></script>
+	src="/../../../scripts/guildOverview/guildOverviewManager.js"></script>
 <script language="javascript" type="text/javascript"
-	src="/commons/js/guildOverview/guildAddModal.js"></script>
-<script language="javascript" type="text/javascript"
-	src="/commons/js/utility.js"></script>
-	
-    <script language="javascript" type="text/javascript" src="/commons/js/dataManager.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/modalManager.js"></script>   
-    <script language="javascript" type="text/javascript" src="/commons/js/todoAddModal.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/todoManager.js"></script>
-    <script language="javascript" type="text/javascript" src="/commons/js/searchManager.js"></script>
+	src="/../../../scripts/guildOverview/guildAddModal.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.min.js -->
+    <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/todoAddModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/todoManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/detailModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/searchManager.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

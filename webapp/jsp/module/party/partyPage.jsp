@@ -85,14 +85,19 @@
 	</div>
 	</main>
 </div>
-<script language="javascript" type="text/javascript" src="/commons/js/party/ubuntudoParty.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/dataManager.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/todoManager.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/modalManager.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/todoAddModal.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/detailModal.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/utility.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/searchManager.js"></script>
+    <!-- build:js scripts/party.min.js -->
+<script language="javascript" type="text/javascript" src="/../../../scripts/party/ubuntudoParty.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/main.min.js -->
+    <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/todoAddModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/todoManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/detailModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/searchManager.js"></script>
+    <!-- endbuild -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
 <script>

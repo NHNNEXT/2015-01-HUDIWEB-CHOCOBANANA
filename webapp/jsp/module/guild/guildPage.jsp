@@ -38,14 +38,19 @@
 	</main>
 </div>
 <!-- // 여기까지 길드 페이지 쫘라락~~  -->
-<script language="javascript" type="text/javascript" src="/commons/js/guild/ubuntudoGuild.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/guild/guildDataManager.js"></script>
-<script language="javascript" type="text/javascript" src="/commons/js/utility.js"></script>
+    <!-- build:js scripts/guild.min.js -->
+<script language="javascript" type="text/javascript" src="../../../scripts/guild/ubuntudoGuild.js"></script>
+<script language="javascript" type="text/javascript" src="/../../../scripts/guild/guildDataManager.js"></script>
+    <!-- endbuild -->
 
- <script language="javascript" type="text/javascript" src="/commons/js/dataManager.js"></script>
- <script language="javascript" type="text/javascript" src="/commons/js/modalManager.js"></script>   
- <script language="javascript" type="text/javascript" src="/commons/js/todoAddModal.js"></script>
- <script language="javascript" type="text/javascript" src="/commons/js/todoManager.js"></script>
- <script language="javascript" type="text/javascript" src="/commons/js/searchManager.js"></script>
+    <!-- build:js scripts/main.min.js -->
+    <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/todoAddModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/todoManager.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/detailModal.js"></script>
+    <script language="javascript" type="text/javascript" src="/../../../scripts/searchManager.js"></script>
+    <!-- endbuild -->
 </body>
 </html>

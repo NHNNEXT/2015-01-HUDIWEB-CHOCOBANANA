@@ -20,8 +20,10 @@
 <head>
 	<meta charset="utf-8">
 	<title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
-	<link rel="stylesheet" type="text/css" href="/css/reset.css"/>
-	<link rel="stylesheet" type="text/css" href="/css/startPage.css"/>
+    <!-- build:css styles/start.min.css -->
+	<link rel="stylesheet" type="text/css" href="/../styles/reset.css"/>
+	<link rel="stylesheet" type="text/css" href="/../styles/startPage.css"/>
+    <!-- endbuild -->
 </head>
 <body class="sp_body">
 <div class="sp_wrap">
@@ -104,19 +106,22 @@
 	</div>
 </div>
 </body>
-<script language="javascript" type="text/javascript" src="commons/js/start/startPage.js"></script>
+    <!-- build:js scripts/start.min.js -->
+    <script language="javascript" type="text/javascript" src="/../scripts/start/startPage.js"></script>
+    <script language="javascript" type="text/javascript" src="/../scripts/start/ubuntudo_main.js"></script>
+    <script language="javascript" type="text/javascript" src="/../scripts/start/signup_validate.js"></script>
+    <script language="javascript" type="text/javascript" src="/../scripts/utility.js"></script>
+    <!-- endbuild -->
 
 <!-- RSA 자바스크립트 라이브러리 -->
-<script type="text/javascript" src="commons/js/lib/RSA/jsbn.js"></script>
-<script type="text/javascript" src="commons/js/lib/RSA/rsa.js"></script>
-<script type="text/javascript" src="commons/js/lib/RSA/prng4.js"></script>
-<script type="text/javascript" src="commons/js/lib/RSA/rng.js"></script>
+    <!-- build:js scripts/lib/rsa.min.js -->
+<script type="text/javascript" src="/../scripts/lib/RSA/jsbn.js"></script>
+<script type="text/javascript" src="/../scripts/lib/RSA/rsa.js"></script>
+<script type="text/javascript" src="/../scripts/lib/RSA/prng4.js"></script>
+<script type="text/javascript" src="/../scripts/lib/RSA/rng.js"></script>
+    <script type="text/javascript" src="/../scripts/start/encrypt.js"></script>
+    <!-- endbuild -->
 <!-- RSA 암호화 처리 스크립트 -->
-<script type="text/javascript" src="/commons/js/start/encrypt.js"></script>
-<!-- hash 스크립트 -->
-<script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
-<!-- validate 스크립트 -->
-<script language="javascript" type="text/javascript" src="commons/js/start/ubuntudo_main.js"></script>
-	<script language="javascript" type="text/javascript" src="commons/js/start/signup_validate.js"></script>
-	<script language="javascript" type="text/javascript" src="commons/js/utility.js"></script>
+    <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
+
 </html>

@@ -9,13 +9,14 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <link rel="shortcut icon" href="/favicon.ico">
-<link rel="stylesheet" href="/css/reset.css">
-<link rel="stylesheet" href="/css/style.css">
-<link rel="stylesheet" href="/css/guild.css">
-<link rel="stylesheet" type="text/css" href="/css/todo_modal.css">
-<link rel="stylesheet" href="/css/party.css">
-    <link rel="stylesheet" href="/css/guildOverview.css">
-
+    <!-- build:css styles/main.min.css -->
+<link rel="stylesheet" href="/../../../styles/reset.css">
+<link rel="stylesheet" href="/../../../styles/style.css">
+<link rel="stylesheet" href="/../../../styles/guild.css">
+<link rel="stylesheet" type="text/css" href="/../../../styles/todo_modal.css">
+<link rel="stylesheet" href="/../../../styles/party.css">
+    <link rel="stylesheet" href="/../../../styles/guildOverview.css">
+    <!-- endbuild -->
 <!-- 
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.js"></script>
