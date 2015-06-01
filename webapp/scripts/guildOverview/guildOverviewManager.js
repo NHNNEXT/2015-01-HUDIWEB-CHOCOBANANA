@@ -95,7 +95,7 @@ ubuntudo.ui.GuildOverviewManager = (function () {
 			guilds.forEach(function(guild){
 				var parties_list = [];
 				parties.forEach(function(party) {
-					if(guild.gid === party.gid) {
+					if(guild.gid === party.gid && party.status === "01") {
 						parties_list.push(
 							G_PARTY_LIST_TEMPLATE.replace(pattern.party.pid, party.pid)
 												 .replace(pattern.party.name, party.p_name));
