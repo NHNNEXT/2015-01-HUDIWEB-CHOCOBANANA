@@ -67,7 +67,7 @@ ubuntudo.ui.GuildDataManager = (function () {
 	        leaveBtn.style.display = "none";
 	    }
 
-	};
+	}
 
 	GuildDataManager.prototype.addPartyCallback = function (result) {
 		if (result.status === "success"){
