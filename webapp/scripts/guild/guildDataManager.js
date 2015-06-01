@@ -57,7 +57,7 @@ ubuntudo.ui.GuildDataManager = (function () {
 	     * state가 0이면 현재 사용자가 이 길드에 가입한 상태 
 	     * state가 -1이면 현재 사용자가 이 길드에 가입하지 않은 상태 
 	     */
-	    if (state === 0) {
+	    if (state === "0") {
 	    	partyAddBtn.style.display = "block";
 	    	joinBtn.style.display = "none";
 	        leaveBtn.style.display = "block";
