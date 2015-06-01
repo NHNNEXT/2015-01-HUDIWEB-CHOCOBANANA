@@ -306,7 +306,7 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: "<%= config.dist %>",
-          src: "jsp/module/{,*/}*.jsp",
+          src: ["jsp/module/{,*/}*.jsp","jsp/{,*/}*.jsp"],
           dest: "<%= config.dist %>"
         }]
       }
@@ -406,7 +406,7 @@ module.exports = function (grunt) {
       dist: [
         "sass",
         "copy:styles",
-        "imagemin",
+//        "imagemin",
         "svgmin"
       ]
     }
