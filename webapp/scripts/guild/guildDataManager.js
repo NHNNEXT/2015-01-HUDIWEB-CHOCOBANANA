@@ -42,7 +42,7 @@ ubuntudo.ui.GuildDataManager = (function () {
 				document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData.result.parties[i].p_name).replace("<%=pid%>", guildInfoData.result.parties[i].pid);
 				
 				// 내가 가입하지 않은 파티라면 파티div의 배경색을 바꾼다 
-				if (guildInfoData.result.parties[i].status === -1){
+				if (guildInfoData.result.parties[i].status === "-1"){
 					var wrap = document.getElementsByClassName("added_party")[0];
 				    wrap.getElementsByClassName("party_list")[i].className += " unjoined_party_list";
 				}
