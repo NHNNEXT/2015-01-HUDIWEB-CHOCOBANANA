@@ -125,6 +125,35 @@ window.addEventListener("load", function () {
         var partyTodoNum = parseInt(elPartyTodoNum.innerHTML);
         elPartyTodoNum.innerHTML = partyTodoNum - 1;
     });
+
+    /*   로그아웃 기능   */
+    /* profile버튼을 누르면 my_modal 표시 */
+    var profileBtn = document.querySelector(".profile");
+    profileBtn.addEventListener("click", function(){
+        var myModal = document.querySelector(".my_modal_wrap");
+        if(myModal.style.visibility === "visible") {
+            myModal.style.visibility = "hidden";
+        } else {
+            myModal.style.visibility = "visible";
+        }
+    });
+    
+    var logoutBtn = document.querySelector("#my_modal_logout");
+    logoutBtn.addEventListener("click", function(){
+        util.ajax({
+            "method": "GET", 
+            "uri": "/user/logout", 
+            "param" : null, 
+            "callback" : logoutFunc
+        });
+    });
+    
+    function logoutFunc(result) {
+        if(result.status === "success") {
+             window.location = result.uri;
+        }
+    }
+    /*  //로그아웃 기능   */
 });
 
 //달력 관련 jquery (datepicker)
