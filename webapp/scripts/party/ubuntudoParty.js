@@ -6,20 +6,23 @@ ubuntudo.ui = {};
 ubuntudo.utility = {};
 ubuntudo.dataChangedEvent = new CustomEvent("dataChanged");
 
+/* jshint ignore:start */
 function showSelectedParty () {
-    var selectList = document.getElementById("select_party_list");
-    var selected = document.getElementById("selected_party_name");
-    var partyName = selectList.value;
-    selected.innerHTML = partyName;
-    selected.pid = selectList.pid;
+	'use strict';
+	var selectList = document.getElementById("select_party_list");
+	var selected = document.getElementById("selected_party_name");
+	var partyName = selectList.value;
+	selected.innerHTML = partyName;
+	selected.pid = selectList.pid;
 }
+/* jshint ignore:end */
 
 window.addEventListener("load", function () {
 	'use strict';
 	var elList = document.querySelectorAll(".ns_party ul.todo_list");
 	var elLightBox = document.querySelector(".light_box");
   
-	var elCompleteBtnList;
+	//var elCompleteBtnList;
 	var oDetailModal;
 	var oModalManager;
 	// modal창 중 detailModal을 선택해서 ModalManager에 넣는것 같은데, 이런 형태면 Modal을 관리하는 인터페이스 같은 객체가 있어야할 뜻..
@@ -98,13 +101,13 @@ window.addEventListener("load", function () {
     var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
     elSearchInput.addEventListener("keyup", function(ev) {
         oSearchManager.autoComplete(ev);
-    })
+    });
 
     /*파티 가입하기*/
     var elSignupBtn = document.querySelector(".party_join_btn");
     elSignupBtn.addEventListener("click", function(ev){
         oTodoAddModal.joinParty(ev);
-    })
+    });
 
     /*todo edit, delete 관련 이벤트 등록*/
     var editBtn = document.querySelector(".btn_wrapper .edit_btn");

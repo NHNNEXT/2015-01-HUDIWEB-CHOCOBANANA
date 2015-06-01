@@ -4,17 +4,17 @@
 ubuntudo.ui.SearchManager = (function() {
 	'use strict';
     /* HTML에 의존하는 부분 캐싱*/
-    var LIST_TEMPLATE = '<li>'
-                        +'<a href="<%=uri%>"><%=gname%></a>'
-                        +'<span class="gid" style="display:none"><%=gid%></span>'
-                        +'</li>';
+    var LIST_TEMPLATE = '<li>'+
+                        '<a href="<%=uri%>"><%=gname%></a>'+
+                        '<span class="gid" style="display:none"><%=gid%></span>'+
+                        '</li>';
    
     /* 서버에 의존하는 부분 캐싱*/
     var URI_TEMPLATE = "/guild/";
     var GUILD_FIELD = {
         "GNAME": "guildName",
         "GID": "gid"
-    }
+    };
 
     function SearchManager (elParent, elSearchInput) {
         this.elParent = elParent;
@@ -49,7 +49,7 @@ ubuntudo.ui.SearchManager = (function() {
                 });
             }.bind(this), 300);
         }
-    }
+    };
     
     SearchManager.prototype.removeAutoCompleteElement = function (ev) {
         if(!_isBackspaceOrDelete(ev.keyCode)){
@@ -58,10 +58,10 @@ ubuntudo.ui.SearchManager = (function() {
         if(this.elSearchInput.value === null) {
             this.elParent.style.display = "none";
         }
-    }
+    };
     
     function _showResult(guildList) {
-        var guildList = _makeSearchResultList.call(this, guildList);
+        guildList = _makeSearchResultList.call(this, guildList);
         this.elParent.innerHTML = guildList;
         this.elResult.style.display = "block";
     }
@@ -92,7 +92,7 @@ ubuntudo.ui.SearchManager = (function() {
     }
     
     function _isBackspaceOrDelete (keyCode){
-        return (keyCode == 8 || keyCode == 46);
+        return (keyCode === 8 || keyCode === 46);
     }
     
     return SearchManager;

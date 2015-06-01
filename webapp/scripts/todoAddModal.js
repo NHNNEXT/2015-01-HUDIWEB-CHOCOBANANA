@@ -12,7 +12,7 @@ ubuntudo.ui.TodoAddModal = (function() {
         MODAL: "#add_wrap",
         SELECT_PARTY_LIST: "select_party_list",
         SELECTED_PARTY_NAME: "selected_party_name"
-    }
+    };
 
     var SELECT_PARTY_TEMPLATE = '<label id="selected_party_name"><%=pname%></label><select id="select_party_list" onchange="showSelectedParty()"><%=optionList%></select>';
     var OPTION_TEMPLATE = '<option><%=pname%></option>';
@@ -20,11 +20,11 @@ ubuntudo.ui.TodoAddModal = (function() {
     var PARTYLIST_FIELD = {
         PID: "pid",
         PNAME: "partyName"
-    }
+    };
     
     function TodoAddModal () {
         this.elModal = document.querySelector(IDNAME.MODAL);
-        this.partyList;
+        this.partyList= [];
         this.setPartyList = setPartyList.bind(this);
         this.addPartyList = addPartyList.bind(this);
     }
@@ -58,7 +58,7 @@ ubuntudo.ui.TodoAddModal = (function() {
             }
         }
         return null;
-    }
+    };
 
     function _makeSelectList(optionList, partyList) {
         var href = window.location.href;
@@ -78,11 +78,11 @@ ubuntudo.ui.TodoAddModal = (function() {
     TodoAddModal.prototype.showSelectedParty = function () {
         var partyName = document.getElementById(IDNAME.SELECT_PARTY_LIST).value;
         document.getElementById(IDNAME.SELECTED_PARTY_NAME).innerHTML = partyName;
-    }
+    };
 
     TodoAddModal.prototype.beforeShow = function(ev) {
         var elTarget = ev.target;
-        var elCurTarget = ev.currentTarget;
+        //var elCurTarget = ev.currentTarget;
         
         if(elTarget.className !== "add_todo") {
             elTarget = elTarget.parentElement;
@@ -98,7 +98,7 @@ ubuntudo.ui.TodoAddModal = (function() {
         }
     };
 
-    TodoAddModal.prototype.joinParty = function(ev) {
+    TodoAddModal.prototype.joinParty = function() {
         var util = ubuntudo.utility;
         var href = window.location.href;
         var pid = href.substr(href.lastIndexOf('/') + 1);
@@ -108,7 +108,7 @@ ubuntudo.ui.TodoAddModal = (function() {
             "param": "pid="+ pid,
             "callback": this.addPartyList
         });
-    }
+    };
 
     function addPartyList(result) {
         if(result.status === "success"){
@@ -122,12 +122,12 @@ ubuntudo.ui.TodoAddModal = (function() {
         }
     }
 
-    function _signupBtnHide () {
-        var elSignupBtn = document.querySelector("."+CLASSNAME.SIGNUP_BTN);
-        elSignupBtn.style.display = "none";
-        var elLeaveBtn = document.querySelector("."+CLASSNAME.LEAVE_BTN);
-        elLeaveBtn.style.display = "block";
-    }
+    //function _signupBtnHide () {
+    //    var elSignupBtn = document.querySelector("."+CLASSNAME.SIGNUP_BTN);
+    //    elSignupBtn.style.display = "none";
+    //    var elLeaveBtn = document.querySelector("."+CLASSNAME.LEAVE_BTN);
+    //    elLeaveBtn.style.display = "block";
+    //}
 
     return TodoAddModal;
 })();

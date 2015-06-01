@@ -8,6 +8,7 @@
 // 길드 안에 있는 모든 파티들을 보여주는 함수
 
 ubuntudo.ui.GuildDataManager = (function () {
+	'use strict';
 	function GuildDataManager () {
 		this.guildInfo = {};
 		this.originalPartyAddBox = originalPartyAddBox;
@@ -15,12 +16,12 @@ ubuntudo.ui.GuildDataManager = (function () {
 
 	GuildDataManager.prototype.setGuildInfo = function (guildInfoData) {
 		this.guildInfo = guildInfoData;
-		var data = guildInfoData;
-		var guildName = guildInfoData["result"].guildDetail[0].g_name;
-		var leader = guildInfoData["result"].guildDetail[0].name;
-		var members = guildInfoData["result"].guildDetail[0].members;
-		var parties = guildInfoData["result"].guildDetail[0].parties;
-		var state = guildInfoData["result"].guildDetail[0].state;
+		// var data = guildInfoData;
+		var guildName = guildInfoData.result.guildDetail[0].g_name;
+		var leader = guildInfoData.result.guildDetail[0].name;
+		var members = guildInfoData.result.guildDetail[0].members;
+		var parties = guildInfoData.result.guildDetail[0].parties;
+		var state = guildInfoData.result.guildDetail[0].state;
 		
 		var G_NAME_TEMPLATE = '<h1 class="guild_name"><%=g_name%></h1>';
 		var G_INFO_TEMPLATE = '<span class="leader_name">리더 <%=leader%></span> <span>•</span> <span class="memberNum">멤버 <%=members%></span> <span>•</span> <span class="partyNum">파티 <%=parties%></span>';
@@ -34,13 +35,13 @@ ubuntudo.ui.GuildDataManager = (function () {
 		// 파티수가 0일 때 나오는 undefined파티가 생기는 버그 방지 조건문 
 		if ( parties > 0 ){
 			// 길드 안에 있는 모든 파티들을 보여줌 
-			for (var i = 0; i < guildInfoData["result"].parties.length; i++) {
+			for (var i = 0; i < guildInfoData.result.parties.length; i++) {
 				
 				// 파티리스트 추가 
-				document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData["result"].parties[i].p_name).replace("<%=pid%>", guildInfoData["result"].parties[i].pid);
+				document.getElementsByClassName("added_party")[0].innerHTML += G_PARTY_LIST_TEMPLATE.replace("<%=p_name%>", guildInfoData.result.parties[i].p_name).replace("<%=pid%>", guildInfoData.result.parties[i].pid);
 				
 				// 내가 가입하지 않은 파티라면 파티div의 배경색을 바꾼다 
-				if (guildInfoData["result"].parties[i].status == -1){
+				if (guildInfoData.result.parties[i].status === -1){
 					var wrap = document.getElementsByClassName("added_party")[0];
 				    wrap.getElementsByClassName("party_list")[i].className += " unjoined_party_list";
 				}
@@ -55,7 +56,7 @@ ubuntudo.ui.GuildDataManager = (function () {
 	     * state가 0이면 현재 사용자가 이 길드에 가입한 상태 
 	     * state가 -1이면 현재 사용자가 이 길드에 가입하지 않은 상태 
 	     */
-	    if (state == 0) { 
+	    if (state === 0) {
 	    	partyAddBtn.style.display = "block";
 	    	joinBtn.style.display = "none";
 	        leaveBtn.style.display = "block";
@@ -64,9 +65,8 @@ ubuntudo.ui.GuildDataManager = (function () {
 	    	joinBtn.style.display = "block";
 	        leaveBtn.style.display = "none";
 	    }
-	    
 
-	}
+	};
 
 	GuildDataManager.prototype.addPartyCallback = function (result) {
 		if (result.status === "success"){
@@ -100,7 +100,7 @@ ubuntudo.ui.GuildDataManager = (function () {
 		else {
 			alert("파티 생성에 실패했습니다. 다시 만들어주세요.");
 		}
-	}
+	};
 
 	// 다시 원래 모양으로 partyAddBox가 돌아옴 
     function originalPartyAddBox () {

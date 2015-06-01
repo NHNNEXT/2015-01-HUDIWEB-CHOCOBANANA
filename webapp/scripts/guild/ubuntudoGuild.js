@@ -11,6 +11,23 @@ window.addEventListener("load", function () {
 	var gid = href.substr(href.lastIndexOf("/")+1);
 	var oGuildDataManager = new ubuntudo.ui.GuildDataManager();
 
+
+	function inputPartyName() {
+		document.getElementById("party_add_box_btn").style.display = "none";
+		document.getElementById("partyName_input_box_btn").style.display = "block";
+	}
+
+	function addParty() {
+		var partyName = document.getElementsByClassName("input_partyName")[0].value;
+		util.ajax({
+			"method": "POST",
+			"uri": "/party",
+			"param": "gid="+gid+"&partyName="+ partyName,
+			"callback": oGuildDataManager.addPartyCallback
+		});
+	}
+
+
 	util.ajax({
 	    "method": "GET",
 	    "uri": "/guild/info/"+ gid,
@@ -27,21 +44,6 @@ window.addEventListener("load", function () {
     //파티 추가하기 박스에서, 취소 버튼을 눌렀을 때
     document.getElementById("inputPartyName_cancel_btn").addEventListener("click", oGuildDataManager.originalPartyAddBox);
 
-    function inputPartyName() {
-        document.getElementById("party_add_box_btn").style.display = "none";
-        document.getElementById("partyName_input_box_btn").style.display = "block"; 
-    }
-
-    function addParty() {
-        var partyName = document.getElementsByClassName("input_partyName")[0].value;
-        util.ajax({
-            "method": "POST",
-            "uri": "/party",
-            "param": "gid="+gid+"&partyName="+ partyName,
-            "callback": oGuildDataManager.addPartyCallback
-        });
-    }
-    
     
     var joinBtn = document.querySelector(".guild_join_btn"); // 가입하기 버튼 
     var leaveBtn = document.querySelector(".guild_leave_btn"); // 탈퇴하기 버튼 
@@ -80,7 +82,8 @@ window.addEventListener("load", function () {
 //	   });
     	alert("오늘 가입한 카페는 탈퇴할 수 없습니다. 24시간이 지난 후에 다시 탈퇴해주십시오.");
     });
-    
+
+	/*
     function callbackSuccessLeave () {
     	if (result.status === "success"){
             joinBtn.style.display = "block";
@@ -91,6 +94,6 @@ window.addEventListener("load", function () {
     		presentMemberNum = presentMemberNum - 1;
 			document.getElementsByClassName("memberNum")[0].innerHTML = "멤버 " + presentMemberNum;
     	}
-    	
     }
+    */
 });

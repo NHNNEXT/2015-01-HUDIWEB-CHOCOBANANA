@@ -6,13 +6,16 @@ ubuntudo.ui = {};
 ubuntudo.utility = {};
 ubuntudo.dataChangedEvent = new CustomEvent("dataChanged");
 
+/* jshint ignore:start */
 function showSelectedParty () {
+	'use strict';
 	var selectList = document.getElementById("select_party_list");
-    var selected = document.getElementById("selected_party_name");
-   	var partyName = selectList.value;
-    selected.innerHTML = partyName;
-    selected.pid = selectList.pid;
-} 
+	var selected = document.getElementById("selected_party_name");
+	var partyName = selectList.value;
+	selected.innerHTML = partyName;
+	selected.pid = selectList.pid;
+}
+/* jshint ignore:end */
 
 window.addEventListener("load", function () {
 	'use strict';      
@@ -113,9 +116,9 @@ window.addEventListener("load", function () {
 	/*   로그아웃 기능   */
 	/* profile버튼을 누르면 my_modal 표시 */
 	var profileBtn = document.querySelector(".profile");
-	profileBtn.addEventListener("click", function(ev){
+	profileBtn.addEventListener("click", function(){
 		var myModal = document.querySelector(".my_modal_wrap");
-		if(myModal.style.visibility == "visible") {
+		if(myModal.style.visibility === "visible") {
 			myModal.style.visibility = "hidden";
 		} else {
 			myModal.style.visibility = "visible";
@@ -123,7 +126,7 @@ window.addEventListener("load", function () {
 	});
 	
 	var logoutBtn = document.querySelector("#my_modal_logout");
-	logoutBtn.addEventListener("click", function(ev){
+	logoutBtn.addEventListener("click", function(){
 		util.ajax({
 			"method": "GET", 
 			"uri": "/user/logout", 
@@ -146,7 +149,7 @@ window.addEventListener("load", function () {
     var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
     elSearchInput.addEventListener("keyup", function(ev) {
         oSearchManager.autoComplete(ev);
-    })
+    });
 
     /*todo edit, delete 관련 이벤트 등록*/
     var editBtn = document.querySelector(".btn_wrapper .edit_btn");
@@ -182,8 +185,9 @@ $(function() {
        $("#ui-datepicker-div").removeClass("ui-datepicker-default");
     });
 });
-
+/* jshint ignore:start */
 var partyIconList = document.querySelector("#party_icon_list");
+/* jshint ignore:end */
 window.addEventListener('load', function(e){
 	'use strict';
 	e.preventDefault();

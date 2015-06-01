@@ -4,6 +4,8 @@
 
 "use strict";
 
+/* jshint devel: true */
+
 ubuntudo.ui.DataManager = (function() {
     var FIELD_NAME = {
             TID: "tid",
@@ -65,14 +67,18 @@ ubuntudo.ui.DataManager = (function() {
     	if(result !== undefined || result !== null) {
 	     	var index = ubuntudo.utility.findIndex(this.data, "tid", result[FIELD_NAME.TID]);
 	        this.data[index] = result;
-	        dispatchEvent(ubuntudo.dataChangedEvent);
+		    /* jshint ignore:start */
+		    dispatchEvent(ubuntudo.dataChangedEvent);
+		    /* jshint ignore:end */
     	}
     }
     
     function deleteData (result) {
      	var index = ubuntudo.utility.findIndex(this.data, "tid", result[FIELD_NAME.TID]);
-		this.data.splice(index, 1);        
-		dispatchEvent(ubuntudo.dataChangedEvent);
+		this.data.splice(index, 1);
+	    /* jshint ignore:start */
+	    dispatchEvent(ubuntudo.dataChangedEvent);
+	    /* jshint ignore:end */
     }
     
 	function displayPartyList(result){
@@ -83,7 +89,7 @@ ubuntudo.ui.DataManager = (function() {
 		
 		PartyIcon.prototype.setParent = function(parent){
 			parent.appendChild(this.element);
-		}
+		};
 		
 		var myParticon = new  PartyIcon();
 		myParticon.element.innerHTML = 'My';
@@ -131,14 +137,14 @@ ubuntudo.ui.DataManager = (function() {
 					e.currentTarget.setAttribute('data-toggleState', 'on');
 					todos[todoIdx].parentElement.style.display = 'block';
 				}else{
-					e.currentTarget.style.background = "#999999"
+					e.currentTarget.style.background = "#999999";
 					e.currentTarget.setAttribute('data-toggleState', 'off');
 					todos[todoIdx].parentElement.style.display = 'none';
 				}
 			}
 		}
 		if(todoCountForCurrentParty === 0)
-			alert('this party has no todo.');
+		{alert('this party has no todo.');}
 	}
 	
     return DataManager;

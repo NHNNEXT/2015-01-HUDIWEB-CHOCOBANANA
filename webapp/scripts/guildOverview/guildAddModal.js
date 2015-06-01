@@ -36,7 +36,7 @@ ubuntudo.ui.GuildAddModal = (function() {
 	};
 
 	GuildAddModal.prototype.addGuildCallback = function () {
-		console.log("addGuildCallback");
+		window.location.reload();
 	};
 
 	GuildAddModal.prototype.cancelGuild = function () {

@@ -1,12 +1,15 @@
+
+/* jshint ignore:start */
 function showSelectedParty () {
 	'use strict';
-
 	var selectList = document.getElementById("select_party_list");
     var selected = document.getElementById("selected_party_name");
    	var partyName = selectList.value;
     selected.innerHTML = partyName;
     selected.pid = selectList.pid;
-} 
+}
+/* jshint ignore:end */
+
 
 ubuntudo = {};
 ubuntudo.ui = {};

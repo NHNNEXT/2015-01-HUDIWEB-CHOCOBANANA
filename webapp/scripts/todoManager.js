@@ -16,7 +16,7 @@ ubuntudo.ui.TodoManager = (function() {
     var PARTY_TODO_LIST_TEMPLATE = '<li class="todo"><span class="tid"><%=tid%></span><span class="pid"><%=pid%></span><div class="party_pavicon"><%=partyFirstAlphabet%></div><h2><%=title%></h2><p><%=date%>일 <%=explain%></p><a class="close_btn"></a></li>';
     
     function TodoManager () {  
-    };
+    }
 
     TodoManager.prototype.appendList = function (data, fieldName) {
         var elTargetList = {};
@@ -64,7 +64,7 @@ ubuntudo.ui.TodoManager = (function() {
             }
             elTarget.innerHTML += _makeInnerHTML(PARTY_TODO_LIST_TEMPLATE, todoInfo, dayDiff, explain, fieldName);
         }
-    }
+    };
 
     TodoManager.prototype.complete = function (ev, oDataManager) {
         ev.stopPropagation();
@@ -143,7 +143,7 @@ ubuntudo.ui.TodoManager = (function() {
             "param" : param, 
             "callback" : oDataManager.updateData
         });
-    }
+    };
 
     /*클래스네임 등 html에 의존하는 부분 빼야한다. 리팩토링 필요 - 다혜 */
     TodoManager.prototype.delete = function (ev, oDataManager) {
@@ -159,13 +159,13 @@ ubuntudo.ui.TodoManager = (function() {
             "param" : null, 
             "callback" : oDataManager.deleteData
         });
-    }
+    };
 
     function _makeInnerHTML (listTemplate, todoInfo, dayDiff, explain, fieldName) {
         var field = fieldName;
         return listTemplate.replace("<%=tid%>", todoInfo[field.TID]).replace("<%=pid%>", todoInfo[field.PARTY_ID]).replace("<%=title%>", todoInfo[field.TITLE]).replace("<%=date%>", dayDiff).replace("<%=explain%>", explain).replace("<%=partyFirstAlphabet%>", todoInfo[field.PARTY_NAME].substring(0,1));
         
-    };
+    }
     
     Date.prototype.diffDays = function (date) {     
         var date1 = Date.UTC(this.getFullYear(), this.getMonth(), this.getDate());
