@@ -48,6 +48,16 @@ ubuntudo.ui.TodoManager = (function() {
             }
             elTarget.innerHTML += _makeInnerHTML(LIST_TEMPLATE, todoInfo, dayDiff, explain, fieldName);
         }
+		var todos = document.getElementsByClassName('pid');
+		var partyList = document.querySelector('#party_icon_list');
+		for(var idx = 1; idx < partyList.childElementCount; idx++){
+			var currentPartyId = partyList.children[idx].childNodes[1].getAttribute("class");
+			for(var jdx = 0; jdx < todos.length; jdx++){
+				if(todos[jdx].innerHTML === currentPartyId){
+					todos[jdx].parentNode.childNodes[2].style.backgroundColor = partyList.children[idx].style.backgroundColor;
+				}
+			}
+    	}
     };
 
     TodoManager.prototype.appendPartyTodoList = function (elTarget, data, fieldName) {
