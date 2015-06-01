@@ -12,9 +12,10 @@ ubuntudo.ui.GuildDataManager = (function () {
 	function GuildDataManager () {
 		this.guildInfo = {};
 		this.originalPartyAddBox = originalPartyAddBox;
+		this.setGuildInfo = setGuildInfo.bind(this);
 	}
 
-	GuildDataManager.prototype.setGuildInfo = function (guildInfoData) {
+	 function setGuildInfo (guildInfoData) {
 		this.guildInfo = guildInfoData;
 		// var data = guildInfoData;
 		var guildName = guildInfoData.result.guildDetail[0].g_name;

@@ -111,8 +111,28 @@ window.addEventListener("load", function () {
        oTodoManager.add(ev, oDataManager, oTodoAddModal);
 	   oTodoAddModalManager.hideModal(ev);
 	});
-    
 	
+    /*길드 검색 이벤트 등록*/
+    var elSearchResultList =  document.querySelector(".search_result_list");
+    var elSearchInput = document.getElementById("global-header").querySelector(".search_input");
+    var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
+    elSearchInput.addEventListener("keyup", function(ev) {
+        oSearchManager.autoComplete(ev);
+    });
+
+    /*todo edit, delete 관련 이벤트 등록*/
+    var editBtn = document.querySelector(".btn_wrapper .edit_btn");
+    var deleteTodoBtn = document.querySelector(".btn_wrapper .delete_btn");
+    editBtn.addEventListener('click', function(ev) {
+		oTodoManager.update(ev, oDataManager);
+	    oModalManager.hideModal(ev);
+	}); 
+
+    deleteTodoBtn.addEventListener('click', function(ev) {
+    	oTodoManager.delete(ev, oDataManager);
+    	oModalManager.hideModal(ev);
+	});
+
 	/*   로그아웃 기능   */
 	/* profile버튼을 누르면 my_modal 표시 */
 	var profileBtn = document.querySelector(".profile");
@@ -141,28 +161,6 @@ window.addEventListener("load", function () {
 		}
 	}
 	/*  //로그아웃 기능   */
-	
-	
-    /*길드 검색 이벤트 등록*/
-    var elSearchResultList =  document.querySelector(".search_result_list");
-    var elSearchInput = document.getElementById("global-header").querySelector(".search_input");
-    var oSearchManager = new ubuntudo.ui.SearchManager(elSearchResultList, elSearchInput);
-    elSearchInput.addEventListener("keyup", function(ev) {
-        oSearchManager.autoComplete(ev);
-    });
-
-    /*todo edit, delete 관련 이벤트 등록*/
-    var editBtn = document.querySelector(".btn_wrapper .edit_btn");
-    var deleteTodoBtn = document.querySelector(".btn_wrapper .delete_btn");
-    editBtn.addEventListener('click', function(ev) {
-		oTodoManager.update(ev, oDataManager);
-	    oModalManager.hideModal(ev);
-	}); 
-
-    deleteTodoBtn.addEventListener('click', function(ev) {
-    	oTodoManager.delete(ev, oDataManager);
-    	oModalManager.hideModal(ev);
-	});
 
 //	displayPartyList();
 });
