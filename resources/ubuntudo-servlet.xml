@@ -20,9 +20,12 @@
 	<context:annotation-config />
 
 	<mvc:resources location="/styles/" mapping="/css/**" />
+	<mvc:resources location="/styles/" mapping="/styles/**" />
 	<mvc:resources location="/images/" mapping="/commons/img/**" />
 	<mvc:resources location="/images/" mapping="/images/**" />
 	<mvc:resources location="/scripts/" mapping="/commons/js/**" />
+	<mvc:resources location="/scripts/" mapping="/scripts/**" />
+	<mvc:resources location="/scripts/lib/" mapping="/scripts/lib/**" />
 	<mvc:resources location="/scripts/lib/" mapping="/commons/lib/**" />
 	<mvc:resources location="/bower_components/" mapping="/bower_components/**" />
 
