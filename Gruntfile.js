@@ -18,7 +18,7 @@ module.exports = function (grunt) {
 
   // Configurable paths
   var config = {
-    app: "webapp/",
+    app: "webapp",
     dist: "webapp/dist"
   };
 
@@ -165,7 +165,7 @@ module.exports = function (grunt) {
       all: {
         options: {
           run: true,
-          urls: ["http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/index.html"]
+          urls: ["http://<%= connect.test.options.hostname %>:<%= connect.test.options.port %>/{,*/}*.html"]
         }
       }
     },
@@ -215,7 +215,7 @@ module.exports = function (grunt) {
     wiredep: {
       app: {
         ignorePath: /^\/|\.\.\//,
-        src: ["<%= config.app %>/index.html"]
+        src: ["<%= config.app %>/jsp/{,*/}*.*"]
       },
       sass: {
         src: ["<%= config.app %>/styles/{,*/}*.{scss,sass}"],
@@ -245,7 +245,10 @@ module.exports = function (grunt) {
       options: {
         dest: "<%= config.dist %>"
       },
-      html: "<%= config.app %>/index.html"
+      html: [
+             "<%= config.app %>/jsp/{,*/}*.jsp",
+             "<%= config.app %>/jsp/module/{,*/}*.jsp"
+             ]
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -257,7 +260,10 @@ module.exports = function (grunt) {
           "<%= config.dist %>/styles"
         ]
       },
-      html: ["<%= config.dist %>/{,*/}*.html"],
+      html:[
+            "<%= config.dist %>/jsp/{,*/}*.jsp",
+            "<%= config.dist %>/jsp/module/{,*/}*.jsp"
+            ],
       css: ["<%= config.dist %>/styles/{,*/}*.css"]
     },
 
@@ -300,38 +306,48 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           cwd: "<%= config.dist %>",
-          src: "{,*/}*.html",
+          src: "jsp/module/{,*/}*.jsp",
           dest: "<%= config.dist %>"
         }]
       }
     },
-
-    // By default, your `index.html`"s <!-- Usemin block --> will take care
-    // of minification. These next options are pre-configured if you do not
-    // wish to use the Usemin blocks.
-    // cssmin: {
-    //   dist: {
-    //     files: {
-    //       "<%= config.dist %>/styles/main.css": [
-    //         ".tmp/styles/{,*/}*.css",
-    //         "<%= config.app %>/styles/{,*/}*.css"
-    //       ]
-    //     }
-    //   }
-    // },
-    // uglify: {
-    //   dist: {
-    //     files: {
-    //       "<%= config.dist %>/scripts/scripts.js": [
-    //         "<%= config.dist %>/scripts/scripts.js"
-    //       ]
-    //     }
-    //   }
-    // },
-    // concat: {
-    //   dist: {}
-    // },
-
+//
+//     By default, your `index.html`"s <!-- Usemin block --> will take care
+//     of minification. These next options are pre-configured if you do not
+//     wish to use the Usemin blocks.
+//     cssmin: {
+//       dist: {
+//         files: {
+//           "<%= config.dist %>/styles/main.css": [
+//             ".tmp/styles/{,*/}*.css",
+//             "<%= config.app %>/styles/{,*/}*.css"
+//           ]
+//         }
+//       }
+//     },
+//     concat: {
+//    	    generated: {
+//    	      files: [
+//    	        {
+//    	          dest: '<%= config.dist %>/js/{,*/}*.js',
+//    	          src: [
+//    	            '<%= config.app %>/js/{,*/}*.js',
+//    	          ]
+//    	        }
+//    	      ]
+//    	    }
+//    	  },
+//    	  uglify: {
+//    	    generated: {
+//    	      files: [
+//    	        {
+//    	          dest: 'dist/js/app.js',
+//    	          src: [ '.tmp/concat/js/app.js' ]
+//    	        }
+//    	      ]
+//    	    }
+//    	  }
+    
     // Copies remaining files to places other tasks can use
     copy: {
       dist: {
@@ -343,7 +359,8 @@ module.exports = function (grunt) {
           src: [
             "*.{ico,png,txt}",
             "images/{,*/}*.webp",
-            "{,*/}*.html",
+            "jsp/{,*/}*.jsp",
+            "jsp/module/{,*/}*.jsp",
             "styles/fonts/{,*/}*.*"
           ]
         }, {
@@ -364,7 +381,7 @@ module.exports = function (grunt) {
     // reference in your app
     modernizr: {
       dist: {
-        devFile: "bower_components/modernizr/modernizr.js",
+        devFile: "<%= config.app %>/bower_components/modernizr/modernizr.js",
         outputFile: "<%= config.dist %>/scripts/vendor/modernizr.js",
         files: {
           src: [
@@ -439,14 +456,14 @@ module.exports = function (grunt) {
     "useminPrepare",
     "concurrent:dist",
     "autoprefixer",
-    "concat",
-    "cssmin",
-    "uglify",
+    'concat',
+    'cssmin',
+    'uglify',
     "copy:dist",
     "modernizr",
     "rev",
     "usemin",
-    "htmlmin"
+    'htmlmin'
   ]);
 
   grunt.registerTask("default", [
