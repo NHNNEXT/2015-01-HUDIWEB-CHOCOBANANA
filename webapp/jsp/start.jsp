@@ -114,13 +114,11 @@
     <!-- endbuild -->
 
 <!-- RSA 자바스크립트 라이브러리 -->
-    <!-- build:js /scripts/lib/rsa.min.js -->
-<script type="text/javascript" src="/../scripts/lib/RSA/jsbn.js"></script>
-<script type="text/javascript" src="/../scripts/lib/RSA/rsa.js"></script>
-<script type="text/javascript" src="/../scripts/lib/RSA/prng4.js"></script>
-<script type="text/javascript" src="/../scripts/lib/RSA/rng.js"></script>
-    <script type="text/javascript" src="/../scripts/start/encrypt.js"></script>
-    <!-- endbuild -->
+<script type="text/javascript" src="/scripts/lib/RSA/jsbn.js"></script>
+<script type="text/javascript" src="/scripts/lib/RSA/rsa.js"></script>
+<script type="text/javascript" src="/scripts/lib/RSA/prng4.js"></script>
+<script type="text/javascript" src="/scripts/lib/RSA/rng.js"></script>
+    <script type="text/javascript" src="/scripts/start/encrypt.js"></script>
 <!-- RSA 암호화 처리 스크립트 -->
     <script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha256.js"></script>
 
