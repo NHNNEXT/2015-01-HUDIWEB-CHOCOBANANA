@@ -9,7 +9,7 @@
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width">
 <link rel="shortcut icon" href="/favicon.ico">
-    <!-- build:css styles/main.min.css -->
+    <!-- build:css /styles/main.min.css -->
 <link rel="stylesheet" href="/../../../styles/reset.css">
 <link rel="stylesheet" href="/../../../styles/style.css">
 <link rel="stylesheet" href="/../../../styles/guild.css">

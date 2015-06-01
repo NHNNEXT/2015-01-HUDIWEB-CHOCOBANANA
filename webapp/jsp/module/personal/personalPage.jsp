@@ -31,10 +31,10 @@
 			</section>
 		</main>
     </div>
-    <!-- build:js scripts/personal.min.js -->
+    <!-- build:js /scripts/personal.min.js -->
     <script language="javascript" type="text/javascript" src="/../../../scripts/personal/ubuntudoPersonal.js"></script>
     <!-- endbuild -->
-    <!-- build:js scripts/main.min.js -->
+    <!-- build:js /scripts/main.min.js -->
     <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>

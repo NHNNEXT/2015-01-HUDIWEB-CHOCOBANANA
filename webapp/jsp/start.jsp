@@ -20,7 +20,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>ubuntudo에 오신 것을 환영합니다. | 로그인 및 회원가입</title>
-    <!-- build:css styles/start.min.css -->
+    <!-- build:css /styles/start.min.css -->
 	<link rel="stylesheet" type="text/css" href="/../styles/reset.css"/>
 	<link rel="stylesheet" type="text/css" href="/../styles/startPage.css"/>
     <!-- endbuild -->
@@ -106,7 +106,7 @@
 	</div>
 </div>
 </body>
-    <!-- build:js scripts/start.min.js -->
+    <!-- build:js /scripts/start.min.js -->
     <script language="javascript" type="text/javascript" src="/../scripts/start/startPage.js"></script>
     <script language="javascript" type="text/javascript" src="/../scripts/start/ubuntudo_main.js"></script>
     <script language="javascript" type="text/javascript" src="/../scripts/start/signup_validate.js"></script>
@@ -114,7 +114,7 @@
     <!-- endbuild -->
 
 <!-- RSA 자바스크립트 라이브러리 -->
-    <!-- build:js scripts/lib/rsa.min.js -->
+    <!-- build:js /scripts/lib/rsa.min.js -->
 <script type="text/javascript" src="/../scripts/lib/RSA/jsbn.js"></script>
 <script type="text/javascript" src="/../scripts/lib/RSA/rsa.js"></script>
 <script type="text/javascript" src="/../scripts/lib/RSA/prng4.js"></script>

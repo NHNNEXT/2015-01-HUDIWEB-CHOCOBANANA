@@ -35,7 +35,7 @@
 	</section>
 	</main>
 </section>
-    <!-- build:js scripts/guildOverview.min.js -->
+    <!-- build:js /scripts/guildOverview.min.js -->
 <script language="javascript" type="text/javascript"
 	src="/../../../scripts/guildOverview/ubuntudoGuildOverview.js"></script>
 <script language="javascript" type="text/javascript"
@@ -44,7 +44,7 @@
 	src="/../../../scripts/guildOverview/guildAddModal.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.min.js -->
+    <!-- build:js /scripts/main.min.js -->
     <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>

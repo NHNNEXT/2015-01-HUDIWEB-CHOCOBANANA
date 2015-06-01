@@ -85,11 +85,11 @@
 	</div>
 	</main>
 </div>
-    <!-- build:js scripts/party.min.js -->
+    <!-- build:js /scripts/party.min.js -->
 <script language="javascript" type="text/javascript" src="/../../../scripts/party/ubuntudoParty.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.min.js -->
+    <!-- build:js /scripts/main.min.js -->
     <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>

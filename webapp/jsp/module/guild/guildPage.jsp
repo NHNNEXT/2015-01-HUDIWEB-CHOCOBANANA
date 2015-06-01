@@ -38,12 +38,12 @@
 	</main>
 </div>
 <!-- // 여기까지 길드 페이지 쫘라락~~  -->
-    <!-- build:js scripts/guild.min.js -->
+    <!-- build:js /scripts/guild.min.js -->
 <script language="javascript" type="text/javascript" src="../../../scripts/guild/ubuntudoGuild.js"></script>
 <script language="javascript" type="text/javascript" src="/../../../scripts/guild/guildDataManager.js"></script>
     <!-- endbuild -->
 
-    <!-- build:js scripts/main.min.js -->
+    <!-- build:js /scripts/main.min.js -->
     <script language="javascript" type="text/javascript" src="/../../../scripts/utility.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/dataManager.js"></script>
     <script language="javascript" type="text/javascript" src="/../../../scripts/modalManager.js"></script>
