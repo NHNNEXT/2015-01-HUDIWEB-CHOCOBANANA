@@ -31,6 +31,10 @@ public class GuildController {
 	private static final Logger logger = LoggerFactory.getLogger(GuildController.class);
 	Gson gson = new Gson();
 
+	/*
+	 * 일반적으로 '서비스'라는 이름의 레이어를 사용합니다 :)
+	 * 바꿀 필요는 없을것 같아요.. 그냥 참고만 해주세요 
+	 */
 	@Autowired
 	GuildBiz gbiz;
 
